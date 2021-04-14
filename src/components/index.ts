@@ -17,3 +17,8 @@ if (
 export { default as Icon } from './icon';
 export { default as Button } from './button';
 export { default as Field } from './field';
+
+// liuyang
+export { default as Dialog } from './dialog';
+export { default as NoticeBar } from './notice-bar';
+export { default as Overlay } from './overlay';

@@ -1,0 +1,94 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@dialog: ~"@{uni-prefix}-dialog";
+
+.@{dialog}-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 9999999;
+}
+
+.@{dialog} {
+    position: fixed;
+    width: 311px;
+    top: 50%;
+    left: 50%;
+    border-radius: 6px;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 9999999;
+    user-select: none;
+    color: #1C1D1D;
+    font-size: 16px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    & > div:nth-of-type(2)[class*="content"] {
+        color: #A6A8A9;
+    }
+
+    & > div:nth-of-type(1)[class*="content"] {
+        margin-top: 22px;
+    }
+
+    & > .title,
+    & > .content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    & > .title {
+        margin-top: 22px;
+    }
+
+    & > .content {
+        margin-top: 8px;
+    }
+
+    & > .actions-row,
+    & > .actions-col {
+        display: flex;
+        margin-top: 22px;
+
+        & > div {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 52px;
+            border-top: 1px solid #EEF0F0;
+            cursor: pointer;
+        }
+    }
+
+    & > .actions-row {
+        flex-flow: row nowrap;
+
+        & > div + div {
+            border-left: 1px solid #EEF0F0;
+        }
+    }
+
+    & > .actions-col {
+        flex-flow: column nowrap;
+    }
+
+    & > .notice {
+        background-image: linear-gradient(180deg, #F72F48 0%, #F31D39 100%);
+        border-radius: 6px;
+        color: #fff;
+        line-height: 36px;
+        text-align: center;
+        margin: 32px 24px 16px 24px;
+        cursor: pointer;
+    }
+}
