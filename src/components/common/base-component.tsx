@@ -2,6 +2,8 @@ import React, { PureComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
+export type DivEvent = React.DOMAttributes<HTMLDivElement>;
+
 export type BaseProps<T = Record<string, unknown>> = Partial<{
     prefixCls: string;
 } & T>;
