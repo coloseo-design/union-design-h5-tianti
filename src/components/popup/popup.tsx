@@ -1,0 +1,182 @@
+/* eslint-disable no-nested-ternary */
+import React from 'react';
+import classNames from 'classnames';
+import Icon from '../icon';
+import Button from '../button';
+import Portal from '../common/portal';
+import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+
+export interface PopupProps {
+  /* 弹出位置 */
+  position?: 'top' | 'bottom' | 'left' | 'right' | 'center';
+  /* 是否显示弹出层 */
+  vmodel?: boolean;
+  /* 是否显示遮罩层 */
+  prefixCls?: string;
+  /* 指定挂载的节点 */
+  getPopupContainer?: () => HTMLElement | null;
+  /* 展示弹出层header */
+  header?: string | React.ReactNode;
+  /* 是否展示底部按钮 或者自定义按钮 */
+  footer?: null | React.ReactNode;
+  /* 确认按钮文字 */
+  okText?: React.ReactNode | string;
+  /* 关闭图标文字 */
+  closeText?: string | React.ReactNode;
+  /* 取消按钮文字 */
+  cancelText?: React.ReactNode | string;
+  /* 点击取消，X 事件 */
+  onCancel?: (e: React.MouseEvent<HTMLElement>) => void;
+  /* 点击确认按钮 */
+  onOk?: (e: React.MouseEvent<HTMLElement>) => void;
+  /* 是否显示遮罩层 */
+  overlay?: boolean;
+  /* 自定义遮罩层样式 */
+  overlayStyle?: React.CSSProperties;
+  /* 自定义遮罩层类名 */
+  overlayClass?: string;
+  /* 是否显示关闭图标 */
+  closeable?: boolean;
+  /* 关闭图标 或 图片链接 */
+  closeIcon?: string | React.ReactNode;
+  /* 是否展示圆角 */
+  round?: boolean;
+  /* 是否点击遮罩层关闭 */
+  closeOnClickOverlay?: boolean;
+  /* 弹出层内容样式 */
+  style?: React.CSSProperties;
+  /* 弹出层body样式 */
+  bodyStyle?: React.CSSProperties;
+  /* 点击关闭按钮时触发 */
+  clickCloseIcon?: () => void;
+}
+
+export interface PopupState {
+  vmodel: boolean;
+}
+
+class Popup extends React.Component<PopupProps, PopupState> {
+  constructor(props: PopupProps) {
+    super(props);
+    const { vmodel } = this.props;
+    this.state = {
+      vmodel: vmodel || false,
+    };
+  }
+
+  componentDidUpdate(prevProps: PopupProps) {
+    const { vmodel } = this.props;
+    if (vmodel !== prevProps.vmodel) {
+      this.setState({
+        vmodel,
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({ vmodel: false });
+  }
+
+  handleMask = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { closeOnClickOverlay = true, onCancel } = this.props;
+    if (event.target === event.currentTarget && closeOnClickOverlay) {
+      onCancel && onCancel(event);
+    }
+  }
+
+  cancel = (e: React.MouseEvent<HTMLElement>) => {
+    const { onCancel } = this.props;
+    onCancel && onCancel(e);
+    this.setState({ vmodel: false });
+  };
+
+  ok = (e: React.MouseEvent<HTMLElement>) => {
+    const { onOk } = this.props;
+    onOk && onOk(e);
+    this.setState({ vmodel: false });
+  }
+
+  renderPopup = ({ getPrefixCls }: ConfigConsumerProps) => {
+    const {
+      prefixCls,
+      getPopupContainer,
+      position = 'center',
+      header,
+      footer,
+      children,
+      overlay = true,
+      overlayStyle,
+      overlayClass,
+      closeable = true,
+      closeIcon,
+      closeText,
+      style,
+      round = true,
+      bodyStyle,
+    } = this.props;
+    const { vmodel } = this.state;
+    const prex = getPrefixCls('popup', prefixCls);
+    const prexWrapper = classNames(prex, {
+      [`${prex}-${position}`]: position,
+    });
+
+    const mask = classNames(`${prex}-mask`, overlayClass);
+    const prexContent = classNames(`${prex}-content`, {
+      [`${prex}-content-${position}`]: position && vmodel,
+      [`${prex}-content-${position}-round`]: round,
+    });
+
+    const contenHeader = classNames(`${prex}-content-header`);
+    const headerIcon = classNames(`${prex}-content-header-icon`);
+    const contentBody = classNames(`${prex}-content-body`);
+    const contentFooter = classNames(`${prex}-content-footer`);
+
+    const footerButton = (
+      <>
+        <Button type="primary" style={{ marginRight: 16 }} onClick={this.cancel}>取消</Button>
+        <Button onClick={this.ok}>确认</Button>
+      </>
+    );
+
+    return (
+      vmodel ? (
+        <Portal {...({ getPopupContainer })}>
+          <div className={prexWrapper}>
+            {overlay && <div className={mask} style={overlayStyle} onClick={this.handleMask} />}
+            <div className={prexContent} style={style}>
+              <div className={contenHeader}>
+                {React.isValidElement(header) ? header : <span>{header}</span>}
+                {closeable && (
+                <span className={headerIcon}>
+                  {
+                    closeIcon
+                      ? (React.isValidElement(closeIcon) ? closeIcon : <img src={closeIcon || ''} alt="" />)
+                      : (closeText || <Icon type="close" onClick={this.cancel} />)
+                  }
+                </span>
+                )}
+              </div>
+              <div className={contentBody} style={bodyStyle}>
+                {children}
+              </div>
+              {footer !== null && vmodel
+                  && (
+                    <div className={contentFooter}>{footer || footerButton}</div>
+                  )}
+            </div>
+          </div>
+        </Portal>
+      ) : null
+    );
+  }
+
+  render() {
+    return (
+      <ConfigConsumer>
+        {this.renderPopup}
+      </ConfigConsumer>
+    );
+  }
+}
+
+export default Popup;

@@ -1,0 +1,53 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@checkbox-prefix-cls: ~'@{uni-prefix}-radio';
+
+.@{checkbox-prefix-cls} {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  .@{checkbox-prefix-cls}-icon {
+    transition: background .3s ease-in-out;
+    width: 1em;
+    height: 1em;
+    border: 0.09375px solid #DBDDDD;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.75em;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::after {
+      content: ' ';
+      width: 0.5rem;
+      height: 0.5rem;
+      background: @primary-bg;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: all .3s ease-in-out;
+      display: block;
+    }
+  }
+  &&-checked {
+    .@{checkbox-prefix-cls}-icon {
+      &::after {
+        background: @primary-bg;
+        transform: scale(1);
+      }
+    }
+  }
+  &&-disabled {
+    .@{checkbox-prefix-cls}-icon {
+      background: #F5F6F6;
+    }
+  }
+  &&-checked&-disabled{
+    .@{checkbox-prefix-cls}-icon {
+      &::after {
+        background: #C8CCCC;
+      }
+    }
+  }
+}

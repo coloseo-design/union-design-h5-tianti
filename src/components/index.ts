@@ -14,11 +14,13 @@ if (
 }
 
 // 请在此处导出所有组件
-export { default as Icon } from './icon';
-export { default as Button } from './button';
-export { default as Field } from './field';
+export { default as Checkbox } from './checkbox';
+export { default as Radio } from './radio';
+export { default as DropdownMenu, DropdownItem } from './dropdown-menu';
+export { default as Filed } from './field';
 
 // liuyang
 export { default as Dialog } from './dialog';
 export { default as NoticeBar } from './notice-bar';
 export { default as Overlay } from './overlay';
+export { default as ImagePreview } from './image-preview';

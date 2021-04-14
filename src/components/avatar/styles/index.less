@@ -1,0 +1,43 @@
+@import '../../style/themes/index';
+
+@avatar: ~'@{uni-prefix}-avatar-mobile';
+
+.@{avatar}{
+    display: inline-block;
+    border-radius: 50%;
+    white-space:nowrap;
+    vertical-align:middle;
+    text-align: center;
+    background-image: linear-gradient(#F72F48, #FE6666);
+    color: white;
+
+    &-badge{
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        sub{
+            border-radius: 50%;
+            position: absolute;
+            z-index: auto;
+            top: 75%;
+            left: 70%;
+            box-shadow:0 0 0 2px #fff;
+            color: #fff;
+        }
+    }
+
+    &-sub-info{
+       background-color: #ED6A10;
+    }
+    &-sub-success{
+       background-color: #07C160;
+    }
+    &-sub-error{
+       background-color: #EE0A24;
+    }
+
+
+}
+
+

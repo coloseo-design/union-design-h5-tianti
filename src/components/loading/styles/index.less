@@ -1,0 +1,16 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@loading-prefix-cls: ~'@{uni-prefix}-loading';
+
+.@{loading-prefix-cls} {
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  &-text {
+    margin-left: 8px;
+  }
+}
