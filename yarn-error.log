@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Arguments: 
   /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn
 
@@ -14,6 +15,24 @@ Platform:
   darwin x64
 
 Trace: 
+=======
+Arguments:
+  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn
+
+PATH:
+  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+
+Yarn version:
+  1.22.10
+
+Node version:
+  15.11.0
+
+Platform:
+  darwin x64
+
+Trace:
+>>>>>>> master
   Error: http://10.236.18.95:4873/classnames/-/classnames-2.3.1.tgz: Request failed "500 Internal Server Error"
       at ResponseError.ExtendableBuiltin (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:696:66)
       at new ResponseError (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:802:124)
@@ -26,7 +45,11 @@ Trace:
       at HTTPParser.execute (<anonymous>)
       at Socket.socketOnData (node:_http_client:502:22)
 
+<<<<<<< HEAD
 npm manifest: 
+=======
+npm manifest:
+>>>>>>> master
   {
     "name": "union-design",
     "version": "0.0.0",
@@ -102,8 +125,15 @@ npm manifest:
     }
   }
 
+<<<<<<< HEAD
 yarn manifest: 
   No manifest
 
 Lockfile: 
+=======
+yarn manifest:
+  No manifest
+
+Lockfile:
+>>>>>>> master
   No lockfile
