@@ -1,0 +1,146 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@popup: ~'@{uni-prefix}-popup';
+
+
+.@{popup} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: rgba(0,0,0,0.8);
+    animation: fade 0.3s linear;
+  }
+  &-content {
+    position: absolute;
+    background-color: #fff;
+    z-index: 2001;
+    min-width: 60px;
+    min-height: 60px;
+    overflow: hidden;
+    &-header {
+      height: 52px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      font-size: 16px;
+      border-bottom: 1px solid #EEF0F0;
+      padding: 0px 12px;
+      &:first-child {
+        color: #1C1D1D;
+        font-weight: 500;
+      }
+      &-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 16px;
+        img {
+          width: 16px;
+        }
+      }
+    }
+    &-body {
+      max-height: 80%;
+      overflow: auto;
+      margin: 32px 0px;
+      padding-bottom: 32px;
+    }
+    &-footer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+      position: absolute;
+      bottom: 17px;
+    }
+    &-center {
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      &-round {
+        border-radius: 16px;
+      }
+    }
+    &-top {
+      width: 100%;
+      top: 0;
+      left: 0;
+      max-height: 80%;
+      animation: maxHeight 0.3s linear;
+      &-round {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+    }
+    &-bottom {
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      max-height: 80%;
+      animation: maxHeight 0.3s linear;
+      &-round {
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+      }
+    }
+    &-left {
+      height: 100%;
+      left: 0;
+      top: 0;
+      animation: maxWidth 0.3s linear;
+      &-round {
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+    }
+    &-right {
+      height: 100%;
+      right: 0;
+      top: 0;
+      animation: maxWidth 0.3s linear;
+      &-round {
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0,
+  };
+  to {
+    opacity: 1,
+  }
+};
+
+@keyframes maxHeight {
+  0% {
+    max-height: 10px,
+  };
+  100% {
+    max-height: 80%,
+  }
+}
+
+@keyframes maxWidth {
+  0% {
+    max-width: 10px,
+  };
+  100% {
+    max-width: 80%,
+  }
+}
