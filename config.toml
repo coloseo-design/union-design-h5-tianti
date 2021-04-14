@@ -1,4 +1,31 @@
-repo = "http://10.124.128.2:8888/muses/union-design-h5.git"
-users = ["jc-dengp", "jc-lvhj"]
-emails = ["jc-dengp@chinaunicom.cn", "jc-lvhj@chinaunicom.cn"]
-passwords = ["Tianti%402019", "Tianti%402019"]
+repo = "10.124.128.2:8888/muses/union-design-h5.git"
+users = [
+  "jc-dengp",
+   "jc-lvhj",
+   "jc-liuy23",
+   "jc-wub1",
+   "jc-liaoyj",
+   "jc-yuj",
+   "jc-yud6",
+   "jc-diaoy",
+   ]
+emails = [
+  "jc-dengp@chinaunicom.cn",
+  "jc-lvhj@chinaunicom.cn",
+  "jc-liuy23@chinaunicom.cn",
+  "jc-wub1@chinaunicom.cn",
+  "jc-liaoyj@chinaunicom.cn",
+  "jc-yuj@chinaunicom.cn",
+  "jc-yud6@chinaunicom.cn",
+  "jc-diaoy@chinaunicom.cn",
+  ]
+passwords = [
+  "Tianti%402019",
+  "Tianti%402019",
+  "Tianti%402019",
+  "Tianti%402019",
+  "Tianti%402019",
+  "Tianti%402019",
+  "Tianti%402019",
+  "Tianti%402019",
+]
