@@ -1,0 +1,94 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+@import './mixin';
+
+@field-prefix-cls: ~'@{uni-prefix}-field';
+
+.@{field-prefix-cls} {
+  display: flex;
+  background: @white;
+  font-size: @field-fint-size;
+  padding: 1em 0.5em;
+  color: @field-color;
+  width: 100%;
+  margin-bottom: 0.625em;
+  &-required {
+    margin-right: 0.125em;
+    color: @field-required-color;
+  }
+  &-content {
+    width: 100%;
+    &-container {
+      display: flex;
+    }
+    &-label {
+      margin-bottom: 0.375em;
+    }
+    &-input {
+      .input();
+    }
+    &-textarea {
+      .input(100%, auto);
+    }
+  }
+}
+
+.@{field-prefix-cls}-reply {
+  display: flex;
+  padding: 0.625em 0.75em;
+  width: 100%;
+  &-left-content {
+    margin-right: 0.625em;
+  }
+  &-content {
+    width: 100%;
+    display: flex;
+    &-textarea {
+      .input(100%, auto, @field-background-color);
+      border-radius: 0.25em;
+      padding: 0.125em 0.5em;
+    }
+  }
+}
+
+.@{field-prefix-cls}-normal {
+  background-color: @field-background-color;
+  border-radius: 0.375em;
+  padding:  0.875em 0.75em;
+  .@{field-prefix-cls}-left-content {
+    .uniicon-password {
+      color: @field-password-left-icon-color;
+      font-size: 1.5em;
+    }
+  }
+  .@{field-prefix-cls}-right-content {
+    .uniicon-eye-open, .uniicon-eye-colose {
+      font-size: 1.5em;
+    }
+  }
+  &-border {
+    border: 0.0625em solid @field-placeholder-color;
+  }
+  &-border-value {
+    border: 0.0625em solid @field-value-border-color;
+  }
+  &-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    &-input {
+      .input(100%, auto, @field-background-color);
+      padding-left: 0.75em;
+    }
+  }
+  &-error {
+    border: 0.0625em solid @field-error-color;
+    background-color: @field-error-background-color;
+    .@{field-prefix-cls}-normal-content {
+      &-input {
+        color: @field-error-color;
+        background-color: @field-error-background-color;
+      }
+    }
+  }
+}
