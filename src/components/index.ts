@@ -16,4 +16,3 @@ if (
 // 请在此处导出所有组件
 export { default as Icon } from './icon';
 export { default as Button } from './button';
-export { default as Field } from './field';
