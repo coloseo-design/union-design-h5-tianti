@@ -1,0 +1,53 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@checkbox-prefix-cls: ~'@{uni-prefix}-checkbox';
+
+.@{checkbox-prefix-cls} {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  .@{checkbox-prefix-cls}-icon {
+    transition: background .3s ease-in-out;
+    width: 1em;
+    height: 1em;
+    border: 0.09375px solid #DBDDDD;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.75em;
+    background: #fff;
+    position: relative;
+    &::after {
+      content: ' ';
+      width: 5px;
+      height: 9px;
+      position: absolute;
+      top: 50%;
+      left: 22%;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) scale(0) translate(-50%, -50%);
+      transition: all .3s ease-in-out;
+    }
+  }
+  &&-checked {
+    .@{checkbox-prefix-cls}-icon {
+      background: @primary-bg;
+      border: none;
+      &::after {
+        transform: rotate(45deg) scale(1) translate(-50%, -50%);
+      }
+    }
+  }
+  &&-disabled {
+    .@{checkbox-prefix-cls}-icon {
+      background: #F5F6F6;
+    }
+  }
+  &&-checked&-disabled{
+    .@{checkbox-prefix-cls}-icon {
+      background: #C8CCCC;
+    }
+  }
+}
