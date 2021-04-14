@@ -1,0 +1,28 @@
+ul.icon-container {
+  zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+  }
+  &::after {
+    clear: both;
+  }
+  li {
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    list-style: none;
+    width: 200px;
+    &:hover {
+      background-color: wheat;
+    }
+  }
+  .icon,.icon-name {
+    text-align: center;
+  }
+  .icon {
+    margin-bottom: 5px;
+  }
+}
+
