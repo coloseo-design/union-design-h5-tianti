@@ -272,8 +272,8 @@ export default [
         key: 'pop-confirm',
       },
       {
-        title: 'Spin 加载中',
-        key: 'spin',
+        title: 'Loading 加载中',
+        key: 'loading',
       },
       {
         title: 'Progress 进度条',

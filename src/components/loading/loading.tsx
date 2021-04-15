@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
-import Icon from '../icon';
 
 export interface BaseLoadingProps {
   /* 用户自定义类前缀，默认uni-loading */
@@ -24,28 +23,11 @@ export interface BaseLoadingProps {
   text?: string;
 }
 
-export interface loadingState {
-  height: string | number;
-}
-
-class Loading extends Component<BaseLoadingProps, loadingState> {
-  constructor(props: BaseLoadingProps) {
-    super(props);
-    this.state = {
-      height: 'unset',
-    };
-  }
-
-  componentDidMount() {
-    const height = document.querySelector('.uni-loading')?.clientWidth;
-    const { vertical } = this.props;
-    height && vertical && this.setState({ height });
-  }
-
+class Loading extends Component<BaseLoadingProps> {
   renderLoading = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
-      color = '#646566',
+      color = 'rgba(0,0,0,0.80)',
       type = 'circular',
       size = '20px',
       textSize = '14px',
@@ -54,18 +36,54 @@ class Loading extends Component<BaseLoadingProps, loadingState> {
       vertical,
       text,
     } = this.props;
-    const { height } = this.state;
     const prefix = getPrefixCls('loading', prefixCls);
     const mainClass = classNames(prefix, {
       // [`${prefix}-${fieldType}`]: fieldType,
     });
 
+    const arr = Array.from(Array(12), (v, k) => k + 1).reverse();
+
+    const textStyle = {
+      color: textColor,
+      fontSize: textSize,
+      marginLeft: 8,
+    };
+
+    if (vertical) {
+      Object.assign(textStyle, {
+        marginTop: 8,
+        marginLeft: 0,
+      });
+    } else {
+      Object.assign(textStyle, {
+        marginTop: 0,
+        marginLeft: 8,
+      });
+    }
+
     return (
-      <div className={mainClass} style={{ backgroundColor, height, flexDirection: vertical ? 'column' : 'row' }}>
+      <div className={mainClass} style={{ backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
         {type === 'circular'
-          ? <Icon type="loading_circle" spin style={{ fontSize: size, color }} />
-          : <div />}
-        {text && <span className={`${prefix}-text`} style={{ color: textColor, fontSize: textSize }}>{text}</span>}
+          ? (
+            <svg viewBox="0 0 50 50" className={`${prefix}-svg`} style={{ width: size, height: size }}>
+              <circle cx="25" cy="25" r="20" fill="none" className={`${prefix}-${type}`} style={{ stroke: color }} />
+            </svg>
+          )
+          : (
+            <div className={`${prefix}-${type}`} style={{ width: size, height: size }}>
+              {arr.map((item, index) => (
+                <i
+                  key={item}
+                  style={{
+                    transform: `rotate(${(index + 1) * 30}deg)`,
+                    opacity: (1 / arr.length) * item,
+                    color,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        {text && <span className={`${prefix}-text`} style={textStyle}>{text}</span>}
       </div>
     );
   };
