@@ -1,0 +1,78 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@numberKeyboard: ~"@{uni-prefix}-number-keyboard";
+
+.@{numberKeyboard} {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding-bottom: 28px;
+  background-color: #F5F6F6;
+  animation: fadein 0.3s linear;
+  display: none;
+  &-show {
+    display: block;
+    max-height: 70%;
+  }
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &-title {
+      position: relative;
+      height: 40px;
+      width: 100%;
+      text-align: center;
+      line-height: 40px;
+      color: #1C1D1D;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    &-complete {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 16px;
+      color: #646566;
+    }
+  }
+  &-content {
+    width: 100%;
+    display: flex;
+    flex: 3;
+    flex-wrap: wrap;
+    &-number {
+      flex: 1;
+      flex-basis: 33%;
+      box-sizing: border-box;
+      color: #1C1D1D;
+      font-size: 28px;
+      font-weight: 400;
+      text-align: center;
+      &-current {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        background-color: #fff;
+        border-radius: 8px;
+        margin-top: 12px;
+        margin-right: 12px;
+        &:active {
+          background-color: #F7F8FA;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadein {
+  from {
+    max-height: 0px;
+  }
+  top {
+    max-height: 70%;
+  }
+}

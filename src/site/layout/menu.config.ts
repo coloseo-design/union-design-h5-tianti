@@ -141,6 +141,10 @@ export default [
         title: 'Timeline 时间轴',
         key: 'timeline',
       },
+      {
+        title: 'NumberKeyBoard 数字键盘',
+        key: 'number-key-board',
+      },
     ],
   },
   {
