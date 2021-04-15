@@ -7,9 +7,14 @@
 .@{dropDownMenu} {
   width: 100%;
   background-color: #fff;
+  padding: 20px 24px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 20px 24px;
+  &-content {
+    flex: 1;
+    margin-right: 24px;
+  }
   &-item {
     flex: 1; 
     height: 32px;
@@ -17,7 +22,6 @@
     border-radius: 3px;
     line-height: 16px;
     padding: 8px 12px;
-    margin-right: 24px;
     position: relative;
     &:last-child {
       margin-right: 0px;
@@ -40,23 +44,23 @@
 .@{dropDownItem} {
   position: fixed;
   z-index: 1000;
-  visibility: hidden;
+  display: none;
   width: 100%;
   opacity: 0;
   overflow: hidden;
   &-show {
-    visibility: visible;
+    display: block;
     opacity: 1;
-    transition: opacity 0.3s @ease-in-out;
+    animation: opacityIn 0.3s linear;
   }
   &-content {
     width: 100%;
     background-color: #fff;
     max-height: 0;
-    transition: all 0.3s linear;
     position: absolute;
     overflow-y: auto;
     &-show {
+      animation: fadein 0.3s linear;
       max-height: 80%;
     }
     &-inner {
@@ -88,6 +92,15 @@
     max-height: 0;
   }
   100% {
-   max-height: 100000px;
+   max-height: 80%;
+  }
+}
+
+@keyframes opacityIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+   opacity: 1;
   }
 }

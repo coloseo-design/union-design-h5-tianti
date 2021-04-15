@@ -10,7 +10,7 @@ export interface PopupProps {
   /* 弹出位置 */
   position?: 'top' | 'bottom' | 'left' | 'right' | 'center';
   /* 是否显示弹出层 */
-  vmodel?: boolean;
+  visible?: boolean;
   /* 是否显示遮罩层 */
   prefixCls?: string;
   /* 指定挂载的节点 */
@@ -52,29 +52,38 @@ export interface PopupProps {
 }
 
 export interface PopupState {
-  vmodel: boolean;
+  visible: boolean;
+  translationS: boolean;
 }
 
 class Popup extends React.Component<PopupProps, PopupState> {
   constructor(props: PopupProps) {
     super(props);
-    const { vmodel } = this.props;
+    const { visible } = this.props;
     this.state = {
-      vmodel: vmodel || false,
+      visible: visible || false,
+      translationS: false,
     };
   }
 
   componentDidUpdate(prevProps: PopupProps) {
-    const { vmodel } = this.props;
-    if (vmodel !== prevProps.vmodel) {
-      this.setState({
-        vmodel,
-      });
+    const { visible } = this.props;
+    if (visible !== prevProps.visible) {
+      if (!visible) {
+        this.setState({ translationS: true });
+        setTimeout(() => {
+          this.setState({ visible: false, translationS: false });
+        }, 300);
+      } else {
+        this.setState({
+          visible,
+        });
+      }
     }
   }
 
   componentWillUnmount() {
-    this.setState({ vmodel: false });
+    this.setState({ visible: false });
   }
 
   handleMask = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -87,13 +96,11 @@ class Popup extends React.Component<PopupProps, PopupState> {
   cancel = (e: React.MouseEvent<HTMLElement>) => {
     const { onCancel } = this.props;
     onCancel && onCancel(e);
-    this.setState({ vmodel: false });
   };
 
   ok = (e: React.MouseEvent<HTMLElement>) => {
     const { onOk } = this.props;
     onOk && onOk(e);
-    this.setState({ vmodel: false });
   }
 
   renderPopup = ({ getPrefixCls }: ConfigConsumerProps) => {
@@ -114,16 +121,19 @@ class Popup extends React.Component<PopupProps, PopupState> {
       round = true,
       bodyStyle,
     } = this.props;
-    const { vmodel } = this.state;
+    const { visible, translationS } = this.state;
     const prex = getPrefixCls('popup', prefixCls);
     const prexWrapper = classNames(prex, {
       [`${prex}-${position}`]: position,
     });
 
-    const mask = classNames(`${prex}-mask`, overlayClass);
+    const mask = classNames(`${prex}-mask`, overlayClass, {
+      [`${prex}-mask-hidden`]: translationS,
+    });
     const prexContent = classNames(`${prex}-content`, {
-      [`${prex}-content-${position}`]: position && vmodel,
+      [`${prex}-content-${position}`]: position && visible,
       [`${prex}-content-${position}-round`]: round,
+      [`${prex}-content-${position}-transition`]: visible && translationS,
     });
 
     const contenHeader = classNames(`${prex}-content-header`);
@@ -139,7 +149,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
     );
 
     return (
-      vmodel ? (
+      visible ? (
         <Portal {...({ getPopupContainer })}>
           <div className={prexWrapper}>
             {overlay && <div className={mask} style={overlayStyle} onClick={this.handleMask} />}
@@ -159,7 +169,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
               <div className={contentBody} style={bodyStyle}>
                 {children}
               </div>
-              {footer !== null && vmodel
+              {footer !== null && visible
                   && (
                     <div className={contentFooter}>{footer || footerButton}</div>
                   )}

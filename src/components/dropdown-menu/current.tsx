@@ -38,7 +38,7 @@ class CurrentItem extends React.Component<CurrentItemProps> {
       isExpand,
       itemValue,
       icon,
-      dropItemStyle,
+      dropItemStyle = {},
       activeColor,
     } = this.props;
     const wrapper = getPrefixCls('dropdown-item-content', prefixCls);

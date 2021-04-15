@@ -10,27 +10,6 @@ const PopupDemo = () => {
   const [vmodel4, setVmodel4] = useState(false);
   const [vmodel5, setVmodel5] = useState(false);
   const [vmodel6, setVmodel6] = useState(false);
-  const handleClick = () => {
-    setModal(true);
-  };
-  const handleClick1 = () => {
-    setVmodel1(true);
-  };
-  const handleClick2 = () => {
-    setVmodel2(true);
-  };
-  const handleClick3 = () => {
-    setVmodel3(true);
-  };
-  const handleClick4 = () => {
-    setVmodel4(true);
-  };
-  const handleClick5 = () => {
-    setVmodel5(true);
-  };
-  const handleClick6 = () => {
-    setVmodel6(true);
-  };
 
   const handleCancel = () => {
     setModal(false);
@@ -116,21 +95,21 @@ const PopupDemo = () => {
   return (
     <div>
       <h1>基础用法</h1>
-      <Button onClick={handleClick}>基础</Button>
+      <Button onClick={() => setModal(true)}>基础</Button>
       <h1>顶部弹出</h1>
-      <Button onClick={handleClick1}>顶部弹出</Button>
+      <Button onClick={() => setVmodel1(true)}>顶部弹出</Button>
       <h1>底部弹出</h1>
-      <Button onClick={handleClick2}>底部弹出</Button>
+      <Button onClick={() => setVmodel2(true)}>底部弹出</Button>
       <h1>左侧弹出</h1>
-      <Button onClick={handleClick3}>左侧弹出</Button>
+      <Button onClick={() => setVmodel3(true)}>左侧弹出</Button>
       <h1>右侧弹出</h1>
-      <Button onClick={handleClick4}>右侧弹出</Button>
+      <Button onClick={() => setVmodel4(true)}>右侧弹出</Button>
       <h1>自定义弹出footer</h1>
-      <Button onClick={handleClick5}>自定义弹出footer</Button>
+      <Button onClick={() => setVmodel5(true)}>自定义弹出footer</Button>
       <h1>自定义弹出header</h1>
-      <Button onClick={handleClick6}>自定义弹出header</Button>
+      <Button onClick={() => setVmodel6(true)}>自定义弹出header</Button>
       <Popup
-        vmodel={vmodel}
+        visible={vmodel}
         position="center"
         onCancel={handleCancel}
         style={{ width: 320 }}
@@ -147,7 +126,7 @@ const PopupDemo = () => {
         </div>
       </Popup>
       <Popup
-        vmodel={vmodel1}
+        visible={vmodel1}
         position="top"
         onCancel={handleCancel}
         header="标题"
@@ -163,7 +142,7 @@ const PopupDemo = () => {
         </div>
       </Popup>
       <Popup
-        vmodel={vmodel2}
+        visible={vmodel2}
         position="bottom"
         onCancel={handleCancel}
         header="标题"
@@ -179,7 +158,7 @@ const PopupDemo = () => {
         </div>
       </Popup>
       <Popup
-        vmodel={vmodel3}
+        visible={vmodel3}
         position="left"
         onCancel={handleCancel}
         style={{ width: 320 }}
@@ -187,7 +166,7 @@ const PopupDemo = () => {
         {test}
       </Popup>
       <Popup
-        vmodel={vmodel4}
+        visible={vmodel4}
         position="right"
         onCancel={handleCancel}
         style={{ width: 320 }}
@@ -203,7 +182,7 @@ const PopupDemo = () => {
         </div>
       </Popup>
       <Popup
-        vmodel={vmodel5}
+        visible={vmodel5}
         position="bottom"
         onCancel={handleCancel}
         style={{ height: '70%' }}
@@ -213,7 +192,7 @@ const PopupDemo = () => {
         {test}
       </Popup>
       <Popup
-        vmodel={vmodel6}
+        visible={vmodel6}
         position="bottom"
         onCancel={handleCancel}
         onOk={handleCancel}
