@@ -30,11 +30,10 @@
     "enquire.js": "^2.1.6",
     "gulp-concat": "^2.6.1",
     "omit.js": "^1.0.2",
-    "rc-tabs": "^11.7.3",
     "react-app-polyfill": "^2.0.0",
     "react-router-dom": "5.2.0",
     "shallowequal": "^1.1.0",
-    "union-design": "^0.0.2",
+    "union-design": "^0.0.3",
     "union-icons-react": "0.0.3",
     "union-tool": "^0.0.1"
   },
