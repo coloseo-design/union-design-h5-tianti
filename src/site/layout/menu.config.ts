@@ -149,6 +149,14 @@ export default [
     themeColor: '#D6386B',
     children: [
       {
+        title: 'ImagePreview 图片预览',
+        key: 'image-preview',
+      },
+      {
+        title: 'Swipe 轮播图',
+        key: 'swipe',
+      },
+      {
         title: 'Avatar 头像',
         key: 'avatar',
       },

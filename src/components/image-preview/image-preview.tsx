@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
-import React, { createRef, CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import Icon from '../icon';
 import Overlay from '../overlay';
 import {
@@ -40,8 +40,6 @@ export type ImagePreviewState = BaseState<{
 export default class ImagePreview extends BaseComponent<ImagePreviewProps, ImagePreviewState> {
   protected classPrefix = 'image-preview';
 
-  private containerRef = createRef<HTMLDivElement>();
-
   private diff?: number;
 
   public constructor(props: ImagePreviewProps) {
@@ -70,21 +68,9 @@ export default class ImagePreview extends BaseComponent<ImagePreviewProps, Image
       style = {}, className, enableFullScreen = false,
     } = this.props;
 
-    const newStyle = {
-      ...style,
-    };
-
-    const { width } = style;
-    if (typeof width === 'number') {
-      newStyle.height ??= width as number * 0.56;
-    } else {
-      newStyle.height ??= (this.containerRef.current?.offsetWidth ?? 0) * 0.56;
-    }
-
     return (
       <div
-        ref={this.containerRef}
-        style={newStyle}
+        style={style}
         onClick={this.onClick}
         className={this.classNames(className, this.getPrefixClass())}
       >
