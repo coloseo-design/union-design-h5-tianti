@@ -16,14 +16,43 @@ const KeyBoardDemo = () => {
     setShow2(false);
     setShow3(false);
   };
+  const handleClick = (e: any) => {
+    e.stopPropagation();
+    setShow(true);
+    setShow1(false);
+    setShow2(false);
+    setShow3(false);
+  };
+  const handleClick1 = (e: any) => {
+    e.stopPropagation();
+    setShow(false);
+    setShow1(true);
+    setShow2(false);
+    setShow3(false);
+  };
+  const handleClick2 = (e: any) => {
+    e.stopPropagation();
+    setShow(false);
+    setShow1(false);
+    setShow2(true);
+    setShow3(false);
+  };
+  const handleClick3 = (e: any) => {
+    e.stopPropagation();
+    setShow(false);
+    setShow1(false);
+    setShow2(false);
+    setShow3(true);
+  };
+
   return (
     <div style={{ margin: 64 }}>
-      <Button onClick={() => setShow(true)} style={{ width: 'fix-content' }}>基本的1键盘 click me </Button>
-      <Button onClick={() => setShow1(true)}>基本的2键盘 click me</Button>
-      <Button onClick={() => setShow2(true)}>身份证键盘 click me</Button>
-      <Button onClick={() => setShow3(true)}>带title的键盘 click me</Button>
+      <Button onClick={handleClick}>默认键盘1 </Button>
+      <Button onClick={handleClick1}>默认键盘2</Button>
+      <Button onClick={handleClick2}>身份证键盘</Button>
+      <Button onClick={handleClick3}>带title的键盘</Button>
       <NumberKeyBoard show={show} onClose={handleClose} />
-      {/* <NumberKeyBoard show={show1} complete onClose={handleClose} />
+      <NumberKeyBoard show={show1} complete onClose={handleClose} />
       <NumberKeyBoard show={show2} extraKey="X" onClose={handleClose} />
       <NumberKeyBoard
         show={show3}
@@ -31,7 +60,7 @@ const KeyBoardDemo = () => {
         onClose={handleClose}
         value="12345"
         onDelete={handleDelete}
-      /> */}
+      />
     </div>
   );
 };

@@ -12,9 +12,15 @@
   background-color: #F5F6F6;
   animation: fadein 0.3s linear;
   display: none;
+  user-select: none;
+  outline: none;
   &-show {
     display: block;
     max-height: 70%;
+  }
+  &-hidden {
+    max-height: 0;
+    animation: fadeout 0.3s linear;
   }
   &-wrapper {
     display: flex;
@@ -74,5 +80,14 @@
   }
   top {
     max-height: 70%;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    max-height: 70%;
+  }
+  top {
+    max-height: 0;
   }
 }

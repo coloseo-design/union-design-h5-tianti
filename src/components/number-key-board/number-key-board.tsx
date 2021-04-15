@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import classNames from 'classnames';
 import Icon from '../icon';
@@ -5,8 +6,11 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context'
 
 export interface NumberKeyBoardProps {
   prefixCls?: string;
+  /* 是否展示键盘 */
   show?: boolean;
+  /* 键盘标题 */
   title?: string;
+  /* 是否展示完成按钮  title为true complete也为true */
   complete?: boolean;
   /* 删除按钮文字， 没有展示删除图标 */
   deleteButtonText?: string;
@@ -22,12 +26,15 @@ export interface NumberKeyBoardProps {
   onKeyBoard?: () => void;
   /* 点击键盘图标，外部区域，完成, 关闭按钮时的回调 */
   onClose?: () => void;
+
   value?: string;
 }
 
 export interface NumberKeyBoardState {
   show: boolean | undefined;
-  value: string | undefined,
+  value: string | undefined;
+  // clickSource: boolean;
+  hideTransition: boolean;
 }
 
 class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoardState> {
@@ -37,23 +44,23 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
     this.state = {
       show,
       value: value || undefined,
+      hideTransition: false,
     };
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', this.bodyClick);
   }
 
   componentDidUpdate(prevProps: NumberKeyBoardProps) {
     const { show, value } = this.props;
     if (show !== prevProps.show) {
       if (show) {
-        console.log('--11');
         this.setState({ show });
       } else {
-        this.setState({
-          show,
-        });
+        this.setState({ hideTransition: true });
+        setTimeout(() => {
+          this.setState({
+            show,
+            hideTransition: false,
+          });
+        }, 300);
       }
     }
     if (value !== prevProps.value) {
@@ -63,16 +70,14 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
     }
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.bodyClick);
-  }
-
-  bodyClick = () => {
+  blur = () => {
     const { onClose } = this.props;
-    const { show } = this.state;
-    console.log('---', show);
-    // onClose && onClose();
-    // this.setState({ show: false });
+    onClose && onClose();
+  };
+
+  handleComplete = () => {
+    const { onClose } = this.props;
+    onClose && onClose();
   }
 
   click = (current: unknown) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -108,10 +113,11 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
       deleteButtonText,
       extraKey,
     } = this.props;
-    const { show } = this.state;
+    const { show, hideTransition } = this.state;
     const prex = getPrefixCls('number-keyboard', prefixCls);
     const container = classNames(prex, {
       [`${prex}-show`]: show,
+      [`${prex}-hidden`]: hideTransition && show,
     });
     const wrapper = classNames(`${prex}-wrapper`);
     const content = classNames(`${prex}-content`);
@@ -120,6 +126,8 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
       <div
         className={container}
         onClick={(e) => e.stopPropagation()}
+        tabIndex={0}
+        onBlur={this.blur}
       >
         <div className={wrapper}>
           {(complete || title) && (
@@ -127,7 +135,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
             <span>{title}</span>
             <div
               className={`${prex}-wrapper-complete`}
-              onClick={() => this.setState({ show: false })}
+              onClick={this.handleComplete}
             >
               完成
             </div>
