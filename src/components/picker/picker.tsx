@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { withGlobalConfig } from '../config-provider/context';
-import PickerColumn from './pickerColumn';
+import Column from './column';
 import { BasePickerProps, Option, PickerState } from './type';
 
 @withGlobalConfig
@@ -65,7 +65,7 @@ class Picker extends Component<BasePickerProps, PickerState> {
             options.map((option, index) => {
               const selectedIndex = option.findIndex((item) => item.value === value[index]);
               return (
-                <PickerColumn
+                <Column
                   // eslint-disable-next-line react/no-array-index-key
                   key={`${index}`}
                   data={option}
