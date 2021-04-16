@@ -22,6 +22,7 @@ export { default as Filed } from './field';
 
 // 廖银菊
 export { default as Popup } from './popup';
+export { default as Picker } from './picker';
 
 // liuyang
 export { default as Dialog } from './dialog';

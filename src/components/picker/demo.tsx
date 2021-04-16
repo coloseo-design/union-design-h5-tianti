@@ -1,10 +1,7 @@
-import React, { useRef } from 'react';
-import Picker from './index';
-import ModalPicker from './modal-picker';
+import React from 'react';
+import { Picker, Popup } from '../index';
 
 const PickerDemo = () => {
-  const ref = useRef();
-  console.log('ref', ref);
   const options = [
     [
       {
@@ -71,16 +68,23 @@ const PickerDemo = () => {
   return (
     <div>
       <h1>单列</h1>
-      <Picker
-        options={options}
-        itemHeight={44}
-        visibleItemCount={6}
-        renderItem={(item) => item.value}
-        title="请选择出生地"
-        defaultValue={['宁波', '金华', 'B']}
-      />
+      <Popup
+        header="请选择"
+        visible
+        position="bottom"
+      >
+        <Picker
+          options={options}
+          itemHeight={44}
+          visibleItemCount={6}
+          renderItem={(item) => item.value}
+          defaultValue={['宁波', '金华', 'B']}
+          onChange={(v) => {
+            console.log('v', v);
+          }}
+        />
+      </Popup>
       <h1>多列</h1>
-      <ModalPicker />
     </div>
   );
 };

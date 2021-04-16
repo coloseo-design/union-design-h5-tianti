@@ -5,18 +5,10 @@
 
 .@{picker-prefix-cls} {
   background-color: @white;
-  &-title {
-    font-size: 16px;
-    color: #1C1D1D;
-    font-weight: 500;
-    text-align: center;
-    padding: 15px;
-  }
   &-body {
     position: relative;
     display: flex;
     background-color: @white;
-    border-top: 1px solid #EEF0F0;
     cursor: grab;
     &-column {
       flex: 1;
@@ -29,6 +21,7 @@
         .@{picker-prefix-cls}-body-column-item {
           display: flex;
           align-items: center;
+          font-size: 14px;
           padding: 0 4px;
           justify-content: center;
           color: #1C1D1D;
@@ -70,17 +63,6 @@
         border: 0 solid #EEF0F0;
         transform: scale(0.5);
         border-width: 1px 0;
-      }
-    }
-  }
-  &-footer {
-    padding: 8px 16px;
-    display: flex;
-    justify-content: space-between;
-    button {
-      flex: 1;
-      &:last-child {
-        margin-left: 40px;
       }
     }
   }

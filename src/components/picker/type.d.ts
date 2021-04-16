@@ -2,12 +2,6 @@ import React, { CSSProperties } from 'react';
 import { ConfigConsumerProps } from '../config-provider/context';
 
 export interface BasePickerProps extends ConfigConsumerProps {
-  // 顶部栏标题
-  title?: string;
-  // 确认按钮文字
-  confirmButtonText?: React.ReactNode;
-  // 取消按钮文字
-  cancelButtonText?: React.ReactNode;
   // 是否显示加载状态
   loading?: boolean;
   // 单列选择时，选中项的索引
@@ -20,12 +14,8 @@ export interface BasePickerProps extends ConfigConsumerProps {
   visibleItemCount: number;
   // 快速滑动时惯性滚动的时长，单位 ms
   swipeDuration?: number;
-  // 点击完成按钮时触发
-  onConfirm?: () => void;
-  // 点击取消按钮时触发
-  onCancel?: () => void;
   // 选项改变时触发
-  onChange?: () => void;
+  onChange?: (value: string[]) => void;
   /* 用户自定义类前缀，默认uni-picker */
   prefixCls?: string;
   style?: CSSProperties;

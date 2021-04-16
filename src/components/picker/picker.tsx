@@ -2,7 +2,6 @@ import React, {
   Component,
 } from 'react';
 import classNames from 'classnames';
-import { Button } from '../index';
 import { withGlobalConfig } from '../config-provider/context';
 import PickerColumn from './pickerColumn';
 import { BasePickerProps, Option, PickerState } from './type';
@@ -10,8 +9,6 @@ import { BasePickerProps, Option, PickerState } from './type';
 @withGlobalConfig
 class Picker extends Component<BasePickerProps, PickerState> {
   static defaultProps: BasePickerProps = {
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
     itemHeight: 44,
     visibleItemCount: 6,
     swipeDuration: 1000,
@@ -32,9 +29,12 @@ class Picker extends Component<BasePickerProps, PickerState> {
   onChange = (index: number) => (item: Option) => {
     const { value } = this.state;
     value[index] = item.value;
+    const newValue = [...value];
     this.setState({
-      value: [...value],
+      value: newValue,
     });
+    const { onChange } = this.props;
+    onChange && onChange(newValue);
   };
 
   render() {
@@ -46,24 +46,17 @@ class Picker extends Component<BasePickerProps, PickerState> {
       getPrefixCls,
       visibleItemCount,
       renderItem,
-      confirmButtonText,
-      cancelButtonText,
-      onConfirm,
-      onCancel,
-      title,
     } = this.props;
 
     const prefix = getPrefixCls('picker', prefixCls);
     const pickerCls = classNames(prefix, {});
     const bodyCls = classNames(`${prefix}-body`);
-    const footerCls = classNames(`${prefix}-footer`);
     const containerHeight = visibleItemCount * itemHeight;
 
     const offsetY = (itemHeight * (visibleItemCount - 1)) / 2;
     const { value = [] } = this.state;
     return (
       <div className={pickerCls}>
-        <div className={`${prefix}-title`}>{title}</div>
         <div
           className={bodyCls}
           style={{ ...style, height: containerHeight }}
@@ -88,10 +81,6 @@ class Picker extends Component<BasePickerProps, PickerState> {
           }
           <div className={`${bodyCls}-mask`} style={{ backgroundSize: `100% ${offsetY}px` }} />
           <div className={`${bodyCls}-hairline-top-bottom`} style={{ height: itemHeight }} />
-        </div>
-        <div className={footerCls}>
-          <Button onClick={onCancel}>{cancelButtonText}</Button>
-          <Button onClick={onConfirm} type="primary">{confirmButtonText}</Button>
         </div>
       </div>
     );
