@@ -14,10 +14,15 @@ if (
 }
 
 // 请在此处导出所有组件
+export { default as Button } from './button';
 export { default as Checkbox } from './checkbox';
 export { default as Radio } from './radio';
 export { default as DropdownMenu, DropdownItem } from './dropdown-menu';
 export { default as Filed } from './field';
+
+// 廖银菊
+export { default as Popup } from './popup';
+export { default as Picker } from './picker';
 
 // liuyang
 export { default as Dialog } from './dialog';

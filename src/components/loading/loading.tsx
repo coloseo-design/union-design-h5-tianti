@@ -19,8 +19,6 @@ export interface BaseLoadingProps {
   vertical?: boolean;
   // 背景颜色
   backgroundColor?: string;
-  // 加载文案
-  text?: string;
 }
 
 class Loading extends Component<BaseLoadingProps> {
@@ -34,7 +32,7 @@ class Loading extends Component<BaseLoadingProps> {
       textColor = '#A6A8A9',
       backgroundColor = 'rgba(0,0,0,0.80)',
       vertical,
-      text,
+      children,
     } = this.props;
     const prefix = getPrefixCls('loading', prefixCls);
     const mainClass = classNames(prefix, {
@@ -46,20 +44,7 @@ class Loading extends Component<BaseLoadingProps> {
     const textStyle = {
       color: textColor,
       fontSize: textSize,
-      marginLeft: 8,
     };
-
-    if (vertical) {
-      Object.assign(textStyle, {
-        marginTop: 8,
-        marginLeft: 0,
-      });
-    } else {
-      Object.assign(textStyle, {
-        marginTop: 0,
-        marginLeft: 8,
-      });
-    }
 
     return (
       <div className={mainClass} style={{ backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
@@ -83,7 +68,7 @@ class Loading extends Component<BaseLoadingProps> {
               ))}
             </div>
           )}
-        {text && <span className={`${prefix}-text`} style={textStyle}>{text}</span>}
+        {children && <span className={`${prefix}-text`} style={textStyle}>{children}</span>}
       </div>
     );
   };
