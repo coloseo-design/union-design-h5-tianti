@@ -167,10 +167,6 @@ class Input extends Component<BaseInputProps, InputState> {
   renderInput = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       // allowClear,
-      forwardedRef,
-      style,
-      addonAfter,
-      addonBefore,
       onChange,
       prefixCls,
       className,
@@ -184,6 +180,7 @@ class Input extends Component<BaseInputProps, InputState> {
       border,
       fieldType,
       status,
+      style,
       ...rest
     } = this.props;
     const { value, height, showPassword } = this.state;
@@ -238,7 +235,7 @@ class Input extends Component<BaseInputProps, InputState> {
     if (fieldType === 'card') {
       if (type === 'textarea') {
         return (
-          <div className={mainClass}>
+          <div className={mainClass} style={style}>
             {required && <span className={`${prefix}-required`}>*</span>}
             <div className={`${prefix}-content`}>
               {label && <p className={`${prefix}-content-label`}>{label}</p>}
@@ -259,7 +256,7 @@ class Input extends Component<BaseInputProps, InputState> {
         );
       }
       return (
-        <div className={mainClass}>
+        <div className={mainClass} style={style}>
           {required && <span className={`${prefix}-required`}>*</span>}
           <div className={`${prefix}-content`}>
             {label && <p className={`${prefix}-content-label`}>{label}</p>}
@@ -281,7 +278,7 @@ class Input extends Component<BaseInputProps, InputState> {
 
     if (fieldType === 'reply') {
       return (
-        <div className={mainClass}>
+        <div className={mainClass} style={style}>
           {leftIcon && <span className={`${prefix}-reply-left-content`}>{leftIcon}</span>}
           <div className={`${prefix}-reply-content`}>
             <textarea
@@ -301,7 +298,7 @@ class Input extends Component<BaseInputProps, InputState> {
     }
 
     return (
-      <div className={mainClass}>
+      <div className={mainClass} style={style}>
         {type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>}
         {leftIcon && <span className={`${prefix}-left-content`}>{leftIcon}</span>}
         <div className={`${prefix}-${fieldType}-content`}>

@@ -19,6 +19,7 @@ export interface BaseLoadingProps {
   vertical?: boolean;
   // 背景颜色
   backgroundColor?: string;
+  className?: string;
 }
 
 class Loading extends Component<BaseLoadingProps> {
@@ -33,9 +34,11 @@ class Loading extends Component<BaseLoadingProps> {
       backgroundColor = 'rgba(0,0,0,0.80)',
       vertical,
       children,
+      className,
+      ...rest
     } = this.props;
     const prefix = getPrefixCls('loading', prefixCls);
-    const mainClass = classNames(prefix, {
+    const mainClass = classNames(prefix, className, {
       // [`${prefix}-${fieldType}`]: fieldType,
     });
 
@@ -47,7 +50,7 @@ class Loading extends Component<BaseLoadingProps> {
     };
 
     return (
-      <div className={mainClass} style={{ backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
+      <div {...rest} className={mainClass} style={{ backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
         {type === 'circular'
           ? (
             <svg viewBox="0 0 50 50" className={`${prefix}-svg`} style={{ width: size, height: size }}>

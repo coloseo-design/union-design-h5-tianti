@@ -224,6 +224,10 @@ export default [
         title: 'Table 表格',
         key: 'table',
       },
+      {
+        title: 'Praise 点赞',
+        key: 'praise',
+      },
     ],
   },
   {
