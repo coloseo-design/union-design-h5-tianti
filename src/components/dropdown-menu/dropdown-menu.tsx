@@ -24,6 +24,7 @@ export interface DropdownMenuProps {
   dropContentStyle?: React.CSSProperties;
   /* 菜单标题颜色 和选项选中颜色 */
   activeColor?: string;
+  className?: string;
 }
 
 export interface DropdownMenuState {
@@ -34,6 +35,8 @@ export interface DropdownMenuState {
   bottom?: number;
   originToggle?: any[];
   childrenList: any[];
+  valueList: any[];
+  toogleList: any[];
 }
 
 class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState> {
@@ -47,6 +50,8 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
       top: 0,
       idx: 0,
       childrenList: [],
+      valueList: [],
+      toogleList: [],
     };
   }
 
@@ -55,11 +60,17 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
     const { childrenList } = nextState;
     if (children && childrenList.length === 0) {
       const c: any[] = [];
+      const val: any[] = [];
+      const tog: any[] = [];
       React.Children.map(children, (child: any) => {
         c.push(child?.props);
+        val.push(child?.props.value);
+        tog.push(child?.props.toggle);
       });
       return {
         childrenList: c,
+        valueList: val,
+        toogleList: tog,
       };
     }
     return null;
@@ -69,6 +80,30 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
     const { closeOnClickOutside = true } = this.props;
     this.getNodeLocation();
     closeOnClickOutside && document.addEventListener('click', this.bodyClick);
+  }
+
+  componentDidUpdate(prevProps: DropdownMenuProps) {
+    const { idx, valueList, toogleList } = this.state;
+    const { children: prevChildren } = prevProps;
+    const { children } = this.props;
+    const PrevC = prevChildren ? React.Children.toArray(prevChildren) : [];
+    const lastPrevC = (PrevC || []).map((i: any) => i.props);
+    const c = children ? React.Children.toArray(children) : [];
+    const lastC = (c || []).map((i: any) => i.props);
+    if (lastC[idx] && lastPrevC[idx] && lastC[idx].value !== lastPrevC[idx].value) {
+      const list = [...valueList];
+      list.splice(idx, 1, lastC[idx].value);
+      this.setState({
+        valueList: list,
+      });
+    }
+    if (lastC[idx] && lastPrevC[idx] && (lastC[idx].toggle !== lastPrevC[idx].toggle)) {
+      const list = [...toogleList];
+      list.splice(idx, 1, lastC[idx].toggle);
+      this.setState({
+        toogleList: list,
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -85,15 +120,9 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
   }
 
   handleSelect = (value: string) => {
-    const { idx, childrenList } = this.state;
-    const current = { ...childrenList[idx] };
-    if (current) {
-      Object.assign(current, {
-        value,
-      });
-    }
-    childrenList.splice(idx, 1, current);
-    this.setState({ childrenList });
+    const { idx, childrenList, valueList } = this.state;
+    valueList.splice(idx, 1, value);
+    this.setState({ childrenList, valueList });
   };
 
   getNodeLocation = () => {
@@ -115,14 +144,20 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
     e.preventDefault();
     e.stopPropagation();
     const { selected, visible } = this.state;
-    if (!item.disabled) {
-      this.setState({ selected: !selected, idx: index, visible: !visible });
+    if (item.toggle !== undefined) {
+      const { onClick } = item;
+      onClick && onClick(e);
+    }
+    if (!item.disabled && !item.toggle) {
+      this.setState({ visible: !visible });
       this.getNodeLocation();
     }
+    this.setState({ selected: !selected, idx: index });
   }
 
-  handleMask = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.currentTarget === e.target) {
+  handleMask = (item: any) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    if (e.currentTarget === e.target && !item.toggle) {
       const { closeOnClickOverlay = true } = this.props;
       if (closeOnClickOverlay) {
         this.bodyClick();
@@ -140,10 +175,13 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
       dropContentStyle,
       direction = 'down',
       activeColor,
+      // className,
     } = this.props;
     const {
       childrenList,
       selected, top, visible, idx,
+      toogleList,
+      valueList,
     } = this.state;
     const dropWrapper = getPrefixCls('dropdown-menu', prefixCls);
     const menuItem = classNames(`${dropWrapper}-item`);
@@ -152,11 +190,11 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
       [`${itemPreix}-show`]: visible,
     });
 
-    const renderValue = (source: any) => {
+    const renderValue = (source: any, index: number) => {
       let text = '';
-      if (source.value) {
+      if (valueList[index]) {
         const loopOption = (data: any) => data.forEach((i: any) => {
-          if (i.value === source.value) {
+          if (i.value === valueList[index]) {
             text = i.text;
           }
           if (i.children && i.children.length > 0) {
@@ -173,16 +211,18 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
         {(childrenList || []).map((item, index) => (
           <div key={index} className={`${dropWrapper}-content`}>
             <div
-              className={`${menuItem} ${item.disabled ? `${dropWrapper}-item-disabled` : undefined}`}
+              className={`${menuItem} ${item.disabled && `${dropWrapper}-item-disabled`}`}
               onClick={this.handleClick(index, item)}
             >
-              {renderValue(item)}
+              <span style={{ color: activeColor || undefined }}>
+                {item.title ? item.title : renderValue(item, index)}
+              </span>
               <Icon
                 type={selected && idx === index ? 'up' : 'down'}
                 className={`${menuItem}-icon`}
               />
             </div>
-            {idx === index && visible && (
+            {idx === index && (item.toggle !== undefined ? toogleList[index] : visible) && (
             <div
               className={itemcontainter}
               style={{
@@ -191,17 +231,17 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
                 bottom: direction === 'down' ? 0 : `calc(100% - ${top}px)`,
                 backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.8)',
               }}
-              onClick={this.handleMask}
+              onClick={this.handleMask(item)}
             >
               <DropdownItem
                 {...item}
-                closeDrop={this.bodyClick}
                 onSelect={this.handleSelect}
                 itemValue={item.value}
                 dropContentStyle={dropContentStyle}
                 visible={visible}
                 direction={direction}
                 activeColor={activeColor}
+                isChildren={item.children}
               />
             </div>
             )}

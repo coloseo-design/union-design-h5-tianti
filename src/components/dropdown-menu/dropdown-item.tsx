@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import classNames from 'classnames';
@@ -15,7 +16,6 @@ export interface DropdownItemProps {
   value?: string;
   prefixCls?: string;
   options?: Option[];
-  closeDrop?: () => void;
   onSelect?: (value: string) => void;
   onChange?: (value: string) => void;
   itemValue?: string;
@@ -28,7 +28,12 @@ export interface DropdownItemProps {
   visible?: boolean;
   direction?: 'down' | 'up',
   activeColor?: string;
+  /* 是否展示下拉菜单 */
   toggle?: boolean;
+  /* 菜单文字标题 */
+  title?: string;
+  /* 点击item时触发 */
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export interface DropdownItemState {
@@ -60,21 +65,20 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     this.setState({ expandKeys: list });
   }
 
-  renderCurrent = (data: Option[]) => {
+  renderCurrent = (data: Option[] | any) => {
     const { expandKeys } = this.state;
     const {
-      closeDrop, itemValue, dropItemStyle, activeColor,
+      itemValue, dropItemStyle, activeColor,
     } = this.props;
     return (
       <>
-        {(data || []).map((item, index) => (
+        {(data || []).map((item: any, index: number) => (
           <div key={index}>
             <CurrentItem
               {...item}
-              current={item}
               isExpand={(expandKeys || []).some((i: string) => `${i}` === `${item.value}`)}
+              current={item}
               onExpand={this.onExpand}
-              closeDrop={closeDrop}
               onChange={this.handleChange}
               itemValue={itemValue}
               dropItemStyle={dropItemStyle}
@@ -93,6 +97,13 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     );
   }
 
+  handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { children } = this.props;
+    if (children) {
+      e.stopPropagation();
+    }
+  };
+
   renderDropdownItem = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
@@ -100,6 +111,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       dropContentStyle,
       visible,
       direction,
+      children,
     } = this.props;
     const wrapper = getPrefixCls('dropdown-item-content', prefixCls);
     const content = classNames(wrapper, {
@@ -108,8 +120,8 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     });
 
     return (
-      <div className={content} style={dropContentStyle}>
-        {this.renderCurrent(options || [])}
+      <div className={content} style={dropContentStyle} onClick={this.handleClick}>
+        {children || this.renderCurrent(options || [])}
       </div>
     );
   }

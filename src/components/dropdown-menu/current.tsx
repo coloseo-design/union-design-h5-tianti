@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import classNames from 'classnames';
 import Icon from '../icon';
@@ -10,7 +11,6 @@ export interface CurrentItemProps {
   current?: any;
   isExpand?: boolean;
   onExpand?: (value: string) => void;
-  closeDrop?: () => void;
   onChange?: (value: string) => void;
   itemValue?: string;
   dropItemStyle?: React.CSSProperties;
@@ -25,8 +25,7 @@ class CurrentItem extends React.Component<CurrentItemProps> {
   }
 
   handleSelect = () => {
-    const { closeDrop, current, onChange } = this.props;
-    closeDrop && closeDrop();
+    const { current, onChange } = this.props;
     onChange && onChange(current.value);
   }
 
@@ -43,14 +42,17 @@ class CurrentItem extends React.Component<CurrentItemProps> {
     } = this.props;
     const wrapper = getPrefixCls('dropdown-item-content', prefixCls);
     const currentStyle = classNames(`${wrapper}-current`, {
-      [`${wrapper}-current-selected`]: itemValue === current.value,
+      [`${wrapper}-current-selected`]: current ? current.value && itemValue === current.value : undefined,
     });
 
     return (
       <div className={`${wrapper}-inner`}>
         <div
           className={currentStyle}
-          style={{ ...dropItemStyle, color: itemValue === current.value ? activeColor : undefined }}
+          style={{
+            ...dropItemStyle,
+            color: current && itemValue === current.value ? activeColor : undefined,
+          }}
           onClick={this.handleSelect}
         >
           <div>
@@ -60,9 +62,9 @@ class CurrentItem extends React.Component<CurrentItemProps> {
                 {React.isValidElement(icon) ? icon : <img src={`${icon}` || ''} style={{ width: 16 }} alt="icon" />}
               </span>
               )}
-            {current.text}
+            {current && current.text}
           </div>
-          {current.children && current.children.length > 0
+          {current && current.children && current.children.length > 0
             && (
             <div
               style={{

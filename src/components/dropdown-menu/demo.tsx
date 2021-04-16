@@ -1,6 +1,7 @@
 import React from 'react';
 import DropdownMenu, { DropdownItem } from './index';
 import Icon from '../icon';
+import Button from '../button';
 
 export default () => {
   const option = [
@@ -39,6 +40,15 @@ export default () => {
   const onChange = (value: string) => {
     console.log('--value', value);
   };
+  const [toggle, setToggle] = React.useState(false);
+  const handleToggle = () => {
+    setToggle(true);
+  };
+
+  const handleButton = () => {
+    setToggle(false);
+  };
+
   return (
     <div style={{ margin: 64 }}>
       <h1>基本用法</h1>
@@ -66,6 +76,19 @@ export default () => {
         <DropdownMenu activeColor="rgb(25, 137, 250)">
           <DropdownItem options={option} disabled />
           <DropdownItem value="b" options={option2} disabled />
+        </DropdownMenu>
+      </div>
+      <div style={{ marginTop: 32 }}>
+        <h1>自定义菜单内容</h1>
+        <DropdownMenu>
+          <DropdownItem options={option} />
+          <DropdownItem title="筛选" toggle={toggle} onClick={handleToggle}>
+            <div style={{ padding: '0px 32px' }}>
+              <div title="包邮" style={{ height: 52 }}>包邮</div>
+              <div title="团购" style={{ height: 52 }}>团购</div>
+              <Button type="primary" onClick={handleButton}>和哈哈哈哈</Button>
+            </div>
+          </DropdownItem>
         </DropdownMenu>
       </div>
     </div>
