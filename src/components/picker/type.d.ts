@@ -15,7 +15,7 @@ export interface BasePickerProps extends ConfigConsumerProps {
   // 快速滑动时惯性滚动的时长，单位 ms
   swipeDuration?: number;
   // 选项改变时触发
-  onChange?: (value: string[]) => void;
+  onChange?: (value: (string|undefined)[]) => void;
   /* 用户自定义类前缀，默认uni-picker */
   prefixCls?: string;
   style?: CSSProperties;
@@ -37,7 +37,7 @@ export interface Option {
 }
 
 export interface PickerState {
-  value: string[];
+  value: (string | undefined)[];
 }
 
 export interface PickerColumnState {

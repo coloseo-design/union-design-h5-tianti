@@ -20,16 +20,33 @@ class Picker extends Component<BasePickerProps, PickerState> {
   constructor(props: BasePickerProps) {
     super(props);
     // 劫持value
-    const { defaultValue, value } = props;
+    const { defaultValue, value, options } = props;
+    const firstValue = options.map((item) => (item[0] ? item[0].value : ''));
     this.state = {
-      value: value || defaultValue || [],
+      value: value || defaultValue || firstValue,
     };
+  }
+
+  componentDidUpdate(props: BasePickerProps) {
+    const { value } = this.props;
+    if (value && props.value !== value) {
+      this.setState({
+        value,
+      });
+    }
   }
 
   onChange = (index: number) => (item: Option) => {
     const { value } = this.state;
+    const { options } = this.props;
     value[index] = item.value;
-    const newValue = [...value];
+    // 如果有些列的value为空，那么则默认用第一个的value
+    const newValue = options.map((v, idx) => {
+      if (!value[idx]) {
+        return v[0] ? v[0].value : undefined;
+      }
+      return value[idx];
+    });
     this.setState({
       value: newValue,
     });
