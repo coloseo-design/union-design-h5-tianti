@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface BaseLoadingProps {
+export interface BaseLoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   /* 用户自定义类前缀，默认uni-loading */
   prefixCls?: string;
   /* 颜色 */
@@ -35,6 +35,7 @@ class Loading extends Component<BaseLoadingProps> {
       vertical,
       children,
       className,
+      style,
       ...rest
     } = this.props;
     const prefix = getPrefixCls('loading', prefixCls);
@@ -50,7 +51,7 @@ class Loading extends Component<BaseLoadingProps> {
     };
 
     return (
-      <div {...rest} className={mainClass} style={{ backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
+      <div {...rest} className={mainClass} style={{ ...style, backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
         {type === 'circular'
           ? (
             <svg viewBox="0 0 50 50" className={`${prefix}-svg`} style={{ width: size, height: size }}>

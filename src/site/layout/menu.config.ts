@@ -43,6 +43,10 @@ export default [
     themeColor: '#AA3FA8',
     children: [
       {
+        title: 'IndexBar 索引栏',
+        key: 'index-bar',
+      },
+      {
         title: 'Affix 固钉',
         key: 'affix',
       },

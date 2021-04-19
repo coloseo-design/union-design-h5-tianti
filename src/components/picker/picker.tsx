@@ -2,20 +2,25 @@ import React, {
   Component,
 } from 'react';
 import classNames from 'classnames';
-import { withGlobalConfig } from '../config-provider/context';
+import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import Column from './column';
-import { BasePickerProps, Option, PickerState } from './type';
+import {
+  BasePickerProps,
+  CascaderProps,
+  Option,
+  PickerState,
+} from './type';
 
-@withGlobalConfig
 class Picker extends Component<BasePickerProps, PickerState> {
   static defaultProps: BasePickerProps = {
     itemHeight: 44,
     visibleItemCount: 6,
     swipeDuration: 1000,
-    getPrefixCls: (input: string) => input,
     options: [],
     renderItem: (item) => item.value,
   };
+
+  static Cascader: React.FC<CascaderProps>;
 
   constructor(props: BasePickerProps) {
     super(props);
@@ -43,7 +48,7 @@ class Picker extends Component<BasePickerProps, PickerState> {
     // 如果有些列的value为空，那么则默认用第一个的value
     const newValue = options.map((v, idx) => {
       if (!value[idx]) {
-        return v[0] ? v[0].value : undefined;
+        return v[0] ? v[0].value : '';
       }
       return value[idx];
     });
@@ -54,13 +59,12 @@ class Picker extends Component<BasePickerProps, PickerState> {
     onChange && onChange(newValue);
   };
 
-  render() {
+  renderPicker = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
       options,
       style,
       itemHeight = 44,
-      getPrefixCls,
       visibleItemCount,
       renderItem,
     } = this.props;
@@ -100,6 +104,14 @@ class Picker extends Component<BasePickerProps, PickerState> {
           <div className={`${bodyCls}-hairline-top-bottom`} style={{ height: itemHeight }} />
         </div>
       </div>
+    );
+  }
+
+  render() {
+    return (
+      <ConfigConsumer>
+        {(context) => this.renderPicker(context)}
+      </ConfigConsumer>
     );
   }
 }

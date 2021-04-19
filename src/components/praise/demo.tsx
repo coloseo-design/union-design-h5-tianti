@@ -3,9 +3,9 @@ import Praise from './index';
 
 const PraiseDemo = () => (
   <>
-    <Praise style={{ padding: 20 }} />
+    <Praise />
     <br />
-    <Praise number={100} status />
+    <Praise number={100} status onChange={(number) => { console.log('number', number); }} />
   </>
 );
 
