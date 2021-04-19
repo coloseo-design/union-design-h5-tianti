@@ -1,7 +1,6 @@
 import React, { CSSProperties } from 'react';
-import { ConfigConsumerProps } from '../config-provider/context';
 
-export interface BasePickerProps {
+export interface BasePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   // 是否显示加载状态
   loading?: boolean;
   // 单列选择时，选中项的索引

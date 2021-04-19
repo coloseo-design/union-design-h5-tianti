@@ -7,6 +7,8 @@ import { Option, PickerColumnProps, PickerColumnState } from './type';
 let lastX = 0;
 let lastY = 0;
 const DEFAULT_DURATION = 300;
+// TODO: onTouchEnd和onClick会冲突
+let isTouchMove = false;
 
 class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState> {
   constructor(props: PickerColumnProps) {
@@ -57,6 +59,7 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
 
   onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     e.nativeEvent.stopImmediatePropagation();
+    isTouchMove = true;
     if (e && e.touches && e.touches[0]) {
       const currentX = e.touches[0].pageX;
       const currentY = e.touches[0].pageY;
@@ -72,6 +75,8 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
   }
 
   onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (!isTouchMove) return;
     const { onChange, data } = this.props;
     e.nativeEvent.stopImmediatePropagation();
     const { offsetY } = this.state;
@@ -79,9 +84,11 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
     this.setState({ offsetY: adjusted, duration: DEFAULT_DURATION });
     const index = this.getIndexFromOffsetY(adjusted);
     onChange && onChange(data[index]);
+    isTouchMove = false;
   }
 
-  onClick = (idx: number, item: Option) => () => {
+  onClick = (idx: number, item: Option) => (evt: React.MouseEvent<HTMLDivElement>) => {
+    evt.preventDefault();
     const { onChange, itemHeight } = this.props;
     const start = this.getStartOffset();
     const offsetY = start - (itemHeight * idx);
