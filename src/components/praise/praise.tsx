@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import Icon from '../icon';
 
-export interface BasePraiseProps {
+export interface BasePraiseProps extends React.HTMLAttributes<HTMLSpanElement> {
   /* 用户自定义类前缀，默认uni-praise */
   prefixCls?: string;
   /* 颜色 */
@@ -15,14 +15,15 @@ export interface BasePraiseProps {
   // 点赞的数量
   number?: number;
   // number变化时触发
-  onChange?: () => void;
+  onChange?: (number: number) => void;
   // 当前点赞状态
-  status?: boolean | undefined;
+  status?: boolean;
 }
 
 export interface PraiseState {
   number: number;
-  status: boolean | undefined;
+  status: boolean;
+  show: boolean;
 }
 
 class Praise extends Component<BasePraiseProps, PraiseState> {
@@ -32,11 +33,12 @@ class Praise extends Component<BasePraiseProps, PraiseState> {
     this.state = {
       number,
       status,
+      show: false,
     };
   }
 
   componentDidUpdate(prevProps: BasePraiseProps) {
-    const { number = 0 } = this.props;
+    const { number } = this.props;
     if (number !== prevProps.number) {
       this.setState({ number });
     }
@@ -48,16 +50,38 @@ class Praise extends Component<BasePraiseProps, PraiseState> {
       iconType = 'like',
       color = '#F31D39',
       size = '20px',
+      className,
+      status: propsStatus,
+      onChange,
       ...rest
     } = this.props;
-    const { number, status } = this.state;
+    const { number, status, show } = this.state;
     const prefix = getPrefixCls('praise', prefixCls);
-    const mainClass = classNames(prefix, {
+    const mainClass = classNames(prefix, className, {
       // [`${prefix}-${fieldType}`]: fieldType,
     });
 
+    const addPrefix = `${prefix}-add-wrap`;
+    const addClass = classNames(addPrefix, {
+      [`${addPrefix}-${show}`]: show,
+    });
+
     const onClick = () => {
-      this.setState({ status: !status });
+      if (!show && !status) {
+        this.setState({ show: true });
+      }
+      const changeNumber = !status ? number + 1 : number - 1;
+      this.setState({ status: !status, number: changeNumber });
+
+      if (onChange) {
+        onChange(changeNumber);
+      }
+    };
+
+    const onAnimationEnd = ({ animationName }) => {
+      if (animationName === 'praise-fadein') {
+        this.setState({ show: false });
+      }
     };
 
     return (
@@ -67,7 +91,15 @@ class Praise extends Component<BasePraiseProps, PraiseState> {
           style={{ color: status ? color : '#A6A8A9', fontSize: size }}
           onClick={onClick}
         />
-        <span style={{ color: status ? color : '#A6A8A9' }}>{number}</span>
+        <span className={`${prefix}-number`} style={{ color: status ? color : '#A6A8A9' }}>{number}</span>
+
+        {show && (
+          <span className={addClass} style={{ top: `calc(-${size} - 10px)` }} onAnimationEnd={onAnimationEnd}>
+            <span className={`${prefix}-add-container`}>
+              <span className={`${prefix}-add`}>+1</span>
+            </span>
+          </span>
+        )}
       </span>
     );
   };
