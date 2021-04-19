@@ -16,8 +16,8 @@ export interface StepProps {
   description?: string | React.ReactNode;
   type?: 'card' | 'browse';
   isLast?: boolean;
-  /* 姓名或者人员头像链接 */
-  nameSrc?: string;
+  /* 人员头像 或者姓名 */
+  src?: string
   /* 子标题 */
   subTitle?: string | React.ReactNode;
   /* 当前step的索引 */
@@ -26,6 +26,8 @@ export interface StepProps {
   current?: number;
   /*  */
   onChange?: (current: number) => void;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 class Step extends React.Component<StepProps> {
@@ -42,28 +44,30 @@ class Step extends React.Component<StepProps> {
       status,
       title,
       description,
-      nameSrc,
       subTitle,
       currentIndex = 0,
       current,
       parentStatus,
+      src,
+      style,
+      className,
     } = this.props;
     const prex = getPrefixCls('steps-item', prefixCls);
-
-    const dotContent = classNames(`${prex}-dot-content`);
+    const wrapper = classNames(prex, className);
+    const dotContent = classNames(`${wrapper}-dot-content`);
     const dot = classNames(`${dotContent}-icon`);
     const line = classNames(`${dotContent}-line`);
-    const content = classNames(`${prex}-content`);
+    const content = classNames(`${wrapper}-content`);
     const statusS = status || (currentIndex === current ? parentStatus : undefined);
     const descriptionStyle = classNames(`${content}-description`, {
       [`${content}-description-${statusS}`]: statusS,
     });
 
     return (
-      <div className={prex} onClick={this.handleClick}>
+      <div className={wrapper} style={style} onClick={this.handleClick}>
         <div className={dotContent}>
           {type === 'card' && <div className={dot} />}
-          {type === 'browse' && <Avatar size={32} type={statusS}>{nameSrc}</Avatar>}
+          {type === 'browse' && <Avatar size={32} type={statusS}>{src}</Avatar>}
           {!isLast && <div className={line} style={{ top: type === 'card' ? 12 : 36 }} />}
         </div>
         {
@@ -74,8 +78,8 @@ class Step extends React.Component<StepProps> {
                 <div className={`${content}-title-sub`}>{subTitle}</div>
               </div>
               <div className={`${content}-card`}>
-                <Avatar size={32}>{nameSrc}</Avatar>
-                <span className={`${content}-card-name`}>{nameSrc}</span>
+                <Avatar size={32}>{src}</Avatar>
+                <span className={`${content}-card-name`}>{description}</span>
               </div>
               {!isLast && <div style={{ borderBottom: '1px solid #EEF0F0', marginTop: 16 }} />}
             </div>

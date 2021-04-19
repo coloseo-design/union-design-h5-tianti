@@ -6,6 +6,7 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context'
 
 export interface StepsProps {
   prefixCls?: string;
+  /* 步骤条类型 */
   type?: 'card' | 'browse';
   style?: React.CSSProperties;
   className?: string;

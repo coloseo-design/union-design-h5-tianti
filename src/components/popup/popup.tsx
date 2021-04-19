@@ -160,11 +160,11 @@ class Popup extends React.Component<PopupProps, PopupState> {
               <div className={contenHeader}>
                 {React.isValidElement(header) ? header : <span>{header}</span>}
                 {closeable && (
-                <span className={headerIcon}>
+                <span className={headerIcon} onClick={this.cancel}>
                   {
                     closeIcon
                       ? (React.isValidElement(closeIcon) ? closeIcon : <img src={closeIcon || ''} alt="" />)
-                      : (closeText || <Icon type="close" onClick={this.cancel} />)
+                      : (closeText || <Icon type="close" />)
                   }
                 </span>
                 )}
