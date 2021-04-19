@@ -67,10 +67,11 @@ class Picker extends Component<BasePickerProps, PickerState> {
       itemHeight = 44,
       visibleItemCount,
       renderItem,
+      className,
     } = this.props;
 
     const prefix = getPrefixCls('picker', prefixCls);
-    const pickerCls = classNames(prefix, {});
+    const pickerCls = classNames(prefix, {}, className);
     const bodyCls = classNames(`${prefix}-body`);
     const containerHeight = visibleItemCount * itemHeight;
 
