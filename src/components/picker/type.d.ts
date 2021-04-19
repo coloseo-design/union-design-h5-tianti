@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { ConfigConsumerProps } from '../config-provider/context';
 
-export interface BasePickerProps extends ConfigConsumerProps {
+export interface BasePickerProps {
   // 是否显示加载状态
   loading?: boolean;
   // 单列选择时，选中项的索引
@@ -15,7 +15,7 @@ export interface BasePickerProps extends ConfigConsumerProps {
   // 快速滑动时惯性滚动的时长，单位 ms
   swipeDuration?: number;
   // 选项改变时触发
-  onChange?: (value: (string|undefined)[]) => void;
+  onChange?: (value: (string)[]) => void;
   /* 用户自定义类前缀，默认uni-picker */
   prefixCls?: string;
   style?: CSSProperties;
@@ -37,7 +37,7 @@ export interface Option {
 }
 
 export interface PickerState {
-  value: (string | undefined)[];
+  value: (string)[];
 }
 
 export interface PickerColumnState {
@@ -45,7 +45,7 @@ export interface PickerColumnState {
   duration: number;
 }
 
-export interface PickerColumnProps extends ConfigConsumerProps {
+export interface PickerColumnProps {
   index: number;
   data: Option[];
   onChange?: (item: Option) => void;
@@ -55,4 +55,8 @@ export interface PickerColumnProps extends ConfigConsumerProps {
   prefixCls?: string;
   renderItem: (item: Option, position: Position) => React.ReactNode;
   sectionIndex: number;
+}
+
+export interface CascaderProps extends Omit<BasePickerProps, 'options'> {
+  options: Option[],
 }

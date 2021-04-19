@@ -68,9 +68,78 @@ const PickerDemo = () => {
     ];
     setTimeout(() => {
       setOptions(options);
-      // setValue(['宁波', '金华', 'B']);
+      setValue(['宁波', '金华', 'B']);
     }, 300);
   }, []);
+
+  const cascaderOptions = [
+    {
+      title: '0',
+      key: '0',
+      value: '0',
+      children: [
+        {
+          title: '0-0',
+          key: '0-0',
+          value: '0-0',
+        },
+        {
+          title: '0-1',
+          key: '0-1',
+          value: '0-1',
+        },
+        {
+          title: '0-2',
+          key: '0-2',
+          value: '0-2',
+        },
+      ],
+    },
+    {
+      title: '1',
+      key: '1',
+      value: '1',
+      children: [
+        {
+          title: '1-0',
+          key: '1-0',
+          value: '1-0',
+        },
+        {
+          title: '1-1',
+          key: '1-1',
+          value: '1-1',
+        },
+        {
+          title: '1-2',
+          key: '1-2',
+          value: '1-2',
+        },
+      ],
+    },
+    {
+      title: '2',
+      key: '2',
+      value: '2',
+      children: [
+        {
+          title: '2-0',
+          key: '2-0',
+          value: '2-0',
+        },
+        {
+          title: '2-1',
+          key: '2-1',
+          value: '2-1',
+        },
+        {
+          title: '2-2',
+          key: '2-2',
+          value: '2-2',
+        },
+      ],
+    },
+  ];
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState([]);
   return (
@@ -78,7 +147,7 @@ const PickerDemo = () => {
       <h1>单列</h1>
       <Popup
         header="请选择"
-        visible
+        visible={false}
         position="bottom"
       >
         <Picker
@@ -94,6 +163,23 @@ const PickerDemo = () => {
         />
       </Popup>
       <h1>多列</h1>
+      <Popup
+        header="请选择"
+        visible
+        position="bottom"
+      >
+        <Picker.Cascader
+          options={cascaderOptions}
+          itemHeight={44}
+          visibleItemCount={6}
+          renderItem={(item) => item.value}
+          // defaultValue={['宁波', '金华', 'B']}
+          onChange={(v) => {
+            console.log('v', v);
+          }}
+          // value={value}
+        />
+      </Popup>
     </div>
   );
 };

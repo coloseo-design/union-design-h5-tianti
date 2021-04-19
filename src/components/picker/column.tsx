@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import classNames from 'classnames';
-import { withGlobalConfig } from '../config-provider/context';
+import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import { Option, PickerColumnProps, PickerColumnState } from './type';
 
 let lastX = 0;
 let lastY = 0;
 const DEFAULT_DURATION = 300;
 
-@withGlobalConfig
 class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState> {
   constructor(props: PickerColumnProps) {
     super(props);
@@ -93,12 +92,11 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
     onChange && onChange(item);
   }
 
-  render() {
+  renderColumn = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls = '',
       itemHeight = 44,
       data,
-      getPrefixCls,
       renderItem,
       sectionIndex,
     } = this.props;
@@ -133,6 +131,16 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
           ))}
         </ul>
       </div>
+    );
+  }
+
+  render() {
+    return (
+      <ConfigConsumer>
+        {
+          (config) => this.renderColumn(config)
+        }
+      </ConfigConsumer>
     );
   }
 }
