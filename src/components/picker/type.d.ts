@@ -10,7 +10,7 @@ export interface BasePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   // 选项高度，默认 px
   itemHeight?: number;
   // 可见的选项个数
-  visibleItemCount: number;
+  visibleItemCount?: number;
   // 快速滑动时惯性滚动的时长，单位 ms
   swipeDuration?: number;
   // 选项改变时触发

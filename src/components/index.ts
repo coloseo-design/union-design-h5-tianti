@@ -30,6 +30,7 @@ export { default as Search } from './search';
 export { default as Popup } from './popup';
 export { default as Picker } from './picker';
 export { default as TimePicker } from './time-picker';
+export { default as DatePicker } from './date-picker';
 
 // liuyang
 export { default as Dialog } from './dialog';
