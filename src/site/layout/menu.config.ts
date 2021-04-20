@@ -43,6 +43,10 @@ export default [
     themeColor: '#AA3FA8',
     children: [
       {
+        title: 'Tabbar 标签栏',
+        key: 'tabbar',
+      },
+      {
         title: 'IndexBar 索引栏',
         key: 'index-bar',
       },

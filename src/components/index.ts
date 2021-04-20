@@ -34,3 +34,4 @@ export { default as Overlay } from './overlay';
 export { default as ImagePreview } from './image-preview';
 export { default as Swipe } from './swipe';
 export { default as IndexBar } from './index-bar';
+export { default as Tabbar } from './tabbar';
