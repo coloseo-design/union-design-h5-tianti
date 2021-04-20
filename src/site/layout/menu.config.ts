@@ -16,6 +16,10 @@ export default [
         title: 'Typography 文字排版',
         key: 'typography',
       },
+      {
+        title: 'Search 搜索',
+        key: 'search',
+      },
     ],
   },
   {
