@@ -26,6 +26,7 @@ export { default as Steps } from './steps';
 // 廖银菊
 export { default as Popup } from './popup';
 export { default as Picker } from './picker';
+export { default as TimePicker } from './time-picker';
 
 // liuyang
 export { default as Dialog } from './dialog';

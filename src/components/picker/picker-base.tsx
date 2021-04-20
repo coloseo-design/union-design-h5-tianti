@@ -6,7 +6,6 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context'
 import Column from './column';
 import {
   BasePickerProps,
-  CascaderProps,
   Option,
   PickerState,
 } from './type';
@@ -34,7 +33,6 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
   componentDidUpdate(props: BasePickerProps) {
     const { value } = this.props;
     if (props.value !== value) {
-      console.log('value', value);
       this.setState({
         value: value || [],
       });
@@ -65,7 +63,7 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
     const offsetY = (itemHeight * (visibleItemCount - 1)) / 2;
     const { value = [] } = this.state;
     return (
-      <div className={pickerCls}>
+      <div className={pickerCls} style={style}>
         <div
           className={bodyCls}
           style={{ ...style, height: containerHeight }}
@@ -73,7 +71,6 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
           {
             options.map((option, index) => {
               const selectedIndex = option.findIndex((item) => item.value === value[index]);
-              console.log('selectedIndex', selectedIndex, value);
               return (
                 <Column
                   // eslint-disable-next-line react/no-array-index-key

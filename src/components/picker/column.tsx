@@ -88,19 +88,21 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
   onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     e.stopPropagation();
     if (!isTouchMove) return;
-    const { onChange, data } = this.props;
+    const { onChange, data, index: indexFromProps } = this.props;
     e.nativeEvent.stopImmediatePropagation();
     const { offsetY } = this.state;
     const adjusted = this.adjustOffsetY(offsetY);
     this.setState({ offsetY: adjusted, duration: DEFAULT_DURATION });
     const index = this.getIndexFromOffsetY(adjusted);
+    if (index === indexFromProps) return;
     onChange && onChange(data[index]);
     isTouchMove = false;
   }
 
   onClick = (idx: number, item: Option) => (evt: React.MouseEvent<HTMLDivElement>) => {
     evt.preventDefault();
-    const { onChange, itemHeight } = this.props;
+    const { onChange, itemHeight, index } = this.props;
+    if (index === idx) return;
     const start = this.getStartOffset();
     const offsetY = start - (itemHeight * idx);
     this.setState({
