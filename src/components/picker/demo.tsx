@@ -155,7 +155,7 @@ const PickerDemo = () => {
           itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
-          // defaultValue={['宁波', '金华', 'B']}
+          defaultValue={['宁波', '金华', 'B']}
           onChange={(v) => {
             console.log('v', v);
           }}
@@ -173,7 +173,7 @@ const PickerDemo = () => {
           itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
-          // defaultValue={['宁波', '金华', 'B']}
+          defaultValue={['1', '1-1']}
           onChange={(v) => {
             console.log('v', v);
           }}

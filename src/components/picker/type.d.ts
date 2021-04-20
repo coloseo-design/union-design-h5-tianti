@@ -14,7 +14,7 @@ export interface BasePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   // 快速滑动时惯性滚动的时长，单位 ms
   swipeDuration?: number;
   // 选项改变时触发
-  onChange?: (value: (string)[]) => void;
+  onChange?: (item: Option, sectionIndex: number) => void;
   /* 用户自定义类前缀，默认uni-picker */
   prefixCls?: string;
   style?: CSSProperties;
@@ -33,6 +33,7 @@ export interface Option {
   title: string;
   value: string;
   children?: Option[];
+  parent?: Option;
 }
 
 export interface PickerState {
@@ -56,6 +57,11 @@ export interface PickerColumnProps {
   sectionIndex: number;
 }
 
-export interface CascaderProps extends Omit<BasePickerProps, 'options'> {
+export interface PickerProps extends Omit<BasePickerProps, 'onChange'> {
+  onChange: (values: string[]) => void;
+}
+
+export interface CascaderProps extends Omit<BasePickerProps, 'onChange'> {
   options: Option[],
+  onChange: (values: string[]) => void;
 }

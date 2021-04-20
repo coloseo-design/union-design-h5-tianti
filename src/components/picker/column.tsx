@@ -23,6 +23,17 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
     };
   }
 
+  componentDidUpdate(props: PickerColumnProps) {
+    const { index, itemHeight, visibleItemCount } = this.props;
+    if (index !== props.index) {
+      const start = (itemHeight * (visibleItemCount - 1)) / 2;
+      const offsetY = start - (itemHeight * index);
+      this.setState({
+        offsetY,
+      });
+    }
+  }
+
   getStartOffset = () => {
     const { itemHeight, visibleItemCount } = this.props;
     return (itemHeight * (visibleItemCount - 1)) / 2;

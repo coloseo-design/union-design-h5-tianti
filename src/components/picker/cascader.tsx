@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 import React, { useEffect, useState } from 'react';
-import Picker from './picker';
+import Picker from './picker-base';
 import { CascaderProps, Option } from './type';
 
 const getOptions = (
@@ -21,20 +22,60 @@ const getOptions = (
   }
 };
 
-const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
-  const { options, value } = props;
-  const [data, setData] = useState<Option[][]>([]);
-  const [_value, setValue] = useState<string[]>([]);
-  const onChange = (values: string[]) => {
-    setValue(values);
-    props.onChange && props.onChange(values);
-  };
+const getValue = (
+  options: Option[],
+  key: string,
+  parent?: Option,
+): Option | undefined => {
+  for (let index = 0; index < options.length; index++) {
+    const item = options[index];
+    if (parent) {
+      item.parent = parent;
+    }
+    if (item.value === key) {
+      return item;
+    }
+    if (item.children) {
+      const r: Option | undefined = getValue(item.children || [], key, item);
+      if (r) {
+        return r;
+      }
+    }
+  }
+  return undefined;
+};
 
-  useEffect(() => {
-    const optionData: Option[][] = [];
-    getOptions(options, _value, optionData);
-    setData(optionData);
-  }, [options, _value]);
+const getParent = (option: Option | undefined) => {
+  const parents = [];
+  while (option && option.parent) {
+    parents.push(option.parent.value);
+    option = option.parent;
+  }
+  return parents;
+};
+
+const getChildren = (option: Option | undefined) => {
+  const children = [];
+  while (option && option.children && option.children.length) {
+    children.push(option.children[0].value);
+    // eslint-disable-next-line prefer-destructuring
+    option = option.children[0];
+  }
+  return children;
+};
+
+const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
+  const { options, value, defaultValue } = props;
+  const [_value, setValue] = useState<string[]>(defaultValue || []);
+  const onChange = (item: Option) => {
+    const currentValue = item.value;
+    const v = getValue(options, currentValue);
+    const left = getParent(v);
+    const right = getChildren(v);
+    const newValue: string[] = [...left, v?.value, ...right] as string[];
+    setValue(newValue);
+    props.onChange && props.onChange(newValue);
+  };
 
   useEffect(() => {
     if (value) {
@@ -42,12 +83,14 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
     }
   }, [value]);
 
+  const optionData: Option[][] = [];
+  getOptions(options, [..._value], optionData);
   return (
     <Picker
       {...props}
       value={_value}
       onChange={onChange}
-      options={data}
+      options={optionData}
     />
   );
 };
