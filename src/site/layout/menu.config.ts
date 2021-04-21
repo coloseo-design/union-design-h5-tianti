@@ -165,6 +165,10 @@ export default [
     themeColor: '#D6386B',
     children: [
       {
+        title: 'Skeleton 骨架屏',
+        key: 'skeleton',
+      },
+      {
         title: 'ImagePreview 图片预览',
         key: 'image-preview',
       },

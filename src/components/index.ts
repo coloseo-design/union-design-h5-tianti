@@ -40,6 +40,7 @@ export { default as ImagePreview } from './image-preview';
 export { default as Swipe } from './swipe';
 export { default as IndexBar } from './index-bar';
 export { default as Tabbar } from './tabbar';
+export { default as Skeleton } from './skeleton';
 
 //
 export { default as Collapse } from './collapse';
