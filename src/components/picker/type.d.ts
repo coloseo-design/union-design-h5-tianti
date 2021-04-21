@@ -21,6 +21,7 @@ export interface BasePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   /** 选项 */
   options: Option[][];
   renderItem: (item: Option, position: Position) => React.ReactNode;
+  getStartOffset: () => number;
 }
 
 export type Position = {
@@ -51,10 +52,12 @@ export interface PickerColumnProps {
   onChange?: (item: Option) => void;
   itemHeight: number;
   valueKey?: string;
-  visibleItemCount: number;
+  // visibleItemCount?: number;
   prefixCls?: string;
   renderItem: (item: Option, position: Position) => React.ReactNode;
   sectionIndex: number;
+  // 自定义起始点位置
+  getStartOffset: () => number;
 }
 
 export interface PickerProps extends Omit<BasePickerProps, 'onChange'> {

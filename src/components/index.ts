@@ -14,6 +14,7 @@ if (
 }
 
 // 请在此处导出所有组件
+export { default as Icon } from './icon';
 export { default as Button } from './button';
 export { default as Checkbox } from './checkbox';
 export { default as Radio } from './radio';
@@ -31,6 +32,7 @@ export { default as Popup } from './popup';
 export { default as Picker } from './picker';
 export { default as TimePicker } from './time-picker';
 export { default as DatePicker } from './date-picker';
+export { default as Cascader } from './cascader';
 
 // liuyang
 export { default as Dialog } from './dialog';
