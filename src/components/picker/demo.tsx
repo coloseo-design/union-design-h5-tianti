@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Picker, Popup } from '../index';
+import { Button, Picker, Popup } from '../index';
 
 const PickerDemo = () => {
   useEffect(() => {
@@ -142,20 +142,54 @@ const PickerDemo = () => {
   ];
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState([]);
+  const [visible1, setVisible1] = useState(false);
+  const [visible2, setVisible2] = useState(false);
+  const [visible3, setVisible3] = useState(false);
   return (
     <div>
-      <h1>单列</h1>
+      <Button onClick={() => setVisible1(true)}>多列</Button>
+      <Button onClick={() => setVisible2(true)}>级联</Button>
+      <Button onClick={() => setVisible3(true)}>单列</Button>
       <Popup
         header="请选择"
-        visible={false}
+        visible={visible3}
         position="bottom"
+        onCancel={() => setVisible3(false)}
+      >
+        <Picker
+          options={[
+            [{
+              title: 'A',
+              key: 'A',
+              value: 'A',
+            },
+            {
+              title: 'B',
+              key: 'B',
+              value: 'B',
+            }],
+          ]}
+          itemHeight={44}
+          visibleItemCount={6}
+          renderItem={(item) => item.value}
+          onChange={(v) => {
+            console.log('v', v);
+          }}
+          value={value}
+        />
+      </Popup>
+      <Popup
+        header="请选择"
+        visible={visible1}
+        position="bottom"
+        onCancel={() => setVisible1(false)}
       >
         <Picker
           options={options}
           itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
-          // defaultValue={['宁波', '金华', 'B']}
+          defaultValue={['宁波', '金华', 'B']}
           onChange={(v) => {
             console.log('v', v);
           }}
@@ -165,15 +199,16 @@ const PickerDemo = () => {
       <h1>多列</h1>
       <Popup
         header="请选择"
-        visible
+        visible={visible2}
         position="bottom"
+        onCancel={() => setVisible2(false)}
       >
         <Picker.Cascader
           options={cascaderOptions}
           itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
-          // defaultValue={['宁波', '金华', 'B']}
+          defaultValue={['1', '1-1']}
           onChange={(v) => {
             console.log('v', v);
           }}

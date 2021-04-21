@@ -16,6 +16,10 @@ export default [
         title: 'Typography 文字排版',
         key: 'typography',
       },
+      {
+        title: 'Search 搜索',
+        key: 'search',
+      },
     ],
   },
   {
@@ -42,6 +46,10 @@ export default [
     key: 'components',
     themeColor: '#AA3FA8',
     children: [
+      {
+        title: 'Tabbar 标签栏',
+        key: 'tabbar',
+      },
       {
         title: 'IndexBar 索引栏',
         key: 'index-bar',
@@ -156,6 +164,10 @@ export default [
     key: 'components',
     themeColor: '#D6386B',
     children: [
+      {
+        title: 'Skeleton 骨架屏',
+        key: 'skeleton',
+      },
       {
         title: 'ImagePreview 图片预览',
         key: 'image-preview',

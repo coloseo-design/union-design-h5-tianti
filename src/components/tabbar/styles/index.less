@@ -1,0 +1,89 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@tabbar: ~"@{uni-prefix}-tabbar";
+
+.@{tabbar} {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+
+  & > .content {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  & > .item {
+    background: #FFFFFF;
+    box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.05);
+    height: 52px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    user-select: none;
+    cursor: pointer;
+
+    .item-wrap {
+      flex-grow: 1;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column nowrap;
+
+      & > .icon {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+
+        & > .dot {
+          position: absolute;
+          top: -2px;
+          right: -2px;
+          z-index: 100;
+          width: 8px;
+          min-width: 0;
+          height: 8px;
+          background-color: #ee0a24;
+          border-radius: 100%;
+        }
+
+        & > .badge {
+          position: absolute;
+          top: -2px;
+          right: 0;
+          z-index: 100;
+          padding: 0 3px;
+          font-size: 12px;
+          line-height: 14px;
+          border: 1px solid #fff;
+          border-radius: 10px;
+          color: #fff;
+          background-color: rgb(219, 49, 49);
+          transform: scale(0.9) translateX(50%);
+        }
+      }
+
+      & > .title {
+        font-size: 12px;
+        transform: scale(0.83);
+      }
+    }
+  }
+}
+
+.@{tabbar}-top {
+  flex-direction: column-reverse;
+}
+
+.@{tabbar}-bottom {
+  flex-direction: column;
+}
