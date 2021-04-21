@@ -10,7 +10,7 @@ export interface BaseLoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   /* 类型，可选值为 spinner */
   type?: 'spinner' | 'circular';
   /* 加载图标大小，默认单位为 px */
-  size?: number | string;
+  size?: number;
   /* 文字大小，默认单位为 px */
   textSize?: number | string;
   // 文字颜色
@@ -65,7 +65,7 @@ class Loading extends Component<BaseLoadingProps> {
                   key={item}
                   style={{
                     transform: `rotate(${(index + 1) * 30}deg)`,
-                    opacity: (1 / arr.length) * item,
+                    opacity: 1 / index,
                     color,
                   }}
                 />
