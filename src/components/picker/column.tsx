@@ -14,8 +14,12 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
   constructor(props: PickerColumnProps) {
     super(props);
     // 劫持value
-    const { index = 0, itemHeight, visibleItemCount } = props;
-    const start = (itemHeight * (visibleItemCount - 1)) / 2;
+    const {
+      index = 0,
+      itemHeight,
+      getStartOffset,
+    } = props;
+    const start = getStartOffset();
     const offsetY = start - (itemHeight * index);
     this.state = {
       offsetY,
@@ -24,9 +28,9 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
   }
 
   componentDidUpdate(props: PickerColumnProps) {
-    const { index, itemHeight, visibleItemCount } = this.props;
+    const { index, itemHeight, getStartOffset } = this.props;
     if (index !== props.index) {
-      const start = (itemHeight * (visibleItemCount - 1)) / 2;
+      const start = getStartOffset();
       const offsetY = start - (itemHeight * index);
       this.setState({
         offsetY,
@@ -34,28 +38,28 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
     }
   }
 
-  getStartOffset = () => {
-    const { itemHeight, visibleItemCount } = this.props;
-    return (itemHeight * (visibleItemCount - 1)) / 2;
-  }
+  // getStartOffset = () => {
+  //   const { itemHeight, visibleItemCount } = this.props;
+  //   return (itemHeight * (visibleItemCount - 1)) / 2;
+  // }
 
   getRange = () => {
-    const { itemHeight, data = [] } = this.props;
-    const start = this.getStartOffset();
+    const { itemHeight, data = [], getStartOffset } = this.props;
+    const start = getStartOffset();
     const end = start - (itemHeight * (data.length));
     return [start, end];
   };
 
   adjustOffsetY = (offsetY: number) => {
-    const { itemHeight } = this.props;
-    const start = this.getStartOffset();
+    const { itemHeight, getStartOffset } = this.props;
+    const start = getStartOffset();
     const offset = (start - offsetY) % itemHeight;
     return offsetY + offset;
   }
 
   getIndexFromOffsetY = (offsetY: number) => {
-    const { itemHeight } = this.props;
-    const start = this.getStartOffset();
+    const { itemHeight, getStartOffset } = this.props;
+    const start = getStartOffset();
     return (start - offsetY) / itemHeight;
   };
 
@@ -99,11 +103,16 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
     isTouchMove = false;
   }
 
-  onClick = (idx: number, item: Option) => (evt: React.MouseEvent<HTMLDivElement>) => {
+  onClick = (idx: number, item: Option) => (evt: React.MouseEvent<HTMLLIElement>) => {
     evt.preventDefault();
-    const { onChange, itemHeight, index } = this.props;
+    const {
+      onChange,
+      itemHeight,
+      index,
+      getStartOffset,
+    } = this.props;
     if (index === idx) return;
-    const start = this.getStartOffset();
+    const start = getStartOffset();
     const offsetY = start - (itemHeight * idx);
     this.setState({
       duration: DEFAULT_DURATION,
@@ -119,6 +128,7 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
       data,
       renderItem,
       sectionIndex,
+      index,
     } = this.props;
     const { offsetY, duration } = this.state;
     const prefix = getPrefixCls('picker-body-column', prefixCls);
@@ -142,7 +152,9 @@ class PickerColumn extends React.Component<PickerColumnProps, PickerColumnState>
           {(data || []).map((item, i) => (
             <li
               key={item.key}
-              className={`${prefix}-item`}
+              className={classNames(`${prefix}-item`, {
+                [`${prefix}-item-active`]: i === index,
+              })}
               style={{ height: itemHeight }}
               onClick={this.onClick(i, item)}
             >

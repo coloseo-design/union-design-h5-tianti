@@ -18,6 +18,7 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
     options: [],
     renderItem: (item) => item.value,
     value: [],
+    getStartOffset: () => 0,
   };
 
   constructor(props: BasePickerProps) {
@@ -50,17 +51,20 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
       options,
       style,
       itemHeight = 44,
-      visibleItemCount,
+      visibleItemCount = 6,
       renderItem,
       className,
     } = this.props;
-
+    let { getStartOffset } = this.props;
+    if (!getStartOffset) {
+      getStartOffset = () => (itemHeight * (visibleItemCount - 1)) / 2;
+    }
     const prefix = getPrefixCls('picker', prefixCls);
     const pickerCls = classNames(prefix, {}, className);
     const bodyCls = classNames(`${prefix}-body`);
     const containerHeight = visibleItemCount * itemHeight;
 
-    const offsetY = (itemHeight * (visibleItemCount - 1)) / 2;
+    const offsetY = getStartOffset();
     const { value = [] } = this.state;
     return (
       <div className={pickerCls} style={style}>
@@ -77,11 +81,11 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
                   key={`${index}`}
                   data={option}
                   itemHeight={itemHeight}
-                  visibleItemCount={visibleItemCount}
                   index={selectedIndex >= 0 ? selectedIndex : 0}
                   onChange={this.onChange(index)}
                   renderItem={renderItem}
                   sectionIndex={index}
+                  getStartOffset={getStartOffset}
                 />
               );
             })
