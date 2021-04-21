@@ -1,0 +1,43 @@
+@import '../../style/themes/index';
+
+@tag: ~'@{uni-prefix}-tag-mobile';
+@tag-big: ~'@{uni-prefix}-tag-mobile-big';
+
+.@{tag}{
+  display: inline-block;
+  height: auto;
+  color: #F31D39;
+  background-color: rgba(243,29,57,0.1);
+  font-size:  @tag-font-size;;
+  padding: 1px 8px;
+  border-radius: 4px;
+
+  &-hollow{
+    border: 1px solid #F31D39;
+    background-color: white;
+  }
+
+  &-round{
+    border-radius: 16px;
+  }
+
+}
+
+
+.@{tag-big}{
+   background-color: white;
+   padding: 8px 24px;
+   font-size: 12px;
+   height: auto;
+
+  &-uncheck{
+    border: 2px solid #DBDDDD;
+    border-radius: 8px;
+  }
+
+  &-checked{
+    color: #F31D39;
+    border: 2px solid #F31D39;
+    border-radius: 8px;
+  }
+}

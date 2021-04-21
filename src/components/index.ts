@@ -40,3 +40,10 @@ export { default as ImagePreview } from './image-preview';
 export { default as Swipe } from './swipe';
 export { default as IndexBar } from './index-bar';
 export { default as Tabbar } from './tabbar';
+
+//
+export { default as Collapse } from './collapse';
+export { default as Avatar } from './avatar';
+export { default as Tag } from './tag';
+export { default as Divider } from './divider';
+export { default as Switch } from './switch';

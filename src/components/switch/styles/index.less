@@ -1,0 +1,71 @@
+@import '../../style/themes/index';
+
+
+@switch: ~'@{uni-prefix}-switch-mobile';
+// 选中
+@switch-checked: ~'@{switch}-checked';
+
+
+// 父级元素
+@switch-parent: ~'@{switch}-parent';
+// 子级元素  圆
+@switch-round: ~'@{switch}-round';
+
+
+// 父级元素 宽高
+@switch-parent-width: 36px;
+
+@switch-parent-height: 20px;
+
+// 子级元素 宽高
+@switch-children-width: 16px;
+
+@switch-children-height: 16px;
+
+// 圆形弧度
+@radius: 40px;
+
+.@{switch-parent} {
+  border: 0;
+  outline: none;
+  position: relative;
+  width: @switch-parent-width;
+  height: @switch-parent-height;
+  border-radius: @radius;
+  background-color: @border;
+  color: white;
+  padding:0;
+
+  .@{switch-round} {
+    width: @switch-children-width;
+    height: @switch-children-height;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 2px;
+    position: absolute;
+    transition:all .2s ease-in-out;
+    background-color: white;
+    border-radius: @radius;
+  }
+}
+
+
+.@{switch-checked} {
+  background-color:#07C160;
+  &-red{
+    background-color: #F31D39;
+  }
+  &-green{
+    background-color:#07C160;
+  }
+
+  .@{switch-round}{
+    left: 18px;
+  }
+}
+
+
+
+
+
