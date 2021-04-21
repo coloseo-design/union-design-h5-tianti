@@ -1,0 +1,21 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@swipe-cell: ~"@{uni-prefix}-swipe-cell";
+
+.@{swipe-cell} {
+  position: relative;
+  overflow: hidden;
+
+  & > .content {
+    position: relative;
+  }
+
+  & > .swipe {
+    position: absolute;
+    background-color: blue;
+    height: 100%;
+  }
+}
+
+
