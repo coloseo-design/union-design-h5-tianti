@@ -34,6 +34,7 @@ export interface DropdownItemProps {
   title?: string;
   /* 点击item时触发 */
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  transitionEnd?: boolean;
 }
 
 export interface DropdownItemState {
@@ -112,11 +113,13 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       visible,
       direction,
       children,
+      transitionEnd,
     } = this.props;
     const wrapper = getPrefixCls('dropdown-item-content', prefixCls);
     const content = classNames(wrapper, {
       [`${wrapper}-show`]: visible,
       [`${wrapper}-up`]: direction === 'up',
+      [`${wrapper}-hidden`]: transitionEnd && visible,
     });
 
     return (

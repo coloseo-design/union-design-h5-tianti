@@ -54,15 +54,24 @@
     opacity: 1;
     animation: opacityIn 0.3s linear;
   }
+  &-hidden {
+    opacity: 0;
+    animation: opacityOut 0.3s linear;
+  }
   &-content {
     width: 100%;
     background-color: #fff;
     max-height: 0;
     position: absolute;
     overflow-y: auto;
+    z-index: 1001;
     &-show {
       animation: fadein 0.3s linear;
       max-height: 80%;
+    }
+    &-hidden {
+      animation: fadeout 0.3s linear;
+      max-height: 0;
     }
     &-inner {
       & .@{dropDownItem}-content-inner {
@@ -96,6 +105,14 @@
    max-height: 80%;
   }
 }
+@keyframes fadeout {
+  0% {
+    max-height: 80%;
+  }
+  100% {
+   max-height: 0;
+  }
+}
 
 @keyframes opacityIn {
   0% {
@@ -103,5 +120,13 @@
   }
   100% {
    opacity: 1;
+  }
+}
+@keyframes opacityOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+   opacity: 0;
   }
 }

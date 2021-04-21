@@ -82,6 +82,10 @@ export default [
         title: 'PageHeader 页头',
         key: 'pageHeader',
       },
+      {
+        title: 'NavBar 导航栏',
+        key: 'nav-bar',
+      },
     ],
   },
   {
