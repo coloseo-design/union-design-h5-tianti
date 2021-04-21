@@ -65,7 +65,7 @@ class Loading extends Component<BaseLoadingProps> {
                   key={item}
                   style={{
                     transform: `rotate(${(index + 1) * 30}deg)`,
-                    opacity: (1 / arr.length) * item,
+                    opacity: 1 / index,
                     color,
                   }}
                 />
