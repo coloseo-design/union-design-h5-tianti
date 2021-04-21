@@ -4,12 +4,11 @@ import React from 'react';
 import ListItem from './item';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
-export interface ListProps {
+export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   prefixCls?: string;
   dataSource?: any[];
   itemLayout?: 'vertical' | 'horizontal';
   renderItem?: (item: any) => React.ReactNode;
-  split?: boolean;
   style?: React.CSSProperties;
 }
 
@@ -25,10 +24,11 @@ class List extends React.Component<ListProps> {
       itemLayout,
       renderItem = defaultRender,
       style,
+      ...rest
     } = this.props;
     const prex = getPrefixCls('list', prefixCls);
     return (
-      <div className={prex} style={style}>
+      <div {...rest} className={prex} style={style}>
         {(dataSource || []).map((item, index) => {
           const renderResult = renderItem(item);
           if (React.isValidElement(renderResult)) {

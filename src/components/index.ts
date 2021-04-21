@@ -31,6 +31,7 @@ export { default as Popup } from './popup';
 export { default as Picker } from './picker';
 export { default as TimePicker } from './time-picker';
 export { default as DatePicker } from './date-picker';
+export { default as List } from './list';
 
 // liuyang
 export { default as Dialog } from './dialog';

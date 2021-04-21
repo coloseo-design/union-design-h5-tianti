@@ -26,11 +26,7 @@ export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   onIconClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
 }
 
-export interface ArrowProps {
-  style?: React.CSSProperties;
-}
-
-export interface AvatarProps {
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number,
   src?: string,
   text?: string,
@@ -40,13 +36,13 @@ export interface AvatarProps {
 }
 
 class ListItem extends React.Component<ListItemProps> {
-  static Content: (props: any) => JSX.Element;
+  static Content: (props: React.HTMLAttributes<HTMLDivElement>) => JSX.Element;
 
-  static Title: (props: any) => JSX.Element;
+  static Title: (props: React.HTMLAttributes<HTMLDivElement>) => JSX.Element;
 
   static Avatar: (props: AvatarProps) => JSX.Element;
 
-  static SubTitle: (props: any) => JSX.Element;
+  static SubTitle: (props: React.HTMLAttributes<HTMLDivElement>) => JSX.Element;
 
   renderListItem = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
@@ -93,6 +89,7 @@ const Avatar = (props: AvatarProps) => {
   const {
     style, size, text, src, children,
     shape = 'circle',
+    ...rest
   } = props;
   const width = size || 32;
   const height = size || 32;
@@ -111,6 +108,7 @@ const Avatar = (props: AvatarProps) => {
   }
   return (
     <span
+      {...rest}
       className={getPrefixClass()}
       style={avaStyle}
     >
