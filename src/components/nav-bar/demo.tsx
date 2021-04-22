@@ -1,10 +1,84 @@
 import React from 'react';
-import NavBar from './nav-bar';
+import NavBar from './index';
+import Avatar from '../avatar';
+import Icon from '../icon';
 
 const NavDemo = () => {
-  const w = [];
+  const style = {
+    width: 24,
+    height: 24,
+    borderRadius: 8,
+    backgroundColor: '#1C1D1D',
+    marginRight: 20,
+    display: 'inline-block',
+  };
   return (
-    <NavBar />
+    <div style={{ margin: 64 }}>
+      <NavBar
+        icon={<Avatar size={32} text="姓名" />}
+        title="用户姓名"
+        rightText={(
+          <div>
+            <div style={style} />
+            <div style={style} />
+            <div style={style} />
+          </div>
+        )}
+        typeSize="lg"
+        style={{ marginBottom: 32 }}
+      />
+      <NavBar
+        leftArrow
+        leftText="返回"
+        title="标题"
+        rightText="取消"
+        style={{ marginBottom: 32 }}
+        onRightClick={() => { console.log('111right'); }}
+      />
+      <NavBar
+        leftArrow
+        leftText="返回"
+        title="标题"
+        rightText="全选"
+        rightTextColor="#F31D39"
+        style={{ marginBottom: 32 }}
+      />
+      <NavBar
+        leftArrow
+        leftText="返回"
+        title="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
+        rightText={<Icon style={{ fontSize: 16 }} type="more" />}
+        style={{ marginBottom: 32 }}
+      />
+      <NavBar
+        title="栏目标题"
+        style={{ marginBottom: 32 }}
+      />
+      <NavBar
+        title="栏目标题"
+        icon={(
+          <div style={{
+            width: 16, height: 16, backgroundColor: '#C8CCCC', borderRadius: 3,
+          }}
+          />
+        )}
+        typeSize="sm"
+        style={{ marginBottom: 32 }}
+      />
+      <NavBar
+        title="栏目标题"
+        icon={(
+          <div style={{
+            width: 16, height: 16, backgroundColor: '#C8CCCC', borderRadius: 3,
+          }}
+          />
+        )}
+        showBackTitle
+        typeSize="xs"
+        style={{ marginBottom: 32 }}
+      />
+      <NavBar home />
+    </div>
   );
 };
 
