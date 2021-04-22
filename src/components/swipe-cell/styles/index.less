@@ -6,15 +6,35 @@
 .@{swipe-cell} {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
 
-  & > .content {
+  & > div {
     position: relative;
   }
 
-  & > .swipe {
+  & > .content {
+    width: 100%;
+  }
+
+  & > .left,
+  & > .right {
     position: absolute;
-    background-color: blue;
     height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
+    & > div {
+      overflow: hidden;
+    }
+  }
+
+  & > .left {
+    left: 0;
+  }
+
+  & > .right {
+    right: 0;
   }
 }
 
