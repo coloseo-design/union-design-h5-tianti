@@ -311,6 +311,10 @@ export default [
         title: 'Result 结果',
         key: 'result',
       },
+      {
+        title: 'PullRefresh 下拉刷新',
+        key: 'pull-refresh',
+      },
     ],
   },
   {

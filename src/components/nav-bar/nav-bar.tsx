@@ -29,7 +29,7 @@ export interface NavBarProps extends React.HTMLAttributes<HTMLDivElement> {
   typeSize?: 'lg' | 'md' | 'sm' | 'xs';
 }
 
-const NavBar = (props: NavBarProps) => {
+const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
   const {
     prefixCls,
     leftText,

@@ -51,3 +51,4 @@ export { default as Avatar } from './avatar';
 export { default as Tag } from './tag';
 export { default as Divider } from './divider';
 export { default as Switch } from './switch';
+export { default as NavBar } from './nav-bar';
