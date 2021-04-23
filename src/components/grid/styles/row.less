@@ -1,0 +1,23 @@
+@row: ~"@{uni-prefix}-row";
+
+@align-map: {
+  top: flex-start;
+  center: center;
+  bottom: flex-end;
+}
+@justify-content:  start, end, center, space-around, space-between;
+
+.@{row} {
+  display: flex;
+  flex-flow: row wrap;
+  each(@align-map, {
+    &-align-@{key} {
+      align-items: @value;
+    }
+  });
+  each(@justify-content, {
+    &-justify-@{value} {
+      justify-content: @value;
+    }
+  });
+}
