@@ -256,6 +256,10 @@ export default [
     themeColor: '#5C57F2',
     children: [
       {
+        title: 'SwipeCell 滑动单元格',
+        key: 'swipe-cell',
+      },
+      {
         title: 'Dialog 对话框',
         key: 'dialog',
       },

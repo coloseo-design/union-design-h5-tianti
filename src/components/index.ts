@@ -34,6 +34,7 @@ export { default as TimePicker } from './time-picker';
 export { default as DatePicker } from './date-picker';
 export { default as List } from './list';
 export { default as Cascader } from './cascader';
+export { Row, Col } from './grid';
 
 // liuyang
 export { default as Dialog } from './dialog';
@@ -44,6 +45,7 @@ export { default as Swipe } from './swipe';
 export { default as IndexBar } from './index-bar';
 export { default as Tabbar } from './tabbar';
 export { default as Skeleton } from './skeleton';
+export { default as SwipeCell } from './swipe-cell';
 
 //
 export { default as Collapse } from './collapse';
