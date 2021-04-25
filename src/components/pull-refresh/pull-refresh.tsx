@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Loading from '../loading';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface PullRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PullRefreshProps {
   /* 是否在加载中 */
   loading?: boolean;
   /* 自定义前缀 */
@@ -22,7 +22,9 @@ export interface PullRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
   /* 成功提示时长 */
   successDuration?: number;
   /* 下拉刷新时触发 */
-  onRefresh: () => void;
+  onRefresh: (evt: React.TouchEvent<HTMLDivElement>) => void;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 export type PullRefreshStatus =
@@ -48,7 +50,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
   }
 
   componentDidUpdate(prevProps: PullRefreshProps) {
-    const { loading } = this.props;
+    const { loading, successDuration = 300 } = this.props;
     if (loading !== prevProps.loading && loading === false) {
       this.setState({
         status: 'success',
@@ -58,7 +60,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
           status: 'normal',
           distance: 0,
         });
-      }, 1000);
+      }, successDuration);
     }
   }
 
@@ -83,7 +85,8 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
 
   onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     event.nativeEvent.stopImmediatePropagation();
-    if (event && event.touches && event.touches[0]) {
+    const { status } = this.state;
+    if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
       const currentY = event.touches[0].pageY;
       this.setState({
         startY: currentY,
@@ -94,9 +97,9 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
 
   onTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
     event.nativeEvent.stopImmediatePropagation();
-    const { startY } = this.state;
+    const { startY, status } = this.state;
     const { headHeight = 96 } = this.props;
-    if (event && event.touches && event.touches[0]) {
+    if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
       const currentY = event.touches[0].pageY;
       this.setState({
         distance: currentY - startY,
@@ -111,7 +114,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     const { headHeight = 96, onRefresh } = this.props;
     if (distance > headHeight) {
       this.setState({ status: 'loading', distance: headHeight });
-      onRefresh && onRefresh();
+      onRefresh && onRefresh(event);
     } else {
       this.setState({ distance: 0, status: 'normal' });
     }
@@ -122,15 +125,16 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
       prefixCls,
       children,
       headHeight = 96,
-      ...rest
+      style = {},
+      className,
     } = this.props;
     const { distance } = this.state;
     const prefix = getPrefixCls('pull-refresh', prefixCls);
-    const wrapper = classNames(prefix);
+    const wrapper = classNames(prefix, className);
     const content = classNames(`${wrapper}-content`);
     return (
       <div
-        {...rest}
+        style={{ height: `calc(100vh - ${headHeight}px)`, ...style }}
         className={wrapper}
       >
         <div
