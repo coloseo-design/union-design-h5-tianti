@@ -1,0 +1,42 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+@import './mixin.less';
+
+@slider-cls: ~'@{uni-prefix}-slider-mobile';
+// 滑道
+@slider-rail-cls: ~'@{slider-cls}-rail';
+// 轨迹
+@slider-bar-cls: ~'@{slider-cls}-bar';
+// 拖拽点
+@slider-dot-cls: ~'@{slider-cls}-dot';
+
+.@{slider-cls} {
+  height: 32px;
+  position: relative;
+  padding: 13px 0;
+
+  &-rail {
+    .slider-rail(white);
+    border: 1px solid #D5D8D8;
+    width: 100%;
+  }
+  &-bar {
+    .slider-rail(#F31D39);
+    position: absolute;
+    height: 4px;
+    background: #F31D39;
+    border-radius: 6px;
+    margin: 1px 0 1px 1px;
+  }
+  &-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: @slider-handle-background-color;
+    border: 1px solid #D5D8D8;
+    top: 9.5px;
+    transform: translate(-6px, 0);
+  }
+}
+
