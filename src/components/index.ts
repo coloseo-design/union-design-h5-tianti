@@ -19,8 +19,6 @@ export { default as Button } from './button';
 export { default as Checkbox } from './checkbox';
 export { default as Radio } from './radio';
 export { default as DropdownMenu, DropdownItem } from './dropdown-menu';
-
-// 余丹
 export { default as Filed } from './field';
 export { default as Loading } from './loading';
 export { default as Praise } from './praise';

@@ -319,6 +319,10 @@ export default [
         title: 'PullRefresh 下拉刷新',
         key: 'pull-refresh',
       },
+      {
+        title: 'Toast 轻提示',
+        key: 'toast',
+      },
     ],
   },
   {
