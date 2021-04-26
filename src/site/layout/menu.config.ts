@@ -161,6 +161,10 @@ export default [
         title: 'NumberKeyBoard 数字键盘',
         key: 'number-key-board',
       },
+      {
+        title: 'ActionSheet 上拉菜单',
+        key: 'action-sheet',
+      },
     ],
   },
   {
