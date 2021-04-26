@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import Icon from '../icon';
 
-export interface BasePraiseProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface BasePraiseProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'onChange'> {
   /* 用户自定义类前缀，默认uni-praise */
   prefixCls?: string;
   /* 颜色 */
@@ -22,7 +22,7 @@ export interface BasePraiseProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export interface PraiseState {
   number: number;
-  status: boolean;
+  status: boolean | undefined;
   show: boolean;
 }
 

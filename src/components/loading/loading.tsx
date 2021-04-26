@@ -43,7 +43,7 @@ class Loading extends Component<BaseLoadingProps> {
       // [`${prefix}-${fieldType}`]: fieldType,
     });
 
-    const arr = Array.from(Array(12), (v, k) => k + 1).reverse();
+    const arr = Array.from(Array(12), (v, k) => k + 1);
 
     const textStyle = {
       color: textColor,

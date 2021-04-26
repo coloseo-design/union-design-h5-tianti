@@ -1,0 +1,26 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@layout-prefix-cls: ~'@{uni-prefix}-layout';
+
+.@{layout-prefix-cls} {
+  background: #DBDDDD;
+  &-content-card, &-content-content {
+    background-color: @white;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &-content-card {
+    border-radius: 12px;
+  }
+}
+
+.@{layout-prefix-cls}-normal {
+  padding: 0 16px;
+}
+
+.@{layout-prefix-cls}-card {
+  padding: 0 12px;
+}

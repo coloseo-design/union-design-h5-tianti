@@ -47,6 +47,10 @@ export default [
     themeColor: '#AA3FA8',
     children: [
       {
+        title: 'Tab 标签页',
+        key: 'tab',
+      },
+      {
         title: 'Tabbar 标签栏',
         key: 'tabbar',
       },
@@ -322,6 +326,10 @@ export default [
       {
         title: 'PullRefresh 下拉刷新',
         key: 'pull-refresh',
+      },
+      {
+        title: 'Toast 轻提示',
+        key: 'toast',
       },
     ],
   },
