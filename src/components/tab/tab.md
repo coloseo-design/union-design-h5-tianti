@@ -35,11 +35,12 @@ Tab.Config = {
   normal: {
     /** mode:'fixed' 标签个数 */
     tabNum: 4,
-    /** mode:'fixed' 标签文字个数 */
+    /** 标签文字个数 */
     textNum: 4,
   },
   card: {
     tabNum: 4,
+    /** arr index-》value 对应几个标签的 文字个数 null 不限 文字长度 */
     textNum: [null, 9, 6, 4],
   },
   label: {
