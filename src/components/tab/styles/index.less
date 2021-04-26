@@ -31,14 +31,28 @@
 
   & > .content {
     flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
   }
 
   & > .tab {
     background-color: #FFFFFF;
 
     & > .content > .item {
+      position: relative;
       user-select: none;
       cursor: pointer;
+
+      & > .dot {
+        width: 6px;
+        height: 6px;
+        border: 2px solid #F31D39;
+        border-radius: 3px;
+        position: absolute;
+        top: -2px;
+        right: -6px;
+      }
     }
 
     & > .line {
@@ -103,8 +117,6 @@
       border-radius: 4px;
       background-color: #F5F6F6;
 
-      & > .line { margin-left: -12px; }
-
       & > .item {
         flex: 1;
         padding: 4px 0;
@@ -127,7 +139,6 @@
       border-radius: 4px;
 
       & > .item {
-        flex: 1;
         padding: 1px 8px;
         border-radius: 20px;
         background-color: #F5F6F6;
@@ -141,5 +152,47 @@
     }
   }
 
-  & > .tab.task {}
+  & > .tab.task {
+
+    & > .content {
+      margin-top: 12px;
+
+      & > .item {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+
+        & > .num {
+          font-size: 24px;
+          font-weight: 700;
+
+          & > .overflow {
+            font-size: 12px;
+            vertical-align: top;
+            margin-right: -12px;
+
+            & svg { stroke-width: 50; }
+          }
+        }
+      }
+
+      & > .item.weight1 {
+        color: #A6A8A9;
+
+        & svg { stroke: #A6A8A9; }
+      }
+
+      & > .item.weight2 {
+        color: #1C1D1D;
+
+        & svg { stroke: #1C1D1D; }
+      }
+
+      & > .item.active {
+        color: #F31D39;
+
+        & svg { stroke: #F31D39; }
+      }
+    }
+  }
 }
