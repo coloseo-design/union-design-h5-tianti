@@ -24,6 +24,8 @@ export { default as Loading } from './loading';
 export { default as Praise } from './praise';
 export { default as Steps } from './steps';
 export { default as Search } from './search';
+export { default as Toast } from './toast';
+export { default as Layout } from './layout';
 
 // 廖银菊
 export { default as Popup } from './popup';
