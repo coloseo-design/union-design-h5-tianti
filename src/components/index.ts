@@ -27,6 +27,7 @@ export { default as Search } from './search';
 export { default as Toast } from './toast';
 export { default as Layout } from './layout';
 export { default as GridLayout } from './grid-layout';
+export { default as Cell } from './cell';
 
 // 廖银菊
 export { default as Popup } from './popup';

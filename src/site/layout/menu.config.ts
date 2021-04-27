@@ -260,6 +260,10 @@ export default [
         title: 'Praise 点赞',
         key: 'praise',
       },
+      {
+        title: 'Cell 单元格',
+        key: 'cell',
+      },
     ],
   },
   {
