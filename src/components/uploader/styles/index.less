@@ -1,0 +1,75 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@uploader: ~"@{uni-prefix}-uploader";
+
+.@{uploader} {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #fff;
+  user-select: none;
+
+  & > .list {
+    display: flex;
+    flex-flow: column nowrap;
+
+    & > .item + .item  { margin-top: 12px; }
+
+    & > .item {
+      height: 48px;
+      display: flex;
+      flex-flow: row nowrap;
+
+      & > .icon {
+        // font-size: 80px;
+        // line-height: 1em;
+      }
+
+      & > .content {
+        margin-left: 16px;
+        flex: 1;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+
+        & > .name {
+          font-size: 16px;
+          color: #1C1D1D;
+        }
+
+        & > .progress {
+          font-size: 12px;
+          color: #A6A8A9;
+        }
+      }
+    }
+  }
+
+  & > .list + .icon {
+    margin-top: 12px;
+  }
+
+  & > .list:empty + .icon {
+    margin-top: 0;
+  }
+
+  & > .icon {
+    align-self: start;
+    user-select: none;
+    cursor: pointer;
+
+    & .icon {
+      width: 48px;
+      height: 48px;
+      border: 1px dashed #DBDDDD;
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      color: #DBDDDD;
+      background-color: rgb(246, 246, 246);
+    }
+  }
+}

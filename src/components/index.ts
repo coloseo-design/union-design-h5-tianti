@@ -50,6 +50,7 @@ export { default as Tabbar } from './tabbar';
 export { default as Skeleton } from './skeleton';
 export { default as SwipeCell } from './swipe-cell';
 export { default as Tab } from './tab';
+export { default as Uploader } from './uploader';
 
 //
 export { default as Collapse } from './collapse';

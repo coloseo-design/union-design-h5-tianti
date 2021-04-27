@@ -102,6 +102,10 @@ export default [
     themeColor: '#3B5ED9',
     children: [
       {
+        title: 'Uploader 文件上传',
+        key: 'uploader',
+      },
+      {
         title: 'AutoComplete 自动完成',
         key: 'auto-complete',
       },
