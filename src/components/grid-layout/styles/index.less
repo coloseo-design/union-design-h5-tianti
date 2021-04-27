@@ -1,0 +1,17 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@grid-layout-prefix-cls: ~'@{uni-prefix}-grid-layout';
+
+.@{grid-layout-prefix-cls} {
+  background: @white;
+  padding: 24px;
+  .@{uni-prefix}-row {
+    .@{uni-prefix}-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}

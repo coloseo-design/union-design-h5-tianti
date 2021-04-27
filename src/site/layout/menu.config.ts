@@ -90,6 +90,10 @@ export default [
         title: 'NavBar 导航栏',
         key: 'nav-bar',
       },
+      {
+        title: 'GridLayout 宫格',
+        key: 'grid-layout',
+      },
     ],
   },
   {
