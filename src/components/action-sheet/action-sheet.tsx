@@ -1,12 +1,20 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import { useGetPrefixClass, useClassNames } from '../common/base-component';
-import Divider from '../divider';
 
 export type Option = {
   name?: string;
   src?: string | React.ReactNode;
+  color?: string;
+  type?: string;
+  mainOperation?: boolean;
+}
+
+export type ColT = {
+  image?: number,
+  icon?: number,
 }
 export interface ActionSheetProps {
   /* class前缀 */
@@ -35,9 +43,11 @@ export interface ActionSheetProps {
   onSelect?: (option: any) => void;
   /* 多行展示 */
   multiple?: boolean;
+  /* 指定图片，图标默认每行几个换行(在multiple为true时有效) */
+  currentCol?: ColT;
 }
 
-const ActionSheet = (props: ActionSheetProps) => {
+const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
   const {
     prefixCls,
     className,
@@ -50,6 +60,8 @@ const ActionSheet = (props: ActionSheetProps) => {
     onSelect,
     title,
     multiple,
+    cancelText,
+    currentCol = {},
   } = props;
 
   const [visible, setVisible] = React.useState(propsVisible);
@@ -114,11 +126,13 @@ const ActionSheet = (props: ActionSheetProps) => {
     borderTopRightRadius: type !== 'basic' ? 12 : undefined,
   };
 
-  const renderPanel = (data: Option[] = []) => (
-    <div
-      style={{ flexWrap: multiple ? 'wrap' : 'nowrap', overflowX: multiple ? undefined : 'auto' }}
-      className={`${containter}-inner`}
-    >
+  const array = (len: number) => {
+    const list = Array.from({ length: len }).map((_, index) => index) || [];
+    return list;
+  };
+
+  const renderData = (data: Option[] = []) => (
+    <>
       {data.map((option: any, index) => (
         <div
           key={`${index}`}
@@ -135,8 +149,34 @@ const ActionSheet = (props: ActionSheetProps) => {
           )}
         </div>
       ))}
-    </div>
+    </>
   );
+
+  const renderPanel = (data: Option[] = [], isImg?: boolean) => {
+    let dataC: number[] = [];
+    const tem = isImg ? currentCol.image || 3 : currentCol.icon || 4;
+    if (multiple) {
+      dataC = isImg ? array(Math.ceil(data.length / tem)) : array(Math.ceil(data.length / tem));
+      return (
+        <>
+          {(dataC || []).map((item: number) => (
+            <div
+              className={`${containter}-inner`}
+              key={item}
+              style={{ borderBottom: item === dataC.length - 1 ? undefined : '1px solid #DBDDDD' }}
+            >
+              {renderData(data.slice(item * tem, item === 0 ? tem : tem * (item + 1)))}
+            </div>
+          ))}
+        </>
+      );
+    }
+    return (
+      <div className={`${containter}-inner`}>
+        {renderData(data)}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -154,8 +194,8 @@ const ActionSheet = (props: ActionSheetProps) => {
                   {
                     type === 'upload' ? ( // 上传样式
                       <>
-                        {renderPanel((options || []).filter((i: any) => i.type === 'img'))}
-                        <Divider style={{ borderColor: '#DBDDDD' }} />
+                        {renderPanel((options || []).filter((i: any) => i.type === 'img'), true)}
+                        <div style={{ width: '100%', borderTop: '1px solid #DBDDDD', margin: 8 }} />
                         {renderPanel((options || []).filter((i: any) => i.type !== 'img'))}
                       </>
                     ) : ( // 分享样式
@@ -170,6 +210,7 @@ const ActionSheet = (props: ActionSheetProps) => {
                       key={`${index}`}
                       className={optionStyle(option)}
                       onClick={handleSelect(option)}
+                      style={{ color: option.color }}
                     >
                       {option.name}
                     </div>
@@ -177,7 +218,7 @@ const ActionSheet = (props: ActionSheetProps) => {
                 </div>
               )}
               {type === 'basic' && <div style={{ height: 20, backgroundColor: 'rgba(0,0,0,0.8)' }} />}
-              <div className={footer} onClick={handleCancel}>取消</div>
+              <div className={footer} onClick={handleCancel}>{cancelText || '取消'}</div>
             </div>
           </div>
         )
