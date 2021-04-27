@@ -90,6 +90,10 @@ export default [
         title: 'NavBar 导航栏',
         key: 'nav-bar',
       },
+      {
+        title: 'GridLayout 宫格',
+        key: 'grid-layout',
+      },
     ],
   },
   {
@@ -255,6 +259,10 @@ export default [
       {
         title: 'Praise 点赞',
         key: 'praise',
+      },
+      {
+        title: 'Cell 单元格',
+        key: 'cell',
       },
     ],
   },
