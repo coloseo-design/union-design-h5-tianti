@@ -13,7 +13,7 @@ const Demo = () => (
   >
     <Uploader.List
       style={{ margin: '20px 15px' }}
-      action="http://"
+      action="http://10.13.5.99:3000/upload"
     />
   </div>
 );

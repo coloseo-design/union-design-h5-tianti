@@ -112,7 +112,7 @@ export interface BaseInputProps {
   // 是否显示边框
   border?: boolean;
   // 输入框类型
-  fieldType?: 'card' | 'reply';
+  fieldType?: 'card' | 'reply' | 'normal';
   // 输入框状态
   status?: 'error' | 'warning';
   // 表单校验规则
@@ -134,7 +134,7 @@ class Input extends Component<BaseInputProps, InputState> {
     label: '',
     required: false,
     rows: 1,
-    fieldType: 'card',
+    fieldType: 'normal',
   };
 
   node: HTMLInputElement | undefined;
@@ -299,8 +299,9 @@ class Input extends Component<BaseInputProps, InputState> {
 
     return (
       <div className={mainClass} style={style}>
-        {type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>}
-        {leftIcon && <span className={`${prefix}-left-content`}>{leftIcon}</span>}
+        {/* {type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>} */}
+        {(leftIcon || leftIcon === null) ? (leftIcon && <span className={`${prefix}-left-content`}>{leftIcon}</span>)
+          : (type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>)}
         <div className={`${prefix}-${fieldType}-content`}>
           <input
             {...rest}
