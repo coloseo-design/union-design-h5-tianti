@@ -5,6 +5,7 @@ import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
 export interface BaseAvatarProps {
+    src? : string | React.ReactNode;
     text?: string
     size?: number;
     className?: string;
@@ -26,7 +27,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
 
     renderAvatar = ({ getPrefixCls }: ConfigConsumerProps) => {
       const {
-        prefixCls, className, size, text, style, children, type,
+        prefixCls, className, size, text, style, children, type, src,
       } = this.props;
 
       const prefix = getPrefixCls('avatar-mobile', prefixCls);
@@ -37,6 +38,12 @@ class Avatar extends React.Component<BaseAvatarProps> {
         // 初始宽高 或  外部传入size
       const [w, h] = size ? [size, size] : [32, 32];
       const fontSize = w < 46 ? 12 : Math.ceil(w / 2) - 10;
+      let srcNode = null;
+      if (src && React.isValidElement(src)) {
+        srcNode = src;
+      } else if (src && typeof src === 'string') {
+        srcNode = <img src={src} alt="" />;
+      }
 
       return (
         <span
@@ -45,7 +52,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
             ...style, width: w, height: h, lineHeight: `${h}px`, fontSize,
           }}
         >
-          { text || children }
+          { srcNode || text || children }
           { type && this.getBadge(prefix) }
         </span>
       );

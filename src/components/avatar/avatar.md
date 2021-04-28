@@ -12,3 +12,4 @@ subtitle: 头像
 | size        | 设置头像的大小        | number                                                                     |            |      |
 | type        | 头像类型             |                                                                      |            |      |
 | text        | 文本                 |  string                                                                    |            |      |
+| src        | 图片类头像的资源地址或者图片元素      |  string `|` React.ReactNode                          |            |      |
