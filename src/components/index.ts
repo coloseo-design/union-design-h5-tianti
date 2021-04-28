@@ -38,6 +38,7 @@ export { default as List } from './list';
 export { default as Cascader } from './cascader';
 export { Row, Col } from './grid';
 export { default as ActionSheet } from './action-sheet';
+export { default as Form } from './form';
 
 // liuyang
 export { default as Dialog } from './dialog';

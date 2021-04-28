@@ -21,13 +21,11 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.11",
-    "@types/enquire.js": "^2.1.2",
     "@types/react-dom": "^17.0.0",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
     "core-js": "^3.8.3",
     "dayjs": "^1.10.4",
-    "enquire.js": "^2.1.6",
     "gulp-concat": "^2.6.1",
     "omit.js": "^1.0.2",
     "react-app-polyfill": "^2.0.0",
