@@ -10,7 +10,7 @@ toc: false
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-|position	| 弹出位置	'top', 'left' , 'right' ,'bottom', 'center'	|'center'|
+|position	| 弹出位置	'top', 'left' , 'right' ,'bottom', 'center'	|string| center |--|
 |vmodel	|是否显示弹出层| boolean	| false|
 |getPopupContainer |	指定挂载的节点|	() => Element|--|	
 |header	|弹出层header|	string｜ReactNode	|--|

@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { warning } from '../utils/warning';
+import warning from '../utils/warning';
 import { withGlobalConfig } from '../config-provider';
 import { RadioProps, RadioState } from './type';
 import Group, { withRadioGrooupConsumer } from './group';

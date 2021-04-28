@@ -143,8 +143,8 @@ class Popup extends React.Component<PopupProps, PopupState> {
 
     const footerButton = (
       <>
-        <Button style={{ marginRight: 16, padding: '0px 58px' }} onClick={this.cancel}>取消</Button>
-        <Button type="primary" onClick={this.ok} style={{ padding: '0px 58px' }}>确认</Button>
+        <Button style={{ marginRight: 32, width: '32%', height: 36 }} onClick={this.cancel}>取消</Button>
+        <Button type="primary" onClick={this.ok} style={{ width: '32%', height: 36 }}>确认</Button>
       </>
     );
 
@@ -163,7 +163,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
                 <span className={headerIcon} onClick={this.cancel}>
                   {
                     closeIcon
-                      ? (React.isValidElement(closeIcon) ? closeIcon : <img src={closeIcon || ''} alt="" />)
+                      ? (React.isValidElement(closeIcon) ? closeIcon : <img src={typeof closeIcon === 'string' ? closeIcon : ''} alt="" />)
                       : (closeText || <Icon type="close" />)
                   }
                 </span>

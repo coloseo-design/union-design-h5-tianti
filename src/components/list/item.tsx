@@ -120,18 +120,18 @@ const Avatar = (props: AvatarProps) => {
 };
 
 const Title = (props: React.HTMLAttributes<HTMLDivElement>) => {
-  const { children, style } = props;
+  const { children, ...rest } = props;
   const getPrefixClass = useGetPrefixClass('list-item-content-title');
   return (
-    <div className={getPrefixClass()} style={style}>{children}</div>
+    <div {...rest} className={getPrefixClass()}>{children}</div>
   );
 };
 
 const SubTitle = (props: React.HTMLAttributes<HTMLDivElement>) => {
-  const { children, style } = props;
+  const { children, ...rest } = props;
   const getPrefixClass = useGetPrefixClass('list-item-content-subtitle');
   return (
-    <div className={getPrefixClass()} style={style}>{children}</div>
+    <div {...rest} className={getPrefixClass()}>{children}</div>
   );
 };
 
@@ -139,6 +139,7 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const {
     children,
     style = {},
+    ...rest
   } = props;
   const {
     itemLayout, icon, extra, onIconClick, arrow, isLast,
@@ -159,6 +160,7 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
   };
   return (
     <div
+      {...rest}
       className={getPrefixClass()}
       style={{ ...style, borderBottom: isLast ? undefined : '1px solid #D5D8D8' }}
     >

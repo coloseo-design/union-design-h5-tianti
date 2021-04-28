@@ -40,7 +40,7 @@ const CheckboxDemo = () => (
         onChange={(values) => console.log('values', values)}
       >
         <Checkbox disabled value="A">A</Checkbox>
-        <Checkbox>B</Checkbox>
+        <Checkbox value="B">B</Checkbox>
         <Checkbox value="C">C</Checkbox>
       </Checkbox.Group>
     </div>
