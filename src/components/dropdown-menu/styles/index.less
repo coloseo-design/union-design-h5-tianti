@@ -16,14 +16,20 @@
     margin-right: 24px;
   }
   &-item {
-    flex: 1; 
+    // flex: 1;
     height: 32px;
     border: @border-width-base @border-style-base @btn-default-border;
     border-radius: 3px;
     line-height: 16px;
     padding: 8px 12px;
     position: relative;
-    overflow: hidden;
+    &-text {
+      display: inline-block;
+      width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     &:last-child {
       margin-right: 0px;
     }
@@ -60,7 +66,6 @@
   }
   &-content {
     width: 100%;
-    background-color: #fff;
     max-height: 0;
     position: absolute;
     overflow-y: auto;
@@ -74,8 +79,12 @@
       max-height: 0;
     }
     &-inner {
-      & .@{dropDownItem}-content-inner {
-        padding-left: 24px;
+      &-card {
+        background-color: #fff;
+        border-radius: 12px;
+        margin: 0px 24px;
+        padding: 12px;
+        min-height: 50px;
       }
     }
     &-up {

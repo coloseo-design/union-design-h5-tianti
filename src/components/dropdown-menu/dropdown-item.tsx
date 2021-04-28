@@ -9,7 +9,7 @@ export interface Option {
   text: string;
   value: string;
   icon?: React.ReactNode | string;
-  children?: Option[];
+  card?: string | React.ReactNode;
 }
 
 export interface DropdownItemProps {
@@ -35,6 +35,7 @@ export interface DropdownItemProps {
   /* 点击item时触发 */
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   transitionEnd?: boolean;
+  hasCard?: boolean;
 }
 
 export interface DropdownItemState {
@@ -84,14 +85,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
               itemValue={itemValue}
               dropItemStyle={dropItemStyle}
               activeColor={activeColor}
-            >
-              {
-                expandKeys.indexOf(`${item.value}`) >= 0
-                && item.children
-                && item.children.length > 0
-                && this.renderCurrent(item.children)
-              }
-            </CurrentItem>
+            />
           </div>
         ))}
       </>
@@ -102,6 +96,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     const { children } = this.props;
     if (children) {
       e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
     }
   };
 
@@ -109,11 +104,12 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     const {
       prefixCls,
       options,
-      dropContentStyle,
+      dropContentStyle = {},
       visible,
       direction,
       children,
       transitionEnd,
+      hasCard,
     } = this.props;
     const wrapper = getPrefixCls('dropdown-item-content', prefixCls);
     const content = classNames(wrapper, {
@@ -123,7 +119,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     });
 
     return (
-      <div className={content} style={dropContentStyle} onClick={this.handleClick}>
+      <div className={content} style={{ backgroundColor: hasCard ? '#F5F6F6' : '#fff', ...dropContentStyle }} onClick={this.handleClick}>
         {children || this.renderCurrent(options || [])}
       </div>
     );

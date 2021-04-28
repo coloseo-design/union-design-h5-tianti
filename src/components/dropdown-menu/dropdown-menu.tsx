@@ -20,8 +20,6 @@ export interface DropdownMenuProps {
   closeOnClickOutside?: boolean;
   /* menu样式 */
   style?: React.CSSProperties;
-    /* 下拉列表内容样式 */
-  dropContentStyle?: React.CSSProperties;
   /* 菜单标题颜色 和选项选中颜色 */
   activeColor?: string;
   className?: string;
@@ -198,7 +196,6 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
       prefixCls,
       overlay = true,
       style,
-      dropContentStyle,
       direction = 'down',
       activeColor,
       // className,
@@ -239,10 +236,10 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
         {(childrenList || []).map((item, index) => (
           <div key={index} className={`${dropWrapper}-content`}>
             <div
-              className={`${menuItem} ${item.disabled && `${dropWrapper}-item-disabled`}`}
+              className={`${menuItem} ${item.disabled ? `${dropWrapper}-item-disabled` : ''}`}
               onClick={this.handleClick(index, item)}
             >
-              <span style={{ color: activeColor || undefined }}>
+              <span className={`${dropWrapper}-item-text`} style={{ color: activeColor || undefined }}>
                 {item.title ? item.title : renderValue(item, index)}
               </span>
               <Icon
@@ -257,7 +254,6 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
                 top: direction === 'down' ? top : 0,
                 left: 0,
                 bottom: direction === 'down' ? 0 : `calc(100% - ${top}px)`,
-                // backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.8)',
               }}
             >
               <div
@@ -268,7 +264,6 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
                   {...item}
                   onSelect={this.handleSelect}
                   itemValue={item.value}
-                  dropContentStyle={dropContentStyle}
                   visible={visible}
                   direction={direction}
                   activeColor={activeColor}

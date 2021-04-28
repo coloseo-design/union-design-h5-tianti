@@ -33,7 +33,7 @@ class CurrentItem extends React.Component<CurrentItemProps> {
     const {
       prefixCls,
       current,
-      children,
+      // children,
       isExpand,
       itemValue,
       icon,
@@ -64,7 +64,7 @@ class CurrentItem extends React.Component<CurrentItemProps> {
               )}
             {current && current.text}
           </div>
-          {current && current.children && current.children.length > 0
+          {current && current.card
             && (
             <div
               style={{
@@ -76,14 +76,18 @@ class CurrentItem extends React.Component<CurrentItemProps> {
               }}
             >
               <Icon
-                type={isExpand ? 'down' : 'up'}
-                style={{ fontSize: 18, marginTop: isExpand ? 1 : -3, marginLeft: -1 }}
+                type={isExpand ? 'up' : 'down'}
+                style={{
+                  fontSize: 18, marginTop: isExpand ? -3 : 1, marginLeft: -1, fontWeight: 'bold',
+                }}
                 onClick={this.handleExpan}
               />
             </div>
             )}
         </div>
-        {children}
+        {current.card && isExpand && (
+          <div className={`${wrapper}-inner-card`}>{current.card}</div>
+        )}
       </div>
     );
   }

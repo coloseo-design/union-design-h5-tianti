@@ -15,7 +15,6 @@ toc: false
 |closeOnClickOverlay|是否在点击遮罩层后关闭菜单|true| |
 |closeOnClickOutside| 是否在点击外部元素后关闭菜单| true| |
 |style| dropmenu样式｜object|--||
-|dropContentStyle| 下拉列表样式| object| --|
 |activeColor|菜单标题颜色 和选项选中颜色| string | --||
 
 ## DropdownItem API
@@ -25,7 +24,9 @@ toc: false
 |value |当前选中项对应的 value| string | --| |
 |options| 选项数组| Option[]| --||
 |disabled|是否禁用菜单|boolean|false| |
+|dropContentStyle| 下拉列表样式| object| --|
 |onChange|点击选项导致 value 变化时触发| (value) => void| --|
+|hasCard|是否带有卡片形式|boolean|false|--|
 
 
 ## Option 数据结构
@@ -35,3 +36,4 @@ toc: false
 | value| 标识符 | string|
 |text| 文字 | string|
 |icon|左侧图标或图片链接| ReactNode 或者string |
+|card|其他信息|string ｜ reactNode|
