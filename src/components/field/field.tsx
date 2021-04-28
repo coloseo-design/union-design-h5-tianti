@@ -299,8 +299,9 @@ class Input extends Component<BaseInputProps, InputState> {
 
     return (
       <div className={mainClass} style={style}>
-        {type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>}
-        {leftIcon && <span className={`${prefix}-left-content`}>{leftIcon}</span>}
+        {/* {type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>} */}
+        {(leftIcon || leftIcon === null) ? (leftIcon && <span className={`${prefix}-left-content`}>{leftIcon}</span>)
+          : (type === 'password' && <span className={`${prefix}-left-content`}><Icon type="password" /></span>)}
         <div className={`${prefix}-${fieldType}-content`}>
           <input
             {...rest}
