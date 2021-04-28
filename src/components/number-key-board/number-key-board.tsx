@@ -24,10 +24,10 @@ export interface NumberKeyBoardProps {
   onDelete?: (value?: string) => void;
   /* 点击键盘按钮触发 */
   onKeyBoard?: () => void;
-  /* 点击键盘图标，外部区域，完成, 关闭按钮时的回调 */
-  onClose?: () => void;
-
+  /* 输入的值 */
   value?: string;
+  /* 键盘失去焦点 */
+  onBlur?: () => void;
 }
 
 export interface NumberKeyBoardState {
@@ -38,6 +38,8 @@ export interface NumberKeyBoardState {
 }
 
 class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoardState> {
+  node: HTMLSpanElement | undefined;
+
   constructor(props: NumberKeyBoardProps) {
     super(props);
     const { value, show } = this.props;
@@ -46,6 +48,12 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
       value: value || undefined,
       hideTransition: false,
     };
+  }
+
+  componentDidMount() {
+    if (this.node) {
+      this.node.focus();
+    }
   }
 
   componentDidUpdate(prevProps: NumberKeyBoardProps) {
@@ -70,20 +78,24 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
     }
   }
 
+  getNode = (node: HTMLDivElement) => {
+    this.node = node;
+  }
+
   blur = () => {
-    const { onClose } = this.props;
-    onClose && onClose();
+    const { onBlur } = this.props;
+    onBlur && onBlur();
   };
 
   handleComplete = () => {
-    const { onClose } = this.props;
-    onClose && onClose();
+    const { onBlur } = this.props;
+    onBlur && onBlur();
   }
 
   click = (current: unknown) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     const {
-      onInput, onDelete, extraKey, onClose,
+      onInput, onDelete, extraKey, onBlur,
     } = this.props;
     const { value } = this.state;
     if (current === 'delete') {
@@ -92,13 +104,13 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
         val = value.toString().slice(0, value.toString().length - 1);
         this.setState({ value: val });
       }
+      onInput && onInput('delete');
       onDelete && onDelete(val);
-      onClose && onClose();
     } else if (current === 'extra') {
       if (extraKey) {
         extraKey && onInput && onInput(current);
       } else {
-        onClose && onClose();
+        onBlur && onBlur();
       }
     } else {
       onInput && onInput(current);
@@ -125,14 +137,16 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
     return (
       <div
         className={container}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => { e.stopPropagation(); e.nativeEvent.stopImmediatePropagation(); }}
         tabIndex={0}
         onBlur={this.blur}
+        ref={this.getNode}
+        role="button"
       >
         <div className={wrapper}>
           {(complete || title) && (
           <div className={`${prex}-wrapper-title`}>
-            <span>{title}</span>
+            {title && <span>{title}</span>}
             <div
               className={`${prex}-wrapper-complete`}
               onClick={this.handleComplete}

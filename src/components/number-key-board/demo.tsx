@@ -1,6 +1,7 @@
 import React from 'react';
 import NumberKeyBoard from './index';
 import Button from '../button';
+import Toast from '../toast';
 
 const KeyBoardDemo = () => {
   const [show, setShow] = React.useState(false);
@@ -10,12 +11,7 @@ const KeyBoardDemo = () => {
   const handleDelete = (value?: string) => {
     console.log('--value', value);
   };
-  const handleClose = () => {
-    setShow(false);
-    setShow1(false);
-    setShow2(false);
-    setShow3(false);
-  };
+
   const handleClick = (e: any) => {
     e.stopPropagation();
     setShow(true);
@@ -45,21 +41,26 @@ const KeyBoardDemo = () => {
     setShow3(true);
   };
 
+  const handleInput = (value: unknown) => {
+    Toast.info({ content: `${value}`, mask: false });
+  };
+
   return (
     <div style={{ margin: 64 }}>
       <Button onClick={handleClick}>默认键盘1 </Button>
       <Button onClick={handleClick1}>默认键盘2</Button>
       <Button onClick={handleClick2}>身份证键盘</Button>
       <Button onClick={handleClick3}>带title的键盘</Button>
-      <NumberKeyBoard show={show} onClose={handleClose} />
-      <NumberKeyBoard show={show1} complete onClose={handleClose} />
-      <NumberKeyBoard show={show2} extraKey="X" onClose={handleClose} />
+      <NumberKeyBoard show={show} onBlur={() => setShow(false)} onInput={handleInput} />
+      <NumberKeyBoard show={show1} complete onBlur={() => setShow1(false)} onInput={handleInput} />
+      <NumberKeyBoard show={show2} extraKey="X" onBlur={() => setShow2(false)} onInput={handleInput} />
       <NumberKeyBoard
         show={show3}
         title="标题"
-        onClose={handleClose}
+        onBlur={() => setShow3(false)}
         value="12345"
         onDelete={handleDelete}
+        onInput={handleInput}
       />
     </div>
   );
