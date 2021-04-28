@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import Toast from '../toast';
 import Icon from '../icon';
+import Button from '../button';
 import { fileSize } from '../utils/fileSize';
 import { uuid } from '../utils/uuid';
 import { useClassNames, useGetPrefixClass } from '../common/base-component';
@@ -113,8 +114,82 @@ const Uploader = memo<UploaderProps>((props) => {
   });
 
   const startUploadFile = useCallback((file: UploaderFile) => {
-    // const xhr = new XMLHttpRequest();
-    console.log(file);
+    const update = () => setState((obj) => ({ ...obj, fileList: [...obj.fileList] }));
+
+    const formData = new FormData();
+
+    Object.keys(file.formData).forEach((key) => {
+      const value = file.formData[key];
+      if (Array.isArray(value)) {
+        value.forEach((item) => {
+          formData.append(`${key}[]`, item);
+        });
+        return;
+      }
+
+      formData.append(key, file.formData[key] as string);
+    });
+
+    if (file.originalFile instanceof Blob) {
+      formData.append(file.formDataFileName, file.originalFile, file.name);
+    } else {
+      formData.append(file.formDataFileName, file.originalFile);
+    }
+
+    const xhr = new XMLHttpRequest();
+
+    if (xhr.upload) {
+      xhr.upload.onprogress = (event) => {
+        if (event.total > 0) {
+          Object.assign(file, { progress: event.loaded / event.total });
+          update();
+        }
+      };
+    }
+
+    xhr.onerror = (event) => {
+      Object.assign(file, { status: 'error' });
+      update();
+    };
+
+    xhr.onload = async () => {
+      const { status, responseText, response } = xhr;
+      const res = responseText ?? response;
+      console.log('======:', res);
+      // if (res) {
+      //   try {
+      //     file.response = JSON.parse(res);
+      //   } catch (error) {
+      //     file.response = res;
+      //   }
+      // }
+
+      if (status < 200 || status >= 300) {
+        Object.assign(file, { status: 'error' });
+        // file.response = `error:${method},${file.action},${xhr.status}`;
+      } else {
+        Object.assign(file, { status: 'success' });
+        afterUpload?.(file);
+      }
+
+      update();
+    };
+
+    xhr.open(file.method, file.url, true);
+
+    xhr.withCredentials = file.withCredentials;
+
+    if (file.headers['X-Requested-With'] !== null) {
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    }
+
+    Object.keys(file.headers).forEach((key) => xhr.setRequestHeader(key, file.headers[key]));
+
+    xhr.send(formData);
+
+    Object.assign(file, { status: 'uploading' });
+
+    update();
   }, []);
 
   const beforeUploadFile = useCallback(async (file: UploaderFile) => {
@@ -227,10 +302,10 @@ Uploader.List = memo((props) => {
             </div>
             <div className="content">
               <div className="name">{file.name}</div>
-              <div className="progress">{file.unitSize}</div>
+              <div className="progress">{`${fileSize(file.size * file.progress)}/${file.unitSize}`}</div>
             </div>
             <div className="preview">
-              preview
+              <Button size="small">预览</Button>
             </div>
             <div className="delete">
               <Icon type="delete" />
