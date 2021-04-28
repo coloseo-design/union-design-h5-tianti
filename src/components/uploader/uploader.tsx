@@ -4,7 +4,7 @@
 /* eslint-disable no-shadow */
 import React, {
   CSSProperties,
-  memo, ReactNode, useCallback, useEffect, useMemo, useRef, useState,
+  memo, ReactNode, useCallback, useMemo, useRef, useState,
 } from 'react';
 import Toast from '../toast';
 import Icon from '../icon';
@@ -42,6 +42,8 @@ export type UploaderFile = {
   method: 'POST' | 'PUT' | 'PATCH';
   /** 上传请求时是否携带 cookie */
   withCredentials: boolean;
+  /** 上传成功后的返回 */
+  reponse: string;
 };
 
 type ReturnPT<T> = T | Promise<T>;
@@ -57,8 +59,6 @@ export type UploaderProps = {
   method?: 'POST' | 'PUT' | 'PATCH';
   /** 上传请求时是否携带 cookie */
   withCredentials?: boolean;
-  /** 双向绑定的fileList */
-  fileList?: UploaderFile[];
   /** 设置上传的请求头部 */
   headers?: Record<string, string> | ((file: UploaderFile) => ReturnPT<Record<string, string>>);
   /** 发到后台的文件参数名 */
@@ -70,7 +70,7 @@ export type UploaderProps = {
   /** 上传文件之后的钩子，参数为上传的文件 */
   afterUpload?: (file: UploaderFile) => boolean | Promise<UploaderFile>;
   /** 上传文件改变时回调 */
-  onChange?: (fileList: UploaderFile[]) => void;
+  onChange?: (file: UploaderFile) => void;
 
   children: ReactNode;
 };
@@ -82,6 +82,7 @@ export type UploaderListProps = Omit<UploaderProps, 'children'> & {
   className?: string;
   /** 点击预览的回调 */
   onPreview?: (file: UploaderFile) => void;
+  iconView?: (file: UploaderFile) => ReactNode;
 };
 
 export type UploaderType = React.NamedExoticComponent<UploaderProps>
@@ -121,14 +122,9 @@ const Uploader = memo<UploaderProps>((props) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [state, setState] = useState({
-    inputKey: 0,
-    fileList: [] as UploaderFile[],
-  });
+  const [inputKey, setInputKey] = useState(0);
 
   const startUploadFile = useCallback((file: UploaderFile) => {
-    const update = () => setState((obj) => ({ ...obj, fileList: [...obj.fileList] }));
-
     const formData = new FormData();
 
     Object.keys(file.formData).forEach((key) => {
@@ -155,38 +151,31 @@ const Uploader = memo<UploaderProps>((props) => {
       xhr.upload.onprogress = (event) => {
         if (event.total > 0) {
           Object.assign(file, { progress: event.loaded / event.total });
-          update();
+          onChange?.(file);
         }
       };
     }
 
-    xhr.onerror = (event) => {
-      Object.assign(file, { status: 'error' });
-      update();
+    xhr.onerror = () => {
+      Object.assign(file, { status: 'failed' });
+      Toast.info({ content: '上传失败', mask: false });
+      onChange?.(file);
     };
 
     xhr.onload = async () => {
       const { status, responseText, response } = xhr;
-      const res = responseText ?? response;
-      console.log('======:', res);
-      // if (res) {
-      //   try {
-      //     file.response = JSON.parse(res);
-      //   } catch (error) {
-      //     file.response = res;
-      //   }
-      // }
+      Object.assign(file, { response: responseText ?? response ?? '' });
 
       if (status < 200 || status >= 300) {
-        Object.assign(file, { status: 'error' });
-        // file.response = `error:${method},${file.action},${xhr.status}`;
+        Object.assign(file, { status: 'failed' });
+        Toast.info({ content: '上传失败', mask: false });
       } else {
         Object.assign(file, { status: 'success' });
         afterUpload?.(file);
         Toast.info({ content: '上传成功', mask: false });
       }
 
-      update();
+      onChange?.(file);
     };
 
     xhr.open(file.method, file.url, true);
@@ -203,8 +192,8 @@ const Uploader = memo<UploaderProps>((props) => {
 
     Object.assign(file, { status: 'uploading' });
 
-    update();
-  }, []);
+    onChange?.(file);
+  }, [afterUpload, onChange]);
 
   const beforeUploadFile = useCallback(async (file: UploaderFile) => {
     const result = await beforeUpload?.(file) ?? true;
@@ -220,8 +209,6 @@ const Uploader = memo<UploaderProps>((props) => {
 
   const handleUploadFile = useCallback(async (file: File) => {
     try {
-      const newFileList = [...state.fileList];
-
       const newFile: UploaderFile = {
         uid: uuid(),
         originalFile: file,
@@ -237,22 +224,20 @@ const Uploader = memo<UploaderProps>((props) => {
         formDataFileName: name,
         method,
         withCredentials,
+        reponse: '',
       };
 
       newFile.url = (typeof action === 'function' ? (await action?.(newFile)) : action) ?? '';
       newFile.headers = (typeof headers === 'function' ? (await headers?.(newFile)) : headers) ?? {};
       newFile.formData = (typeof data === 'function' ? (await data?.(newFile)) : data) ?? {};
 
-      newFileList.push(newFile);
-
-      setState((obj) => ({ ...obj, fileList: newFileList }));
+      onChange?.(newFile);
 
       beforeUploadFile(newFile);
     } catch (error) {
-      console.log(error);
       Toast.info({ content: error, mask: false });
     }
-  }, [action, beforeUploadFile, data, headers, method, name, state.fileList, withCredentials]);
+  }, [action, beforeUploadFile, data, headers, method, name, onChange, withCredentials]);
 
   const onInputChange: React.InputHTMLAttributes<HTMLInputElement>['onChange'] = useCallback(
     (event) => {
@@ -260,7 +245,7 @@ const Uploader = memo<UploaderProps>((props) => {
       if (files) {
         const fileArr = Array.prototype.slice.call(files);
         if (fileArr.length > 0) handleUploadFile(fileArr[0]);
-        setState((obj) => ({ ...obj, inputKey: obj.inputKey + 1 }));
+        setInputKey((num) => num + 1);
       }
     },
     [handleUploadFile],
@@ -268,13 +253,11 @@ const Uploader = memo<UploaderProps>((props) => {
 
   const wrapOnClick = useCallback(() => inputRef.current?.click(), []);
 
-  useEffect(() => onChange?.(state.fileList), [onChange, state.fileList]);
-
   return (
     <div onClick={wrapOnClick}>
       {children}
       <input
-        key={state.inputKey}
+        key={inputKey}
         ref={inputRef}
         type="file"
         accept={accept}
@@ -290,6 +273,7 @@ Uploader.List = memo((props) => {
     style,
     className,
     onPreview,
+    iconView,
     ...uploaderProps
   } = props ?? {};
 
@@ -299,12 +283,25 @@ Uploader.List = memo((props) => {
 
   const [fileList, setFileList] = useState([] as UploaderFile[]);
 
-  const onChange: NonNullable<UploaderProps['onChange']> = useCallback((fileList) => setFileList(fileList), []);
+  const onChange: NonNullable<UploaderProps['onChange']> = useCallback(
+    (file) => setFileList((fileList) => {
+      const has = fileList.some((item) => item.uid === file.uid);
+      if (has) {
+        return [...fileList];
+      }
+      return [...fileList, file];
+    }),
+    [],
+  );
 
   const wrapDivClassName = useMemo(
     () => classNames(getPrefixClass(), className),
     [className, classNames, getPrefixClass],
   );
+
+  const deleteOnClick = useCallback((file: UploaderFile) => {
+    setFileList((fileList) => [...fileList.filter((item) => item.uid !== file.uid)]);
+  }, []);
 
   return (
     <div style={style} className={wrapDivClassName}>
@@ -312,25 +309,28 @@ Uploader.List = memo((props) => {
         {fileList.map((file) => (
           <div key={file.uid} className="item">
             <div className="icon">
-              {Uploader.List.Config?.wps}
+              {iconView ? iconView(file) : Uploader.List.Config?.wps}
             </div>
             <div className="content">
               <div className="name">{file.name}</div>
               <div className="progress">{`${fileSize(file.size * file.progress)}/${file.unitSize}`}</div>
             </div>
-            <div className="preview">
-              <Button size="small">预览</Button>
-            </div>
-            <div className="delete">
-              <Icon type="delete" />
-            </div>
+            {file.status === 'success' && (
+              <div className="preview">
+                <Button size="small">预览</Button>
+              </div>
+            )}
+            {file.status === 'success' && (
+              <div className="delete" onClick={() => deleteOnClick(file)}>
+                <Icon type="delete" />
+              </div>
+            )}
           </div>
         ))}
       </div>
       <div className="icon">
         <Uploader
           {...uploaderProps}
-          fileList={fileList}
           onChange={onChange}
         >
           <div className="icon">
