@@ -23,6 +23,7 @@ const PopupDemo = () => {
 
   const test = (
     <div style={{ textAlign: 'center' }}>
+      <p>这是一条内容哈哈哈哈哈哈</p>
       <p>这是一条内容</p>
       <p>这是一条内容</p>
       <p>这是一条内容</p>
@@ -88,8 +89,7 @@ const PopupDemo = () => {
       <p>这是一条内容</p>
       <p>这是一条内容</p>
       <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
+      <p>这是一条内容嘿嘿嘿</p>
     </div>
   );
   return (
@@ -185,7 +185,7 @@ const PopupDemo = () => {
         visible={vmodel5}
         position="bottom"
         onCancel={handleCancel}
-        style={{ height: '70%' }}
+        // style={{ height: '70%' }}
         // footer={null}
         footer={[<Button type="primary" onClick={handleCancel} key="1">确定</Button>]}
       >
