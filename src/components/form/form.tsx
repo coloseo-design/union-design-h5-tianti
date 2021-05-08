@@ -11,6 +11,7 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
     children,
     name = '',
     initialValues = {},
+    ...rest
   } = props;
   const { getPrefixCls } = useContext(ConfigContext);
   const prefix = getPrefixCls('form');
@@ -22,16 +23,21 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
     errors,
     values,
     name,
-    onChange: (value, error) => {
+    onCollect: (value) => {
       Object.assign(values, value);
-      Object.assign(errors, error);
       setValues({ ...values });
+    },
+    onError: (error) => {
+      Object.assign(errors, error);
       setErrors({ ...errors });
+    },
+    onSubmit: (evt) => {
+      onSubmit(errors, values)((evt));
     },
   };
 
   return (
-    <form onSubmit={onSubmit} className={formClassName}>
+    <form {...rest} onSubmit={onSubmit} className={formClassName}>
       <FormContext.Provider value={contextValue}>
         {children}
       </FormContext.Provider>

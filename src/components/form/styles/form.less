@@ -1,0 +1,24 @@
+@form: ~"@{uni-prefix}-form";
+@form-item: ~"@{form}-item";
+
+.@{form-item} {
+  font-size: 16px;
+  margin-bottom: 0.625em;
+  .@{form-item}-error {
+    font-size: 0.875em;
+    color: @field-error-color;
+  }
+  &-label {
+    color: @field-color;
+    margin-bottom: 0.0625em;
+    &-required {
+      &::before {
+        content: "*";
+        color: @field-required-color;
+        align-content: center;
+        align-self: center;
+        margin-right: 2px;
+      }
+    }
+  }
+}
