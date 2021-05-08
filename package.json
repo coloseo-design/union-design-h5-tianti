@@ -11,6 +11,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "lint": "union-tool run lint source=src/components",
+    "apidoc": "node ./scripts/apidoc.js",
     "compile": "union-tool run compile source=src/components",
     "dev": "union-tool run dev",
     "commit": "npx git-cz",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.11",
     "@types/react-dom": "^17.0.0",
+    "algoliasearch": "^4.9.1",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
     "core-js": "^3.8.3",
@@ -29,6 +31,7 @@
     "gulp-concat": "^2.6.1",
     "omit.js": "^1.0.2",
     "react-app-polyfill": "^2.0.0",
+    "react-instantsearch-dom": "^6.11.0",
     "react-router-dom": "5.2.0",
     "shallowequal": "^1.1.0",
     "union-design": "0.0.11",
@@ -36,6 +39,7 @@
     "union-tool": "^0.0.1"
   },
   "devDependencies": {
+    "@types/react-instantsearch-dom": "^6.10.0",
     "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
@@ -54,6 +58,7 @@
     "mark-twain": "^2.0.3",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "single-line-log": "^1.1.2",
     "through2": "^4.0.2",
     "typescript": "^4.1.3"
   },

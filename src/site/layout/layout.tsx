@@ -7,9 +7,13 @@ import { useHistory } from 'react-router-dom';
 import { Icon } from 'union-design';
 import './layout.less';
 import Menus, { Menu } from './menus';
+<<<<<<< HEAD
 import { Anchor } from 'union-design';
 
 const { Link } = Anchor;
+=======
+import Search from './search';
+>>>>>>> bb2ff9d (feat: 🎸 api doc search)
 
 interface LayoutProps {
   menus: Menu[];
@@ -136,11 +140,13 @@ const Layout: React.FC<LayoutProps> = (props) => {
           </ul>
         </div>
         <div className="g-search">
-          <div className="search-box">
+          {/* <div className="search-box">
             <input className="input" />
+          </div> */}
+          <div className="search-box-v2">
+            <Search />
             <span className="icon"><Icon type="search" /></span>
           </div>
-
         </div>
         <Menus menus={menus} routeConfig={routeConfig} />
       </div>

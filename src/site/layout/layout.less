@@ -95,6 +95,128 @@
       font-size: 16px;
     }
   }
+
+  .search-box-v2 {
+    position: relative;
+
+    input {
+      width: 180px;
+      height: 32px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.35);
+      padding: 5px 5px 5px 26px;
+      &:hover, &:active, &:focus {
+        outline: none;
+      }
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translate(0, -50%);
+      font-size: 16px;
+    }
+
+    button[class*="ais-"] {
+      display: none;
+    }
+
+    .apidoc-search-popup {
+      position: fixed;
+      margin-top: 10px;
+      min-width: 350px;
+      max-width: 500px;
+      z-index: 9999999;
+      background: #FFFFFF;
+      box-shadow: 0 1px 4px 1px rgba(147,147,147,0.35);
+      border-radius: 2px;
+
+      & .hits{
+        margin: 15px 25px;
+        display: flex;
+        flex-flow: column nowrap;
+
+        & .hit + .hit { margin-top: 10px; }
+
+        & .hit .hit-content {
+          display: flex;
+          flex-flow: row nowrap;
+          color: rgb(60, 60, 60);
+
+          .name,
+          .content {
+            cursor: pointer;
+            user-select: none;
+          }
+
+          .ais-Highlight-highlighted{
+            color: rgb(48, 128, 233);
+            font-weight: bold;
+            font-style: unset;
+          }
+
+          .name {
+            flex-shrink: 0;
+            position: relative;
+            width: 120px;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 20px;
+            font-size: 13px;
+            font-weight: bold;
+
+            &::after {
+              content: "";
+              position: absolute;
+              right: 0;
+              width: 1px;
+              height: 100%;
+              background-color: lightgray;
+            }
+          };
+
+          .content {
+            flex: 1;
+            padding-left: 10px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:hover { background-color: ghostwhite; }
+
+            .lvl0,
+            .lvl1 { display: inline-block; }
+
+            .lvl0 { font-weight: bold; }
+
+            .lvl0 + .lvl1 {
+              position: relative;
+
+              &::before {
+                content: ">";
+                padding: 0 3px;
+              }
+            }
+
+            .lvl1 + .lvl2 { margin-top: 5px; }
+
+            .lvl2 {
+              display: block;
+              color: rgba(60, 60, 60, 0.7);
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .g-menus {
