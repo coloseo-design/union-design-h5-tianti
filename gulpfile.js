@@ -44,7 +44,7 @@ function handleChildren(item, title) {
     ...item,
     attrs: {
       ...item.attrs,
-      id: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(item.tag) && typeof item.children === 'string' ? `${title}-${item.children}` : undefined,
+      id: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(item.tag) && typeof item.children === 'string' ? `${title.replace(/\s|\./g, '')}-${item.children.replace(/\s|\./g, '')}` : undefined,
     },
     children: item.children && Array.isArray(item.children)
       ? item.children.map((element) => (element.tag ? handleChildren(element, title) : element))
@@ -65,7 +65,7 @@ function markdown() {
     // TODO: 可以配置
     .pipe(through2.obj((chunk, encoding, callback) => {
       if (chunk.isBuffer()) {
-        const content = chunk.contents.toString(encoding);
+        const content = `${chunk.contents.toString(encoding)}# 代码演示`;
         const data = MT(content);
         Object.assign(data, {
           content: transform(['div', data.content]),

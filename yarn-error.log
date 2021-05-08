@@ -1,30 +1,30 @@
 Arguments: 
-  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn
+  /Users/danyu/.nvm/versions/node/v10.16.0/bin/node /Users/danyu/.nvm/versions/node/v10.16.0/bin/yarn
 
 PATH: 
-  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+  /Users/danyu/.pyenv/shims:/Users/danyu/.nvm/versions/node/v10.16.0/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Apple/usr/bin:/Users/danyu/Library/Android/sdk/tools:/Users/danyu/Library/Android/sdk/tools/bin:/Users/danyu/Library/Android/sdk/platform-tools:/Users/danyu/Library/Android/sdk/emulator
 
 Yarn version: 
-  1.22.10
+  1.22.4
 
 Node version: 
-  15.11.0
+  10.16.0
 
 Platform: 
   darwin x64
 
 Trace: 
   Error: http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@babel/plugin-proposal-export-default-from/-/plugin-proposal-export-default-from-7.12.13.tgz: Request failed "403 Forbidden"
-      at ResponseError.ExtendableBuiltin (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:696:66)
-      at new ResponseError (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:802:124)
-      at Request.<anonymous> (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:67058:16)
-      at Request.emit (node:events:378:20)
-      at Request.module.exports.Request.onRequestResponse (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:141539:10)
-      at ClientRequest.emit (node:events:378:20)
-      at HTTPParser.parserOnIncomingClient (node:_http_client:636:27)
-      at HTTPParser.parserOnHeadersComplete (node:_http_common:129:17)
-      at HTTPParser.execute (<anonymous>)
-      at Socket.socketOnData (node:_http_client:502:22)
+      at ResponseError.ExtendableBuiltin (/Users/danyu/.nvm/versions/node/v10.16.0/lib/node_modules/yarn/lib/cli.js:696:66)
+      at new ResponseError (/Users/danyu/.nvm/versions/node/v10.16.0/lib/node_modules/yarn/lib/cli.js:802:124)
+      at Request.<anonymous> (/Users/danyu/.nvm/versions/node/v10.16.0/lib/node_modules/yarn/lib/cli.js:67057:16)
+      at Request.emit (events.js:198:13)
+      at Request.module.exports.Request.onRequestResponse (/Users/danyu/.nvm/versions/node/v10.16.0/lib/node_modules/yarn/lib/cli.js:141625:10)
+      at ClientRequest.emit (events.js:203:15)
+      at HTTPParser.parserOnIncomingClient [as onIncoming] (_http_client.js:556:21)
+      at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+      at Socket.socketOnData (_http_client.js:442:20)
+      at Socket.emit (events.js:198:13)
 
 npm manifest: 
   {

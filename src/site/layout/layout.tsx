@@ -194,7 +194,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
 
       <Anchor
         style={{
-          position: 'fixed', top: 40, right: 20
+          position: 'fixed', top: 40, right: 20, width: 120
         }}
       >
         {allId.map(item => (
