@@ -8701,14 +8701,15 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
-react-dom@^17.0.1:
-  version "17.0.2"
-  resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-  integrity sha1-7P+2hF462Nv83EmPDQqTlzZQLCM=
+react-dom@^16.8.0:
+  version "16.14.0"
+  resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
+  integrity sha1-etg47Cmnd/s8dcOhkPZhz5Kri4k=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "^0.20.2"
+    prop-types "^15.6.2"
+    scheduler "^0.19.1"
 
 react-fast-compare@^3.0.0:
   version "3.2.0"
@@ -8771,7 +8772,7 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react@^16.13.1:
+react@^16.8.0:
   version "16.14.0"
   resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha1-lNd23dCqo32j7aj8W2sYpMmjEU0=
@@ -9400,10 +9401,10 @@ sax@^1.1.4, sax@~1.2.4:
   resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
 
-scheduler@^0.20.2:
-  version "0.20.2"
-  resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
-  integrity sha1-S67jlDbjSqk7SHS93L8P6Li1DpE=
+scheduler@^0.19.1:
+  version "0.19.1"
+  resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+  integrity sha1-Tz4u0sGn1laB9MhU+oxaHMtA8ZY=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -10615,10 +10616,10 @@ unified@^4.1.1:
     trough "^1.0.0"
     vfile "^1.0.0"
 
-union-design@^0.0.3:
-  version "0.0.3"
-  resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/union-design/-/union-design-0.0.3.tgz#7bac3309128775e2f4183885e37ef65bf896bc00"
-  integrity sha1-e6wzCRKHdeL0GDiF4372W/iWvAA=
+union-design@0.0.11:
+  version "0.0.11"
+  resolved "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/union-design/-/union-design-0.0.11.tgz#4d3094ddfadf32c96f3f23ab017d9ca94e875421"
+  integrity sha1-TTCU3frfMslvPyOrAX2cqU6HVCE=
   dependencies:
     async-validator "^3.5.1"
     classnames "^2.2.6"

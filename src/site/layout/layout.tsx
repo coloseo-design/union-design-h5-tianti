@@ -7,13 +7,10 @@ import { useHistory } from 'react-router-dom';
 import { Icon } from 'union-design';
 import './layout.less';
 import Menus, { Menu } from './menus';
-<<<<<<< HEAD
 import { Anchor } from 'union-design';
 
 const { Link } = Anchor;
-=======
 import Search from './search';
->>>>>>> bb2ff9d (feat: 🎸 api doc search)
 
 interface LayoutProps {
   menus: Menu[];
@@ -90,7 +87,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const [height, setHeight] = useState(176);
   const [fixed, setFixed] = useState(false);
   const [allId, setAllId] = useState([]);
-  
+
   const scrollEvent = useCallback(() => {
     const scrollTop = Math.max(document.documentElement.scrollTop, 0);
     let height = 176;
