@@ -7,6 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { Icon } from 'union-design';
 import './layout.less';
 import Menus, { Menu } from './menus';
+import { Anchor } from 'union-design';
+
+const { Link } = Anchor;
 
 interface LayoutProps {
   menus: Menu[];
@@ -75,10 +78,15 @@ const Layout: React.FC<LayoutProps> = (props) => {
         }
       }
     });
-  }, []);
+    const id = [...document.querySelectorAll('*')].filter(item => item.getAttribute('id'));
+    const _id = id.filter(i => i.id !== 'root');
+    setAllId(_id);
+  }, [routeConfig]);
 
   const [height, setHeight] = useState(176);
   const [fixed, setFixed] = useState(false);
+  const [allId, setAllId] = useState([]);
+  
   const scrollEvent = useCallback(() => {
     const scrollTop = Math.max(document.documentElement.scrollTop, 0);
     let height = 176;
@@ -114,6 +122,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     'g-header-fixed': fixed,
   });
   // console.log('routeConfig:', routeConfig);
+
   return (
     <div className="g-layout">
       <div className="g-left">
@@ -136,10 +145,13 @@ const Layout: React.FC<LayoutProps> = (props) => {
         <Menus menus={menus} routeConfig={routeConfig} />
       </div>
       <div className="g-content">
-        {
+        {/* {
           routeConfig.title && <header className={headerCls} style={{ backgroundColor: routeConfig.themeColor, height }}>{fixed ? `${routeConfig.title}-${routeConfig.subTitle}` : routeConfig.title}</header>
-        }
-        <div className="g-body" style={{ paddingTop: !routeConfig.title ? 0 : height }}>
+        } */}
+        {/* <div className="g-body" style={{ paddingTop: !routeConfig.title ? 0 : height }}>
+          {children}
+        </div> */}
+        <div className="g-body">
           {children}
         </div>
 
@@ -176,6 +188,16 @@ const Layout: React.FC<LayoutProps> = (props) => {
           </div>
         </footer>
       </div>
+
+      <Anchor
+        style={{
+          position: 'fixed', top: 40, right: 20
+        }}
+      >
+        {allId.map(item => (
+          <Link key={item.id} href={`#${item.id}`} title={item.innerText} />
+        ))}
+      </Anchor>
     </div>
   );
 };
