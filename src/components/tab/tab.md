@@ -1,4 +1,9 @@
-## 标签页组件
+---
+category: Components
+type: 导航
+title: Tab
+subtitle: 标签页组件
+---
 
 ## Tab
 

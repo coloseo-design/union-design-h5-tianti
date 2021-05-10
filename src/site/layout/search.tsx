@@ -45,7 +45,7 @@ const SearchHits = connectHits(({ hits }: { hits: HitType[] }) => {
               <Highlight hit={hit} attribute="name" />
             </div>
             <div className="content" onClick={() => {
-               history.push(`/develop/components/${hit.dirName}?anchor=${hit.anchor}#${hit.anchor}`);
+               history.push(`/develop/components/${hit.dirName}#${hit.anchor}`);
             }}>
               {hit.data?.lvl0 && <div className="lvl0"><Highlight hit={hit} attribute="data.lvl0" /></div>}
               {hit.data?.lvl1 && <div className="lvl1"><Highlight hit={hit} attribute="data.lvl1" /></div>}
@@ -77,7 +77,7 @@ const Search = memo(() => {
       setTimeout(() => {
         const div = getSearchPopup();
         div && (div.style.visibility = 'hidden');
-      }, 100);
+      }, 300);
     },
   } as any;
 
