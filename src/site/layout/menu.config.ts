@@ -153,10 +153,6 @@ export default [
         key: 'avatar',
       },
       {
-        title: 'Badge 徽标',
-        key: 'badge',
-      },
-      {
         title: 'Collapse 折叠面板',
         key: 'collapse',
       },
@@ -171,10 +167,6 @@ export default [
       {
         title: 'Tag 标签',
         key: 'tag',
-      },
-      {
-        title: 'Tabs 标签页',
-        key: 'tabs',
       },
       {
         title: 'Praise 点赞',

@@ -5,8 +5,6 @@ title: Loading
 subtitle: 加载中
 ---
 
-## Loading 加载中
-
 加载图标，用于表示加载中的过渡状态。
 
 ## API
