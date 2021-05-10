@@ -7,4 +7,5 @@ dist/
 src/site/docs/
 src/site/demos/
 src/site/dist/
+**/apidoc.js
 .DS_Store

@@ -114,4 +114,30 @@ function demoEntry() {
     .pipe(dest(path.resolve('src', 'site/demos')));
 }
 
-exports.md = series([clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry]);
+function apidoc() {
+  return src(path.resolve('src/components', '**/*.md'))
+    .pipe(through2.obj((chunk, encoding, callback) => {
+      if (chunk.isBuffer()) {
+        const content = `${chunk.contents.toString(encoding)}`;
+        const data = MT(content);
+        const { meta: { title, subtitle } } = data;
+        const resultName = `${title} ${subtitle}`;
+        const resultContent = {};
+        data.content.forEach(element => {
+          if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(element[0]) && typeof element[1] === 'string') {
+            Object.assign(resultContent, {
+              [`${chunk.stem.replace(/\s|\./g, '')}-${element[1].replace(/\s|\./g, '')}`]: [element[1]]
+            });
+          }
+        });
+        const result = `module.exports = {\n\tname: ${JSON.stringify(resultName)},\n\tcontent: ${JSON.stringify(resultContent)}\n};\n`;
+        chunk.contents = Buffer.from(result);
+        chunk.stem = 'apidoc';
+        chunk.extname = '.js';
+        callback(null, chunk);
+      }
+    }))
+  .pipe(dest('src/components'));
+}
+
+exports.md = series([clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc]);
