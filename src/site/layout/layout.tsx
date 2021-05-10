@@ -80,7 +80,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
       }
     });
     const id = [...document.querySelectorAll('*')].filter(item => item.getAttribute('id'));
-    const _id = id.filter(i => i.id !== 'root');
+    const _id = id.filter(i => i.id !== 'root' && i.localName !== 'h1');
     setAllId(_id);
   }, [routeConfig]);
 

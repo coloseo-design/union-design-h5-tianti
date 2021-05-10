@@ -1,6 +1,6 @@
-# 上传组件
+## 上传组件
 
-# UploaderProps
+## UploaderProps
 
 | 参数            | 说明                                                                                                                                                                                                      | 类型                                                                                   | 默认值 |
 | :-------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- | :----- |
@@ -15,11 +15,11 @@
 | afterUpload     | 上传文件之后的钩子，参数为上传的文件                                                                                                                                                                      | (file: UploaderFile) => void                                                           | -      |
 | onChange        | 上传文件改变时回调                                                                                                                                                                                        | (file: UploaderFile) => void                                                           | -      |
 
-# ReturnPT
+## ReturnPT
 
 type ReturnPT<T> = T | Promise<T>;
 
-# UploaderFile
+## UploaderFile
 
 | 参数             | 说明                      | 类型                                           | 默认值 |
 | :--------------- | :------------------------ | :--------------------------------------------- | :----- |
@@ -40,7 +40,7 @@ type ReturnPT<T> = T | Promise<T>;
 | reponse          | 上传成功后的返回          | string                                         | -      |
 
 
-# UploaderListProps
+## UploaderListProps
 
 UploaderListProps = Omit<UploaderProps, 'children' | 'onChange'> & UploaderListProps
 
@@ -52,7 +52,7 @@ UploaderListProps = Omit<UploaderProps, 'children' | 'onChange'> & UploaderListP
 | iconView  | 右侧图片 返回 ReactNode 显示 ReactNode 返回false用默认的 默认的没有就显示空白 | (file: UploaderFile) => ReactNode \| boolean | -      |
 | onChange  | 文件列表发生改变的回掉                                                        | (file: UploaderFile[]) => void               | -      |
 
-# UploaderPreview
+## UploaderPreview
 
 | 参数             | 说明                                                                          | 类型                                         | 默认值                               |
 | :--------------- | :---------------------------------------------------------------------------- | :------------------------------------------- | :----------------------------------- |
@@ -66,7 +66,7 @@ UploaderListProps = Omit<UploaderProps, 'children' | 'onChange'> & UploaderListP
 | showBtn          | 是否显示底部按钮                                                              | boolean                                      | false                                |
 | iconView         | 右侧图片 返回 ReactNode 显示 ReactNode 返回false用默认的 默认的没有就显示空白 | (file: UploaderFile) => ReactNode \| boolean | -                                    |
 
-# 全局配置 Uploader.Config
+## 全局配置 Uploader.Config
 
 ```javascript
 type UploaderListConfigItem = {
@@ -99,16 +99,16 @@ Uploader.Config = {
 };
 ```
 
-# 如果要新增一个文件的图标
+## 如果要新增一个文件的图标
 
 Uploader.Config.xxx = { exts: \['文件的后缀名不包含点'\], icon: 一个组件 }
 
-# 如果要修改已有文件的图标
+## 如果要修改已有文件的图标
 
 Uploader.Config.xxx.exts = \['新的文件的后缀名'\];
 
 Uploader.Config.xxx.icon = 一个组件;
 
-# 修改的默认文件的图标
+## 修改的默认文件的图标
 
 Uploader.Config.def.icon = 一个组件;

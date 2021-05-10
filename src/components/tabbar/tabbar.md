@@ -1,6 +1,6 @@
-# 标签栏组件
+## 标签栏组件
 
-# Tabbar
+## Tabbar
 
 | 参数             | 说明                   | 类型              | 默认值   |
 | :--------------- | :--------------------- | :---------------- | :------- |
@@ -13,7 +13,7 @@
 | itemClassName    | 图标对应内容的内容样式 | string            | -        |
 | initKey          | 默认选择的Key          | string            | -        |
 
-# Tabbar.Item
+## Tabbar.Item
 
 | 参数                  | 说明                                              | 类型             | 默认值 |
 | :-------------------- | :------------------------------------------------ | :--------------- | :----- |
@@ -36,7 +36,7 @@
 | selectedIconStyle     | 选中图标样式                                      | CSSProperties    | -      |
 | selectedIconClassName | 选中图标样式                                      | string           | -      |
 
-# Example
+## Example
 
 ```javascript
 const Demo = () => (
