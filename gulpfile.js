@@ -118,7 +118,7 @@ function apidoc() {
   return src(path.resolve('src/components', '**/*.md'))
     .pipe(through2.obj((chunk, encoding, callback) => {
       if (chunk.isBuffer()) {
-        const content = `${chunk.contents.toString(encoding)}`;
+        const content = `${chunk.contents.toString(encoding)}# 代码演示`;
         const data = MT(content);
         const { meta: { title, subtitle } } = data;
         const resultName = `${title} ${subtitle}`;
