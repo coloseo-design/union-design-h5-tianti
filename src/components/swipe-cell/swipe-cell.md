@@ -1,4 +1,9 @@
-## 滑动单元格组件
+---
+category: Components
+type: 反馈
+title: SwipeCell
+subtitle: 滑动单元格组件
+---
 
 ## SwipeCellProps
 

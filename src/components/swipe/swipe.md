@@ -1,4 +1,9 @@
-## 图片轮播组件
+---
+category: Components
+type: 数据展示
+title: Swipe
+subtitle: 图片轮播组件
+---
 
 ## API
 

@@ -1,4 +1,9 @@
-## 骨架屏组件
+---
+category: Components
+type: 数据展示
+title: Skeleton
+subtitle: 骨架屏组件
+---
 
 ## API
 

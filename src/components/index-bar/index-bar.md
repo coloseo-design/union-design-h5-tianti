@@ -1,4 +1,9 @@
-## 索引栏组件
+---
+category: Components
+type: 导航
+title: IndexBar
+subtitle: 索引栏组件
+---
 
 ## IndexBar
 

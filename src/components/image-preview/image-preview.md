@@ -1,4 +1,9 @@
-## 图片预览组件
+---
+category: Components
+type: 数据展示
+title: ImagePreview
+subtitle: 图片预览组件
+---
 
 ## API
 

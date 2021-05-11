@@ -1,4 +1,9 @@
-## 遮罩组件
+---
+category: Components
+type: 反馈
+title: Overlay
+subtitle: 遮罩组件
+---
 
 ## API
 

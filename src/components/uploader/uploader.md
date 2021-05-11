@@ -1,4 +1,9 @@
-## 上传组件
+---
+category: Components
+type: 数据录入
+title: Uploader
+subtitle: 上传组件
+---
 
 ## UploaderProps
 

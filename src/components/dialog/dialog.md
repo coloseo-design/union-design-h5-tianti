@@ -1,4 +1,9 @@
-## 对话框组件
+---
+category: Components
+type: 反馈
+title: Dialog
+subtitle: 对话框组件
+---
 
 ## API
 

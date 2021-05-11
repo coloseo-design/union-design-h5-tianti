@@ -1,4 +1,9 @@
-## 标签栏组件
+---
+category: Components
+type: 导航
+title: Tabbar
+subtitle: 标签栏组件
+---
 
 ## Tabbar
 
