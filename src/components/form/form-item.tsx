@@ -28,6 +28,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
     onCollect,
     onError,
     onSubmit,
+    isValidating,
   } = useContext(FormContext);
 
   const isRequired = useCallback(() => {
@@ -64,13 +65,14 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
     }
   };
 
-  // const error = (name && errors) ? errors[name] : [];
   let error: (string | React.ReactNode)[] = [];
   if (name && errors[name]) {
     error = errors[name];
   }
+  const hasError = error && error.length > 0 && isValidating;
+
   const extProps = {
-    status: error.length ? 'error' : undefined,
+    status: hasError ? 'error' : undefined,
     [trigger]: onFormItemChange,
     [valuePropName]: name ? values[name] : '',
   };
@@ -84,12 +86,19 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
           onClick: onSubmit,
         });
       }
+      if (element.props && element.props[trigger]) {
+        Object.assign(extProps, {
+          [trigger]: (...args: any[]) => {
+            element.props[trigger](...args);
+            onFormItemChange(...args);
+          }
+        })
+      }
       return React.cloneElement(element, extProps);
     },
   );
-
   const formItemClassName = classNames(prefix, {
-    [`${prefix}-error`]: error.length > 0,
+    [`${prefix}-error`]: hasError,
   }, className);
   const labelClassName = classNames(`${prefix}-label`, {
     [`${prefix}-label-required`]: isRequired(),
@@ -99,7 +108,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
     <div {...rest} className={formItemClassName}>
       { label && <div className={labelClassName}>{label}</div> }
       {transformedChildren}
-      {error && error.length ? (
+      {hasError ? (
         <div className={errorLabelClassName}>
           <Icon type="exclamation-circle" />
           {error}

@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   Filed, Form, Button, Row, Col, Icon,
 } from '../index';
 import { FormItem } from './index';
-import { Errors, Values } from './type';
+import { Errors, FormInstance, Values } from './type';
 
 const FormDemo = () => {
-  const onSubmit = (errors: Errors, values: Values) => (evt: React.MouseEvent<unknown>) => {
-    alert(`输入的值是${JSON.stringify(values)}`);
+  const ref = useRef<FormInstance>();
+  const onSubmit = (values: Values) => (evt: React.MouseEvent<unknown>) => {
+    ref.current?.reset();
   };
+  const onSubmitFailed = (errors: Errors) => (evt: React.MouseEvent<unknown>) => {
+    console.log('errors', errors)
+  }
   return (
     <div style={{ border: '1px solid #ccc', margin: 20, borderRadius: 5 }}>
       <div style={{ fontSize: 20, textAlign: 'center' }}>登录</div>
       <div style={{ padding: '20px 50px' }}>
         <Form
           onSubmit={onSubmit}
+          onSubmitFailed={onSubmitFailed}
           name="login"
+          ref={ref}
         >
           <FormItem
             name="username"
@@ -33,7 +39,7 @@ const FormDemo = () => {
             label="请输入密码"
             required
             rules={[
-              { required: true, message: '请填写用户名' },
+              { required: true, message: '请填写密码' },
             ]}
           >
             <Filed placeholder="请输入密码" type="password" leftIcon={null} />
