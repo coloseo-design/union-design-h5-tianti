@@ -5,9 +5,6 @@ title: Steps
 subtitle: 步骤条
 ---
 
-
-## Steps 步骤条
-
 ## API
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |

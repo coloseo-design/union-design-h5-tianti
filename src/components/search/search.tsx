@@ -117,7 +117,7 @@ class Input extends Component<BaseSearchProps, SearchState> {
       const timer = setTimeout(() => {
         clearTimeout(timer);
         this.setState({ focus: false });
-      }, 100);
+      }, 200);
       if (onBlur) {
         onBlur();
       }

@@ -5,8 +5,6 @@ title: Praise
 subtitle: 点赞
 ---
 
-## Praise 点赞
-
 ## API
 
 除以下属性外，Field 默认支持 Input 标签所有的原生属性、事件

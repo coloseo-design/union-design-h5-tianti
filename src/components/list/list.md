@@ -4,10 +4,6 @@ type: 通用
 title: List
 subtitle: 列表
 ---
-
-## List 列表
-
-
 ## API
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |

@@ -76,11 +76,17 @@ const Layout: React.FC<LayoutProps> = (props) => {
           setRouteConfig(current);
           // 导航切换页面需要刷新到当前页面顶部
           document.documentElement.scrollTop = 0;
+          const [_,anchor_str] = location.hash.split('#');
+          if(anchor_str) {
+            setTimeout(() => {
+              document.getElementById(anchor_str)?.scrollIntoView(true);
+            },300);
+          }
         }
       }
     });
     const id = [...document.querySelectorAll('*')].filter(item => item.getAttribute('id'));
-    const _id = id.filter(i => i.id !== 'root');
+    const _id = id.filter(i => i.id !== 'root' && i.localName !== 'h1');
     setAllId(_id);
   }, [routeConfig]);
 
@@ -90,6 +96,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
 
   const scrollEvent = useCallback(() => {
     const scrollTop = Math.max(document.documentElement.scrollTop, 0);
+
     let height = 176;
     if (scrollTop < 176) {
       height = 176 - scrollTop;

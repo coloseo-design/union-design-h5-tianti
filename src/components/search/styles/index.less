@@ -14,7 +14,7 @@
 
     .@{uni-prefix}icon-left {
       font-size: 20px;
-      color: #646566;
+      color: @search-left-icon-color;
       margin-right: 16px;
     }
 
@@ -22,9 +22,9 @@
       flex: 1;
       display: flex;
       align-items: center;
-      background: #F5F6F6;
+      background: @field-background-color;
       border-radius: 4px;
-      color: #A6A8A9;
+      color: @search-placeholder-color;
       .@{uni-prefix}icon-search {
         margin-left: 8px;
         margin-right: 7px;
@@ -34,12 +34,12 @@
         width: 100%;
         outline: none;
         border: none;
-        background: #F5F6F6;
-        color: #1C1D1D;
+        background: @field-background-color;
+        color: @text-color;
         border-radius: 4px;
         height: 32px;
         &::placeholder {
-          color: #A6A8A9;
+          color: @search-placeholder-color;
         }
       }
       .@{uni-prefix}icon-delete {

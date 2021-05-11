@@ -1,6 +1,11 @@
-# 滑动单元格组件
+---
+category: Components
+type: 反馈
+title: SwipeCell
+subtitle: 滑动单元格组件
+---
 
-# SwipeCellProps
+## SwipeCellProps
 
 | 参数      | 说明                   | 类型                | 默认值 |
 | :-------- | :--------------------- | :------------------ | :----- |
@@ -11,7 +16,7 @@
 | onOpen    | 打开时回调函数         | () => void          | -      |
 | onClose   | 关闭时回调函数         | () => void          | -      |
 
-# SwipeCellButton
+## SwipeCellButton
 
 | 参数      | 说明     | 类型          | 默认值 |
 | :-------- | :------- | :------------ | :----- |

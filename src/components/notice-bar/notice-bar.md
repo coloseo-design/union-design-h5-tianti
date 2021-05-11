@@ -1,4 +1,9 @@
-# 通知栏组件
+---
+category: Components
+type: 反馈
+title: NoticeBar
+subtitle: 通知栏组件
+---
 
 ## API
 
