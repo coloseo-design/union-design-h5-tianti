@@ -6,7 +6,7 @@
 
 .@{dropDownMenu} {
   width: 100%;
-  background-color: #fff;
+  background-color: @dropdown-menu-bg;
   padding: 20px 24px;
   width: 100%;
   display: flex;
@@ -34,9 +34,9 @@
       margin-right: 0px;
     }
     &-disabled {
-      background-color: #F5F6F6;
-      border: 1px solid #DBDDDD;
-      color: #C8CCCC;
+      background-color: @dropdown-bg;
+      border: 1px solid @dropdown-disabled-border;
+      color: @dropdown-disabled-color;
     }
     &-icon {
       position: absolute;
@@ -80,7 +80,7 @@
     }
     &-inner {
       &-card {
-        background-color: #fff;
+        background-color: @dropdown-menu-bg;
         border-radius: 12px;
         margin: 0px 24px;
         padding: 12px;
@@ -99,7 +99,7 @@
       justify-content: space-between;
       align-items: center;
       &-selected {
-        background-color: #F5F6F6;
+        background-color: @dropdown-bg;
       }
     }
   }

@@ -20,6 +20,7 @@ export interface CurrentItemProps {
 class CurrentItem extends React.Component<CurrentItemProps> {
   handleExpan = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     const { current, onExpand } = this.props;
     onExpand && onExpand(`${current.value}`);
   }

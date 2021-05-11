@@ -156,6 +156,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
   handleClick = (index: number, item: any) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     const { selected, visible } = this.state;
     if (item.toggle !== undefined) {
       const { onClick } = item;

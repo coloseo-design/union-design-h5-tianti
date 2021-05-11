@@ -5,7 +5,7 @@
 
 .@{list} {
   width: 100%;
-  background-color: #fff;
+  background-color: @list-bg-color;
   &-item {
     width: 100%;
     display: flex;
@@ -18,20 +18,20 @@
       align-items: center;
       padding: 20px 16px 20px 16px;
       &-title {
-        color: #1C1D1D;
+        color: @list-title-color;
         font-size: 16px;
         font-weight: 400;
       }
       &-subtitle {
         font-weight: 400;
-        color: #A6A8A9;
+        color: @list-subTilte-color;
         font-size: 12px;
       }
     }
     &-avatar {
       display: inline-block;
       margin: 16px 24px 0px 16px;
-      color: #fff;
+      color: @list-bg-color;
       white-space: nowrap;
       vertical-align: middle;
       text-align: center;

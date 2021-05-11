@@ -15,7 +15,7 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: #EEF0F0;
+        background-color: @steps-dot-bg;
       }
       &-line {
         position: absolute;
@@ -24,7 +24,7 @@
         width: 2px;
         left: 50%;
         transform: translateX(-1px);
-        background-color: #EEF0F0;
+        background-color: @steps-dot-bg;
       }
     }
     &-content {
@@ -35,43 +35,43 @@
         width: calc(100% - 32px);
         position: absolute;
         font-size: 16px;
-        color: #1C1D1D;
+        color: @steps-text-color;
         top: -32px;
         display: flex;
         justify-content: space-between;
       }
       &-title {
         font-size: 16px;
-        color: #1C1D1D;
+        color: @steps-text-color;
         display: flex;
         justify-content: space-between;
         &-sub {
           font-size: 12px;
-          color: #A6A8A9;
+          color: @steps-color;
         }
       }
       &-description {
         font-size: 12px;
-        color: #A6A8A9;
+        color: @steps-color;
         &-info {
-          color: #ED6A0C;
+          color: @steps-info-color;
         }
         &-success {
-          color: #07C160;
+          color:@steps-success-color;
         }
         &-error {
-          color: #EE0A24;
+          color: @steps-error-color;
         }
       }
       &-card {
-        background-color: #F5F6F6;
+        background-color: @steps-card-bg;
         border-radius: 36px;
         width: 100px;
         // margin-top: 8px;
         padding: 1px 0px 1px 2px;
         &-name {
           padding-left: 12px;
-          color: #646566;
+          color: @steps-card-color;
           font-weight: 400;
           line-height: 36px;
         }

@@ -46,6 +46,12 @@
 @primary-9: color(~`colorPalette('@{primary-color}', 9) `); // unused
 @primary-10: color(~`colorPalette('@{primary-color}', 10) `); // unused
 
+@required-color: #F31D39;
+
+@modal-border-color: #DBDDDD;
+
+@mask-bg: rgba(0,0,0,0.8);
+
 // Base Scaffolding Variables
 // ---
 
@@ -227,9 +233,6 @@
 @descriptions-border-padding: 13px 16px;
 @descriptions-border-radius: 3px;
 
-// Dropdown
-@dropdown-selected-color: @primary-color;
-@dropdown-menu-submenu-disabled-bg: @component-background;
 
 // Empty
 @empty-font-size: @font-size-base;
@@ -384,9 +387,52 @@
 @field-background-color: #F5F6F6;
 @field-error-background-color: #fef3f4;
 @field-error-color: #EE0A24;
-@field-required-color: #F31D39;
+@field-required-color: @required-color;
 @field-password-left-icon-color: #A6A8A9;
 @field-value-border-color: #646566;
+
+// action-sheet
+
+@main-action-color: @required-color;
+@action-description-color: #646566;
+@action-border-color: @modal-border-color;
+@action-bg: @white;
+
+// dropdown-menu
+@dropdown-menu-bg: #fff;
+@dropdown-bg: #F5F6F6;
+@dropdown-disabled-border: @modal-border-color;
+@dropdown-disabled-color: #C8CCCC;
+
+// number-key-board
+@number-key-current: @white;
+@numberkey-bg: #F5F6F6;
+@numberkey-complete-color: #646566;
+@numberkey-active-bg: #F7F8FA;
+
+// popup
+@popup-border-color: @modal-border-color;
+@popup-title-color: @text-color;
+@popup-mask-bg: @mask-bg;
+
+// pull-refresh
+@pull-refresh-color: #969799;
+
+// steps
+@steps-dot-bg: #EEF0F0;
+@steps-text-color: @text-color;
+@steps-color: #A6A8A9;
+@steps-info-color: #ED6A0C;
+@steps-success-color: #07C160;
+@steps-error-color: #EE0A24;
+@steps-card-bg: #F5F6F6;
+@steps-card-color: #646566;
+
+// nav-bar
+@navbar-bg: @white;
+@navbar-text-color: @text-color;
+@navbar-home-bg: #000000;
+
 
 // Select
 // ---
@@ -730,17 +776,9 @@
 @alert-error-icon-color: @error-color;
 
 // List
-// ---
-@list-header-background: transparent;
-@list-footer-background: transparent;
-@list-empty-text-padding: @padding-md;
-@list-item-padding-horizontal-padding: 24px;
-@list-item-padding: 12px @list-item-padding-horizontal-padding;
-@list-item-meta-margin-bottom: @padding-md;
-@list-item-meta-avatar-margin-right: @padding-md;
-@list-item-meta-title-margin-bottom: @padding-sm;
-@list-item-actions-split-padding: 8px;
-@list-item-actions-split-color: #f0f0f0;
+@list-title-color: @text-color;
+@list-subTilte-color: #A6A8A9;
+@list-bg-color: #fff;
 
 // Statistic
 // ---

@@ -9,7 +9,7 @@
   left: 0;
   bottom: 0;
   padding-bottom: 28px;
-  background-color: #F5F6F6;
+  background-color: @numberkey-bg;
   animation: fadein 0.3s linear;
   display: none;
   user-select: none;
@@ -32,7 +32,7 @@
       width: 100%;
       text-align: center;
       line-height: 40px;
-      color: #1C1D1D;
+      color: @text-color;
       font-size: 16px;
       font-weight: 400;
     }
@@ -41,7 +41,7 @@
       top: 50%;
       transform: translateY(-50%);
       right: 16px;
-      color: #646566;
+      color: @numberkey-complete-color;
     }
   }
   &-content {
@@ -53,7 +53,7 @@
       flex: 1;
       flex-basis: 33%;
       box-sizing: border-box;
-      color: #1C1D1D;
+      color: @text-color;
       font-size: 28px;
       font-weight: 400;
       text-align: center;
@@ -62,12 +62,12 @@
         align-items: center;
         justify-content: center;
         height: 48px;
-        background-color: #fff;
+        background-color: @number-key-current;
         border-radius: 8px;
         margin-top: 12px;
         margin-right: 12px;
         &:active {
-          background-color: #F7F8FA;
+          background-color: @numberkey-active-bg;
         }
       }
     }
