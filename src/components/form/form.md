@@ -1,31 +1,58 @@
 ---
 category: Components
-subtitle: 栅格
-type: 布局
+subtitle: 表单
+type: 数据录入
 cols: 1
-title: Grid
+title: Form
 ---
 
-12 栅格系统。
+具有数据收集、校验和提交功能的表单，包含复选框、单选框、输入框、下拉选择框等元素。
+
+## 何时使用
+
+- 用于创建一个实体或收集信息。
+- 需要对输入的数据类型进行校验时。
+
+
+## 表单域
+
+表单一定会包含表单域，表单域可以是输入控件，标准表单域，标签，下拉菜单，文本域等。
+
+这里我们封装了表单域 `<Form.Item />` 。
+
+```jsx
+<Form.Item {...props}>{children}</Form.Item>
+```
 
 ## API
-### Row
 
-| 成员 | 说明 | 类型 | 默认值 | 版本 |
+### Form
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| align | flex 布局下的垂直对齐方式：`top` `middle` `bottom` | string | `top` |  |
-| gutter | 栅格间隔，可以写成像素值或支持响应式的对象写法来设置水平间隔 `{ xs: 8, sm: 16, md: 24}`。或者使用数组形式同时设置 `[水平间距, 垂直间距]`。 | number/object/array | 0 |  |
-| justify | flex 布局下的水平排列方式：`start` `end` `center` `space-around` `space-between` | string | `start` |  |
+| form | 经 `ref` 获取 | FormInstance | - |  |
+| name | 表单名称 | string | - |  |
+| onSubmit | 数据验证成功后回调事件 | Function(e:Event) |  |  |
+| onSubmitFailed | 数据验证失败后回调事件 | Function(e:Event) |  |  |
+| initialValues  | 表单初始化数据源      | object | - | |
 
-### Col
+### FormItem
 
-| 成员 | 说明 | 类型 | 默认值 | 版本 |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| offset | 栅格左侧的间隔格数，间隔内不可以有栅格 | number | 0 |  |
-| span | 栅格占位格数，为 0 时相当于 `display: none` | number | - |  |
-| xs | `<576px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number\|object | - |  |
-| sm | `≥576px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number\|object | - |  |
-| md | `≥768px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number\|object | - |  |
-| lg | `≥992px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number\|object | - |  |
-| xl | `≥1200px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number\|object | - |  |
-| xxl | `≥1600px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number\|object | - |  |
+| name | 字段名称 | string | - |  |
+| label | label 标签的文本 | ReactNode |  |  |
+| valuePropName | 子节点的值的属性，如 Switch 的是 'checked'。该属性为 getValueProps 的封装，自定义 getValueProps 后会失效 | string | value |  |
+| trigger | 设置收集字段值变更的时机 | string | onChange |  |
+| required | 必填样式设置。如不设置，则会根据校验规则自动生成 | boolean | false |  |
+| trigger | 设置收集字段值变更的时机 | string | onChange |  |
+| rules | 校验规则，设置字段的校验逻辑 | Rules |  |  |
+| getValueFromEvent | 设置如何将 event 的值转换成字段值 | (..args: any[]) => any |  |  |
+
+### FormInstance
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| reset | 重置表单字段 | （...args: any[]) => void | - |  |
+| setFieldsValue | 设置字段的值 | (value: Values) => void | - |  |
+| submit | 提交表单 | () => void | - |  |

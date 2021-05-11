@@ -2,8 +2,8 @@ import React from 'react';
 import { RuleItem } from 'async-validator';
 
 export type FormProps = {
-  onSubmit: (values: Values) => (evt: React.MouseEvent<unknown>) => void;
-  onSubmitFailed: (errors: Errors) => (evt: React.MouseEvent<unknown>) => void;
+  onSubmit: (values: Values) => void;
+  onSubmitFailed: (errors: Errors) => void;
   initialValues?: Values;
   forwardRef: React.LegacyRef<HTMLFormElement>
   name: string;
@@ -12,6 +12,7 @@ export type FormProps = {
 export type FormInstance = {
   reset: () => void;
   setFieldsValue: (value: Values) => void;
+  submit: () => void;
 };
 
 export type Errors = { [key: string]: (string|React.ReactNode)[] };

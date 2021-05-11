@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../config-provider/context';
-import { Errors, FormContenxtProps, FormInstance, FormProps, Values } from './type';
+import FormItem from './form-item';
+import { Errors, FormContenxtProps, FormInstance, FormItemProps, FormProps, Values } from './type';
 import FormContext from './utils/form-context';
 
 const Form: React.FC<FormProps> = (props: FormProps) => {
@@ -31,10 +32,17 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
     setValues({});
   }
 
-  const current: FormInstance = {
-    reset,
-    setFieldsValue,
-  };
+  const submit = () => {
+    setIsValidating(true);
+    const withoutError = Object.entries(errors).reduce((prev, current) => {
+      return current.length && prev;
+    }, true);
+    if (withoutError) {
+      onSubmit(values);
+    } else {
+      onSubmitFailed(errors);
+    }
+  }
 
   const contextValue: FormContenxtProps = {
     errors,
@@ -50,16 +58,15 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
       setErrors({ ...errors });
     },
     onSubmit: (evt) => {
-      setIsValidating(true);
-      const withoutError = Object.entries(errors).reduce((prev, current) => {
-        return current.length && prev;
-      }, true);
-      if (withoutError) {
-        onSubmit(values)(evt);
-      } else {
-        onSubmitFailed(errors)(evt);
-      }
+      evt.preventDefault();
+      submit();
     },
+  };
+
+  const current: FormInstance = {
+    reset,
+    setFieldsValue,
+    submit,
   };
 
   return (
@@ -81,4 +88,6 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   );
 };
 
-export default React.forwardRef<HTMLFormElement, Omit<FormProps, 'forwardRef'>>((props, ref) => <Form forwardRef={ref} {...props} />);
+const FormFC: React.ForwardRefExoticComponent<Omit<FormProps, "forwardRef"> & React.RefAttributes<HTMLFormElement>> & { FormItem: React.FC<FormItemProps> } = React.forwardRef<HTMLFormElement, Omit<FormProps, 'forwardRef'>>((props, ref) => <Form forwardRef={ref} {...props} />);
+FormFC.FormItem = FormItem;
+export default FormFC;
