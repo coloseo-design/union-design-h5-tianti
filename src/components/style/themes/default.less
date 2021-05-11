@@ -8,7 +8,7 @@
 @html-selector: html;
 
 // -------- Colors -----------
-@primary-color: @red-6;
+@primary-color: @red-6; // #F31D39
 @gradient-start-color:  #F72F48;
 @primary-bg: linear-gradient(180deg, @gradient-start-color 0%, @primary-color 100%);
 @info-color: @blue-6;
@@ -216,23 +216,7 @@
 
 @btn-group-border: @primary-5;
 
-// Checkbox
-@checkbox-size: 16px;
-@checkbox-color: @primary-color;
-@checkbox-check-color: #fff;
-@checkbox-border-width: @border-width-base;
 
-// Descriptions
-@descriptions-bg: #fafafa;
-@descriptions-label: rgba(0,0,0,0.65);
-@descriptions-content: rgba(0,0,0,0.85);
-@descriptions-label-width: 112px;
-@descriptions-content-width: 213px;
-@descriptions-border-color: #D0D5DF;
-@descriptions-border-label-bg: #F4F5F7;
-@descriptions-border-content-bg: #fff;
-@descriptions-border-padding: 13px 16px;
-@descriptions-border-radius: 3px;
 
 // Dropdown
 @dropdown-selected-color: @primary-color;
@@ -240,18 +224,6 @@
 
 // Empty
 @empty-font-size: @font-size-base;
-
-// Radio
-@radio-size: 16px;
-@radio-dot-color: @primary-color;
-
-// Radio buttons
-@radio-button-bg: @btn-default-bg;
-@radio-button-checked-bg: @btn-default-bg;
-@radio-button-color: @btn-default-color;
-@radio-button-hover-color: @primary-5;
-@radio-button-active-color: @primary-7;
-@radio-center-button-width: 8px;
 
 // Media queries breakpoints
 // Extra small screen / phone
@@ -289,26 +261,6 @@
 @grid-columns: 12;
 @grid-gutter-width: 0;
 
-// Layout
-@layout-body-background: #f0f2f5;
-@layout-header-background: #001529;
-@layout-footer-background: @layout-body-background;
-@layout-header-height: 64px;
-@layout-header-padding: 0 50px;
-@layout-footer-padding: 24px 50px;
-@layout-sider-background: @layout-header-background;
-@layout-sider-box-shadow: 2px 0 4px 0 rgba(147,147,147,0.35);
-@layout-trigger-height: 80px;
-@layout-trigger-width: 16px;
-@layout-trigger-border-radius: 0 20px 20px 0;
-@layout-trigger-background: #2E3343;
-@layout-trigger-color: #444A5E;
-@layout-zero-trigger-width: 36px;
-@layout-zero-trigger-height: 42px;
-// Layout light theme
-@layout-sider-background-light: #E9EBF0;
-@layout-trigger-background-light: #E9EBF0;
-@layout-trigger-color-light: @text-color;
 
 // z-index list, order by `z-index`
 @zindex-badge: auto;
@@ -334,25 +286,6 @@
 //CollapsePanel
 @collapse-panel-border-radius: @border-radius-base;
 
-//Dropdown
-@dropdown-menu-bg: @component-background;
-@dropdown-vertical-padding: 5px;
-@dropdown-edge-child-vertical-padding: 4px;
-@dropdown-font-size: @font-size-base;
-@dropdown-line-height: 22px;
-
-// Form
-// ---
-@label-required-color: @highlight-color;
-@label-color: @heading-color;
-@form-warning-field-bg: @field-bg;
-@form-item-margin-bottom: 24px;
-@form-item-trailing-colon: true;
-@form-vertical-label-padding: 0 0 8px;
-@form-vertical-label-margin: 0;
-@form-item-label-colon-margin-right: 8px;
-@form-item-label-colon-margin-left: 2px;
-@form-error-field-bg: @field-bg;
 
 // field
 // ---
@@ -395,26 +328,6 @@
 @field-password-left-icon-color: #A6A8A9;
 @field-value-border-color: #646566;
 
-// Select
-// ---
-@select-border-color: @border-color-base;
-@select-item-selected-font-weight: 600;
-@select-dropdown-bg: @component-background;
-@select-dropdown-vertical-padding: @dropdown-vertical-padding;
-@select-dropdown-edge-child-vertical-padding: @dropdown-edge-child-vertical-padding;
-@select-dropdown-font-size: @dropdown-font-size;
-@select-dropdown-line-height: @dropdown-line-height;
-@select-item-selected-bg: @background-color-light;
-@select-item-active-bg: @item-active-bg;
-@select-background: @component-background;
-
-// Cascader
-// ----
-@cascader-dropdown-vertical-padding: @dropdown-vertical-padding;
-@cascader-dropdown-edge-child-vertical-padding: @dropdown-edge-child-vertical-padding;
-@cascader-dropdown-font-size: @dropdown-font-size;
-@cascader-dropdown-line-height: @dropdown-line-height;
-
 // Anchor
 // ---
 @anchor-border-color: #D8D8D8;
@@ -436,238 +349,13 @@
 // Tooltip arrow color
 @tooltip-arrow-color: @tooltip-bg;
 
-// checkbox
-// @checkbox-
-
-// Popover
-// ---
-// Popover body background color
-@popover-bg: @component-background;
-// Popover text color
-@popover-color: @text-color;
-// Popover maximum width
-@popover-min-width: 177px;
-// Popover arrow width
-@popover-arrow-width: 6px;
-// Popover arrow color
-@popover-arrow-color: @popover-bg;
-// Popover outer arrow width
-// Popover outer arrow color
-@popover-arrow-outer-color: @popover-bg;
-// Popover distance with trigger
-@popover-distance: @popover-arrow-width + 4px;
-
-// Modal
-// --
-@modal-body-padding: 24px;
-@modal-header-bg: @component-background;
-@modal-heading-color: @heading-color;
-@modal-footer-bg: transparent;
-@modal-footer-border-color-split: @border-color-split;
-@modal-mask-bg: fade(@black, 45%);
-
-// Progress
-// --
-@progress-default-color: #207EEA;
-@progress-remaining-color: #E9EBF0;
-@progress-text-color: rgba(0,0,0,.35);
-@progress-radius: 100px;
-@progress-status-exception-color: #FF4D4F;
-@progress-status-success-color: #44BF30;
-
-
-// Menu
-// ---
-@menu-inline-toplevel-item-height: 40px;
-@menu-item-height: 40px;
-@menu-collapsed-width: 80px;
-@menu-bg: @component-background;
-@menu-popup-bg: @component-background;
-@menu-item-color: @text-color;
-@menu-highlight-color: @primary-color;
-@menu-item-active-bg: @item-active-bg;
-@menu-item-active-border-width: 3px;
-@menu-item-group-title-color: @text-color-secondary;
-@menu-icon-size: @font-size-base;
-@menu-icon-size-lg: @font-size-lg;
-
-@menu-item-vertical-margin: 4px;
-@menu-item-font-size: @font-size-base;
-@menu-item-boundary-margin: 8px;
-
-// dark theme
-@menu-dark-color: @text-color-secondary-dark;
-@menu-dark-bg: @layout-header-background;
-@menu-dark-arrow-color: #fff;
-@menu-dark-submenu-bg: #000c17;
-@menu-dark-highlight-color: #fff;
-@menu-dark-item-active-bg: @primary-color;
-@menu-dark-selected-item-icon-color: @white;
-@menu-dark-selected-item-text-color: @white;
-@menu-dark-item-hover-bg: transparent;
 // Loading
 // ---
 @loading-padding: 10px;
 @loading-border-radius: 4px;
 
-// Table
-// --
-@table-header-bg: @background-color-light;
-@table-header-color: @heading-color;
-@table-header-sort-bg: @background-color-base;
-@table-body-sort-bg: rgba(0, 0, 0, 0.01);
-@table-row-hover-bg: @primary-1;
-@table-selected-row-color: inherit;
-@table-selected-row-bg: #fafafa;
-@table-body-selected-sort-bg: @table-selected-row-bg;
-@table-selected-row-hover-bg: @table-selected-row-bg;
-@table-expanded-row-bg: #fbfbfb;
-@table-padding-vertical: 16px;
-@table-padding-horizontal: 16px;
-@table-border-radius-base: @border-radius-base;
-@table-footer-bg: @background-color-light;
-@table-footer-color: @heading-color;
-@table-header-bg-sm: transparent;
-
 // Tag
-// --
-@tag-default-bg: #E9EBF0;
-@tag-default-color: @text-color;
 @tag-font-size: @font-size-sm;
-@tag-line-height: 20px;
-
-// TimePicker
-// ---
-@time-picker-panel-column-width: 56px;
-@time-picker-panel-width: @time-picker-panel-column-width * 3;
-@time-picker-selected-bg: @background-color-base;
-
-// Carousel
-// ---
-@carousel-dot-width: 16px;
-@carousel-dot-height: 3px;
-@carousel-dot-active-width: 24px;
-
-// Badge
-// ---
-@badge-height: 20px;
-@badge-dot-size: 6px;
-@badge-font-size: @font-size-sm;
-@badge-font-weight: normal;
-@badge-status-size: 6px;
-@badge-text-color: @component-background;
-
-// Rate
-// ---
-@rate-star-color: #FAAD14;;
-@rate-star-bg: #E9EBF0;
-@rate-star-font-size: 20px;
-
-// Card
-// ---
-@card-head-color: @heading-color;
-@card-head-background: transparent;
-@card-head-padding: 16px;
-@card-inner-head-padding: 12px;
-@card-padding-base: 24px;
-@card-actions-background: @background-color-light;
-@card-skeleton-bg: #cfd8dc;
-@card-background: @component-background;
-@card-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
-@card-radius: @border-radius-sm;
-
-// Comment
-// ---
-@comment-padding-base: 16px 0;
-@comment-nest-indent: 44px;
-@comment-font-size-base: @font-size-base;
-@comment-font-size-sm: @font-size-sm;
-@comment-author-name-color: @text-color-secondary;
-@comment-author-time-color: #ccc;
-@comment-action-color: @text-color-secondary;
-@comment-action-hover-color: #595959;
-
-// Tabs
-// ---
-@tabs-card-head-background: #E9EBF0;
-@tabs-card-height: 36px;
-@tabs-card-active-color: @primary-color;
-@tabs-card-horizontal-padding: (
-    (@tabs-card-height - floor(@font-size-base * @line-height-base)) / 2
-  ) - @border-width-base 21px;
-@tabs-card-horizontal-padding-sm: 6px @padding-md;
-@tabs-card-horizontal-padding-lg: 7px @padding-md 6px;
-@tabs-title-font-size: @font-size-base;
-@tabs-title-font-size-lg: @font-size-lg;
-@tabs-title-font-size-sm: @font-size-base;
-@tabs-ink-bar-color: @primary-color;
-@tabs-bar-margin: 0 0 16px 0;
-@tabs-horizontal-margin: 0 10px 0 0;
-@tabs-horizontal-margin-rtl: 0 0 0 10px;
-@tabs-horizontal-padding: 5px 16px 9px 16px;
-@tabs-horizontal-padding-lg: 16px;
-@tabs-horizontal-padding-sm: 8px 16px;
-@tabs-vertical-padding: 8px 24px;
-@tabs-vertical-margin: 0 0 16px 0;
-@tabs-scrolling-size: 10px;
-@tabs-highlight-color: @primary-color;
-@tabs-hover-color: @primary-5;
-@tabs-active-color: @primary-7;
-@tabs-card-gutter: 0px;
-@tabs-card-tab-active-border-top: 2px solid transparent;
-
-// BackTop
-// ---
-@back-top-color: #fff;
-@back-top-bg: @text-color-secondary;
-@back-top-hover-bg: @text-color;
-
-// Avatar
-// ---
-@avatar-size-base: 32px;
-@avatar-size-lg: 40px;
-@avatar-size-sm: 24px;
-@avatar-font-size-base: 18px;
-@avatar-font-size-lg: 24px;
-@avatar-font-size-sm: 14px;
-@avatar-bg: #ccc;
-@avatar-color: #fff;
-@avatar-border-radius: @border-radius-base;
-
-// Switch
-// ---
-@switch-height: 22px;
-@switch-sm-height: 16px;
-@switch-sm-checked-margin-left: -(@switch-sm-height - 3px);
-@switch-disabled-opacity: 0.4;
-@switch-color: @primary-color;
-@switch-shadow-color: fade(#00230b, 20%);
-
-// Pagination
-// ---
-@pagination-item-size: 32px;
-@pagination-item-size-sm: 24px;
-@pagination-font-family: Arial;
-@pagination-font-weight-active: 500;
-@pagination-item-bg-active: @component-background;
-
-// PageHeader
-// ---
-@page-header-padding: 24px;
-@page-header-padding-vertical: 16px;
-@page-header-padding-breadcrumb: 12px;
-@page-header-back-color: #000;
-
-// Breadcrumb
-// ---
-@breadcrumb-base-color: @text-color-secondary;
-@breadcrumb-last-item-color: @text-color;
-@breadcrumb-font-size: @font-size-base;
-@breadcrumb-icon-font-size: @font-size-base;
-@breadcrumb-link-color: @text-color-secondary;
-@breadcrumb-link-color-hover: @primary-5;
-@breadcrumb-separator-color: @text-color-secondary;
-@breadcrumb-separator-margin: 0 @padding-xs;
 
 // Slider
 // ---
@@ -689,92 +377,9 @@
 @slider-disabled-color: @disabled-color;
 @slider-disabled-background-color: @component-background;
 
-// Tree
-// ---
-@tree-title-height: 24px;
-@tree-child-padding: 18px;
-@tree-directory-selected-color: #fff;
-@tree-directory-selected-bg: @primary-color;
-@tree-node-hover-bg: @item-hover-bg;
-@tree-node-selected-bg: @primary-2;
-
-// Collapse
-// ---
-@collapse-header-padding: 12px 16px;
-@collapse-header-padding-extra: 40px;
-@collapse-header-bg: @background-color-light;
-@collapse-content-padding: @padding-md;
-@collapse-content-bg: @component-background;
-
-// Skeleton
-// ---
-@skeleton-color: #f2f2f2;
-
-// Transfer
-// ---
-@transfer-header-height: 40px;
-@transfer-disabled-bg: @disabled-bg;
-@transfer-list-height: 200px;
-
-// Message
-// ---
-@message-notice-content-padding: 10px 16px;
-
 // Motion
 // ---
 @wave-animation-width: 6px;
-
-// Alert
-// ---
-@alert-success-border-color: ~`colorPalette('@{success-color}', 3) `;
-@alert-success-bg-color: ~`colorPalette('@{success-color}', 1) `;
-@alert-success-icon-color: @success-color;
-@alert-info-border-color: ~`colorPalette('@{info-color}', 3) `;
-@alert-info-bg-color: ~`colorPalette('@{info-color}', 1) `;
-@alert-info-icon-color: @info-color;
-@alert-warning-border-color: ~`colorPalette('@{warning-color}', 3) `;
-@alert-warning-bg-color: ~`colorPalette('@{warning-color}', 1) `;
-@alert-warning-icon-color: @warning-color;
-@alert-error-border-color: ~`colorPalette('@{error-color}', 3) `;
-@alert-error-bg-color: ~`colorPalette('@{error-color}', 1) `;
-@alert-error-icon-color: @error-color;
-
-// List
-// ---
-@list-header-background: transparent;
-@list-footer-background: transparent;
-@list-empty-text-padding: @padding-md;
-@list-item-padding-horizontal-padding: 24px;
-@list-item-padding: 12px @list-item-padding-horizontal-padding;
-@list-item-meta-margin-bottom: @padding-md;
-@list-item-meta-avatar-margin-right: @padding-md;
-@list-item-meta-title-margin-bottom: @padding-sm;
-@list-item-actions-split-padding: 8px;
-@list-item-actions-split-color: #f0f0f0;
-
-// Statistic
-// ---
-@statistic-title-font-size: 16px;
-@statistic-title-color: rgba(0,0,0,0.65);
-@statistic-title-font-weight: 400;
-@statistic-content-font-size: 36px;
-@statistic-content-color: rgba(0,0,0,0.85);
-@statistic-content-font-weight: 500;
-@statistic-unit-font-size: 16px;
-@statistic-font-family: @font-family;
-
-// Drawer
-// ---
-@drawer-header-padding: 16px 24px;
-@drawer-body-padding: 24px;
-
-// Timeline
-// ---
-@timeline-width: 2px;
-@timeline-color: @border-color-split;
-@timeline-dot-border-width: 2px;
-@timeline-dot-color: @primary-color;
-@timeline-dot-bg: @component-background;
 
 // Typography
 // ---
