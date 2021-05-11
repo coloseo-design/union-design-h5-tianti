@@ -8,9 +8,8 @@
     white-space:nowrap;
     vertical-align:middle;
     text-align: center;
-    background-image: @primary-bg;
+    background-image: linear-gradient(@primary-color, @gradiend-end1);
     color: white;
-
     img{
       border-radius: 50%;
       display: block;
@@ -23,26 +22,25 @@
       position: relative;
       margin: 0;
       padding: 0;
-
       sub {
-          border-radius: 50%;
-          position: absolute;
-          z-index: auto;
-          top: 75%;
-          left: 70%;
-          box-shadow:0 0 0 2px #fff;
-          color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        z-index: auto;
+        top: 75%;
+        left: 70%;
+        box-shadow:0 0 0 2px @white;
+        color: @white;
       }
     }
 
     &-sub-info{
-       background-color: #ED6A10;
+       background-color:@info-color;
     }
     &-sub-success{
-       background-color: #07C160;
+       background-color: @success-color;
     }
     &-sub-error{
-       background-color: #EE0A24;
+       background-color: @error-color;
     }
 
 

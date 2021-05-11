@@ -174,7 +174,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     });
     const iconName = loading ? 'loading' : icon;
     const iconElement = iconName ? <Icon type={iconName} /> : undefined;
-    const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
+    const linkButtonRestProps = omit(rest, ['htmlType', 'loading']) as AnchorButtonProps;
     // link-like button
     if (typeof linkButtonRestProps.href !== 'undefined') {
       return (
