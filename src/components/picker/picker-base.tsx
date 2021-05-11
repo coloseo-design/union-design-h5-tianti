@@ -18,7 +18,7 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
     options: [],
     renderItem: (item) => item.value,
     value: [],
-    getStartOffset: () => 0,
+    // getStartOffset: () => 0,
   };
 
   constructor(props: BasePickerProps) {

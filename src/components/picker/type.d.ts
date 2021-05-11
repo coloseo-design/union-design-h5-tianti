@@ -21,7 +21,7 @@ export interface BasePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   /** 选项 */
   options: Option[][];
   renderItem: (item: Option, position: Position) => React.ReactNode;
-  getStartOffset: () => number;
+  getStartOffset?: () => number;
 }
 
 export type Position = {
