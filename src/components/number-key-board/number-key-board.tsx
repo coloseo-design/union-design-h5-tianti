@@ -160,7 +160,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
               <div key={item} className={`${prex}-content-number`}>
                 <div
                   className={`${prex}-content-number-current`}
-                  style={{ marginLeft: index % 3 === 0 ? 12 : 0 }}
+                  style={{ marginLeft: index % 3 === 0 ? '0.75em' : 0 }}
                   onClick={this.click(item)}
                 >
                   {item}
@@ -170,7 +170,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
             <div className={`${prex}-content-number`}>
               <div
                 className={`${prex}-content-number-current`}
-                style={{ marginLeft: 12 }}
+                style={{ marginLeft: '0.75em' }}
                 onClick={this.click('extra')}
               >
                 {extraKey || <Icon type="keyboard" />}

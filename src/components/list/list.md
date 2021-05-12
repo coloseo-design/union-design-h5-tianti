@@ -17,7 +17,6 @@ subtitle: 列表
 
 
 ## List.Item
-## API
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |icon|title前面展示小图标|ReactNode| --| --|
@@ -27,9 +26,7 @@ subtitle: 列表
 |style|listItem样式| object| --|--|
 |className|listItem类名| string |--|--|
 
-## List.Item.Avatar 
-List.Item最左侧的头像
-## API
+## List.Item.Avatar
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |size|头像大小|number| 32|--|

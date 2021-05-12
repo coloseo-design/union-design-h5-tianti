@@ -5,39 +5,43 @@
 
 .@{navbar} {
   width: 100%;
+  font-size: 16px;
   display: flex;
   justify-content: space-between;
   background-color: @navbar-bg;
   align-items: center;
-  min-height: 32px;
-  padding: 0px 16px;
+  min-height: 2em;
+  padding: 0px 1em;
   color: @navbar-text-color;
   font-weight: 400;
+  &-right {
+    white-space: nowrap;
+  }
   &-home {
     justify-content: center;
-    min-height: 34px;
+    min-height: 2.125em;
     &-content {
-      height: 5px;
+      height: 0.3125em;
       background: @navbar-home-bg;
-      border-radius: 100px;
+      border-radius: 6.25em;
       width: 40%;
-      margin-top: 10px;
+      margin-top: 0.625em;
     }
   }
   &-lg {
-    min-height: 60px;
+    min-height: 3.75em;
   }
   &-md {
-    min-height: 52px;
+    min-height: 3.25em;
   }
   &-sm {
-    min-height: 44px;
+    min-height: 2.75em;
   }
   &-title {
     font-weight: 500;
     display: flex;
     height: 100%;
-    max-width: 80%;
+    max-width: 75%;
     align-items: center;
     &-name {
       flex: 1;

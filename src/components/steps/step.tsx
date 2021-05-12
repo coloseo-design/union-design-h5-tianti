@@ -68,11 +68,11 @@ class Step extends React.Component<StepProps> {
         <div className={dotContent}>
           {type === 'card' && <div className={dot} />}
           {type === 'browse' && <Avatar size={32} type={statusS}>{src}</Avatar>}
-          {!isLast && <div className={line} style={{ top: type === 'card' ? 12 : 36 }} />}
+          {!isLast && <div className={line} style={{ top: type === 'card' ? '0.75em' : '2.25em' }} />}
         </div>
         {
           type === 'card' && (
-            <div className={content} style={{ marginBottom: 32, position: 'relative' }}>
+            <div className={content} style={{ marginBottom: '2em', position: 'relative' }}>
               <div className={`${content}-cardtitle`}>
                 <div>{title}</div>
                 <div className={`${content}-title-sub`}>{subTitle}</div>
@@ -81,7 +81,7 @@ class Step extends React.Component<StepProps> {
                 <Avatar size={32}>{src}</Avatar>
                 <span className={`${content}-card-name`}>{description}</span>
               </div>
-              {!isLast && <div style={{ borderBottom: '1px solid #EEF0F0', marginTop: 16 }} />}
+              {!isLast && <div style={{ borderBottom: '1px solid #EEF0F0', marginTop: '1em' }} />}
             </div>
           )
         }

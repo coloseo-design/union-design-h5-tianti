@@ -6,31 +6,33 @@
 .@{list} {
   width: 100%;
   background-color: @list-bg-color;
+  font-size: 16px;
   &-item {
     width: 100%;
     display: flex;
+    overflow: hidden;
     &-content {
       flex: 1;
       width: 0px;
-      min-height: 52px;
+      min-height: 3.25em;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 16px 20px 16px;
+      padding: 1.25em 1em;
       &-title {
         color: @list-title-color;
-        font-size: 16px;
+        font-size: 1em;
         font-weight: 400;
       }
       &-subtitle {
         font-weight: 400;
         color: @list-subTilte-color;
-        font-size: 12px;
+        font-size: 0.75em;
       }
     }
     &-avatar {
       display: inline-block;
-      margin: 16px 24px 0px 16px;
+      margin: 1em 1.5em 0px 1em;
       color: @list-bg-color;
       white-space: nowrap;
       vertical-align: middle;

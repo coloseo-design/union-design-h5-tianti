@@ -62,15 +62,15 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
   };
   const renderSize = () => {
     if (typeSize === 'lg') {
-      return 20;
+      return '1.25em';
     }
     if (typeSize === 'md') {
-      return 16;
+      return '1em';
     }
     if (typeSize === 'xs') {
-      return 12;
+      return '0.75em';
     }
-    return 14;
+    return '0.875em';
   };
 
   return (
@@ -81,7 +81,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
           <>
             {(leftArrow || leftText) && (
             <div className={rightStyle} onClick={handleLeft}>
-              {leftArrow && <Icon type="left" style={{ fontSize: 16, paddingRight: 8 }} />}
+              {leftArrow && <Icon type="left" style={{ fontSize: '1em', paddingRight: '0.5em' }} />}
               {leftText}
             </div>
             )}
@@ -93,7 +93,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
                 fontWeight: showBackTitle ? 400 : 500,
               }}
             >
-              {icon && <span style={{ paddingRight: 16 }}>{icon}</span>}
+              {icon && <span style={{ paddingRight: '1em' }}>{icon}</span>}
               <div className={`${prefix()}-title-name`}>{title}</div>
             </div>
             <div onClick={handleRight} style={{ color: rightTextColor }}>{rightText}</div>

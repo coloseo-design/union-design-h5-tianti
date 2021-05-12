@@ -165,15 +165,15 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
       style={{ ...style, borderBottom: isLast ? undefined : '1px solid #D5D8D8' }}
     >
       <div style={{ display: 'flex', flex: 1, width: 0 }}>
-        {icon && <span style={{ paddingRight: 16 }}>{icon}</span>}
+        {icon && <span style={{ paddingRight: '1em' }}>{icon}</span>}
         <div
           style={contentStyle}
         >
           <div>{children}</div>
-          {extra && <div style={{ marginLeft: 24 }}>{extra}</div>}
+          {extra && <div style={{ marginLeft: '1.5em' }}>{extra}</div>}
         </div>
       </div>
-      {arrow && <Icon type="right" onClick={handleClick} style={{ fontSize: 18 }} />}
+      {arrow && <Icon type="right" onClick={handleClick} style={{ fontSize: '1.125em' }} />}
     </div>
   );
 };

@@ -5,53 +5,54 @@
 
 .@{steps} {
   width: 100%;
+  font-size: 16px;
   &-item {
     width: 100%;
     display: flex;
     &-dot-content {
-      margin-right: 24px;
+      margin-right: 1.5em;
       position: relative;
       &-icon {
-        width: 8px;
-        height: 8px;
+        width: 0.5em;
+        height: 0.5em;
         border-radius: 50%;
         background-color: @steps-dot-bg;
       }
       &-line {
         position: absolute;
-        top: 12px;
-        bottom: 4px;
-        width: 2px;
+        top: 0.75em;
+        bottom: 0.25em;
+        width: 0.125em;
         left: 50%;
-        transform: translateX(-1px);
+        transform: translateX(-50%);
         background-color: @steps-dot-bg;
       }
     }
     &-content {
       font-weight: 400;
       flex: 1;
-      min-height: 70px;
+      min-height: 4.375em;
       &-cardtitle {
-        width: calc(100% - 32px);
+        width: calc(100% - 2em);
         position: absolute;
-        font-size: 16px;
+        font-size: 1em;
         color: @steps-text-color;
-        top: -32px;
+        top: -1em;
         display: flex;
         justify-content: space-between;
       }
       &-title {
-        font-size: 16px;
+        font-size: 1em;
         color: @steps-text-color;
         display: flex;
         justify-content: space-between;
         &-sub {
-          font-size: 12px;
+          font-size: 0.75em;
           color: @steps-color;
         }
       }
       &-description {
-        font-size: 12px;
+        font-size: 0.75em;
         color: @steps-color;
         &-info {
           color: @steps-info-color;
@@ -65,15 +66,15 @@
       }
       &-card {
         background-color: @steps-card-bg;
-        border-radius: 36px;
-        width: 100px;
-        // margin-top: 8px;
+        border-radius: 2.25em;
+        width: 6.25em;
+        margin-top: 0.5em;
         padding: 1px 0px 1px 2px;
         &-name {
-          padding-left: 12px;
+          padding-left: 0.75em;
           color: @steps-card-color;
           font-weight: 400;
-          line-height: 36px;
+          line-height: 2.25em;
         }
       }
     }

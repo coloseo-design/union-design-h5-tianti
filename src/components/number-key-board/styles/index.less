@@ -8,7 +8,8 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  padding-bottom: 28px;
+  font-size: 16px;
+  padding-bottom: 1.75em;
   background-color: @numberkey-bg;
   animation: fadein 0.3s linear;
   display: none;
@@ -28,19 +29,19 @@
     width: 100%;
     &-title {
       position: relative;
-      height: 40px;
+      height: 2.5em;
       width: 100%;
       text-align: center;
-      line-height: 40px;
+      line-height: 2.5em;
       color: @text-color;
-      font-size: 16px;
+      font-size: 1em;
       font-weight: 400;
     }
     &-complete {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: 16px;
+      right: 1em;
       color: @numberkey-complete-color;
     }
   }
@@ -54,18 +55,18 @@
       flex-basis: 33%;
       box-sizing: border-box;
       color: @text-color;
-      font-size: 28px;
+      font-size: 1.75em;
       font-weight: 400;
       text-align: center;
       &-current {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 48px;
+        height: 3em;
         background-color: @number-key-current;
-        border-radius: 8px;
-        margin-top: 12px;
-        margin-right: 12px;
+        border-radius: 0.5em;
+        margin-top: 0.75em;
+        margin-right: 0.75em;
         &:active {
           background-color: @numberkey-active-bg;
         }
