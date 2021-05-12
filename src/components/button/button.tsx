@@ -155,6 +155,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
       prefixCls: customizedPrefixCls,
       forwardedRef,
       getPrefixCls,
+      loading: _,
       ...rest
     } = this.props;
     const { loading } = this.state;
@@ -174,7 +175,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     });
     const iconName = loading ? 'loading' : icon;
     const iconElement = iconName ? <Icon type={iconName} /> : undefined;
-    const linkButtonRestProps = omit(rest, ['htmlType', 'loading']) as AnchorButtonProps;
+    const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
     // link-like button
     if (typeof linkButtonRestProps.href !== 'undefined') {
       return (
