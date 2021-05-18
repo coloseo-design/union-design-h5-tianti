@@ -1,6 +1,5 @@
 import React from 'react';
-import { ConfigConsumerProps } from './../config-provider';
-
+import { ConfigConsumerProps } from '../config-provider';
 
 export interface CheckboxGroupState {
   /** 选中 */
@@ -34,7 +33,7 @@ export interface CheckboxGroupProps {
   disabled: boolean;
   /** 选项切换事件 */
   onChange?: (checkedValues: string[]) => void;
-};
+}
 
 export interface CheckboxProps extends ConfigConsumerProps {
   /** 自定义prefix */
@@ -48,7 +47,7 @@ export interface CheckboxProps extends ConfigConsumerProps {
   /** onchange */
   onChange?: (checked: boolean) => void;
   checkboxGroupContext?: CheckboxGroupContextProps;
-};
+}
 
 export interface CheckboxState {
   /** 是否选中 */

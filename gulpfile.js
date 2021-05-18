@@ -133,11 +133,11 @@ function apidoc() {
         data.content.forEach(element => {
           if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(element[0]) && typeof element[1] === 'string') {
             Object.assign(resultContent, {
-              [`${chunk.stem.replace(/\s|\./g, '')}-${element[1].replace(/\s|\./g, '')}`]: [element[1]]
+              [`${chunk.stem.replace(/\s|\./g, '')}-${element[1].replace(/\s|\./g, '')}`]: [element[1]],
             });
           }
         });
-        const result = `module.exports = {\n\tname: ${JSON.stringify(resultName)},\n\tcontent: ${JSON.stringify(resultContent)}\n};\n`;
+        const result = `/* eslint-disable comma-dangle */\n/* eslint-disable comma-spacing */\n/* eslint-disable key-spacing */\n/* eslint-disable object-curly-newline */\n/* eslint-disable object-curly-spacing */\nmodule.exports = {\n  name: ${JSON.stringify(resultName).replace(/\"/g,"'")},\n  content: ${JSON.stringify(resultContent).replace(/\"/g,"'")}\n};\n`;
         chunk.contents = Buffer.from(result);
         chunk.stem = 'apidoc';
         chunk.extname = '.js';
