@@ -10,7 +10,7 @@ const FormDemo = () => {
     console.log('values', values);
   };
   const onSubmitFailed = (errors: Errors) => {
-    console.log('errors', errors)
+    console.log('errors', errors);
   };
   const onRest = () => {
     ref.current?.reset();

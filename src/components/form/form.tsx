@@ -1,8 +1,11 @@
+/* eslint-disable max-len */
 import classNames from 'classnames';
 import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../config-provider/context';
 import FormItem from './form-item';
-import { Errors, FormContenxtProps, FormInstance, FormItemProps, FormProps, Values } from './type';
+import {
+  Errors, FormContenxtProps, FormInstance, FormItemProps, FormProps, Values,
+} from './type';
 import FormContext from './utils/form-context';
 
 const Form: React.FC<FormProps> = (props: FormProps) => {
@@ -23,26 +26,24 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   const [errors, setErrors] = useState<Errors>({});
   const [isValidating, setIsValidating] = useState(false);
 
-  const setFieldsValue = (value: Values)  => {
+  const setFieldsValue = (value: Values) => {
     Object.assign(values, value);
     setValues({ ...values });
   };
 
   const reset = () => {
     setValues({});
-  }
+  };
 
   const submit = () => {
     setIsValidating(true);
-    const withoutError = Object.entries(errors).reduce((prev, current) => {
-      return current.length && prev;
-    }, true);
+    const withoutError = Object.entries(errors).reduce((prev, current) => current.length && prev, true);
     if (withoutError) {
       onSubmit(values);
     } else {
       onSubmitFailed(errors);
     }
-  }
+  };
 
   const contextValue: FormContenxtProps = {
     errors,
@@ -88,6 +89,6 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   );
 };
 
-const FormFC: React.ForwardRefExoticComponent<Omit<FormProps, "forwardRef"> & React.RefAttributes<HTMLFormElement>> & { FormItem: React.FC<FormItemProps> } = React.forwardRef<HTMLFormElement, Omit<FormProps, 'forwardRef'>>((props, ref) => <Form forwardRef={ref} {...props} />);
+const FormFC: React.ForwardRefExoticComponent<Omit<FormProps, 'forwardRef'> & React.RefAttributes<HTMLFormElement>> & { FormItem: React.FC<FormItemProps> } = React.forwardRef<HTMLFormElement, Omit<FormProps, 'forwardRef'>>((props, ref) => <Form forwardRef={ref} {...props} />);
 FormFC.FormItem = FormItem;
 export default FormFC;

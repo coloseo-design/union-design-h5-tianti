@@ -91,8 +91,8 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
           [trigger]: (...args: any[]) => {
             element.props[trigger](...args);
             onFormItemChange(...args);
-          }
-        })
+          },
+        });
       }
       return React.cloneElement(element, extProps);
     },

@@ -3,10 +3,6 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  exclude: [
-    "scripts",
-    "gulpfile.js"
-  ],
   extends: [
     'airbnb',
     'plugin:react-hooks/recommended',

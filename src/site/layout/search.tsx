@@ -39,14 +39,20 @@ const SearchHits = connectHits(({ hits }: { hits: HitType[] }) => {
       {hits.map((hit) => (
         <div key={hit.objectID} className="hit">
           <div className="hit-content">
-            <div className="name" onClick={() => {
-               history.push(`/develop/components/${hit.dirName}`);
-            }}>
+            <div
+              className="name"
+              onClick={() => {
+                history.push(`/develop/components/${hit.dirName}`);
+              }}
+            >
               <Highlight hit={hit} attribute="name" />
             </div>
-            <div className="content" onClick={() => {
-               history.push(`/develop/components/${hit.dirName}#${hit.anchor}`);
-            }}>
+            <div
+              className="content"
+              onClick={() => {
+                history.push(`/develop/components/${hit.dirName}#${hit.anchor}`);
+              }}
+            >
               {hit.data?.lvl0 && <div className="lvl0"><Highlight hit={hit} attribute="data.lvl0" /></div>}
               {hit.data?.lvl1 && <div className="lvl1"><Highlight hit={hit} attribute="data.lvl1" /></div>}
               {hit.data?.lvl2 && <div className="lvl2"><Highlight hit={hit} attribute="data.lvl2" /></div>}
@@ -55,13 +61,13 @@ const SearchHits = connectHits(({ hits }: { hits: HitType[] }) => {
         </div>
       ))}
     </div>
-  )
+  );
 });
 
 const client = algoliasearch(appId, apiKey);
 
 const getSearchPopup = (): HTMLDivElement | null => {
-  const dom = document.getElementsByClassName("apidoc-search-popup") || [];
+  const dom = document.getElementsByClassName('apidoc-search-popup') || [];
   if (dom.length === 0) return null;
   const div = dom[0] as HTMLDivElement;
   return div;
