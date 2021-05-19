@@ -1291,10 +1291,10 @@
   "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/q/-/q-1.5.4.tgz"
   "version" "1.5.4"
 
-"@types/react-dom@^17.0.0":
-  "integrity" "sha1-f983uK+dbUAScTeGW7P/+IcdfuE="
-  "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/react-dom/-/react-dom-17.0.3.tgz"
-  "version" "17.0.3"
+"@types/react-dom@^17.0.5":
+  "integrity" "sha1-30Tu1bjZ4LE7sM044OplcqEjEic="
+  "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/react-dom/-/react-dom-17.0.5.tgz"
+  "version" "17.0.5"
   dependencies:
     "@types/react" "*"
 
