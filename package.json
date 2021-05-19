@@ -1,6 +1,6 @@
 {
   "name": "union-design-h5",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "files": [
     "lib",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.11",
-    "@types/react-dom": "^17.0.0",
+    "@types/react-dom": "^17.0.5",
     "algoliasearch": "^4.9.1",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
