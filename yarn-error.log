@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn remove union-tool
+  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn add union-tool
 
 PATH: 
   /Users/dengpengks/.nvm/versions/node/v15.11.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@algolia/cache-common/-/cache-common-4.9.1.tgz: Request failed "403 Forbidden"
+  Error: http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@babel/traverse/-/traverse-7.14.0.tgz: Request failed "403 Forbidden"
       at ResponseError.ExtendableBuiltin (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:696:66)
       at new ResponseError (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:802:124)
       at Request.<anonymous> (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:67058:16)
@@ -29,7 +29,7 @@ Trace:
 npm manifest: 
   {
     "name": "union-design-h5",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "MIT",
     "files": [
       "lib",
@@ -51,7 +51,7 @@ npm manifest:
     },
     "dependencies": {
       "@types/classnames": "^2.2.11",
-      "@types/react-dom": "^16.8.0",
+      "@types/react-dom": "^17.0.5",
       "algoliasearch": "^4.9.1",
       "async-validator": "^3.5.1",
       "classnames": "^2.2.6",
@@ -64,7 +64,8 @@ npm manifest:
       "react-router-dom": "5.2.0",
       "shallowequal": "^1.1.0",
       "union-design": "^0.0.12",
-      "union-icons-react": "0.0.3"
+      "union-icons-react": "0.0.3",
+      "union-tool": "^0.0.1"
     },
     "devDependencies": {
       "@types/react-instantsearch-dom": "^6.10.0",
@@ -1401,12 +1402,12 @@ Lockfile:
     "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/q/-/q-1.5.4.tgz"
     "version" "1.5.4"
   
-  "@types/react-dom@^16.8.0":
-    "integrity" "sha1-WJjw7mj+IAaF5rYdPX2IKGkoFNA="
-    "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/react-dom/-/react-dom-16.9.13.tgz"
-    "version" "16.9.13"
+  "@types/react-dom@^17.0.5":
+    "integrity" "sha1-30Tu1bjZ4LE7sM044OplcqEjEic="
+    "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/react-dom/-/react-dom-17.0.5.tgz"
+    "version" "17.0.5"
     dependencies:
-      "@types/react" "^16"
+      "@types/react" "*"
   
   "@types/react-instantsearch-core@*":
     "integrity" "sha1-Y0qIcjPOdswPN6N/MJCf53ok1zs="
@@ -1446,15 +1447,6 @@ Lockfile:
     "integrity" "sha1-PYh1cMRIkBH3Wj/I+WW/h9CaG+o="
     "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/react/-/react-17.0.5.tgz"
     "version" "17.0.5"
-    dependencies:
-      "@types/prop-types" "*"
-      "@types/scheduler" "*"
-      "csstype" "^3.0.2"
-  
-  "@types/react@^16":
-    "integrity" "sha1-2TOiprwb/jIKXupIDo9FuoEm1u4="
-    "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/react/-/react-16.14.6.tgz"
-    "version" "16.14.6"
     dependencies:
       "@types/prop-types" "*"
       "@types/scheduler" "*"
