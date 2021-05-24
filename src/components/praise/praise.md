@@ -11,10 +11,9 @@ subtitle: 点赞
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| color | 颜色 | string | rgba(0,0,0,0.80) |  |
-| type | 类型，可选值为 spinner \| circular | string | circular |  |
-| size | 加载图标大小，默认单位为 px | number \| string | 20px |  |
-| textSize | 文字大小，默认单位为 px | number \| string | 14px |  |
-| textColor | 文字颜色 | string | #A6A8A9 |  |
-| vertical | 是否垂直排列图标和文字内容 | boolean | - |  |
-| backgroundColor | 背景颜色 | string | rgba(0,0,0,0.80) |  |
+| color | 点赞颜色 | string | #F31D39 |  |
+| iconType | 图标的type | string | circular |  |
+| size | 点赞大小，默认单位为 px | number \| string | 20px |  |
+| number | 点赞的数量 | number | - |  |
+| status | 当前点赞状态 | boolear | - |  |
+| onChange | number变化时触发 | (number: number) => void | - |  |

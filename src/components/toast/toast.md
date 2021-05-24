@@ -9,6 +9,16 @@ subtitle: 轻提示
 
 ## API
 
+Toast.success(content, duration, onClose, mask)
+
+Toast.fail(content, duration, onClose, mask)
+
+Toast.info(content, duration, onClose, mask)
+
+Toast.loading(content, duration, onClose, mask)
+
+Toast.hide()
+
 ## Toast
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
