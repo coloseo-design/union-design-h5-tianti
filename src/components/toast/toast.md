@@ -17,7 +17,7 @@ Toast.info(content, duration, onClose, mask)
 
 Toast.loading(content, duration, onClose, mask)
 
-Toast.hide(content, duration, onClose, mask)
+Toast.hide()
 
 ## Toast
 
