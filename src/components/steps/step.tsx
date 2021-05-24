@@ -16,8 +16,10 @@ export interface StepProps {
   description?: string | React.ReactNode;
   type?: 'card' | 'browse';
   isLast?: boolean;
-  /* 人员头像 或者姓名 */
+  /* 人员头像 */
   src?: string
+  /* 人员姓名 */
+  text?: string;
   /* 子标题 */
   subTitle?: string | React.ReactNode;
   /* 当前step的索引 */
@@ -51,6 +53,7 @@ class Step extends React.Component<StepProps> {
       src,
       style,
       className,
+      text,
     } = this.props;
     const prex = getPrefixCls('steps-item', prefixCls);
     const wrapper = classNames(prex, className);
@@ -67,7 +70,7 @@ class Step extends React.Component<StepProps> {
       <div className={wrapper} style={style} onClick={this.handleClick}>
         <div className={dotContent}>
           {type === 'card' && <div className={dot} />}
-          {type === 'browse' && <Avatar size={32} type={statusS}>{src}</Avatar>}
+          {type === 'browse' && <Avatar text={text || ''} size={32} src={src} type={statusS} />}
           {!isLast && <div className={line} style={{ top: type === 'card' ? '0.75em' : '2.25em' }} />}
         </div>
         {
@@ -78,7 +81,7 @@ class Step extends React.Component<StepProps> {
                 <div className={`${content}-title-sub`}>{subTitle}</div>
               </div>
               <div className={`${content}-card`}>
-                <Avatar size={32}>{src}</Avatar>
+                <Avatar size={32} text={text || ''} src={src} />
                 <span className={`${content}-card-name`}>{description}</span>
               </div>
               {!isLast && <div style={{ borderBottom: '1px solid #EEF0F0', marginTop: '1em' }} />}
