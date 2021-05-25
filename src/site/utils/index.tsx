@@ -2,6 +2,7 @@
 import React from 'react';
 import * as PageComponents from '../docs';
 import * as DemoComponents from '../demos';
+import * as CodeDemoComponents from '../code-demos';
 
 export function element(params: any) {
   if (typeof params === 'string') {
@@ -46,10 +47,12 @@ export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   const componentName: string = rename(name);
   const data = PageComponents[componentName];
   const CurrentComponent = DemoComponents[componentName];
+  const CodeComponent = CodeDemoComponents[componentName];
   return (
     <div>
       {element(data.content)}
       { React.createElement(CurrentComponent, {}, null)}
+      { React.createElement(CodeComponent, {}, null)}
     </div>
   );
 };

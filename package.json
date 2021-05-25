@@ -31,6 +31,7 @@
     "gulp-concat": "^2.6.1",
     "omit.js": "^1.0.2",
     "react-app-polyfill": "^2.0.0",
+    "react-highlight": "^0.14.0",
     "react-instantsearch-dom": "^6.11.0",
     "react-router-dom": "5.2.0",
     "shallowequal": "^1.1.0",

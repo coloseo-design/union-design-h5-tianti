@@ -5589,6 +5589,11 @@
   "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/hex-color-regex/-/hex-color-regex-1.1.0.tgz"
   "version" "1.1.0"
 
+"highlight.js@^10.5.0":
+  "integrity" "sha1-iTGbhh7cZsSIVO0ebaIeqJ+Ec2A="
+  "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/highlight.js/-/highlight.js-10.7.2.tgz"
+  "version" "10.7.2"
+
 "history@^4.9.0":
   "integrity" "sha1-MzcaZeOoOyZ0NOKz87G0xYqtTPM="
   "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/history/-/history-4.10.1.tgz"
@@ -9085,7 +9090,7 @@
     "regenerator-runtime" "^0.13.7"
     "whatwg-fetch" "^3.4.1"
 
-"react-dom@*", "react-dom@^16.8.0", "react-dom@>= 16.3.0 < 18", "react-dom@>=16.8.0", "react-dom@>=16.9.0":
+"react-dom@*", "react-dom@^15.0.0 || ^16.0.0 || ^17.0.0", "react-dom@^16.8.0", "react-dom@>= 16.3.0 < 18", "react-dom@>=16.8.0", "react-dom@>=16.9.0":
   "integrity" "sha1-etg47Cmnd/s8dcOhkPZhz5Kri4k="
   "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react-dom/-/react-dom-16.14.0.tgz"
   "version" "16.14.0"
@@ -9099,6 +9104,13 @@
   "integrity" "sha1-ZBqdqBtqYyDycOiXJPtFoLOeQ7s="
   "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
   "version" "3.2.0"
+
+"react-highlight@^0.14.0":
+  "integrity" "sha1-Wu+lUYuqWA+Wto1IEp16XS3Aye8="
+  "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react-highlight/-/react-highlight-0.14.0.tgz"
+  "version" "0.14.0"
+  dependencies:
+    "highlight.js" "^10.5.0"
 
 "react-instantsearch-core@^6.11.0":
   "integrity" "sha1-ED/U3RTA4Ff93ojjK/QZSXsftV4="
@@ -9156,7 +9168,7 @@
     "tiny-invariant" "^1.0.2"
     "tiny-warning" "^1.0.0"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.14.0", "react@^16.8.0", "react@>= 16.3.0 < 18", "react@>=15", "react@>=16.8.0", "react@>=16.9.0":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.14.0", "react@^16.8.0", "react@>= 16.3.0 < 18", "react@>=15", "react@>=16.8.0", "react@>=16.9.0":
   "integrity" "sha1-lNd23dCqo32j7aj8W2sYpMmjEU0="
   "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/react/-/react-16.14.0.tgz"
   "version" "16.14.0"

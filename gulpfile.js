@@ -147,4 +147,45 @@ function apidoc() {
   .pipe(dest('src/components'));
 }
 
-exports.md = series([clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc]);
+function codeHighlighting() {
+  return src('src/components/**/demo.tsx')
+    .pipe(through2.obj((file, encoding, callback) => {
+      const content = file.contents.toString(encoding);
+      const result = `/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
+import Highlight from 'react-highlight';
+
+const codeDemo = () => (
+  <div>
+    <Highlight>
+      {${JSON.stringify(content)}}
+    </Highlight>
+  </div>
+);
+
+export default codeDemo;\n`;
+      file.contents = Buffer.from(result);
+      file.stem = 'codeHighlighting';
+      file.extname = '.tsx';
+      callback(null, file);
+    }))
+    .pipe(dest('src/components'));
+}
+
+function codeDemoEntry() {
+  return src('src/components/**/codeHighlighting.tsx')
+    .pipe(through2.obj((file, encoding, callback) => {
+      const splited = file.path.split(path.sep);
+      const current = splited[splited.length - 2];
+      const ComponentName = rename(current);
+      const content = '/* eslint-disable */export { default as #{ComponentName} } from \'../../components/#{title}/codeHighlighting\';';
+      const result = content.replace(/#{title}/g, current)
+        .replace(/#{ComponentName}/g, ComponentName);
+      file.contents = Buffer.from(result);
+      callback(null, file);
+    }))
+    .pipe(concat('index.ts'))
+    .pipe(dest(path.resolve('src', 'site/code-demos')));
+}
+
+exports.md = series([clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc, codeHighlighting, codeDemoEntry]);
