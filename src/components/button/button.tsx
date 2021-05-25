@@ -173,8 +173,8 @@ class Button extends React.Component<ButtonProps, ButtonState> {
       [`${prefixCls}-background-ghost`]: ghost,
       [`${prefixCls}-block`]: block,
     });
-    const iconName = loading ? 'loading' : icon;
-    const iconElement = iconName ? <Icon type={iconName} /> : undefined;
+    const iconName = loading ? 'loading-circle' : icon;
+    const iconElement = iconName ? <Icon type={iconName} spin /> : undefined;
     const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
     // link-like button
     if (typeof linkButtonRestProps.href !== 'undefined') {

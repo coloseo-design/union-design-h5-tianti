@@ -1,34 +1,47 @@
 ---
 category: Components
-type: 通用
-title: Button
-subtitle: 按钮
+subtitle: 多选框
+type: 数据录入
+title: Checkbox
 ---
 
-按钮用于开始一个即时操作。
+多选框。
 
 ## 何时使用
 
-标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。
+- 在一组可选项中进行多项选择时；
+- 单独使用可以表示两种状态之间的切换，和 `switch` 类似。区别在于切换 `switch` 会直接触发状态改变，而 `checkbox` 一般用于状态标记，需要和提交操作配合。
 
 ## API
 
-通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：`type` -> `shape` -> `size` -> `loading` -> `disabled`。
+### 属性
 
-按钮的属性说明如下：
+#### Checkbox
 
-| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| disabled | 按钮失效状态 | boolean | `false` | - |
-| ghost | 幽灵属性，使按钮背景透明 | boolean | false |  |
-| href | 点击跳转的地址，指定此属性 button 的行为和 a 链接一致 | string | - |  |
-| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) | string | `button` |  |
-| icon | 设置按钮的图标类型 | string | - |  |
-| loading | 设置按钮载入状态 | boolean \| { delay: number } | `false` |  |
-| size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |
-| target | 相当于 a 链接的 target 属性，href 存在时生效 | string | - |  |
-| type | 设置按钮类型，可选值为 `primary` `dashed` `danger` `link` 或者不设 | string | - |  |
-| onClick | 点击按钮时的回调 | (event) => void | - |  |
-| block | 将按钮宽度调整为其父宽度的选项 | boolean | `false` | - |
+| checked | 指定当前是否选中 | boolean | false |  |
+| defaultChecked | 初始是否选中 | boolean | false |  |
+| disabled | 失效状态 | boolean | false |  |
+| onChange | 变化时回调函数 | function(e:Event) | - |  |
 
-支持原生 button 的其他所有属性。
+#### Checkbox Group
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| defaultValue | 默认选中的选项 | string\[] | \[] |  |
+| disabled | 整组失效 | boolean | false |  |
+| name | CheckboxGroup 下所有 `input[type="checkbox"]` 的 `name` 属性 | string | - |  |
+| options | 指定可选项 | string\[] \| Option\[] | \[] |  |
+| value | 指定选中的选项 | string\[] | \[] |  |
+| onChange | 变化时回调函数 | function(checkedValue) | - |  |
+
+##### Option
+
+```typescript
+interface Option {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}
+```

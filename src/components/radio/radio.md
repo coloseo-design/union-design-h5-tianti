@@ -1,34 +1,34 @@
 ---
 category: Components
-type: 通用
-title: Button
-subtitle: 按钮
+type: 数据录入
+title: Radio
+subtitle: 单项选择器
 ---
 
 按钮用于开始一个即时操作。
 
 ## 何时使用
 
-标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。
-
+- 用于在多个备选项中选中单个状态
+- 和 Select 的区别是，Radio 所有选项默认可见，方便用户在比较中选择，因此选项不宜过多
 ## API
 
-通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：`type` -> `shape` -> `size` -> `loading` -> `disabled`。
+### Radio
 
-按钮的属性说明如下：
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| disabled | 禁用 Radio | boolean | false |
+| value | 根据 value 进行比较，判断是否选中 | any | - |
 
-| 属性 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| disabled | 按钮失效状态 | boolean | `false` | - |
-| ghost | 幽灵属性，使按钮背景透明 | boolean | false |  |
-| href | 点击跳转的地址，指定此属性 button 的行为和 a 链接一致 | string | - |  |
-| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) | string | `button` |  |
-| icon | 设置按钮的图标类型 | string | - |  |
-| loading | 设置按钮载入状态 | boolean \| { delay: number } | `false` |  |
-| size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |
-| target | 相当于 a 链接的 target 属性，href 存在时生效 | string | - |  |
-| type | 设置按钮类型，可选值为 `primary` `dashed` `danger` `link` 或者不设 | string | - |  |
-| onClick | 点击按钮时的回调 | (event) => void | - |  |
-| block | 将按钮宽度调整为其父宽度的选项 | boolean | `false` | - |
+### RadioGroup
 
-支持原生 button 的其他所有属性。
+单选框组合，用于包裹一组 `Radio`。
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |  |
+| --- | --- | --- | --- | --- | --- |
+| defaultValue | 默认选中的值 | any | - |  |  |
+| disabled | 禁选所有子单选器 | boolean | false |  |  |
+| name | RadioGroup 下所有 `input[type="radio"]` 的 `name` 属性 | string | - |  |  |
+| options | 以配置形式设置子元素 | string\[] \| Array&lt;{ label: string value: string disabled?: boolean }> | - |  |  |
+| value | 用于设置当前选中的值 | any | - |  |  |
+| onChange | 选项变化时的回调函数 | function(e:Event) | - |  |  |
