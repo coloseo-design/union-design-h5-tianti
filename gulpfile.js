@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const MT = require('mark-twain');
 const through2 = require('through2');
 const path = require('path');
@@ -147,63 +148,63 @@ function apidoc() {
   .pipe(dest('src/components'));
 }
 
-function codeHighlighting() {
-  return src('src/components/**/demo.tsx')
-    .pipe(through2.obj((file, encoding, callback) => {
-      const content = file.contents.toString(encoding);
-      const result = `/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable import/no-useless-path-segments */
-/* eslint-disable no-template-curly-in-string */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react/react-in-jsx-scope */
-import React, { useState } from 'react';
-import Highlight from 'react-highlight';
-import Icon from '../icon';
+// function codeHighlighting() {
+//   return src('src/components/**/demo.tsx')
+//     .pipe(through2.obj((file, encoding, callback) => {
+//       const content = file.contents.toString(encoding);
+//       const result = `/* eslint-disable react/react-in-jsx-scope */
+// /* eslint-disable import/no-useless-path-segments */
+// /* eslint-disable no-template-curly-in-string */
+// /* eslint-disable react-hooks/rules-of-hooks */
+// /* eslint-disable react/react-in-jsx-scope */
+// import React, { useState } from 'react';
+// import Highlight from 'react-highlight';
+// import Icon from '../icon';
 
-const codeDemo = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div>
-      <div style={{
-        border: '1px solid #E8E7E7', padding: 12, textAlign: 'right',
-      }}
-      >
-        <Icon type="productd-evelop" style={{ fontSize: 20 }} onClick={() => setOpen(!open)} />
-      </div>
-      {open && (
-        <div style={{ border: '1px solid #E8E7E7', borderTop: 'none', background: '#fff' }}>
-          <Highlight>
-            {${JSON.stringify(content)}}
-          </Highlight>
-        </div>
-      )}
-    </div>
-  );
-};
+// const codeDemo = () => {
+//   const [open, setOpen] = useState(false);
+//   return (
+//     <div>
+//       <div style={{
+//         border: '1px solid #E8E7E7', padding: 12, textAlign: 'right',
+//       }}
+//       >
+//         <Icon type="productd-evelop" style={{ fontSize: 20 }} onClick={() => setOpen(!open)} />
+//       </div>
+//       {open && (
+//         <div style={{ border: '1px solid #E8E7E7', borderTop: 'none', background: '#fff' }}>
+//           <Highlight>
+//             {${JSON.stringify(content)}}
+//           </Highlight>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
-export default codeDemo;\n`;
-      file.contents = Buffer.from(result);
-      file.stem = 'codeHighlighting';
-      file.extname = '.tsx';
-      callback(null, file);
-    }))
-    .pipe(dest('src/components'));
-}
+// export default codeDemo;\n`;
+//       file.contents = Buffer.from(result);
+//       file.stem = 'codeHighlighting';
+//       file.extname = '.tsx';
+//       callback(null, file);
+//     }))
+//     .pipe(dest('src/components'));
+// }
 
-function codeDemoEntry() {
-  return src('src/components/**/codeHighlighting.tsx')
-    .pipe(through2.obj((file, encoding, callback) => {
-      const splited = file.path.split(path.sep);
-      const current = splited[splited.length - 2];
-      const ComponentName = rename(current);
-      const content = '/* eslint-disable */export { default as #{ComponentName} } from \'../../components/#{title}/codeHighlighting\';';
-      const result = content.replace(/#{title}/g, current)
-        .replace(/#{ComponentName}/g, ComponentName);
-      file.contents = Buffer.from(result);
-      callback(null, file);
-    }))
-    .pipe(concat('index.ts'))
-    .pipe(dest(path.resolve('src', 'site/code-demos')));
-}
+// function codeDemoEntry() {
+//   return src('src/components/**/codeHighlighting.tsx')
+//     .pipe(through2.obj((file, encoding, callback) => {
+//       const splited = file.path.split(path.sep);
+//       const current = splited[splited.length - 2];
+//       const ComponentName = rename(current);
+//       const content = '/* eslint-disable */export { default as #{ComponentName} } from \'../../components/#{title}/codeHighlighting\';';
+//       const result = content.replace(/#{title}/g, current)
+//         .replace(/#{ComponentName}/g, ComponentName);
+//       file.contents = Buffer.from(result);
+//       callback(null, file);
+//     }))
+//     .pipe(concat('index.ts'))
+//     .pipe(dest(path.resolve('src', 'site/code-demos')));
+// }
 
-exports.md = series([clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc, codeHighlighting, codeDemoEntry]);
+exports.md = series([clean('src/components/**/codeHighlighting.tsx'), clean('src/site/code-demos'), clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc]);

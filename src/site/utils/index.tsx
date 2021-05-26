@@ -2,7 +2,7 @@
 import React from 'react';
 import * as PageComponents from '../docs';
 import * as DemoComponents from '../demos';
-import * as CodeDemoComponents from '../code-demos';
+// import * as CodeDemoComponents from '../code-demos';
 
 export function element(params: any) {
   if (typeof params === 'string') {
@@ -47,14 +47,14 @@ export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   const componentName: string = rename(name);
   const data = PageComponents[componentName];
   const CurrentComponent = DemoComponents[componentName];
-  const CodeComponent = CodeDemoComponents[componentName];
+  // const CodeComponent = CodeDemoComponents[componentName];
   return (
     <div className='box'>
       {element(data.content)}
       <div>
         { React.createElement(CurrentComponent, {}, null)}
       </div>
-      { React.createElement(CodeComponent, {}, null)}
+      {/* { React.createElement(CodeComponent, {}, null)} */}
     </div>
   );
 };
