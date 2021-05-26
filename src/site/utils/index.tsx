@@ -49,9 +49,11 @@ export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   const CurrentComponent = DemoComponents[componentName];
   const CodeComponent = CodeDemoComponents[componentName];
   return (
-    <div>
+    <div className='box'>
       {element(data.content)}
-      { React.createElement(CurrentComponent, {}, null)}
+      <div>
+        { React.createElement(CurrentComponent, {}, null)}
+      </div>
       { React.createElement(CodeComponent, {}, null)}
     </div>
   );

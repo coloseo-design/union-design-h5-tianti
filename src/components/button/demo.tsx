@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './index';
 
 const ButtonDemo: React.FC<unknown> = () => (
-  <div style={{ margin: 5 }}>
+  <div>
     <div style={{ marginBottom: 10 }}>
       <Button type="default" style={{ marginRight: 10 }}>default</Button>
       <Button type="primary" style={{ marginRight: 10 }}>primary</Button>
@@ -25,7 +25,7 @@ const ButtonDemo: React.FC<unknown> = () => (
       <Button type="primary" style={{ marginRight: 10 }} size="large" disabled>disabled</Button>
     </div>
 
-    <div style={{ marginBottom: 10 }}>
+    <div>
       <Button type="default" style={{ marginRight: 10 }} size="small">default</Button>
       <Button type="primary" style={{ marginRight: 10 }} size="small">primary</Button>
       <Button type="danger" style={{ marginRight: 10 }} size="small">danger</Button>
