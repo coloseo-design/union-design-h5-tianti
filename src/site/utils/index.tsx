@@ -51,9 +51,9 @@ export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   return (
     <div className='box'>
       {element(data.content)}
-      <div>
+      {/* <div> */}
         { React.createElement(CurrentComponent, {}, null)}
-      </div>
+      {/* </div> */}
       {/* { React.createElement(CodeComponent, {}, null)} */}
     </div>
   );
