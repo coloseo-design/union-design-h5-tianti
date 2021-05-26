@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import classNames from 'classnames';
@@ -95,7 +96,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
   click = (current: unknown) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     const {
-      onInput, onDelete, extraKey, onBlur,
+      onInput, onDelete, extraKey, onBlur, onKeyBoard,
     } = this.props;
     const { value } = this.state;
     if (current === 'delete') {
@@ -110,7 +111,11 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
       if (extraKey) {
         extraKey && onInput && onInput(current);
       } else {
-        onBlur && onBlur();
+        if (onKeyBoard) {
+          onKeyBoard();
+        } else {
+          onBlur && onBlur();
+        }
       }
     } else {
       onInput && onInput(current);

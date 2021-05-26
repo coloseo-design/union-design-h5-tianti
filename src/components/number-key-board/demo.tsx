@@ -2,6 +2,7 @@ import React from 'react';
 import NumberKeyBoard from './index';
 import Button from '../button';
 import Toast from '../toast';
+import Divider from '../divider';
 
 const KeyBoardDemo = () => {
   const [show, setShow] = React.useState(false);
@@ -48,9 +49,13 @@ const KeyBoardDemo = () => {
   return (
     <div style={{ margin: 64 }}>
       <Button onClick={handleClick}>默认键盘1 </Button>
+      <Divider style={{ margin: '32px 0px' }}>默认键盘</Divider>
       <Button onClick={handleClick1}>默认键盘2</Button>
+      <Divider style={{ margin: '32px 0px' }}>默认键盘-带完成按钮</Divider>
       <Button onClick={handleClick2}>身份证键盘</Button>
+      <Divider style={{ margin: '32px 0px' }}>身份证键盘</Divider>
       <Button onClick={handleClick3}>带title的键盘</Button>
+      <Divider style={{ margin: '32px 0px' }}>带title的键盘</Divider>
       <NumberKeyBoard show={show} onBlur={() => setShow(false)} onInput={handleInput} />
       <NumberKeyBoard show={show1} complete onBlur={() => setShow1(false)} onInput={handleInput} />
       <NumberKeyBoard show={show2} extraKey="X" onBlur={() => setShow2(false)} onInput={handleInput} />

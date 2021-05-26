@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './index';
 import Avatar from '../avatar';
 import Icon from '../icon';
+import Divider from '../divider';
 
 const NavDemo = () => {
   const style = {
@@ -27,6 +28,7 @@ const NavDemo = () => {
         typeSize="lg"
         style={{ marginBottom: 32 }}
       />
+      <Divider style={{ margin: '32px 0px' }}>大标题导航</Divider>
       <NavBar
         leftArrow
         leftText="返回"
@@ -35,6 +37,7 @@ const NavDemo = () => {
         style={{ marginBottom: 32 }}
         onRightClick={() => { console.log('111right'); }}
       />
+      <Divider style={{ margin: '32px 0px' }}>自定义左右按钮标题导航</Divider>
       <NavBar
         leftArrow
         leftText="返回"
@@ -43,6 +46,7 @@ const NavDemo = () => {
         rightTextColor="#F31D39"
         style={{ marginBottom: 32 }}
       />
+      <Divider style={{ margin: '32px 0px' }}>自定义右按钮颜色标题导航</Divider>
       <NavBar
         leftArrow
         leftText="返回"
@@ -50,10 +54,12 @@ const NavDemo = () => {
         rightText={<Icon style={{ fontSize: 16 }} type="more" />}
         style={{ marginBottom: 32 }}
       />
+      <Divider style={{ margin: '32px 0px' }}>标题超出样式导航</Divider>
       <NavBar
         title="栏目标题"
         style={{ marginBottom: 32 }}
       />
+      <Divider style={{ margin: '32px 0px' }}>一级栏目标题</Divider>
       <NavBar
         title="栏目标题"
         icon={(
@@ -65,6 +71,7 @@ const NavDemo = () => {
         typeSize="sm"
         style={{ marginBottom: 32 }}
       />
+      <Divider style={{ margin: '32px 0px' }}>二级栏目标题</Divider>
       <NavBar
         title="栏目标题"
         icon={(
@@ -77,7 +84,9 @@ const NavDemo = () => {
         typeSize="xs"
         style={{ marginBottom: 32 }}
       />
+      <Divider style={{ margin: '32px 0px' }}>展示后置标题导航</Divider>
       <NavBar home />
+      <Divider style={{ margin: '32px 0px' }}>展示home</Divider>
     </div>
   );
 };

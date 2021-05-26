@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import ActionSheet from './index';
 import Button from '../button';
-// import Icon from '../icon';
+import Divider from '../divider';
 
 const DemoAction = () => {
   const [visible, setVisible] = useState(false);
@@ -43,10 +43,15 @@ const DemoAction = () => {
   return (
     <div style={{ margin: 64 }}>
       <Button onClick={() => { setVisible(true); }}>基本样式</Button>
-      <Button style={{ margin: '0px 24px' }} onClick={() => setVisible1(true)}>上传面板</Button>
+      <Divider style={{ margin: '32px 0px' }}>基本操作样式</Divider>
+      <Button onClick={() => setVisible1(true)}>上传面板</Button>
+      <Divider style={{ margin: '32px 0px' }}>上传面板样式</Divider>
       <Button onClick={() => setVisible2(true)}>分享面板</Button>
+      <Divider style={{ margin: '32px 0px' }}>分享面板样式</Divider>
       <Button onClick={() => setVisible3(true)}>多行分享面板</Button>
+      <Divider style={{ margin: '32px 0px' }}>多行分享面板样式</Divider>
       <Button onClick={() => setVisible4(true)}>指定每行数量面板</Button>
+      <Divider style={{ margin: '32px 0px' }}>指定每行数量面板</Divider>
       <ActionSheet
         visible={visible}
         onCancel={() => setVisible(false)}
