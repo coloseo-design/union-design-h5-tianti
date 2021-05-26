@@ -207,4 +207,4 @@ function apidoc() {
 //     .pipe(dest(path.resolve('src', 'site/code-demos')));
 // }
 
-exports.md = series([clean('src/components/**/codeHighlighting.tsx'), clean('src/site/code-demos'), clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc]);
+exports.md = series([clean('src/site/docs'), clean('src/site/demos'), markdown, entry, demoEntry, apidoc]);
