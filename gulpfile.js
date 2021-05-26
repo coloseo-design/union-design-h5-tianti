@@ -152,6 +152,9 @@ function codeHighlighting() {
     .pipe(through2.obj((file, encoding, callback) => {
       const content = file.contents.toString(encoding);
       const result = `/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable import/no-useless-path-segments */
+/* eslint-disable no-template-curly-in-string */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/react-in-jsx-scope */
 import React, { useState } from 'react';
 import Highlight from 'react-highlight';

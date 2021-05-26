@@ -1,5 +1,5 @@
-/* eslint-disable */export { default as ActionSheet } from '../../components/action-sheet/codeHighlighting';
 /* eslint-disable */export { default as Avatar } from '../../components/avatar/codeHighlighting';
+/* eslint-disable */export { default as ActionSheet } from '../../components/action-sheet/codeHighlighting';
 /* eslint-disable */export { default as Button } from '../../components/button/codeHighlighting';
 /* eslint-disable */export { default as Cascader } from '../../components/cascader/codeHighlighting';
 /* eslint-disable */export { default as Cell } from '../../components/cell/codeHighlighting';
@@ -21,8 +21,8 @@
 /* eslint-disable */export { default as List } from '../../components/list/codeHighlighting';
 /* eslint-disable */export { default as Loading } from '../../components/loading/codeHighlighting';
 /* eslint-disable */export { default as NavBar } from '../../components/nav-bar/codeHighlighting';
-/* eslint-disable */export { default as NoticeBar } from '../../components/notice-bar/codeHighlighting';
 /* eslint-disable */export { default as NumberKeyBoard } from '../../components/number-key-board/codeHighlighting';
+/* eslint-disable */export { default as NoticeBar } from '../../components/notice-bar/codeHighlighting';
 /* eslint-disable */export { default as Overlay } from '../../components/overlay/codeHighlighting';
 /* eslint-disable */export { default as Picker } from '../../components/picker/codeHighlighting';
 /* eslint-disable */export { default as PopOver } from '../../components/pop-over/codeHighlighting';

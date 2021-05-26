@@ -1,4 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable import/no-useless-path-segments */
+/* eslint-disable no-template-curly-in-string */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/react-in-jsx-scope */
 import React, { useState } from 'react';
 import Highlight from 'react-highlight';
@@ -17,7 +20,7 @@ const codeDemo = () => {
       {open && (
         <div style={{ border: '1px solid #E8E7E7', borderTop: 'none', background: '#fff' }}>
           <Highlight>
-            {"/* eslint-disable max-len */\nimport React from 'react';\nimport Divider from './index';\n\nconst DividerDemo = () => (\n  <div style={{ padding: 100, width: 900, border: '1px solid blue' }}>\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>\n    <Divider />\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>\n    <Divider>标题</Divider>\n  </div>\n);\n\nexport default DividerDemo;\n"}
+            {"/* eslint-disable max-len */\nimport React from 'react';\nimport Divider from './index';\n\nconst DividerDemo = () => (\n  <div style={{ padding: 100, border: '1px solid blue' }}>\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>\n    <Divider />\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>\n    <Divider>标题</Divider>\n  </div>\n);\n\nexport default DividerDemo;\n"}
           </Highlight>
         </div>
       )}
