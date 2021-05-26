@@ -4,7 +4,7 @@ import Layout from './index';
 const { Card, Content } = Layout;
 
 const LayoutDemo = () => (
-  <>
+  <div>
     <Layout type="card">
       <Card>
         Card布局
@@ -58,7 +58,7 @@ const LayoutDemo = () => (
         <br />
       </Content>
     </Layout>
-  </>
+  </div>
 );
 
 export default LayoutDemo;
