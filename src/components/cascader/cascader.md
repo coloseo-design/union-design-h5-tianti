@@ -1,7 +1,7 @@
 ---
 category: Components
 type: 通用
-title: Picker
+title: Cascader
 subtitle: 选择器
 ---
 
