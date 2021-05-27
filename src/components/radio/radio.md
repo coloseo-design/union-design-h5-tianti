@@ -29,6 +29,13 @@ subtitle: 单项选择器
 | defaultValue | 默认选中的值 | any | - |  |  |
 | disabled | 禁选所有子单选器 | boolean | false |  |  |
 | name | RadioGroup 下所有 `input[type="radio"]` 的 `name` 属性 | string | - |  |  |
-| options | 以配置形式设置子元素 | string\[] \| Array&lt;{ label: string value: string disabled?: boolean }> | - |  |  |
+| options | 以配置形式设置子元素 | string\[] \| Option\[] | - |  |  |
 | value | 用于设置当前选中的值 | any | - |  |  |
 | onChange | 选项变化时的回调函数 | function(e:Event) | - |  |  |
+
+##### Option
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| label | 标签 | string|React.ReactNode[] |  |
+| value | 值 | string | false |  |
+| disabled | 是否禁用 | boolean | - |  |

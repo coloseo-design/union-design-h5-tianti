@@ -36,12 +36,10 @@ title: Checkbox
 | value | 指定选中的选项 | string\[] | \[] |  |
 | onChange | 变化时回调函数 | function(checkedValue) | - |  |
 
-##### Option
 
-```typescript
-interface Option {
-  label: string;
-  value: string;
-  disabled?: boolean;
-}
-```
+##### Option
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| label | 标签 | string|React.ReactNode[] |  |
+| value | 值 | string | false |  |
+| disabled | 是否禁用 | boolean | - |  |

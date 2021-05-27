@@ -42,7 +42,7 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
           renderItem={(item) => item.value}
           value={value}
           onChange={onChange}
-          getStartOffset={() => 0}
+          // getStartOffset={() => 0}
         />
       </div>
     </Popup>
