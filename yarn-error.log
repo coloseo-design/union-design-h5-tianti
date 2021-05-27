@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn remove union-tool
+  /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/node /Users/dengpengks/.nvm/versions/node/v15.11.0/bin/yarn
 
 PATH: 
   /Users/dengpengks/.nvm/versions/node/v15.11.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@babel/core/-/core-7.14.0.tgz: Request failed "403 Forbidden"
+  Error: http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/@types/node/-/node-13.13.51.tgz: Request failed "403 Forbidden"
       at ResponseError.ExtendableBuiltin (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:696:66)
       at new ResponseError (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:802:124)
       at Request.<anonymous> (/Users/dengpengks/.nvm/versions/node/v15.11.0/lib/node_modules/yarn/lib/cli.js:67058:16)
@@ -29,7 +29,7 @@ Trace:
 npm manifest: 
   {
     "name": "union-design-h5",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "license": "MIT",
     "files": [
       "lib",
@@ -88,7 +88,8 @@ npm manifest:
       "react-dom": "^16.8.0",
       "single-line-log": "^1.1.2",
       "through2": "^4.0.2",
-      "typescript": "^4.1.3"
+      "typescript": "^4.1.3",
+      "union-tool": "^0.0.7"
     },
     "peerDependencies": {
       "react": ">=16.8.0",
@@ -11315,10 +11316,10 @@ Lockfile:
       "webpack" "^4.42.1"
       "webpack-dev-server" "^3.10.3"
   
-  "union-tool@^0.0.4":
-    "integrity" "sha1-FFeSi206I/TyuS2F49B2CYgYerQ="
-    "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/union-tool/-/union-tool-0.0.4.tgz"
-    "version" "0.0.4"
+  "union-tool@^0.0.7":
+    "integrity" "sha1-Va8wBVrnaea4lfR1dSV30m544/Y="
+    "resolved" "http://ccp.tianti.tg.unicom.local/artifactory/api/npm/sjxt-npm-virtual/union-tool/-/union-tool-0.0.7.tgz"
+    "version" "0.0.7"
     dependencies:
       "@babel/cli" "^7.8.4"
       "@babel/core" "^7.9.0"
