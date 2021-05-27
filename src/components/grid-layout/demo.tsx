@@ -1,54 +1,75 @@
+/* eslint-disable max-len */
 import React from 'react';
 import GridLayout from './index';
+import Icon from '../icon';
 
 const Demo = () => {
   const data = [
     {
       icon: 'add',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'apps',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'award',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'bell',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'camera',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'checkout',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'add',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'apps',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'award',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
     {
       icon: 'bell',
-      text: 1,
+      text: <div style={{ margin: '12px 0px' }}>输入</div>,
     },
   ];
+  const renderItem = (item: unknown, idx: number) => (
+    <div style={{ textAlign: 'center', marginBottom: 12 }}>
+      <div
+        style={{
+          height: 46, width: 46, backgroundColor: 'gray', color: '#fff', fontSize: 24,
+        }}
+      >
+        <Icon type={item.icon} />
+      </div>
+      {idx}
+    </div>
+  );
+
   return (
     <div>
-      <GridLayout data={data} columnNum={6} />
+      <h2>自定义展示样式</h2>
+      <GridLayout
+        data={data}
+        columnNum={6}
+        renderItem={renderItem}
+      />
       <br />
-      <GridLayout data={data} renderItem={(el, index) => <div>{`el: ${JSON.stringify(el)}, index: ${index}`}</div>} />
+      <h2>默认展示样式</h2>
+      <GridLayout data={data} />
     </div>
   );
 };

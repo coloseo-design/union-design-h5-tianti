@@ -1,18 +1,30 @@
 import React from 'react';
 import { Row, Col } from '../index';
 
+const style = {
+  height: 38,
+  backgroundColor: 'rgba(0,146,255,.75)',
+  width: '100%',
+  color: '#fff',
+  textAlign: 'center',
+};
+
 const GridDemo = () => (
   <div>
-    <div>span/gutter为数字</div>
+    <h2>设置不同屏幕大小的不同gutter</h2>
     <Row
       align="top"
       gutter={{ xl: 8, lg: 16, md: 24 }}
       justify="space-between"
     >
-      <Col span={6}>Abc</Col>
-      <Col span={6}>def</Col>
+      <Col span={6}>
+        <div style={style}>Abc</div>
+      </Col>
+      <Col span={6}>
+        <div style={style}>Abc</div>
+      </Col>
     </Row>
-    <div>增加🧍‍♂各个尺寸</div>
+    <h2 style={{ marginTop: 32 }}>设置不同屏幕大小的不同span, offset</h2>
     <Row
       gutter={{ xl: 8, lg: 16, md: 24 }}
       align="top"
@@ -24,7 +36,7 @@ const GridDemo = () => (
         xl={{ span: 4, offset: 2 }}
         lg={{ span: 2, offset: 4 }}
       >
-        Abc
+        <div style={style}>Abc</div>
       </Col>
       <Col
         span={6}
@@ -32,7 +44,7 @@ const GridDemo = () => (
         xl={{ span: 4, offset: 2 }}
         lg={{ span: 2, offset: 4 }}
       >
-        def
+        <div style={style}>Abc</div>
       </Col>
     </Row>
   </div>
