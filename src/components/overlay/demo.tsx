@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../button';
-import Overlay from './index';
+import { Button, Overlay } from '../index';
 
 const Demo = () => {
   const [visible, setVisible] = useState(false);

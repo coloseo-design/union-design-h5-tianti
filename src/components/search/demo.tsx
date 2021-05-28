@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './index';
+import { Search } from '../index';
 
 const SearchDemo = () => (
   <div>

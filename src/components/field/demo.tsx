@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
-import Field from './index';
-import Icon from '../icon';
-import Button from '../button';
+import { Field, Icon, Button } from '../index';
 
 const FieldDemo = () => {
   const ref = useRef();
@@ -10,7 +8,6 @@ const FieldDemo = () => {
     <div>
       <h1>单卡片：短输入</h1>
       <Field
-        // allowClear
         placeholder="基本输入"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         ref={ref}
@@ -19,7 +16,6 @@ const FieldDemo = () => {
         fieldType="card"
       />
       <Field
-        // allowClear
         placeholder="基本输入"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         label="输入标题"
@@ -29,7 +25,6 @@ const FieldDemo = () => {
       />
       <h1>单卡片：长输入</h1>
       <Field
-        // allowClear
         placeholder="多行输入"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         type="textarea"
@@ -38,7 +33,6 @@ const FieldDemo = () => {
         fieldType="card"
       />
       <Field
-        // allowClear
         placeholder="多行输入"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         type="textarea"
@@ -50,7 +44,6 @@ const FieldDemo = () => {
       />
       <h1>回复输入栏</h1>
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
@@ -58,7 +51,6 @@ const FieldDemo = () => {
         fieldType="reply"
       />
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
@@ -68,7 +60,6 @@ const FieldDemo = () => {
       />
       <Field
         fieldType="reply"
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
@@ -77,20 +68,17 @@ const FieldDemo = () => {
       />
       <h1>一般输入框</h1>
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
       />
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
         border
       />
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
@@ -99,7 +87,6 @@ const FieldDemo = () => {
         rightIcon={<Button>发送验证码</Button>}
       />
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         leftIcon={<Icon type="user-circle" />}
@@ -109,7 +96,6 @@ const FieldDemo = () => {
       />
       <h1>密码输入框</h1>
       <Field
-        // allowClear
         placeholder="我来说几句"
         onChange={({ target: { value } }) => { console.log('value', value); }}
         border

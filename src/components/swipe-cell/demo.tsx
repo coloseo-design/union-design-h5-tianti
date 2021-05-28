@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 import React from 'react';
-import SwipeCell from './index';
+import { SwipeCell } from '../index';
 
 const Demo = () => (
   <div

@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
-import ActionSheet from './index';
-import Button from '../button';
-import Divider from '../divider';
+import { Button, Divider, ActionSheet } from '../index';
 
 const DemoAction = () => {
   const [visible, setVisible] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import Praise from './index';
+import { Praise } from '../index';
 
 const PraiseDemo = () => (
   <>

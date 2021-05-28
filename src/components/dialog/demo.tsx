@@ -1,5 +1,5 @@
 import React from 'react';
-import Dialog from './index';
+import { Dialog } from '../index';
 
 const Demo = () => (
   <>

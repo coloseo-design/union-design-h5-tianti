@@ -1,5 +1,5 @@
 import React from 'react';
-import Cell from './index';
+import { Cell } from '../index';
 
 const Demo = () => (
   <div>

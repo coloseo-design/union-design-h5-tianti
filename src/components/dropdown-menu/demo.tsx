@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-closing-tag-location */
 import React from 'react';
-import DropdownMenu, { DropdownItem } from './index';
-import Icon from '../icon';
-import Button from '../button';
+import {
+  DropdownMenu, DropdownItem, Icon, Button,
+} from '../index';
 
 export default () => {
   const option = [
@@ -11,8 +10,7 @@ export default () => {
       '类别1',
       value: '0',
       icon: <Icon type="user" />,
-      card: <div>
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+      card: `哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
@@ -20,11 +18,10 @@ export default () => {
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
         哈哈哈哈哈哈哈哈哈哈哈
         哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈
-      </div>,
+        哈哈哈哈哈哈哈哈哈哈哈`,
     },
-    { text: '类别2', value: '1', card: 'swdwdwed' },
-    { text: '类别3', value: '2', card: 'swdwdwed' },
+    { text: '类别2', value: '1', card: <div>swdwdwed </div> },
+    { text: '类别3', value: '2', card: <div>swdwdwed </div> },
   ];
 
   const option2 = [

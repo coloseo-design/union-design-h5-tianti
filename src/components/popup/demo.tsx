@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Popup from './index';
-import Button from '../button';
+import { Popup, Button } from '../index';
 
 const PopupDemo = () => {
   const [vmodel, setModal] = useState(false);
@@ -185,8 +184,7 @@ const PopupDemo = () => {
         visible={vmodel5}
         position="bottom"
         onCancel={handleCancel}
-        // style={{ height: '70%' }}
-        // footer={null}
+        style={{ height: '70%' }}
         footer={[<Button type="primary" onClick={handleCancel} key="1">确定</Button>]}
       >
         {test}

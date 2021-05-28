@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from './index';
+import { Avatar } from '../index';
 
 const AvatarDemo = () => (
   <div style={{ padding: 100 }}>

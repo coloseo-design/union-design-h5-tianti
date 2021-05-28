@@ -1,8 +1,5 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/state-in-constructor */
 import React from 'react';
-import Popover from './index';
-import Button from '../button';
+import { Popover, Button } from '../index';
 
 const popoverDemo = () => (
   <div style={{ padding: 100 }}>

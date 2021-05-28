@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import {
-  Filed, Form, Button, Row, Col, Icon,
+  Field, Form, Button, Row, Col, Icon,
 } from '../index';
 import { Errors, FormInstance, Values } from './type';
 
@@ -31,7 +31,7 @@ const FormDemo = () => {
             required
             rules={[{ required: true, message: '请填写用户名' }]}
           >
-            <Filed
+            <Field
               placeholder="请输入用户名称"
               leftIcon={<Icon type="user" style={{ color: '#A6A8A9', fontSize: '1.5em' }} />}
             />
@@ -44,7 +44,7 @@ const FormDemo = () => {
               { required: true, message: '请填写密码' },
             ]}
           >
-            <Filed placeholder="请输入密码" type="password" leftIcon={null} />
+            <Field placeholder="请输入密码" type="password" leftIcon={null} />
           </Form.FormItem>
           <Row gutter={40} justify="space-between">
             <Col span={6}>

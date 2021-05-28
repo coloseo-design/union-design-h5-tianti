@@ -1,8 +1,7 @@
 import React from 'react';
-import NumberKeyBoard from './index';
-import Button from '../button';
-import Toast from '../toast';
-import Divider from '../divider';
+import {
+  NumberKeyBoard, Button, Toast, Divider,
+} from '../index';
 
 const KeyBoardDemo = () => {
   const [show, setShow] = React.useState(false);

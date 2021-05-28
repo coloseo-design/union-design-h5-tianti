@@ -1,6 +1,5 @@
 import React from 'react';
-import Swipe from './index';
-import ImagePreview from '../image-preview';
+import { Swipe, ImagePreview } from '../index';
 
 const Demo = () => (
   <div

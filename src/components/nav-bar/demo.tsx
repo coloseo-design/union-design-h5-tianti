@@ -1,8 +1,7 @@
 import React from 'react';
-import NavBar from './index';
-import Avatar from '../avatar';
-import Icon from '../icon';
-import Divider from '../divider';
+import {
+  NavBar, Avatar, Icon, Divider,
+} from '../index';
 
 const NavDemo = () => {
   const style = {

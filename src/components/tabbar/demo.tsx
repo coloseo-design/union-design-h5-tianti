@@ -1,6 +1,5 @@
 import React from 'react';
-import Tabbar from './index';
-import Icon from '../icon';
+import { Tabbar, Icon } from '../index';
 
 const Demo = () => (
   <div

@@ -1,6 +1,5 @@
 import React from 'react';
-import Toast from './index';
-import Button from '../button';
+import { Toast, Button } from '../index';
 
 const ToastDemo = () => (
   <>

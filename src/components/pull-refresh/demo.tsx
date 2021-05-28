@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import PullRefresh from './index';
+import { PullRefresh } from '../index';
 
 const Demo = () => {
   const [loading, setLoading] = React.useState(false);
@@ -51,13 +50,13 @@ const Demo = () => {
     <div>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
         <div>
-          <h2 onClick={click1}>基础用法</h2>
+          <div onClick={click1}>基础用法</div>
         </div>
         <div>
-          <h2 onClick={click2}>成功提示</h2>
+          <div onClick={click2}>成功提示</div>
         </div>
         <div>
-          <h2 onClick={click3}>自定义提示</h2>
+          <div onClick={click3}>自定义提示</div>
         </div>
       </div>
       <div style={style1}>

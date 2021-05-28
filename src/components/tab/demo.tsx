@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 import React from 'react';
-import Tab from './index';
+import { Tab } from '../index';
 import { TabProps } from './tab';
 
 const TabType = (props: Omit<TabProps, 'children'>) => (

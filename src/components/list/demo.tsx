@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './index';
+import { List } from '../index';
 
 const listDemo = () => {
   const { Item } = List;

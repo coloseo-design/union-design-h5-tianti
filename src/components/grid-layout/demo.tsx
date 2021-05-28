@@ -1,7 +1,5 @@
-/* eslint-disable max-len */
 import React from 'react';
-import GridLayout from './index';
-import Icon from '../icon';
+import { GridLayout, Icon } from '../index';
 
 const Demo = () => {
   const data = [

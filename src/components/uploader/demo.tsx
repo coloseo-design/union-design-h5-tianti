@@ -1,7 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-console */
 import React, { useState } from 'react';
-import Uploader from './index';
+import { Uploader } from '../index';
 import { UploaderFile } from './uploader';
 
 const Demo = () => {
@@ -27,8 +25,8 @@ const Demo = () => {
               setFile(fileList[0]);
             }
           }}
-          beforeUpload={(file) => { console.log('beforeUpload:', file); return true; }}
-          afterUpload={(file) => console.log('afterUpload:', file)}
+          beforeUpload={(file1) => { console.log('beforeUpload:', file1); return true; }}
+          afterUpload={(file1) => console.log('afterUpload:', file1)}
         />
       </div>
       <div

@@ -1,5 +1,5 @@
 import React from 'react';
-import NoticeBar from './index';
+import { NoticeBar } from '../index';
 
 const Demo = () => (
   <div style={{ display: 'flex', flexFlow: 'column nowrap' }}>

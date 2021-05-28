@@ -212,7 +212,6 @@ const PickerDemo = () => {
           onChange={(v) => {
             console.log('v', v);
           }}
-          // value={value}
         />
       </Popup>
     </div>

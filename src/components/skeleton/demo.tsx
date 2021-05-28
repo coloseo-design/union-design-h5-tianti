@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Skeleton from './index';
-import Switch from '../switch';
+import { Skeleton, Switch } from '../index';
 
 const Demo = () => {
   const [loading, setLoading] = useState(true);
