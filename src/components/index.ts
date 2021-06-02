@@ -18,7 +18,7 @@ export { default as Icon } from './icon';
 export { default as Button } from './button';
 export { default as Checkbox } from './checkbox';
 export { default as Radio } from './radio';
-export { default as DropdownMenu, DropdownItem } from './dropdown-menu';
+export { default as DropdownMenu } from './dropdown-menu';
 export { default as Field } from './field';
 export { default as Loading } from './loading';
 export { default as Praise } from './praise';
@@ -36,7 +36,8 @@ export { default as TimePicker } from './time-picker';
 export { default as DatePicker } from './date-picker';
 export { default as List } from './list';
 export { default as Cascader } from './cascader';
-export { Row, Col } from './grid';
+export { default as Col } from './col';
+export { default as Row } from './row';
 export { default as ActionSheet } from './action-sheet';
 export { default as Form } from './form';
 
@@ -59,7 +60,7 @@ export { default as Avatar } from './avatar';
 export { default as Tag } from './tag';
 export { default as Divider } from './divider';
 export { default as Switch } from './switch';
-export { default as Popover } from './pop-over';
+export { default as PopOver } from './pop-over';
 export { default as Slider } from './slider';
 export { default as NavBar } from './nav-bar';
 

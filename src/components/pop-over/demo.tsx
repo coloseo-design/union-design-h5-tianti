@@ -1,32 +1,32 @@
 import React from 'react';
-import { Popover, Button } from '../index';
+import { PopOver, Button } from '../index';
 
 const popoverDemo = () => (
   <div style={{ padding: 100 }}>
-    <Popover content="气泡弹出框内容" placement="topLeft" style={{ paddingLeft: 80 }} color="black">
+    <PopOver content="气泡弹出框内容" placement="topLeft" style={{ paddingLeft: 80 }} color="black">
       <Button>top Left black</Button>
-    </Popover>
-    <Popover content="气泡弹出框内容" placement="top" style={{ paddingLeft: 80 }}>
+    </PopOver>
+    <PopOver content="气泡弹出框内容" placement="top" style={{ paddingLeft: 80 }}>
       <Button>top</Button>
-    </Popover>
-    <Popover content="气泡弹出框内容" placement="topRight" style={{ paddingLeft: 80 }} color="red">
+    </PopOver>
+    <PopOver content="气泡弹出框内容" placement="topRight" style={{ paddingLeft: 80 }} color="red">
       <Button>top Right red</Button>
-    </Popover>
+    </PopOver>
     <br />
     <br />
     <br />
     <br />
     <br />
     <br />
-    <Popover content="气泡弹出框内容" placement="bottomLeft" style={{ paddingLeft: 80 }} color="black">
+    <PopOver content="气泡弹出框内容" placement="bottomLeft" style={{ paddingLeft: 80 }} color="black">
       <Button>bottom Left black</Button>
-    </Popover>
-    <Popover content="气泡弹出框内容" placement="bottom" style={{ paddingLeft: 80 }}>
+    </PopOver>
+    <PopOver content="气泡弹出框内容" placement="bottom" style={{ paddingLeft: 80 }}>
       <Button>bottom</Button>
-    </Popover>
-    <Popover content="气泡弹出框内容" placement="bottomRight" style={{ paddingLeft: 80 }} color="red">
+    </PopOver>
+    <PopOver content="气泡弹出框内容" placement="bottomRight" style={{ paddingLeft: 80 }} color="red">
       <Button>bottom Right red</Button>
-    </Popover>
+    </PopOver>
   </div>
 );
 

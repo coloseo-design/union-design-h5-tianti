@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-  DropdownMenu, DropdownItem, Icon, Button,
+  DropdownMenu, Icon, Button,
 } from '../index';
+
+const { DropdownItem } = DropdownMenu;
 
 export default () => {
   const option = [

@@ -39,6 +39,8 @@ export interface DropdownMenuState {
 }
 
 class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState> {
+  static DropdownItem: typeof DropdownItem;
+
   node: HTMLSpanElement | undefined;
 
   constructor(props: DropdownMenuProps) {
@@ -288,5 +290,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
     );
   }
 }
+
+DropdownMenu.DropdownItem = DropdownItem;
 
 export default DropdownMenu;
