@@ -17,6 +17,7 @@ const Row: React.FC<RowProps> = (props: RowProps) => {
     gutter,
     justify,
     className,
+    style: customStyle,
     ...rest
   } = props;
   const { getPrefixCls } = useContext(ConfigContext);
@@ -41,6 +42,7 @@ const Row: React.FC<RowProps> = (props: RowProps) => {
   const horizontalGutter = horizontal / 2;
   const verticalGutter = vertical / 2;
   const style = {
+    ...customStyle,
     alignItems: align,
     ...(horizontalGutter > 0 ? {
       marginLeft: -horizontalGutter,

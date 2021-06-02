@@ -12,6 +12,7 @@ const Col: React.FC<ColProps> = (props: ColProps) => {
     order,
     offset,
     className,
+    style: customStyle,
     ...rest
   } = props;
   const { getPrefixCls } = useContext(ConfigContext);
@@ -45,6 +46,7 @@ const Col: React.FC<ColProps> = (props: ColProps) => {
   const horizontalGap = gutter[0] / 2;
   const verticalGap = gutter[1] / 2;
   const style = {
+    ...customStyle,
     ...(horizontalGap > 0 ? {
       paddingLeft: horizontalGap,
       paddingRight: horizontalGap,
