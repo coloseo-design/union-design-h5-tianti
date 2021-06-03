@@ -91,7 +91,7 @@ const Swipe: FC<SwipeProps> = (props) => {
   return (
     <div className={swipeClassName} style={swipeStyle}>
       <div
-        className="content"
+        className={`${swipeClassName}-content`}
         ref={containerRef}
         style={contentStyle}
         onTransitionEnd={onTransitionEnd}

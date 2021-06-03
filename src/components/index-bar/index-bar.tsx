@@ -87,7 +87,7 @@ const IndexBar = memo((props) => {
 
   return (
     <div className={getPrefixClass()}>
-      <div className="content" ref={contentRef} onScroll={contentOnScroll}>
+      <div className="uni-index-bar-content" ref={contentRef} onScroll={contentOnScroll}>
         <IndexBarContext.Provider value={{
           sticky,
           anchorMap,

@@ -193,7 +193,7 @@ const PopupDemo = () => {
         visible={vmodel5}
         position="bottom"
         onCancel={handleCancel}
-        style={{ height: '70%' }}
+        // style={{ height: '70%' }}
         footer={[<Button type="primary" onClick={handleCancel} key="1">确定</Button>]}
       >
         {test}

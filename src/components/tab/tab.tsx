@@ -261,15 +261,14 @@ const Tab = memo<TabProps>((props) => {
       }));
     }
   }, [selectedKey, tabView]);
-
   return (
     <TabContext.Provider value={tabContextProvider}>
       <div style={style} className={wrapDivClassName}>
         <div style={tabStyle} ref={tabRef} className={tabDivClassName}>
-          <div className="content">{tabView}</div>
+          <div className={`${wrapDivClassName}-content`}>{tabView}</div>
           {state.line && <div style={tabLineDivStyle} className={tabLineDivClassName} />}
         </div>
-        <div className="content">
+        <div className={`${wrapDivClassName}-content`}>
           {contentView[state.selectedIndex]}
         </div>
         {state.mode === 'scroll' && (

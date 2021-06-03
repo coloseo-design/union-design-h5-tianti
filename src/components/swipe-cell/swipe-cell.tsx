@@ -256,7 +256,7 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
       )}
       <div
         style={style.contentStyle}
-        className="content"
+        className={`${wrapClassName}-content`}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={handleEnd}

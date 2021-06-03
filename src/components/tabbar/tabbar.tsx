@@ -128,7 +128,7 @@ const Tabbar = memo((props) => {
   return (
     <TabbarContext.Provider value={tabbarContextProvider}>
       <div style={style} className={tabbarClassName}>
-        <div style={contentStyle} className={classNames('content', contentClassName)}>
+        <div style={contentStyle} className={classNames('uni-tabbar-content', contentClassName)}>
           {contentView}
         </div>
         <div style={itemStyle} className={classNames('item', itemClassName)}>

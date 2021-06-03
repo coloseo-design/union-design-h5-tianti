@@ -9,7 +9,7 @@
   left: 0;
   bottom: 0;
   font-size: 16px;
-  padding-bottom: 1.75em;
+  padding-bottom: 1em;
   background-color: @numberkey-bg;
   animation: fadein 0.3s linear;
   display: none;
@@ -17,7 +17,7 @@
   outline: none;
   &-show {
     display: block;
-    max-height: 70%;
+    max-height: 90%;
   }
   &-hidden {
     max-height: 0;
@@ -50,7 +50,7 @@
     display: flex;
     flex: 3;
     flex-wrap: wrap;
-    padding: 0px 0.75em;
+    padding-left: 0.75em;
     &-number {
       flex: 1;
       flex-basis: 33%;
@@ -59,6 +59,7 @@
       font-size: 1.75em;
       font-weight: 400;
       text-align: center;
+      padding: 0px 0.75em 0.75em 0px; 
       &-current {
         display: flex;
         align-items: center;
@@ -66,7 +67,6 @@
         height: 3em;
         background-color: @number-key-current;
         border-radius: 0.5em;
-        margin-top: 0.75em;
         &:active {
           background-color: @numberkey-active-bg;
         }
@@ -80,13 +80,13 @@
     max-height: 0px;
   }
   top {
-    max-height: 70%;
+    max-height: 90%;
   }
 }
 
 @keyframes fadeout {
   from {
-    max-height: 70%;
+    max-height: 90%;
   }
   top {
     max-height: 0;
