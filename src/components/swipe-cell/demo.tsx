@@ -1,17 +1,17 @@
 import React from 'react';
 import { SwipeCell } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const Demo = () => (
-  <div
-    style={{
-      width: 414,
-      height: 600,
-      margin: 40,
-      padding: 10,
-      backgroundColor: '#F5F6F6',
-      border: '1px solid black',
-    }}
-  >
+  <div style={containerStyle}>
     <SwipeCell
       onOpen={() => console.log('open')}
       onClose={() => console.log('close')}

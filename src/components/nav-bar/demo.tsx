@@ -12,8 +12,17 @@ const NavDemo = () => {
     marginRight: 20,
     display: 'inline-block',
   };
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
   return (
-    <div style={{ margin: 64 }}>
+    <div style={containerStyle}>
       <NavBar
         icon={<Avatar size={32} text="姓名" />}
         title="用户姓名"

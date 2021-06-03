@@ -1,8 +1,17 @@
 import React from 'react';
 import { PopOver, Button } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const popoverDemo = () => (
-  <div style={{ padding: 100 }}>
+  <div style={containerStyle}>
     <PopOver content="气泡弹出框内容" placement="topLeft" style={{ paddingLeft: 80 }} color="black">
       <Button>top Left black</Button>
     </PopOver>

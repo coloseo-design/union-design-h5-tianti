@@ -44,9 +44,17 @@ const KeyBoardDemo = () => {
   const handleInput = (value: unknown) => {
     Toast.info({ content: `${value}`, mask: false });
   };
-
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
   return (
-    <div style={{ margin: 64 }}>
+    <div style={containerStyle}>
       <Button onClick={handleClick}>默认键盘1 </Button>
       <Divider style={{ margin: '32px 0px' }}>默认键盘</Divider>
       <Button onClick={handleClick1}>默认键盘2</Button>

@@ -4,17 +4,20 @@ import { UploaderFile } from './uploader';
 
 const Demo = () => {
   const [file, setFile] = useState<UploaderFile>();
-
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+    marginBottom: 10,
+  };
   return (
     <>
       <div
-        style={{
-          margin: 40,
-          width: 414,
-          height: 250,
-          border: '1px solid black',
-          position: 'relative',
-        }}
+        style={containerStyle}
       >
         <Uploader.List
           style={{ margin: '20px 15px' }}
@@ -30,13 +33,7 @@ const Demo = () => {
         />
       </div>
       <div
-        style={{
-          margin: 40,
-          width: 360,
-          height: 500,
-          border: '1px solid black',
-          position: 'relative',
-        }}
+        style={containerStyle}
       >
         {file && (
           <Uploader.Preview

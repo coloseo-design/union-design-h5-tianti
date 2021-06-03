@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { Skeleton, Switch } from '../index';
 
 const Demo = () => {
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
   const [loading, setLoading] = useState(true);
   return (
     <div
-      style={{
-        width: 414,
-        margin: 40,
-        padding: 10,
-        backgroundColor: '#F5F6F6',
-        border: '1px solid black',
-      }}
+      style={containerStyle}
     >
       <Switch checked={loading} onChange={(e) => setLoading(e)} />
       <div style={{ height: 20 }} />

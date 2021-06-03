@@ -1,6 +1,15 @@
 import React from 'react';
 import { List } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const listDemo = () => {
   const { Item } = List;
   const data = [
@@ -84,7 +93,7 @@ const listDemo = () => {
     },
   ];
   return (
-    <div>
+    <div style={containerStyle}>
       <h1>基础列表</h1>
       <List
         dataSource={data}

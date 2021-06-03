@@ -1,8 +1,17 @@
 import React from 'react';
 import { Dialog } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const Demo = () => (
-  <>
+  <div style={containerStyle}>
     <div style={{ margin: 20, display: 'flex', flexFlow: 'column nowrap' }}>
       <button
         type="button"
@@ -242,7 +251,7 @@ const Demo = () => (
         对话框 / 通知类对话框 3
       </button>
     </div>
-  </>
+  </div>
 );
 
 export default Demo;

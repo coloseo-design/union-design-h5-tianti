@@ -2,8 +2,17 @@
 import React from 'react';
 import { Checkbox } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const CheckboxDemo = () => (
-  <>
+  <div style={containerStyle}>
     <div>
       <Checkbox onChange={(checked) => console.log('checked', checked)}>复选框（默认）</Checkbox>
       <Checkbox checked>复选框（选中）</Checkbox>
@@ -45,7 +54,7 @@ const CheckboxDemo = () => (
       </Checkbox.Group>
     </div>
 
-  </>
+  </div>
 );
 
 export default CheckboxDemo;

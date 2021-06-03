@@ -9,8 +9,18 @@ const style = {
   textAlign: 'center',
 };
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
+
 const GridDemo = () => (
-  <div>
+  <div style={containerStyle}>
     <h2>设置不同屏幕大小的不同gutter</h2>
     <Row
       align="top"

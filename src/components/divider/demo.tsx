@@ -1,8 +1,17 @@
 import React from 'react';
 import { Divider } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const DividerDemo = () => (
-  <div style={{ padding: 100, border: '1px solid blue' }}>
+  <div style={containerStyle}>
     <p>
       {
       ` Lorem ipsum dolor sit amet, consectetur adipiscing elit.

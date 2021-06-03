@@ -3,8 +3,17 @@ import { Collapse } from '../index';
 
 const { Panel } = Collapse;
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const CollapseDemo = () => (
-  <div>
+  <div style={containerStyle}>
     <Collapse activeKey={1} onChange={(a, b) => { console.log(a, b); }}>
       <Panel header="一级列表样式" key={1}>
         <Collapse activeKey={1} onChange={(a, b) => { console.log(a, b); }}>

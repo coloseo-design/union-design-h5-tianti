@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import { Cascader, Button } from '../index';
 import { Option } from '../picker/type';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const CascaderDemo = () => {
   const [visible, setVisible] = useState(false);
   const options: Option[] = [
@@ -168,7 +177,7 @@ const CascaderDemo = () => {
     },
   ];
   return (
-    <div>
+    <div style={containerStyle}>
       <Button onClick={() => setVisible(true)}>打开</Button>
       <Cascader
         titles={['省份', '城市', '区县']}

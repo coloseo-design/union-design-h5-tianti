@@ -15,10 +15,19 @@ const FormDemo = () => {
   const onRest = () => {
     ref.current?.reset();
   };
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
   return (
-    <div style={{ border: '1px solid #ccc', margin: 20, borderRadius: 5 }}>
+    <div style={containerStyle}>
       <div style={{ fontSize: 20, textAlign: 'center' }}>登录</div>
-      <div style={{ padding: '20px 50px' }}>
+      <div>
         <Form
           onSubmit={onSubmit}
           onSubmitFailed={onSubmitFailed}

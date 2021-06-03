@@ -1,8 +1,17 @@
 import React from 'react';
 import { Radio } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const RadioDemo = () => (
-  <>
+  <div style={containerStyle}>
     <div>
       <Radio onChange={(checked) => console.log('checked', checked)}>复选框（默认）</Radio>
       <Radio checked>复选框（选中）</Radio>
@@ -44,7 +53,7 @@ const RadioDemo = () => (
       </Radio.Group>
     </div>
 
-  </>
+  </div>
 );
 
 export default RadioDemo;

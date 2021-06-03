@@ -5,6 +5,15 @@ import {
 
 const { DropdownItem } = DropdownMenu;
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 export default () => {
   const option = [
     {
@@ -55,7 +64,7 @@ export default () => {
   };
 
   return (
-    <div style={{ margin: 64 }}>
+    <div style={containerStyle}>
       <h1>基本用法</h1>
       <DropdownMenu>
         <DropdownItem value="b" options={option2} />

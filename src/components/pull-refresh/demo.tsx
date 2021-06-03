@@ -1,6 +1,15 @@
 import React from 'react';
 import { PullRefresh } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const Demo = () => {
   const [loading, setLoading] = React.useState(false);
   const handleRefresh = () => {
@@ -47,7 +56,7 @@ const Demo = () => {
     });
   };
   return (
-    <div>
+    <div style={containerStyle}>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
         <div>
           <div onClick={click1}>基础用法</div>

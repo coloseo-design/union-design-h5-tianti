@@ -145,8 +145,17 @@ const PickerDemo = () => {
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
   return (
-    <div>
+    <div style={containerStyle}>
       <Button onClick={() => setVisible1(true)}>多列</Button>
       <Button onClick={() => setVisible2(true)}>级联</Button>
       <Button onClick={() => setVisible3(true)}>单列</Button>

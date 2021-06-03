@@ -2,16 +2,17 @@ import React from 'react';
 import { Tab } from '../index';
 import { TabProps } from './tab';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const TabType = (props: Omit<TabProps, 'children'>) => (
-  <div
-    style={{
-      margin: 40,
-      width: 414,
-      height: 250,
-      border: '1px solid black',
-      position: 'relative',
-    }}
-  >
+  <div style={containerStyle}>
     <Tab {...props}>
       <Tab.Item key="标签1" title="标签11111111" taskNum={22} taskWeight={2}>
         <div style={{ marginTop: 20, alignSelf: 'center' }}>标签 1 页面</div>

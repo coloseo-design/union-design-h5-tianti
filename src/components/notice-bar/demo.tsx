@@ -1,8 +1,17 @@
 import React from 'react';
 import { NoticeBar } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const Demo = () => (
-  <div style={{ display: 'flex', flexFlow: 'column nowrap' }}>
+  <div style={containerStyle}>
     <h1>通知栏 / 基础样式</h1>
     <button
       type="button"

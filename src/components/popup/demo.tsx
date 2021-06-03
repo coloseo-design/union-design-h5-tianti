@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Popup, Button } from '../index';
 
+const containerStyle = {
+  width: 377,
+  height: 548,
+  backgroundColor: '#fafafa',
+  padding: 10,
+  overflow: 'scroll',
+  borderRadius: 12,
+  boxShadow: '#ebedf0 0 4px 12px',
+};
 const PopupDemo = () => {
   const [vmodel, setModal] = useState(false);
   const [vmodel1, setVmodel1] = useState(false);
@@ -92,7 +101,7 @@ const PopupDemo = () => {
     </div>
   );
   return (
-    <div>
+    <div style={containerStyle}>
       <h1>基础用法</h1>
       <Button onClick={() => setModal(true)}>基础</Button>
       <h1>顶部弹出</h1>

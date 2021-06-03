@@ -4,8 +4,17 @@ import { Field, Icon, Button } from '../index';
 const FieldDemo = () => {
   const ref = useRef();
   console.log('ref', ref);
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
   return (
-    <div>
+    <div style={containerStyle}>
       <h1>单卡片：短输入</h1>
       <Field
         placeholder="基本输入"

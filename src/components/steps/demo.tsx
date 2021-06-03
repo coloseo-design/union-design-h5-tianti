@@ -8,8 +8,18 @@ const StepsDemo = () => {
     setCurrent(idx);
   };
 
+  const containerStyle = {
+    width: 377,
+    height: 548,
+    backgroundColor: '#fafafa',
+    padding: 10,
+    overflow: 'scroll',
+    borderRadius: 12,
+    boxShadow: '#ebedf0 0 4px 12px',
+  };
+
   return (
-    <div style={{ margin: 64 }}>
+    <div style={containerStyle}>
       <h2>提交卡片流程</h2>
       <Steps style={{ marginTop: 64, width: 400 }}>
         <Step title="审批部门" description="戴永民" text="永民" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
