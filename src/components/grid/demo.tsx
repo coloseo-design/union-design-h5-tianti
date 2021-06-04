@@ -10,7 +10,7 @@ const style = {
 };
 
 const containerStyle = {
-  width: 377,
+  width: 375,
   height: 548,
   backgroundColor: '#fafafa',
   padding: 10,
@@ -21,7 +21,7 @@ const containerStyle = {
 
 const GridDemo = () => (
   <div style={containerStyle}>
-    <h2>设置不同屏幕大小的不同gutter</h2>
+    <p>设置不同屏幕大小的不同gutter</p>
     <Row
       align="top"
       gutter={{ xl: 8, lg: 16, md: 24 }}
@@ -34,7 +34,7 @@ const GridDemo = () => (
         <div style={style}>Abc</div>
       </Col>
     </Row>
-    <h2 style={{ marginTop: 32 }}>设置不同屏幕大小的不同span, offset</h2>
+    <p style={{ marginTop: 32 }}>设置不同屏幕大小的不同span, offset</p>
     <Row
       gutter={{ xl: 8, lg: 16, md: 24 }}
       align="top"
@@ -45,6 +45,9 @@ const GridDemo = () => (
         xxl={{ span: 3, offset: 3 }}
         xl={{ span: 4, offset: 2 }}
         lg={{ span: 2, offset: 4 }}
+        xxs={{ span: 2, offset: 3 }}
+        xs={{ span: 3, offset: 1 }}
+        sm={{ span: 1, offset: 5 }}
       >
         <div style={style}>Abc</div>
       </Col>
@@ -53,6 +56,9 @@ const GridDemo = () => (
         xxl={{ span: 3, offset: 3 }}
         xl={{ span: 4, offset: 2 }}
         lg={{ span: 2, offset: 4 }}
+        xxs={{ span: 2, offset: 3 }}
+        xs={{ span: 2, offset: 3 }}
+        sm={{ span: 1, offset: 5 }}
       >
         <div style={style}>Abc</div>
       </Col>

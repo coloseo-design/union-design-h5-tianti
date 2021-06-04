@@ -20,6 +20,9 @@ export interface BaseColProps {
 }
 
 export interface ResponsiveColProps extends BaseColProps {
+  /* 屏幕 ≥ 375px 响应式栅格 */
+  xxs?: number | ColProps;
+  /* 屏幕 ≥ 480px 响应式栅格 */
   xs?: number | ColProps;
   /* 屏幕 ≥ 576px 响应式栅格 */
   sm?: number | ColProps;

@@ -1,12 +1,13 @@
 import { tuple } from '../../utils/type';
 
-export const breakpoints = tuple('xs', 'sm', 'md', 'lg', 'xl', 'xxl');
+export const breakpoints = tuple('xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl');
 export type Breakpoint = (typeof breakpoints)[number];
 export type BreakPointMap = Partial<Record<Breakpoint, string>>;
 
 // 断点
 const breakpointMap: BreakPointMap = {
-  xs: 'screen and (max-width: 575px)',
+  xxs: 'screen and (min-width: 375px)',
+  xs: 'screen and (min-width: 480px)',
   sm: 'screen and (min-width: 576px)',
   md: 'screen and (min-width: 768px)',
   lg: 'screen and (min-width: 992px)',
