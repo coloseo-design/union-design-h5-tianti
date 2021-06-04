@@ -29,77 +29,17 @@ const PopupDemo = () => {
     setVmodel1(false);
   };
 
-  const test = (
+  const content = (num: number) => (
     <div style={{ textAlign: 'center' }}>
-      <p>这是一条内容哈哈哈哈哈哈</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容</p>
-      <p>这是一条内容嘿嘿嘿</p>
+      {
+        (Array.from(Array(num), (v, k) => k + 1) || []).map((item) => (
+          <p key={item}>这是一条内容</p>
+        ))
+      }
+      <p>这是一条内容黑哈哈哈哈</p>
     </div>
   );
+
   return (
     <div style={containerStyle}>
       <h1>基础用法</h1>
@@ -123,15 +63,7 @@ const PopupDemo = () => {
         style={{ width: 320 }}
         header="标题"
       >
-        <div style={{ textAlign: 'center' }}>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-        </div>
+        {content(7)}
       </Popup>
       <Popup
         visible={vmodel1}
@@ -139,15 +71,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         header="标题"
       >
-        <div style={{ textAlign: 'center' }}>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-        </div>
+        {content(7)}
       </Popup>
       <Popup
         visible={vmodel2}
@@ -155,15 +79,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         header="标题"
       >
-        <div style={{ textAlign: 'center' }}>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-        </div>
+        {content(7)}
       </Popup>
       <Popup
         visible={vmodel3}
@@ -171,7 +87,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         style={{ width: 320 }}
       >
-        {test}
+        {content(52)}
       </Popup>
       <Popup
         visible={vmodel4}
@@ -179,15 +95,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         style={{ width: 320 }}
       >
-        <div style={{ textAlign: 'center' }}>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-        </div>
+        {content(7)}
       </Popup>
       <Popup
         visible={vmodel5}
@@ -196,7 +104,7 @@ const PopupDemo = () => {
         // style={{ height: '70%' }}
         footer={[<Button type="primary" onClick={handleCancel} key="1">确定</Button>]}
       >
-        {test}
+        {content(52)}
       </Popup>
       <Popup
         visible={vmodel6}
@@ -212,22 +120,7 @@ const PopupDemo = () => {
           </div>
         )}
       >
-        <div style={{ textAlign: 'center' }}>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-          <p>这是一条内容</p>
-        </div>
+        {content(7)}
       </Popup>
     </div>
   );

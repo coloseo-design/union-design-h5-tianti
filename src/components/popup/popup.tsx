@@ -117,7 +117,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
       closeable = true,
       closeIcon,
       closeText,
-      style = {},
+      style,
       round = true,
       bodyStyle,
     } = this.props;
@@ -143,8 +143,8 @@ class Popup extends React.Component<PopupProps, PopupState> {
 
     const footerButton = (
       <>
-        <Button style={{ marginRight: 32, width: '32%', height: 36 }} onClick={this.cancel}>取消</Button>
-        <Button type="primary" onClick={this.ok} style={{ width: '32%', height: 36 }}>确认</Button>
+        <Button style={{ marginRight: '2em' }} block onClick={this.cancel}>取消</Button>
+        <Button type="primary" onClick={this.ok} block>确认</Button>
       </>
     );
 
@@ -155,7 +155,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
             {overlay && <div className={mask} style={overlayStyle} onClick={this.handleMask} />}
             <div
               className={prexContent}
-              style={{ minWidth: footer !== null ? 310 : 60, ...style }}
+              style={style}
             >
               <div className={contenHeader}>
                 {React.isValidElement(header) ? header : <span>{header}</span>}
