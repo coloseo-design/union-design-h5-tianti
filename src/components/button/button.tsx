@@ -15,7 +15,7 @@ export interface ButtonState {
  * 3种尺寸：默认，大号, 小号
  * 2种形状: circle, round
  */
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'danger', 'link');
+const ButtonTypes = tuple('default', 'primary', 'ghost', 'link');
 const ButtonShapes = tuple('circle', 'round');
 const ButtonSizes = tuple('default', 'large', 'small');
 const ButtonHTMLTypes = tuple('submit', 'button', 'reset');
@@ -174,7 +174,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
       [`${prefixCls}-block`]: block,
     });
     const iconName = loading ? 'loading-circle' : icon;
-    const iconElement = iconName ? <Icon type={iconName} spin /> : undefined;
+    const iconElement = iconName ? <Icon type={iconName} spin={iconName === 'loading-circle'} /> : undefined;
     const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
     // link-like button
     if (typeof linkButtonRestProps.href !== 'undefined') {
