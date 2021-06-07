@@ -14,7 +14,6 @@ toc: false
 |vmodel	|是否显示弹出层| boolean	| false|
 |getPopupContainer |	指定挂载的节点|	() => Element|--|	
 |header	|弹出层header|	string｜ReactNode	|--|
-|footer	|弹出层footer	|null ｜ ReactNode|	--|
 |okText|	确认按钮文字|	string ｜ReactNode|	确认|
 |cancelText	|取消按钮文字	|string ｜ReactNode	|取消|
 |onCancel|	点击取消按钮， 关闭图标触发	|(e) => void|	--|

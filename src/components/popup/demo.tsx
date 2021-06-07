@@ -52,8 +52,6 @@ const PopupDemo = () => {
       <Button onClick={() => setVmodel3(true)}>左侧弹出</Button>
       <h1>右侧弹出</h1>
       <Button onClick={() => setVmodel4(true)}>右侧弹出</Button>
-      <h1>自定义弹出footer</h1>
-      <Button onClick={() => setVmodel5(true)}>自定义弹出footer</Button>
       <h1>自定义弹出header</h1>
       <Button onClick={() => setVmodel6(true)}>自定义弹出header</Button>
       <Popup
@@ -98,15 +96,6 @@ const PopupDemo = () => {
         {content(7)}
       </Popup>
       <Popup
-        visible={vmodel5}
-        position="bottom"
-        onCancel={handleCancel}
-        // style={{ height: '70%' }}
-        footer={[<Button type="primary" onClick={handleCancel} key="1">确定</Button>]}
-      >
-        {content(52)}
-      </Popup>
-      <Popup
         visible={vmodel6}
         position="bottom"
         onCancel={handleCancel}
@@ -120,7 +109,8 @@ const PopupDemo = () => {
           </div>
         )}
       >
-        {content(7)}
+        {content(52)}
+        <p>swqsqw</p>
       </Popup>
     </div>
   );

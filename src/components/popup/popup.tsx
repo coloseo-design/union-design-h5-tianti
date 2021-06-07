@@ -17,8 +17,6 @@ export interface PopupProps {
   getPopupContainer?: () => HTMLElement | null;
   /* 展示弹出层header */
   header?: string | React.ReactNode;
-  /* 是否展示底部按钮 或者自定义按钮 */
-  footer?: null | React.ReactNode;
   /* 确认按钮文字 */
   okText?: React.ReactNode | string;
   /* 关闭图标文字 */
@@ -109,7 +107,6 @@ class Popup extends React.Component<PopupProps, PopupState> {
       getPopupContainer,
       position = 'center',
       header,
-      footer,
       children,
       overlay = true,
       overlayStyle,
@@ -176,7 +173,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
               <div className={contentBody} style={bodyStyle}>
                 {children}
               </div>
-              {footer !== null && visible
+              {visible
                   && (
                     <div
                       className={contentFooter}
@@ -184,7 +181,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
                         ? { ...maxStyle, position: 'fixed' }
                         : { position: position === 'top' ? 'sticky' : 'fixed' }}
                     >
-                      {footer || footerButton}
+                      {footerButton}
                     </div>
                   )}
             </div>

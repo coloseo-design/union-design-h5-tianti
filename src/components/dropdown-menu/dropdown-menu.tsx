@@ -260,7 +260,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
               }}
             >
               <div
-                style={{ backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.8)', width: '100%', height: '100%' }}
+                style={{ backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.2)', width: '100%', height: '100%' }}
                 onClick={this.handleMask(item)}
               >
                 <DropdownItem

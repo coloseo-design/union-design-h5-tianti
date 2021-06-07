@@ -179,7 +179,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
                 className={`${prex}-content-number-current`}
                 onClick={this.click('extra')}
               >
-                {extraKey || <Icon type="keyboard" />}
+                {extraKey || <Icon style={{ fontSize: 28 }} type="keyboard" />}
               </div>
             </div>
             <div
@@ -197,7 +197,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
                 className={`${prex}-content-number-current`}
                 onClick={this.click('delete')}
               >
-                {deleteButtonText || <Icon type="keyboard-delete" />}
+                {deleteButtonText || <Icon style={{ fontSize: 28 }} type="keyboard-delete" />}
               </div>
             </div>
           </div>
