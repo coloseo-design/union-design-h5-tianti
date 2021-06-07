@@ -181,20 +181,56 @@
 
 // Buttons
 @btn-font-weight: 400;
-@btn-border-radius-base: @border-radius-base;
-@btn-border-radius-sm: @border-radius-base;
+// 圆角
+@btn-border-radius-base: 6px;
+@btn-border-radius-sm: @btn-border-radius-base * (2 / 3);
+@btn-border-radius-lg: @btn-border-radius-base * (4 / 3);
+
 @btn-border-width: @border-width-base;
 @btn-border-style: @border-style-base;
 @btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
 @btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 @btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
 
+// primary btn
 @btn-primary-color: #fff;
-@btn-primary-bg: @primary-color;
+@btn-primary-active-color: #fff;
+@btn-primary-disabled-color: #fff;
 
-@btn-default-color: @text-color;
-@btn-default-bg: @component-background;
-@btn-default-border: @border-color-base;
+@btn-primary-border: transparent;
+@btn-primary-active-border: transparent;
+@btn-primary-disabled-border: transparent;
+
+@btn-primary-bg: linear-gradient(180deg, #FF3958 0%, #F31D39 100%);
+@btn-primary-active-bg: linear-gradient(180deg, #CD0E27 0%, #A5061B 100%);
+@btn-primary-disabled-bg: linear-gradient(180deg, #FFBDCC 0%, #FF8CA3 100%);
+
+// default btn
+@btn-default-color: @primary-color;
+@btn-default-active-color: @primary-color;
+@btn-default-disabled-color: #FFBDCC;
+
+@btn-default-border: @primary-color;
+@btn-default-active-border: @primary-color;
+@btn-default-disabled-border: #FFBDCC;
+
+@btn-default-bg: #fff;
+@btn-default-active-bg: #FFEBEF;
+@btn-default-disabled-bg: #FFEBEF;
+
+// ghost btn
+@btn-ghost-color: #646566;
+@btn-ghost-active-color: #646566;
+@btn-ghost-disabled-color: #C8CCCC;
+
+@btn-ghost-border: #646566;
+@btn-ghost-active-border: #646566;
+@btn-ghost-disabled-border: #EDEEEE;
+
+@btn-ghost-bg: #FFFFFF;
+@btn-ghost-active-bg: #F5F6F6;
+@btn-ghost-disabled-bg: #F5F6F6;
+
 
 @btn-danger-color: #fff;
 // @btn-danger-bg: color(~`colorPalette('@{error-color}', 5) `);
@@ -207,15 +243,19 @@
 @btn-disable-bg: @disabled-bg;
 @btn-disable-border: @border-color-base;
 
+
 @btn-padding-base: 0 @padding-md - 1px;
-@btn-font-size-lg: @font-size-lg;
-@btn-font-size-sm: @font-size-base;
+// 按钮文字大小
+@btn-font-size-base: 16px;
+@btn-font-size-lg: @btn-font-size-base * 1.125;
+@btn-font-size-sm: @btn-font-size-base * 0.75;
+
 @btn-padding-lg: @btn-padding-base;
 @btn-padding-sm: 0 @padding-xs - 1px;
 
 @btn-height-base: 36px;
-@btn-height-lg: 48px;
-@btn-height-sm: 24px;
+@btn-height-lg: @btn-height-base * (4 / 3); // 48px
+@btn-height-sm: @btn-height-base * (2 / 3); // 24px;
 
 @btn-circle-size: @btn-height-base;
 @btn-circle-size-lg: @btn-height-lg;
