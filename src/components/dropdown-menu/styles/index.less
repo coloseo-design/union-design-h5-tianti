@@ -11,6 +11,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: #1C1D1D;
   &-content {
     flex: 1;
     margin-right: 12px;
@@ -18,7 +19,7 @@
   &-item {
     // flex: 1;
     height: 32px;
-    border: @border-width-base @border-style-base @btn-default-border;
+    border: @border-width-base @border-style-base #C8CCCC;
     border-radius: 3px;
     line-height: 16px;
     padding: 8px 12px;
@@ -33,6 +34,10 @@
     &:last-child {
       margin-right: 0px;
     }
+    &-select {
+      background-color: #FFEBEF;
+      border: 1px solid #F31D39;
+    }
     &-disabled {
       background-color: @dropdown-bg;
       border: 1px solid @dropdown-disabled-border;
@@ -43,7 +48,6 @@
       top: 50%;
       transform: translateY(-50%);
       right: 12px;
-      cursor: pointer;
     }
   }
 }
@@ -99,7 +103,8 @@
       justify-content: space-between;
       align-items: center;
       &-selected {
-        background-color: @dropdown-bg;
+        background-color: #FFEBEF;
+        color: #F31D39;
       }
     }
   }

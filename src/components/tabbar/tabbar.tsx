@@ -195,12 +195,24 @@ Tabbar.Item = memo((props) => {
   );
 
   const itemIconClassName = useMemo(
-    () => classNames('icon', iconClassName, { [`${selectedIconClassName}`]: _key === selectedKey }),
+    () => classNames(
+      'icon',
+      iconClassName, {
+        'tabbar-select-icon': _key === selectedKey,
+        [`${selectedIconClassName}`]: _key === selectedKey,
+      },
+    ),
     [classNames, iconClassName, selectedIconClassName, selectedKey, _key],
   );
 
   const itemTitleClassName = useMemo(
-    () => classNames('title', titleClassName, { [`${selectedTitleClassName}`]: _key === selectedKey }),
+    () => classNames(
+      'title',
+      titleClassName, {
+        'tabbar-select-title': _key === selectedKey,
+        [`${selectedTitleClassName}`]: _key === selectedKey,
+      },
+    ),
     [classNames, titleClassName, selectedTitleClassName, selectedKey, _key],
   );
 

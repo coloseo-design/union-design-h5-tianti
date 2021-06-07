@@ -22,11 +22,12 @@
   }
   &-wrapper {
     position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0px;
+    left: 24px;
+    bottom: 20px;
+    right: 24px;
     max-height: 0px;
     overflow: auto;
+    border-radius: 0.75em;
     &-show {
       max-height: 80%;
       animation: maxHeightW 0.3s linear;
@@ -40,13 +41,13 @@
     width: 100%;
     min-height: 60px;
     background-color: @action-bg;
-    // border-radius: 12px;
-    border-radius: 0.75em;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
     &-option {
-      min-height: 3.375em;
+      min-height: 3.25em;
       border-bottom: 1px solid @action-border-color;
       text-align: center;
-      line-height: 3.375em;
+      line-height: 3.25em;
       font-size: 1em;
       color: @text-color;
       font-weight: 400;
@@ -59,7 +60,6 @@
     }
   }
   &-containter {
-    // padding: 20px 24px;
     padding: 1.25em 1.5em;
     &-title {
       color: @text-color;
@@ -125,7 +125,8 @@
     }
     &-upload, &-share {
       color: @text-color;
-      border-top: 1px solid @action-border-color;
+      padding: 0px 1.5em;
+      // border-top: 1px solid @action-border-color;
     }
   }
 }

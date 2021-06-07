@@ -184,7 +184,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
         ? (
           <div
             className={mask}
-            style={{ backgroundColor: overlay ? 'rgba(0,0,0,0.8)' : 'transparent' }}
+            style={{ backgroundColor: overlay ? 'rgba(0,0,0,0.2)' : 'transparent' }}
             onClick={handleMask}
           >
             <div className={wrapper} style={wrapStyle}>
@@ -217,8 +217,10 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
                   ))}
                 </div>
               )}
-              {type === 'basic' && <div style={{ height: 20, backgroundColor: 'rgba(0,0,0,0.8)' }} />}
-              <div className={footer} onClick={handleCancel}>{cancelText || '取消'}</div>
+              {type === 'basic' && <div style={{ height: 10, backgroundColor: 'transparent' }} />}
+              <div className={footer} onClick={handleCancel}>
+                <div style={{ borderTop: '1px solid #DBDDDD' }}>{cancelText || '取消'}</div>
+              </div>
             </div>
           </div>
         )

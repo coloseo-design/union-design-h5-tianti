@@ -175,6 +175,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
         this.getNodeLocation();
       }
     }
+    console.log('---111');
     this.setState({ selected: !selected, idx: index });
   }
 
@@ -234,12 +235,23 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
       return text;
     };
 
+    const currentMenuClass = (item: any, index: number) => {
+      let names = menuItem;
+      if (visible && idx === index && item.value !== undefined && item.value !== '') {
+        names = `${menuItem} ${dropWrapper}-item-select`;
+      }
+      if (item.disabled) {
+        names = `${menuItem} ${dropWrapper}-item-disabled`;
+      }
+      return names;
+    };
+
     return (
       <div className={dropWrapper} style={style} ref={this.getNode}>
         {(childrenList || []).map((item, index) => (
           <div key={index} className={`${dropWrapper}-content`}>
             <div
-              className={`${menuItem} ${item.disabled ? `${dropWrapper}-item-disabled` : ''}`}
+              className={currentMenuClass(item, index)}
               onClick={this.handleClick(index, item)}
             >
               <span className={`${dropWrapper}-item-text`} style={{ color: activeColor || undefined }}>
@@ -248,6 +260,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
               <Icon
                 type={selected && idx === index ? 'up' : 'down'}
                 className={`${menuItem}-icon`}
+                style={{ color: visible && idx === index && item.value ? '#F31D39' : '#646566' }}
               />
             </div>
             {idx === index && (item.toggle !== undefined ? toogleList[index] : visible) && (
