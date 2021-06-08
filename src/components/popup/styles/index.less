@@ -35,7 +35,7 @@
     min-height: 2em;
     overflow: auto;
     &-header {
-      min-height: 52px;
+      height: 52px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -47,6 +47,7 @@
       border-bottom: 1px solid @popup-border-color;
       padding: 0px 0.75em;
       z-index: 20002;
+      overflow: hidden;
       &:first-child {
         color: @popup-title-color;
         font-weight: 500;

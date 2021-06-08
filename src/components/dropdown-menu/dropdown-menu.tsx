@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -82,6 +83,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
     const { closeOnClickOutside = true } = this.props;
     this.getNodeLocation();
     closeOnClickOutside && document.addEventListener('click', this.bodyClick);
+    document.addEventListener('scroll', this.bodyScroll);
   }
 
   componentDidUpdate(prevProps: DropdownMenuProps) {
@@ -122,6 +124,13 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
     const { closeOnClickOutside = true } = this.props;
     closeOnClickOutside && document.removeEventListener('click', this.bodyClick);
   }
+
+  bodyScroll = () => {
+    const { visible } = this.state;
+    if (this.node && visible) {
+      this.getNodeLocation();
+    }
+  };
 
   bodyClick = () => {
     this.setState({ transitionEnd: true });
@@ -175,8 +184,9 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
         this.getNodeLocation();
       }
     }
-    console.log('---111');
-    this.setState({ selected: !selected, idx: index });
+    if (!item.disabled) {
+      this.setState({ selected: !selected, idx: index });
+    }
   }
 
   handleMask = (item: any) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -254,13 +264,18 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
               className={currentMenuClass(item, index)}
               onClick={this.handleClick(index, item)}
             >
-              <span className={`${dropWrapper}-item-text`} style={{ color: activeColor || undefined }}>
+              <span
+                className={`${dropWrapper}-item-text`}
+                style={{ color: item.disabled ? '#C8CCCC' : (activeColor || undefined) }}
+              >
                 {item.title ? item.title : renderValue(item, index)}
               </span>
               <Icon
                 type={selected && idx === index ? 'up' : 'down'}
                 className={`${menuItem}-icon`}
-                style={{ color: visible && idx === index && item.value ? '#F31D39' : '#646566' }}
+                style={{
+                  color: item.disabled ? '#C8CCCC' : (visible && idx === index && item.value) ? '#F31D39' : '#646566',
+                }}
               />
             </div>
             {idx === index && (item.toggle !== undefined ? toogleList[index] : visible) && (
@@ -273,7 +288,11 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
               }}
             >
               <div
-                style={{ backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.2)', width: '100%', height: '100%' }}
+                style={{
+                  backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.2)',
+                  width: '100%',
+                  height: '100%',
+                }}
                 onClick={this.handleMask(item)}
               >
                 <DropdownItem

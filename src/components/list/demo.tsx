@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from '../index';
+import { List, Icon, Button } from '../index';
 
 const containerStyle = {
   width: 377,
@@ -66,7 +66,7 @@ const listDemo = () => {
   ];
   const data2 = [
     {
-      title: '评论内评论内容评论内容评论内容评论内容评论内容评论内容评论内评论内评论内容评论内容评论内容评论内容评论内容评论内容评论内评论内评论内容评论内容评论内容评论内容评论内容评论内容评论内评论内评论内容评论内容评论内容评论内容评论内容评论内容评论内',
+      title: '评论内评论内容评论内容评论内容评论内容评论内容评论内容评论内评论内评论内',
       subtitle: '公文-云公文 2021/02/8',
       extra:
   <div>
@@ -79,7 +79,7 @@ const listDemo = () => {
       ,
     },
     {
-      title: '行最多两行最多两行最多两行最多两行这里是待办信息的内容，长文可以折行，最多两评论内评论内容评论内容评论内容评论内容评论内容评论内容评论内',
+      title: '评论内容评论内容评论内容评论内容评论内容评论内容评论内',
       subtitle: '公文-云公文 2021/02/8',
       extra:
   <div>
@@ -98,17 +98,12 @@ const listDemo = () => {
       <List
         dataSource={data}
         itemLayout="vertical"
-        renderItem={(item) => (
+        renderItem={(item, index) => (
           <Item
-            arrow
-            icon={(
-              <div style={{
-                width: 24, height: 24, backgroundColor: '#A6A8A9', borderRadius: 8,
-              }}
-              />
-            )}
+            arrow={index === data.length - 1 ? <Button size="small">按钮</Button> : 'arrow'}
             onIconClick={() => { console.log('----'); }}
           >
+            <Item.Avatar size={24} shape="square" style={{ backgroundColor: 'gray' }} />
             <Item.Content>
               <Item.Title>{item.name}</Item.Title>
             </Item.Content>
@@ -122,7 +117,9 @@ const listDemo = () => {
           style={{ marginTop: 64 }}
           renderItem={(item) => (
             <Item>
-              <Item.Avatar size={64} shape="square" style={{ backgroundColor: '#E53F3F' }} />
+              <Item.Avatar size={48} shape="square" style={{ backgroundColor: '#E53F3F' }}>
+                <Icon type="add-to-addressbook" style={{ color: '#fff' }} />
+              </Item.Avatar>
               <Item.Content>
                 <Item.Title>{item.name}</Item.Title>
                 <Item.SubTitle>{item.subtitle}</Item.SubTitle>
@@ -138,7 +135,7 @@ const listDemo = () => {
           style={{ marginTop: 64 }}
           renderItem={(item) => (
             <Item>
-              <Item.Avatar size={64} src={item.avatar_url} />
+              <Item.Avatar size={48} src={item.avatar_url} />
               <Item.Content>
                 <Item.Title>
                   <span>{item.name}</span>
@@ -162,7 +159,6 @@ const listDemo = () => {
             <Item>
               <Item.Content>
                 <Item.Title style={{
-                  width: '100%',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
@@ -206,7 +202,7 @@ const listDemo = () => {
           dataSource={data2}
           renderItem={(item) => (
             <Item>
-              <Item.Avatar size={64} text="永民" />
+              <Item.Avatar size={48} text="永民" />
               <Item.Content>
                 <Item.SubTitle>{item.subtitle}</Item.SubTitle>
                 <Item.Title style={{ marginTop: 16 }}>{item.title}</Item.Title>

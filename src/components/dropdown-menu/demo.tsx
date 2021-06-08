@@ -87,7 +87,7 @@ export default () => {
       </div>
       <div style={{ marginTop: 32 }}>
         <h1>禁止菜单</h1>
-        <DropdownMenu activeColor="rgb(25, 137, 250)">
+        <DropdownMenu>
           <DropdownItem options={option2} disabled />
           <DropdownItem value="b" options={option2} disabled />
         </DropdownMenu>

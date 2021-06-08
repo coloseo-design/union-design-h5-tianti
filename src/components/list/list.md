@@ -10,7 +10,7 @@ subtitle: 列表
 | --- | --- | --- | --- | --- |
 |dataSource|列表数据源|any[]|--|--|
 |itemLayout|设置 List.Item 布局, 设置成 horizontal 则横排样式显示, 默认竖排 | string | vertical||
-|renderItem|渲染列表项|(item) => ReactNode| --||
+|renderItem|渲染列表项|(item, index) => ReactNode| --||
 |style|list样式| object| --||
 |className|list类名|string|--|--|
 
@@ -19,8 +19,7 @@ subtitle: 列表
 ## List.Item
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-|icon|title前面展示小图标|ReactNode| --| --|
-|arrow|右侧的箭头| boolean|false|--|
+|arrow|右侧的Icon| 'arrow' \| ReactNode |-- |--|
 |extra|额外内容, 通常用在 itemLayout 为 horizontal 的情况下, 展示右侧内容| ReactNode | --|--|
 |onIconClick|点击右侧的箭头|(e) => void|--|--|
 |style|listItem样式| object| --|--|

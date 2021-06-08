@@ -8,7 +8,7 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   prefixCls?: string;
   dataSource?: any[];
   itemLayout?: 'vertical' | 'horizontal';
-  renderItem?: (item: any) => React.ReactNode;
+  renderItem?: (item: any, index: number) => React.ReactNode;
   style?: React.CSSProperties;
 }
 
@@ -30,7 +30,7 @@ class List extends React.Component<ListProps> {
     return (
       <div {...rest} className={prex} style={style}>
         {(dataSource || []).map((item, index) => {
-          const renderResult = renderItem(item);
+          const renderResult = renderItem(item, index);
           if (React.isValidElement(renderResult)) {
             React.cloneElement(renderResult, { itemLayout });
           }

@@ -169,7 +169,11 @@ Tabbar.Item = memo((props) => {
     const tempIcon = _key === selectedKey ? (selectedIcon ?? icon) : icon;
     if (React.isValidElement(tempIcon)) return tempIcon;
     if (typeof tempIcon === 'string') {
-      return <Icon type={tempIcon} />;
+      return (
+        <Icon
+          type={tempIcon}
+        />
+      );
     }
     return <div />;
   }, [_key, icon, selectedKey, selectedIcon]);

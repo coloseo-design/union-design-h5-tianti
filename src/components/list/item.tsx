@@ -9,7 +9,7 @@ const ListItemContext = React.createContext<{
   itemLayout?: 'vertical' | 'horizontal';
   icon?: React.ReactNode;
   extra?: React.ReactNode;
-  arrow?: boolean;
+  arrow?: 'arrow' | React.ReactNode;
   isLast?: boolean;
   onIconClick?:(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
     }>({});
@@ -20,7 +20,7 @@ export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   itemLayout?: 'vertical' | 'horizontal';
   icon?: React.ReactNode;
   extra?: React.ReactNode;
-  arrow?: boolean;
+  arrow?: 'arrow' | React.ReactNode;
   isLast?: boolean;
   /* 点击右侧箭头事件 */
   onIconClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
@@ -59,7 +59,7 @@ class ListItem extends React.Component<ListItemProps> {
     const prex = getPrefixCls('list-item', prefixCls);
     const itemStyle = classNames(prex);
     return (
-      <div {...rest} className={itemStyle}>
+      <div {...rest} className={itemStyle} style={{ borderBottom: isLast ? 'none' : '1px solid #EEF0F0' }}>
         <ListItemContext.Provider
           value={{
             icon,
@@ -67,7 +67,6 @@ class ListItem extends React.Component<ListItemProps> {
             extra,
             arrow,
             onIconClick,
-            isLast,
           }}
         >
           {children}
@@ -101,9 +100,9 @@ const Avatar = (props: AvatarProps) => {
     lineHeight: `${height}px`,
     borderRadius: shape === 'circle' ? '50%' : '8px',
   };
-  if (text || children) {
+  if (text) {
     Object.assign(avaStyle, {
-      backgroundImage: 'linear-gradient(#F72F48, #FE6666)',
+      backgroundImage: 'linear-gradient(135deg, #FF3958 0%, #F31D39 100%)',
     });
   }
   return (
@@ -142,7 +141,7 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
     ...rest
   } = props;
   const {
-    itemLayout, icon, extra, onIconClick, arrow, isLast,
+    itemLayout, extra, onIconClick, arrow,
   } = React.useContext(ListItemContext);
   const getPrefixClass = useGetPrefixClass('list-item-content');
   const contentStyle = {
@@ -158,22 +157,23 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const handleClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     onIconClick && onIconClick(e);
   };
+
   return (
     <div
       {...rest}
       className={getPrefixClass()}
-      style={{ ...style, borderBottom: isLast ? undefined : '1px solid #D5D8D8' }}
+      style={style}
     >
-      <div style={{ display: 'flex', flex: 1, width: 0 }}>
-        {icon && <span style={{ paddingRight: '1em' }}>{icon}</span>}
-        <div
-          style={contentStyle}
-        >
-          <div>{children}</div>
-          {extra && <div style={{ marginLeft: '1.5em' }}>{extra}</div>}
-        </div>
+      <div style={contentStyle}>
+        <div>{children}</div>
+        {extra && <div style={{ marginLeft: '1.5em' }}>{extra}</div>}
       </div>
-      {arrow && <Icon type="right" onClick={handleClick} style={{ fontSize: '1.125em' }} />}
+      {arrow
+      && (
+      <>
+        {arrow === 'arrow' ? <Icon type="right" onClick={handleClick} style={{ fontSize: '1.125em', color: '#646566' }} /> : arrow}
+      </>
+      )}
     </div>
   );
 };
