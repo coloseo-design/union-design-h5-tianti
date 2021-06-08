@@ -22,7 +22,7 @@ export type CheckboxGroupOption = {
 };
 export type CheckboxGroupOptions = string[] | CheckboxGroupOption[];
 
-export interface CheckboxGroupProps {
+export interface CheckboxGroupProps extends React.AnchorHTMLAttributes<HTMLDivElement> {
   /** 选项 */
   options?: CheckboxGroupOptions;
   /** 默认选中 */
@@ -30,23 +30,24 @@ export interface CheckboxGroupProps {
   /** 选中 */
   value?: string[];
   /** 整组失效 */
-  disabled: boolean;
+  disabled?: boolean;
   /** 选项切换事件 */
   onChange?: (checkedValues: string[]) => void;
+  /** 自定义prefix */
+  prefixCls?: string;
 }
 
-export interface CheckboxProps extends ConfigConsumerProps {
+export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   /** 自定义prefix */
   prefixCls?: string;
   /** 是否禁止选择 */
   disabled?: boolean;
   /** 是否选中 */
-  checked: boolean;
+  checked?: boolean;
   /** 选项选中的值 */
   value?: string;
   /** onchange */
   onChange?: (checked: boolean) => void;
-  checkboxGroupContext?: CheckboxGroupContextProps;
 }
 
 export interface CheckboxState {

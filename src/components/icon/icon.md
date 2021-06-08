@@ -15,5 +15,5 @@ toc: false
 | --- | --- | --- | --- | --- |
 | type | 图标类型。遵循图标的命名规范 | string | - |  |
 | style | 设置图标的样式，例如 `fontSize` 和 `color` | CSSProperties | - |  |
-| spin | 是否有旋转动画 | boolean | false |  |
+| spin | 是否有旋转动画 | boolean | false | 按照约定以type如果以loading开头则spin默认为true |
 

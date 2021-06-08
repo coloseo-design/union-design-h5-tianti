@@ -1,87 +1,65 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classnames from 'classnames';
 import warning from '../utils/warning';
-import { withGlobalConfig } from '../config-provider';
-import { CheckboxProps, CheckboxState } from './type';
-import Group, { withCheckboxGrooupConsumer } from './group';
+import { CheckboxProps } from './type';
+import Group, { Context } from './group';
+import { ConfigContext } from '../config-provider/context';
 
-@withCheckboxGrooupConsumer
-@withGlobalConfig
-export default class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
-  static Group: typeof Group;
+const Checkbox: React.FC<CheckboxProps> = (props: CheckboxProps) => {
+  const {
+    prefixCls: customizedPrefixCls,
+    disabled = false,
+    children,
+    value = '',
+    checked: checkedFromProps = false,
+    onChange,
+  } = props;
 
-  static defaultProps:CheckboxProps = {
-    checked: false,
-    getPrefixCls: (input: string) => input,
-  }
-
-  constructor(props: CheckboxProps) {
-    super(props);
-    this.state = {
-      checked: props.checked || false,
-    };
-  }
-
-  componentDidUpdate(props: CheckboxProps) {
-    const { checked = false } = this.props;
-    if (checked !== props.checked) {
-      this.setState({
-        checked,
-      });
-    }
-  }
-
-  onClick = () => {
-    const { checked } = this.state;
-    const {
-      onChange, disabled, checkboxGroupContext, value = '',
-    } = this.props;
+  const [checked, setChecked] = useState(checkedFromProps || false);
+  useEffect(() => {
+    setChecked(checkedFromProps);
+  }, [checkedFromProps]);
+  const checkboxGroupContext = useContext(Context);
+  const onClick = () => {
     if (checkboxGroupContext && checkboxGroupContext.disabled) return;
     if (disabled) return;
     if (checkboxGroupContext && checkboxGroupContext.onChange) {
       checkboxGroupContext.onChange(value);
     }
     const toggleChecked = !checked;
-    this.setState({
-      checked: toggleChecked,
-    });
+    setChecked(toggleChecked);
     onChange && onChange(toggleChecked);
+  };
+
+  let aChecked = checked;
+  const { getPrefixCls } = useContext(ConfigContext);
+  // 如果value在checkboxGroup的value中，则选中
+  if (checkboxGroupContext && checkboxGroupContext.value) {
+    warning(!value, 'Checkbox嵌套在Group中须提供value');
+    aChecked = checkboxGroupContext.value.indexOf(value) >= 0;
   }
+  const prefix = getPrefixCls('checkbox', customizedPrefixCls);
+  const className = classnames(prefix, {
+    [`${prefix}-checked`]: aChecked,
+    [`${prefix}-disabled`]: disabled,
+  });
+  const iconClassName = `${prefix}-icon`;
+  return (
+    <div className={className} onClick={onClick}>
+      <div className={iconClassName} />
+      <span>
+        {
+          children
+        }
+      </span>
 
-  render() {
-    const {
-      getPrefixCls,
-      prefixCls: customizedPrefixCls,
-      disabled,
-      children,
-      checkboxGroupContext,
-      value = '',
-    } = this.props;
+    </div>
+  );
+};
 
-    let { checked } = this.state;
-    // 如果value在checkboxGroup的value中，则选中
-    if (checkboxGroupContext && checkboxGroupContext.value) {
-      warning(!value, 'Checkbox嵌套在Group中须提供value');
-      checked = checkboxGroupContext.value.indexOf(value) >= 0;
-    }
-    const prefix = getPrefixCls('checkbox', customizedPrefixCls);
-    const className = classnames(prefix, {
-      [`${prefix}-checked`]: checked,
-      [`${prefix}-disabled`]: disabled,
-    });
-    const iconClassName = `${prefix}-icon`;
-    return (
-      <div className={className} onClick={this.onClick}>
-        <div className={iconClassName} />
-        <span>
-          {
-            children
-          }
-        </span>
+const ComposedCheckbox = Checkbox as typeof Checkbox & {
+  Group: typeof Group;
+};
+ComposedCheckbox.Group = Group;
 
-      </div>
-    );
-  }
-}
-
-Checkbox.Group = Group;
+export default ComposedCheckbox;

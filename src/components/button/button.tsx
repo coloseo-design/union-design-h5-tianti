@@ -54,7 +54,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     [`${prefixCls}-block`]: block,
   });
   const iconName = loading ? 'loading-circle' : icon;
-  const iconElement = iconName ? <Icon type={iconName} spin={iconName === 'loading-circle'} /> : undefined;
+  const iconElement = iconName ? <Icon type={iconName} /> : undefined;
   const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
   // link-like button
   if (typeof linkButtonRestProps.href !== 'undefined') {

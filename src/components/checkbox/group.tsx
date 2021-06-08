@@ -1,58 +1,58 @@
-import React from 'react';
+import omit from 'omit.js';
+import classnames from 'classnames';
+import React, { useContext, useEffect, useState } from 'react';
 import Checkbox from './checkbox';
 import {
   CheckboxGroupProps,
   CheckboxGroupContextProps,
   CheckboxGroupOption,
   CheckboxGroupOptions,
-  CheckboxGroupState,
 } from './type';
+import { ConfigContext } from '../config-provider/context';
 
-const Context = React.createContext<CheckboxGroupContextProps>({});
-const { Consumer: CheckboxGroupConsumer, Provider } = Context;
+export const Context = React.createContext<CheckboxGroupContextProps>({});
 
-export default class CheckboxGroup extends React.Component<CheckboxGroupProps, CheckboxGroupState> {
-  static defaultProps: CheckboxGroupProps = {
-    value: [],
-    disabled: false,
-  };
+const CheckboxGroup: React.FC<CheckboxGroupProps> = (props: CheckboxGroupProps) => {
+  const {
+    options = [],
+    disabled = false,
+    onChange,
+    value: valueFromProps,
+    prefixCls: customizedPrefixCls,
+    className,
+    defaultValue,
+    ...rest
+  } = props;
+  let { children } = props;
+  const [value, setValue] = useState<Array<string>>(valueFromProps || defaultValue || []);
 
-  static getDerivedStateFromProps(nextProps: CheckboxGroupProps) {
-    if ('value' in nextProps) {
-      return {
-        value: nextProps.value,
-      };
+  useEffect(() => {
+    if (valueFromProps) {
+      setValue(valueFromProps);
     }
-    return null;
-  }
+  }, [valueFromProps]);
 
-  constructor(props: CheckboxGroupProps) {
-    super(props);
-    const { value, defaultValue } = props;
-    this.state = {
-      value: value || defaultValue || [],
-    };
-  }
+  const { getPrefixCls } = useContext(ConfigContext);
 
-  onGroupChange = (value: string) => {
-    const { value: valueOfState = [] } = this.state;
-    const { onChange } = this.props;
-    const index = valueOfState.indexOf(value);
+  const onGroupChange = (input: string) => {
+    const index = value.indexOf(input);
     if (index >= 0) {
-      valueOfState.splice(index, 1);
+      value.splice(index, 1);
     } else {
-      valueOfState.push(value);
+      value.push(input);
     }
-    const newState = [...valueOfState];
-    this.setState({
-      value: newState,
-    });
+    const newState = [...value];
+    setValue(newState);
     onChange && onChange(newState);
   };
 
-  formateOptions = (options: CheckboxGroupOptions) => {
-    const { disabled } = this.props;
-    return options.map((item: string | CheckboxGroupOption) => {
+  const contextValue = {
+    onChange: onGroupChange,
+    disabled,
+    value,
+  };
+  const formateOptions = (_options: CheckboxGroupOptions) => _options.map(
+    (item: string | CheckboxGroupOption) => {
       if (typeof (item) === 'string') {
         return {
           label: item,
@@ -64,50 +64,32 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps, C
         ...item,
         disabled: disabled || item.disabled,
       };
-    });
+    },
+  );
+  if (options.length > 0) {
+    children = formateOptions(options).map((item: CheckboxGroupOption) => (
+      <Checkbox
+        key={item.value}
+        checked={value.indexOf(item.value) >= 0}
+        disabled={item.disabled}
+        value={item.value}
+      >
+        {item.label}
+      </Checkbox>
+    ));
   }
-
-  render() {
-    const { options = [], disabled = false } = this.props;
-    let { children } = this.props;
-    const { value = [] } = this.state;
-    const contextValue = {
-      onChange: this.onGroupChange,
-      disabled,
-      value,
-    };
-    if (options.length > 0) {
-      children = this.formateOptions(options).map((item) => (
-        <Checkbox
-          key={item.value}
-          checked={value.indexOf(item.value) >= 0}
-          disabled={item.disabled}
-          value={item.value}
-        >
-          {item.label}
-        </Checkbox>
-      ));
-    }
-    return (
-      <Provider value={contextValue}>
+  const prefix = getPrefixCls('checkbox-group', customizedPrefixCls);
+  const classNames = classnames(prefix, className);
+  const otherProps = omit(rest, ['children']);
+  return (
+    <Context.Provider value={contextValue}>
+      <div {...otherProps} className={classNames}>
         {
           children
         }
-      </Provider>
-    );
-  }
-}
-
-/* eslint max-len: 0 */
-/* eslint react/display-name: 0 */
-const withCheckboxGrooupConsumer = <T extends CheckboxGroupContextProps>(Component: React.FC<T> | React.Component<T>) => (props: T) => (
-  <CheckboxGroupConsumer>
-    {
-      (checkboxGroupContext: CheckboxGroupContextProps) => <Component {...props} checkboxGroupContext={checkboxGroupContext} />
-    }
-  </CheckboxGroupConsumer>
-);
-
-export {
-  withCheckboxGrooupConsumer,
+      </div>
+    </Context.Provider>
+  );
 };
+
+export default CheckboxGroup;
