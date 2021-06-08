@@ -105,9 +105,6 @@
 
   .@{iconfont-css-prefix} {
     transition: margin-left 0.3s @ease-in-out;
-
-    // Follow icon blur under windows. Change the render.
-    // https://github.com/ant-design/ant-design/issues/13924
     &.@{iconfont-css-prefix}-plus,
     &.@{iconfont-css-prefix}-minus {
       > svg {
@@ -145,7 +142,6 @@
     .btn-group(@btn-prefix-cls);
   }
 
-  // http://stackoverflow.com/a/21281554/3040605
   &:focus > span,
   &:active > span {
     position: relative;
@@ -189,17 +185,12 @@
   &-block {
     width: 100%;
   }
-
-  // https://github.com/ant-design/ant-design/issues/12681
   &:empty {
     vertical-align: top;
   }
 }
 
 a.@{btn-prefix-cls} {
-  // Fixing https://github.com/ant-design/ant-design/issues/12978
-  // It is a render problem of chrome, which is only happened in the codesandbox demo
-  // 0.1px for padding-top solution works and I don't why
   padding-top: 0.1px;
   line-height: @btn-height-base - 2px;
 

@@ -35,7 +35,7 @@ const Col: React.FC<ColProps> = (props: ColProps) => {
       [`${prefix}-${size}-offset-${sizeProps.offset}`]: !!sizeProps.offset,
       [`${prefix}-${size}-order-${sizeProps.order}`]: !!sizeProps.order,
     });
-    delete (rest as any)[size];
+    delete (rest as BreakPointMap)[size];
     return composd;
   }, {});
   const colClassName = classNames(prefix, {

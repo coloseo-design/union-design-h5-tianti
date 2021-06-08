@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import omit from 'omit.js';
 import classNames from 'classnames';
-import { ConfigConsumerProps, withGlobalConfig } from '../config-provider/context';
+import { ConfigConsumerProps, ConfigContext } from '../config-provider/context';
 import Icon from '../icon';
 import { tuple, Omit } from '../utils/type';
 
-export interface ButtonState {
-  loading?: boolean | { delay?: number };
-}
 /**
  * button样式是基于以下一些状态的组合：
  * 5种基础按钮：默认按钮, 主按钮， 虚线按钮，文本按钮，链接按钮
@@ -36,7 +33,7 @@ export interface BaseButtonProps {
   /* 按钮尺寸 */
   size?: ButtonSize;
   /* 加载中 */
-  loading?: boolean | { delay?: number };
+  loading?: boolean;
   /* 用户自定义类前缀，默认uni-btn */
   prefixCls?: string;
   /* 用户自定义类 */
@@ -60,7 +57,7 @@ export type AnchorButtonProps = {
   target?: ButtonTargetType;
   /* 单击行为 */
   onClick?: React.MouseEventHandler<HTMLElement>;
-} & Omit<React.AnchorHTMLAttributes<any>, 'type' | 'onClick'>;
+} & Omit<React.AnchorHTMLAttributes<unknown>, 'type' | 'onClick'>;
 
 /**
  * form中的原始button按钮角色
@@ -69,145 +66,94 @@ export type AnchorButtonProps = {
 export type NativeButtonProps = {
   htmlType: ButtonHTMLType;
   onClick: React.MouseEventHandler<HTMLElement>;
-} & Omit<React.ButtonHTMLAttributes<any>, 'type' | 'onClick'>;
+} & Omit<React.ButtonHTMLAttributes<unknown>, 'type' | 'onClick'>;
 
 export type ButtonProps = Partial<
   BaseButtonProps & AnchorButtonProps & NativeButtonProps & ConfigConsumerProps
 >;
 
-@withGlobalConfig
-class Button extends React.Component<ButtonProps, ButtonState> {
-  static defaultProps: ButtonProps = {
-    loading: false,
-    ghost: false,
-    block: false,
-    htmlType: 'button',
+const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+  const { getPrefixCls } = useContext(ConfigContext);
+  const ButtonSizeMap = {
+    large: 'lg',
+    small: 'sm',
+    default: '',
+  };
+  const {
+    children,
+    size,
+    className, // 自定义的className
+    type,
+    shape,
+    icon,
+    block = false,
+    ghost,
+    prefixCls: customizedPrefixCls,
+    forwardedRef,
+    onClick: onClickFromProps,
+    loading: loadingFromProps = false,
+    ...rest
+  } = props;
+  let sizeCls = '';
+  if (size) {
+    sizeCls = ButtonSizeMap[size];
+  }
+  const [loading, setLoading] = useState(loadingFromProps);
+  const prefixCls = getPrefixCls('btn', customizedPrefixCls);
+
+  const onClick: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = (e) => {
+    if (loading) return;
+    if (onClickFromProps) {
+      (onClickFromProps as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>)(e);
+    }
   };
 
-  delayTimer: NodeJS.Timeout | undefined;
+  useEffect(() => {
+    setLoading(loadingFromProps);
+  }, [loadingFromProps]);
 
-  /**
-   * 托管loading属性
-   * @param props
-   */
-  constructor(props: ButtonProps) {
-    super(props);
-    this.state = {
-      loading: props.loading,
-    };
-  }
-
-  /**
-   * 接管loading属性
-   * @param prevProps
-   */
-  componentDidUpdate(prevProps: BaseButtonProps) {
-    const { loading } = this.props;
-    if (prevProps.loading && typeof prevProps.loading !== 'boolean') {
-      this.delayTimer && clearTimeout(this.delayTimer);
-    } else if (loading && typeof loading !== 'boolean' && loading.delay) {
-      this.delayTimer = setTimeout(() => {
-        this.setState({
-          loading,
-        });
-      }, loading.delay);
-    } else if (loading !== prevProps.loading && typeof loading === 'boolean') {
-      this.setState({
-        loading,
-      });
-    }
-  }
-
-  /* 清除定时器 */
-  componentWillUnmount() {
-    this.delayTimer && clearTimeout(this.delayTimer);
-  }
-
-  /**
-   * 代理按钮的click事件
-   * 当状态为loading的时候，点击无效
-   * @param e
-   */
-  onClick: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = (e) => {
-    const { loading } = this.state;
-    const { onClick } = this.props;
-    if (loading) return;
-    if (onClick) {
-      (onClick as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>)(e);
-    }
-  }
-
-  render = () => {
-    const ButtonSizeMap = {
-      large: 'lg',
-      small: 'sm',
-      default: '',
-    };
-    const {
-      children,
-      size,
-      className, // 自定义的className
-      type,
-      shape,
-      icon,
-      block,
-      ghost,
-      prefixCls: customizedPrefixCls,
-      forwardedRef,
-      getPrefixCls,
-      loading: _,
-      ...rest
-    } = this.props;
-    const { loading } = this.state;
-    let sizeCls = '';
-    if (size) {
-      sizeCls = ButtonSizeMap[size];
-    }
-    const prefixCls = getPrefixCls!('btn', customizedPrefixCls);
-
-    const classes: string = classNames(prefixCls, className, {
-      [`${prefixCls}-${sizeCls}`]: sizeCls,
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-${shape}`]: shape,
-      [`${prefixCls}-loading`]: !!loading,
-      [`${prefixCls}-background-ghost`]: ghost,
-      [`${prefixCls}-block`]: block,
-    });
-    const iconName = loading ? 'loading-circle' : icon;
-    const iconElement = iconName ? <Icon type={iconName} spin={iconName === 'loading-circle'} /> : undefined;
-    const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
-    // link-like button
-    if (typeof linkButtonRestProps.href !== 'undefined') {
-      return (
-        <a
-          {...linkButtonRestProps}
-          className={classes}
-          href={linkButtonRestProps.href}
-          onClick={this.onClick}
-          ref={forwardedRef as React.ForwardedRef<HTMLAnchorElement>}
-        >
-          {iconElement}
-          <span>{children}</span>
-        </a>
-      );
-    }
-    // TODO: htmlType属性将来用于form中进行劫持
-    const { htmlType, ...otherProps } = rest as NativeButtonProps;
-    // loading作用于图标
-    /* eslint react/button-has-type: 0 */
+  const classes: string = classNames(prefixCls, className, {
+    [`${prefixCls}-${sizeCls}`]: sizeCls,
+    [`${prefixCls}-${type}`]: type,
+    [`${prefixCls}-${shape}`]: shape,
+    [`${prefixCls}-loading`]: !!loading,
+    [`${prefixCls}-background-ghost`]: ghost,
+    [`${prefixCls}-block`]: block,
+  });
+  const iconName = loading ? 'loading-circle' : icon;
+  const iconElement = iconName ? <Icon type={iconName} spin={iconName === 'loading-circle'} /> : undefined;
+  const linkButtonRestProps = omit(rest, ['htmlType']) as AnchorButtonProps;
+  // link-like button
+  if (typeof linkButtonRestProps.href !== 'undefined') {
     return (
-      <button
-        {...(otherProps)}
-        type={htmlType}
+      <a
+        {...linkButtonRestProps}
         className={classes}
-        onClick={this.onClick}
-        ref={forwardedRef as React.ForwardedRef<HTMLButtonElement>}
+        href={linkButtonRestProps.href}
+        onClick={onClick}
+        ref={forwardedRef as React.ForwardedRef<HTMLAnchorElement>}
       >
         {iconElement}
         <span>{children}</span>
-      </button>
+      </a>
     );
   }
-}
+  // TODO: htmlType属性将来用于form中进行劫持
+  const { htmlType = 'button', ...otherProps } = rest as NativeButtonProps;
+  // loading作用于图标
+  /* eslint react/button-has-type: 0 */
+  return (
+    <button
+      {...(otherProps)}
+      type={htmlType}
+      className={classes}
+      onClick={onClick}
+      ref={forwardedRef as React.ForwardedRef<HTMLButtonElement>}
+    >
+      {iconElement}
+      <span>{children}</span>
+    </button>
+  );
+};
 
-export default React.forwardRef((props: Omit<ButtonProps, 'forwardedRef'>, ref: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement>) => <Button {...props} forwardedRef={ref} />);
+export default Button;
