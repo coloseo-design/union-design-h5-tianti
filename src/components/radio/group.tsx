@@ -1,41 +1,48 @@
-import React from 'react';
+import React, {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
+import omit from 'omit.js';
+import classNames from 'classnames';
+import { ConfigContext } from '../config-provider/context';
 import Radio from './radio';
 import {
-  RadioGroupContextProps, RadioGroupOption, RadioGroupOptions, RadioGroupProps, RadioGroupState,
+  RadioGroupContextProps, RadioGroupOption, RadioGroupOptions, RadioGroupProps,
 } from './type';
 
-const Context = React.createContext<RadioGroupContextProps>({});
-const { Consumer: RadioGroupConsumer, Provider } = Context;
+export const Context = React.createContext<RadioGroupContextProps>({});
 
-export default class RadioGroup extends React.Component<RadioGroupProps, RadioGroupState> {
-  static getDerivedStateFromProps(nextProps: RadioGroupProps) {
-    if ('value' in nextProps) {
-      return {
-        value: nextProps.value,
-      };
-    }
-    return null;
-  }
+const RadioGroup: React.FC<RadioGroupProps> = (props: RadioGroupProps) => {
+  const {
+    options = [], disabled = false,
+    onChange,
+    defaultValue,
+    value: valueFromProps,
+    prefixCls: customizedPrefixCls,
+    className: customizedClassName,
+    ...rest
+  } = props;
+  let { children } = props;
+  const [value, setValue] = useState(valueFromProps || defaultValue || '');
+  const { getPrefixCls } = useContext(ConfigContext);
+  const onGroupChange = useCallback((_value: string) => {
+    setValue(_value);
+    onChange && onChange(_value);
+  }, [onChange]);
 
-  constructor(props: RadioGroupProps) {
-    super(props);
-    const { value, defaultValue } = props;
-    this.state = {
-      value: value || defaultValue || '',
-    };
-  }
-
-  onGroupChange = (value: string) => {
-    const { onChange } = this.props;
-    this.setState({
-      value,
-    });
-    onChange && onChange(value);
+  const contextValue = {
+    onChange: onGroupChange,
+    disabled,
+    value,
   };
 
-  formateOptions = (options: RadioGroupOptions) => {
-    const { disabled } = this.props;
-    return options.map((item: string | RadioGroupOption) => {
+  useEffect(() => {
+    if (valueFromProps) {
+      setValue(valueFromProps);
+    }
+  }, [valueFromProps]);
+
+  const formateOptions = (_options: RadioGroupOptions) => _options.map(
+    (item: string | RadioGroupOption) => {
       if (typeof (item) === 'string') {
         return {
           label: item,
@@ -47,51 +54,32 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
         ...item,
         disabled: disabled || item.disabled,
       };
-    });
+    },
+  );
+  if (options.length > 0) {
+    children = formateOptions(options).map((item) => (
+      <Radio
+        key={item.value}
+        checked={value === item.value}
+        disabled={item.disabled}
+        value={item.value}
+      >
+        {item.label}
+      </Radio>
+    ));
   }
-
-  render() {
-    const { options = [], disabled = false } = this.props;
-    let { children } = this.props;
-    const { value } = this.state;
-    const contextValue = {
-      onChange: this.onGroupChange,
-      disabled,
-      value,
-    };
-    console.log('contextValue', contextValue);
-    if (options.length > 0) {
-      children = this.formateOptions(options).map((item) => (
-        <Radio
-          key={item.value}
-          checked={value === item.value}
-          disabled={item.disabled}
-          value={item.value}
-        >
-          {item.label}
-        </Radio>
-      ));
-    }
-    return (
-      <Provider value={contextValue}>
+  const prefix = getPrefixCls('radio-group', customizedPrefixCls);
+  const classnames = classNames(prefix, customizedClassName);
+  const otherProps = omit(rest, ['children']);
+  return (
+    <Context.Provider value={contextValue}>
+      <div {...otherProps} className={classnames}>
         {
           children
         }
-      </Provider>
-    );
-  }
-}
-
-/* eslint max-len: 0 */
-/* eslint react/display-name: 0 */
-const withRadioGrooupConsumer = <T extends RadioGroupContextProps>(Component: React.FC<T> | React.Component<T>) => (props: T) => (
-  <RadioGroupConsumer>
-    {
-      (checkboxGroupContext: RadioGroupContextProps) => <Component {...props} radioGroupContext={checkboxGroupContext} />
-    }
-  </RadioGroupConsumer>
-);
-
-export {
-  withRadioGrooupConsumer,
+      </div>
+    </Context.Provider>
+  );
 };
+
+export default RadioGroup;

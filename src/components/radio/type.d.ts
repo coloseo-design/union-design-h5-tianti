@@ -22,7 +22,9 @@ export type RadioGroupOption = {
 };
 export type RadioGroupOptions = string[] | RadioGroupOption[];
 
-export interface RadioGroupProps {
+export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** 自定义prefix */
+  prefixCls?: string;
   /** 选项 */
   options?: RadioGroupOptions;
   /** 默认选中 */
@@ -30,20 +32,20 @@ export interface RadioGroupProps {
   /** 选中 */
   value?: string;
   /** 整组失效 */
-  disabled: boolean;
+  disabled?: boolean;
   /** 选项切换事件 */
   onChange?: (checkedValue: string) => void;
 }
 
-export interface RadioProps extends ConfigConsumerProps {
+export interface RadioProps extends React.HTMLAttributes<HTMLDivElement> {
   /** 自定义prefix */
   prefixCls?: string;
   /** 是否禁止选择 */
   disabled?: boolean;
   /** 是否选中 */
-  checked: boolean;
+  checked?: boolean;
   /** 默认是否选中 */
-  defaultChecked: boolean;
+  defaultChecked?: boolean;
   /** 选项选中的值 */
   value?: string;
   /** onchange */

@@ -10,6 +10,14 @@ const containerStyle = {
   borderRadius: 12,
   boxShadow: '#ebedf0 0 4px 12px',
 };
+const section = {
+  title: {
+    marginTop: 10,
+  },
+  content: {
+
+  },
+};
 const RadioDemo = () => (
   <div style={containerStyle}>
     <div>
@@ -18,17 +26,14 @@ const RadioDemo = () => (
       <Radio disabled>复选框（禁止）</Radio>
       <Radio disabled checked>复选框（选中且禁止）</Radio>
     </div>
-
-    <div>
+    <h5 style={section.title}>Radio.Group全部禁止</h5>
+    <div style={section.content}>
       <Radio.Group
-        defaultValue="A"
-        disabled={false}
-        onChange={(values) => console.log('values', values)}
+        disabled
         options={[
           {
             value: 'A',
             label: 'A',
-            disabled: true,
           },
           {
             value: 'B',
@@ -41,15 +46,36 @@ const RadioDemo = () => (
         ]}
       />
     </div>
-    <div>
+    <h5 style={section.title}>Radio.Group数据源为options</h5>
+    <div style={section.content}>
       <Radio.Group
         defaultValue="A"
+        onChange={(values) => console.log('values', values)}
+        options={[
+          {
+            value: 'A',
+            label: 'A',
+          },
+          {
+            value: 'B',
+            label: 'B',
+          },
+          {
+            value: 'C',
+            label: 'C',
+          },
+        ]}
+      />
+    </div>
+    <h5 style={section.title}>Radio.Group默认禁止选项</h5>
+    <div style={section.content}>
+      <Radio.Group
         disabled={false}
         onChange={(value) => console.log('value', value)}
       >
-        <Radio disabled value="A">A</Radio>
-        <Radio value="B">B</Radio>
-        <Radio value="C">C</Radio>
+        <Radio value="A" disabled style={{ marginBottom: 8 }}>A</Radio>
+        <Radio value="B" style={{ marginBottom: 8 }}>B</Radio>
+        <Radio value="C" style={{ marginBottom: 8 }}>C</Radio>
       </Radio.Group>
     </div>
 
