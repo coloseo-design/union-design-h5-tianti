@@ -1,90 +1,70 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classnames from 'classnames';
+import omit from 'omit.js';
 import warning from '../utils/warning';
-import { withGlobalConfig } from '../config-provider';
-import { RadioProps, RadioState } from './type';
-import Group, { withRadioGrooupConsumer } from './group';
+import { RadioGroupProps, RadioProps } from './type';
+import Group, { Context } from './group';
+import { ConfigContext } from '../config-provider/context';
 
-@withRadioGrooupConsumer
-@withGlobalConfig
-export default class Radio extends React.Component<RadioProps, RadioState> {
-  static Group: typeof Group;
+const Radio: React.FC<RadioProps> | {Group: RadioGroupProps} = (props: RadioProps) => {
+  const {
+    checked: checkedFromProps = false,
+    defaultChecked = false,
+    disabled = false,
+    onChange,
+    children,
+    value = '',
+    prefixCls: customizedPrefixCls,
+    className: customizedClassName,
+    ...rest
+  } = props;
+  const { getPrefixCls } = useContext(ConfigContext);
+  const [checked, setChecked] = useState(checkedFromProps || defaultChecked || false);
 
-  static defaultProps: RadioProps = {
-    checked: false,
-    defaultChecked: false,
-    getPrefixCls: (input: string) => input,
-  }
+  useEffect(() => {
+    setChecked(checkedFromProps);
+  }, [checkedFromProps]);
+  const radioGroupContext = useContext(Context);
 
-  constructor(props: RadioProps) {
-    super(props);
-    const { checked, defaultChecked } = props;
-    this.state = {
-      checked: checked || defaultChecked || false,
-    };
-  }
-
-  componentDidUpdate(props: RadioProps) {
-    const { checked = false } = this.props;
-    if (checked !== props.checked) {
-      this.setState({
-        checked,
-      });
-    }
-  }
-
-  onClick = () => {
-    const { checked } = this.state;
-    const {
-      onChange, disabled, radioGroupContext, value = '',
-    } = this.props;
+  const onClick = () => {
     if (radioGroupContext && radioGroupContext.disabled) return;
     if (disabled) return;
     if (radioGroupContext && radioGroupContext.onChange) {
       radioGroupContext.onChange(value);
     }
     const toggleChecked = !checked;
-    this.setState({
-      checked: toggleChecked,
-    });
+    setChecked(toggleChecked);
     onChange && onChange(toggleChecked);
+  };
+
+  let isItemChecked = checked;
+  if (radioGroupContext && radioGroupContext.value) {
+    warning(!value, 'Radio嵌套在Group中须提供value');
+    isItemChecked = radioGroupContext.value === value;
   }
+  const prefix = getPrefixCls('radio', customizedPrefixCls);
+  const className = classnames(prefix, {
+    [`${prefix}-checked`]: isItemChecked,
+    [`${prefix}-disabled`]: disabled,
+  }, customizedClassName);
+  const iconClassName = `${prefix}-icon`;
+  const otherProps = omit(rest, []);
+  return (
+    <div {...otherProps} className={className} onClick={onClick}>
+      <div className={iconClassName} />
+      <span>
+        {
+          children
+        }
+      </span>
+    </div>
+  );
+};
 
-  render() {
-    const {
-      getPrefixCls,
-      prefixCls: customizedPrefixCls,
-      disabled,
-      children,
-      radioGroupContext,
-      value = '',
-    } = this.props;
+const ComposedRadio = Radio as typeof Radio & {
+  Group: typeof Group;
+};
 
-    let { checked } = this.state;
-    // 如果value在checkboxGroup的value中，则选中
-    if (radioGroupContext && radioGroupContext.value) {
-      warning(!value, 'Radio嵌套在Group中须提供value');
-      checked = radioGroupContext.value === value;
-    }
-    console.log('checked', checked);
-    const prefix = getPrefixCls('radio', customizedPrefixCls);
-    const className = classnames(prefix, {
-      [`${prefix}-checked`]: checked,
-      [`${prefix}-disabled`]: disabled,
-    });
-    const iconClassName = `${prefix}-icon`;
-    return (
-      <div className={className} onClick={this.onClick}>
-        <div className={iconClassName} />
-        <span>
-          {
-            children
-          }
-        </span>
+ComposedRadio.Group = Group;
 
-      </div>
-    );
-  }
-}
-
-Radio.Group = Group;
+export default ComposedRadio;
