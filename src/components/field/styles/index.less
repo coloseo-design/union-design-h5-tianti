@@ -1,95 +1,88 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
-@import './mixin';
 
 @field-prefix-cls: ~'@{uni-prefix}-field';
 
 .@{field-prefix-cls} {
+  height: 52px;
   display: flex;
-  background: @white;
-  font-size: @field-fint-size;
-  padding: 1em 0.5em;
-  color: @field-color;
-  width: 100%;
-  margin-bottom: 0.625em;
-  &-required {
-    margin-right: 0.125em;
-    color: @field-required-color;
+  align-items: center;
+  background: #F5F6F6;
+  border-radius: 6px;
+  padding: 15px 16px;
+  color: #1C1D1D;
+  .@{field-prefix-cls}-left-icon, .@{field-prefix-cls}-right-icon {
+    color: #646566;
+    font-size: 19px;
   }
-  &-content {
+  .@{field-prefix-cls}-left-icon {
+    margin-right: 10px;
+  }
+  .@{field-prefix-cls}-right-icon {
+    margin-left: 10px;
+  }
+  input {
+    outline: none;
+    border: none;
+    height: 100%;
     width: 100%;
-    &-container {
-      display: flex;
-    }
-    &-label {
-      margin-bottom: 0.375em;
-    }
-    &-input {
-      .input();
-    }
-    &-textarea {
-      .input(100%, auto);
+    border-radius: 6px;
+    background: inherit;
+    caret-color:#F31D39;
+    &::placeholder {
+      color: #C8CCCC;
     }
   }
 }
 
-.@{field-prefix-cls}-reply {
-  display: flex;
-  padding: 0.625em 0.75em;
-  width: 100%;
-  &-left-content {
-    margin-right: 0.625em;
-  }
-  &-content {
-    width: 100%;
-    display: flex;
-    &-textarea {
-      .input(100%, auto, @field-background-color);
-      border-radius: 0.25em;
-      padding: 0.125em 0.5em;
-    }
+.@{field-prefix-cls}-border {
+  border: 1px solid #C8CCCC;
+  background: #fff;
+  input {
+    background: inherit;
   }
 }
 
-.@{field-prefix-cls}-normal {
-  background-color: @field-background-color;
-  border-radius: 0.375em;
-  padding: 0.875em 0.75em;
-  .@{field-prefix-cls}-left-content {
-    margin-right: 12px;
-    .uniicon-password {
-      color: @field-password-left-icon-color;
-      font-size: 1.5em;
-    }
+.@{field-prefix-cls}-focus {
+  border-color: #1C1D1D;
+}
+
+.@{field-prefix-cls}-error {
+  border-color: #CA0118;
+  background: #FFEBEF;
+  color: #CA0118;
+  .@{field-prefix-cls}-left-icon {
+    color: #CA0118;
   }
-  .@{field-prefix-cls}-right-content {
-    .uniicon-eye-open, .uniicon-eye-colose {
-      font-size: 1.5em;
-    }
+  input {
+    background: inherit;
   }
-  &-border {
-    border: 0.0625em solid @field-placeholder-color;
+}
+
+.@{field-prefix-cls}-textarea {
+  height: unset;
+  background: #F5F6F6;
+  padding: 0 12px;
+  border-radius: 4px;
+  .@{field-prefix-cls}-word-limit {
+    height: 16px;
+    line-height: 16px;
+    position: absolute;
+    bottom: 5px;
+    right: 12px;
+    color: #A6A8A9;
   }
-  &-border-value {
-    border: 0.0625em solid @field-value-border-color;
-  }
-  &-content {
+  textarea {
     width: 100%;
-    display: flex;
-    align-items: center;
-    &-input {
-      .input(100%, auto, @field-background-color);
-      // padding-left: 0.75em;
-    }
+    border: none;
+    background: inherit;
+    border-radius: 4px;
+    outline: none;
+    caret-color:#F31D39;
   }
-  &-error {
-    border: 0.0625em solid @field-error-color;
-    background-color: @field-error-background-color;
-    .@{field-prefix-cls}-normal-content {
-      &-input {
-        color: @field-error-color;
-        background-color: @field-error-background-color;
-      }
-    }
-  }
+}
+
+.@{field-prefix-cls}-showWordLimit {
+  position: relative;
+  padding-bottom: 25px;
 }

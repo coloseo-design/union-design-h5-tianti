@@ -15,22 +15,14 @@ subtitle: 输入框
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| defaultValue | 输入框默认内容 | string | - |  |
-| disabled | 是否禁用状态 | boolean | false |  |
-| maxlength | 最大长度 | number | - |  |
-| type | 同原生 Input 标签的 type 属性 | string | text |  |
-| value | 输入框内容 | string | - |  |
-| onChange | 输入框内容变化时的回调 | function(e) | - |  |
+| border | 是否显示边框 | boolean | - |  |
+| leftIcon | 左侧图标 | string \| ReactNode | - |  |
+| fieldType | 普通输入框、密码输入框、多行输入框 | 'normal' \| 'password' \| 'textarea' | normal |  |
+| leftStyle | 左边图标样式 | CSSProperties | - |  |
 | placeholder | 输入框占位提示文字 | string | - |  |
-| readonly | 是否只读 | boolean | false |  |
-| label | 输入框标题文本 | string | - |  |
-| required | 是否显示表单必填星号 | boolean | false |  |
-| rows | 元素的输入文本的行数（显示的高度）| number | 1 |  |
-| cols | 文本域的可视宽度 | number | - |  |
-| leftIcon | 左侧额外内容 | any | - |  |
-| rightIcon | 右侧额外内容 | any | - |  |
+| onChange | 输入框内容变化时的回调 | function(e) | - |  |
 | autosize | 是否自适应内容高度，只对 textarea 有效 | boolean | false |  |
-| border | 是否显示边框 | boolean | false |  |
-| fieldType | card  reply  normal | string | normal |  |
-| status | error  warning | string | - |  |
-| rules | 表单校验规则 | Rule[] | - |  |
+| status | error | string | - |  |
+| value | 输入框内容 | string \| number | - |  |
+| visibilityToggle | 是否显示切换的小眼睛，只对密码输入框有效 | boolean | true |  |
+| showWordLimit | 是否显示字数统计，需要设置maxLength属性 | boolean | - |  |

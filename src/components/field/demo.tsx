@@ -1,117 +1,58 @@
-import React, { useRef } from 'react';
-import { Field, Icon, Button } from '../index';
+import React from 'react';
+import { Field, Avatar } from '../index';
 
-const FieldDemo = () => {
-  const ref = useRef();
-  console.log('ref', ref);
-  const containerStyle = {
-    width: 377,
-    height: 548,
-    backgroundColor: '#fafafa',
-    padding: 10,
-    overflow: 'scroll',
-    borderRadius: 12,
-    boxShadow: '#ebedf0 0 4px 12px',
-  };
-  return (
-    <div style={containerStyle}>
-      <h1>单卡片：短输入</h1>
-      <Field
-        placeholder="基本输入"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        ref={ref}
-        label="输入标题"
-        required
-        fieldType="card"
-      />
-      <Field
-        placeholder="基本输入"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        label="输入标题"
-        required
-        value="这里是输入后的，文字一行限定文字字数"
-        fieldType="card"
-      />
-      <h1>单卡片：长输入</h1>
-      <Field
-        placeholder="多行输入"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        type="textarea"
-        label="长输入类标题"
-        required
-        fieldType="card"
-      />
-      <Field
-        placeholder="多行输入"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        type="textarea"
-        label="长输入类标题"
-        required
-        value="这里是输入后的文字三行文字三行文字三行，文字三行文字三行字三行文字三行字三行文字三行字三行文字三行"
-        rows={3}
-        fieldType="card"
-      />
-      <h1>回复输入栏</h1>
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-        autosize
-        fieldType="reply"
-      />
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-        autosize
-        value="这里是留言内容这里是留言内容这里是留言内容这里是留言内容这里是留言内容这里是留"
-        fieldType="reply"
-      />
-      <Field
-        fieldType="reply"
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-        rows={3}
-        value="这里是留言内容这里是留言内容这里是留言内容这里是留言内容这里是留言内容这里是留这里是留言内容这里是留言内容这里是，最多显示三行"
-      />
-      <h1>一般输入框</h1>
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-      />
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-        border
-      />
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-        border
-        value={123}
-        rightIcon={<Button>发送验证码</Button>}
-      />
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        leftIcon={<Icon type="user-circle" />}
-        border
-        value={123}
-        status="error"
-      />
-      <h1>密码输入框</h1>
-      <Field
-        placeholder="我来说几句"
-        onChange={({ target: { value } }) => { console.log('value', value); }}
-        border
-        type="password"
-      />
-    </div>
-  );
-};
+const Demo = () => (
+  <div>
+    <section>
+      <h2>输入框分类</h2>
+      <p>
+        输入框的形式分为有边框输入框和无边框输入框形式。
 
-export default FieldDemo;
+        有边框输入框：可在白背景或有背景色的情况下使用
+        无边框输入框：在白背景下使用。
+        在输入框中添加图标：用于对输入框含义补充解释，提输入内容识别效率。
+      </p>
+      <p>有线框输入框</p>
+      <Field placeholder="内容标题" border />
+      <p>无线框输入框</p>
+      <div style={{ background: '#fff', padding: 16 }}>
+        <Field placeholder="内容标题" />
+      </div>
+    </section>
+
+    <section>
+      <h2>基本输入框</h2>
+      <div style={{ background: '#fff' }}>
+        <Field placeholder="内容标题" border />
+        <Field placeholder="内容标题" border leftIcon="edit-outline" />
+        <Field value="输入错误" leftIcon="edit-outline" status="error" />
+        <Field value="输入错误" border leftIcon="edit-outline" status="error" />
+      </div>
+    </section>
+
+    <section>
+      <h2>密码输入框</h2>
+      <div style={{ background: '#fff' }}>
+        <Field placeholder="内容标题" border fieldType="password" />
+        <Field placeholder="内容标题" fieldType="password" />
+        <Field placeholder="内容标题" fieldType="password" value="123" border />
+        <Field placeholder="内容标题" fieldType="password" value="输入错误" border status="error" />
+      </div>
+    </section>
+
+    <section>
+      <h2>多行输入框</h2>
+      <div style={{ background: '#fff' }}>
+        <Field placeholder="单行输入" fieldType="textarea" rows={1} />
+        <Field placeholder="自适应内容高度" fieldType="textarea" autosize />
+        <Field value="多行输入" fieldType="textarea" showWordLimit maxLength={500} />
+        <div style={{ display: 'flex', alignItems: 'center', padding: 16 }}>
+          <Avatar text="姓名" style={{ marginRight: 16 }} />
+          <Field placeholder="我来说几句" fieldType="textarea" rows={1} style={{ flex: 1 }} />
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+export default Demo;
