@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { ConfigContext } from '../config-provider/context';
 import { BaseColProps, ColProps } from './type';
 import { GridContext, breakpoints } from './utils';
-import { Breakpoint } from './utils/grid-media-query';
+import { Breakpoint, BreakPointMap } from './utils/grid-media-query';
 
 const Col: React.FC<ColProps> = (props: ColProps) => {
   const {
@@ -20,7 +20,7 @@ const Col: React.FC<ColProps> = (props: ColProps) => {
   const { gutter } = useContext(GridContext);
   // TODO: 处理断点的值
   const breakpointCls = breakpoints.reduce((composd, size: Breakpoint) => {
-    const valueOfSize = (rest as any)[size];
+    const valueOfSize = (rest as BreakPointMap)[size];
     const sizeProps: Partial<BaseColProps> = {};
     if (typeof valueOfSize === 'number') {
       Object.assign(sizeProps, {
