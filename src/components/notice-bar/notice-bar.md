@@ -7,13 +7,13 @@ subtitle: 通知栏组件
 
 ## API
 
-* NoticeBar.open(conf: NoticeBarConf);
-* NoticeBar.success(conf: NoticeBarConf);
-* NoticeBar.error(conf: NoticeBarConf);
-* NoticeBar.warning(conf: NoticeBarConf);
-* NoticeBar.supplement(conf: NoticeBarConf);
-* NoticeBar.grey(conf: NoticeBarConf);
-* NoticeBar.close(id?: string); 当打开多个NoticeBar的时候，可以通过id来关闭指定的NoticeBar，如果不传就关闭所有的NoticeBar
+ NoticeBar.open(conf: NoticeBarConf);
+NoticeBar.success(conf: NoticeBarConf);
+NoticeBar.error(conf: NoticeBarConf);
+NoticeBar.warning(conf: NoticeBarConf);
+NoticeBar.supplement(conf: NoticeBarConf);
+NoticeBar.grey(conf: NoticeBarConf);
+NoticeBar.close(id?: string); 当打开多个NoticeBar的时候，可以通过id来关闭指定的NoticeBar，如果不传就关闭所有的NoticeBar
 
 ## NoticeBarConf 
 

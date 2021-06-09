@@ -4,7 +4,7 @@ type: 通用
 title: DatePicker
 subtitle: 日期选择器
 ---
-## TimePicker API
+## API
 
 | 参数      | 说明           | 类型          | 默认值 |
 | :-------- | :------------- | :------------ | :----- |

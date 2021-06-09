@@ -5,7 +5,9 @@ title: NumberKeyBoard
 subtitle: 输入框
 ---
 
-## NumberKeyBoard API
+虚拟数字键盘，可以配合密码输入框组件或自定义的输入框组件使用。
+
+## API
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |show|是否展示键盘|bollean|false|--|

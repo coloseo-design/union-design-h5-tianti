@@ -5,10 +5,12 @@ title: Dialog
 subtitle: 对话框组件
 ---
 
+弹出模态框，常用于消息提示、消息确认，或在当前页面内完成特定的交互操作。
+
 ## API
 
-* Dialog.open(conf: DialogConf);
-* Dialog.close(id?: string); 当打开多个dialog的时候，可以通过id来关闭指定的dialog，如果不传就关闭所有的dialog
+Dialog.open(conf: DialogConf);
+Dialog.close(id?: string); 当打开多个dialog的时候，可以通过id来关闭指定的dialog，如果不传就关闭所有的dialog
 
 ## DialogConf 
 

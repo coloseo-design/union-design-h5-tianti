@@ -5,6 +5,8 @@ title: ImagePreview
 subtitle: 图片预览组件
 ---
 
+图片放大预览
+
 ## API
 
 | 参数             | 说明                                                  | 类型           | 默认值 |

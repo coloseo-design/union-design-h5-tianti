@@ -5,6 +5,8 @@ title: Swipe
 subtitle: 图片轮播组件
 ---
 
+用于循环播放一组图片或内容
+
 ## API
 
 

@@ -5,6 +5,8 @@ title: IndexBar
 subtitle: 索引栏组件
 ---
 
+## API
+
 ## IndexBar
 
 | 参数      | 说明     | 类型     | 默认值  |

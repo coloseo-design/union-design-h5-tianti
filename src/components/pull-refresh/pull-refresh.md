@@ -6,7 +6,7 @@ title: PullRefresh
 toc: false
 ---
 
-## PullRefresh
+用于提供下拉刷新的交互操作。
 
 ## API
 
