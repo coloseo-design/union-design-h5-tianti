@@ -13,6 +13,7 @@ const Checkbox: React.FC<CheckboxProps> = (props: CheckboxProps) => {
     value = '',
     checked: checkedFromProps = false,
     onChange,
+    ...rest
   } = props;
 
   const [checked, setChecked] = useState(checkedFromProps || false);
@@ -45,7 +46,7 @@ const Checkbox: React.FC<CheckboxProps> = (props: CheckboxProps) => {
   });
   const iconClassName = `${prefix}-icon`;
   return (
-    <div className={className} onClick={onClick}>
+    <div {...rest} className={className} onClick={onClick}>
       <div className={iconClassName} />
       <span>
         {

@@ -71,7 +71,7 @@ const listDemo = () => {
       extra:
   <div>
     <img
-      width={272}
+      width={186}
       alt="logo"
       src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
     />
@@ -83,9 +83,8 @@ const listDemo = () => {
       subtitle: '公文-云公文 2021/02/8',
       extra:
   <div>
-    <p>哈哈哈哈哈哈</p>
     <img
-      width={272}
+      width={186}
       alt="logo"
       src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
     />

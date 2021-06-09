@@ -166,7 +166,7 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
     >
       <div style={contentStyle}>
         <div>{children}</div>
-        {extra && <div style={{ marginLeft: '1.5em' }}>{extra}</div>}
+        {extra}
       </div>
       {arrow
       && (
