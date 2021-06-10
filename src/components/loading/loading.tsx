@@ -18,7 +18,7 @@ export interface BaseLoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   // 是否垂直排列图标和文字内容
   vertical?: boolean;
   // 背景颜色
-  backgroundColor?: string;
+  // backgroundColor?: string;
   className?: string;
 }
 
@@ -31,7 +31,7 @@ class Loading extends Component<BaseLoadingProps> {
       size = '20px',
       textSize = '14px',
       textColor = '#A6A8A9',
-      backgroundColor = 'rgba(0,0,0,0.80)',
+      // backgroundColor = 'rgba(0,0,0,0.80)',
       vertical,
       children,
       className,
@@ -51,7 +51,7 @@ class Loading extends Component<BaseLoadingProps> {
     };
 
     return (
-      <div {...rest} className={mainClass} style={{ ...style, backgroundColor, flexDirection: vertical ? 'column' : 'row' }}>
+      <div {...rest} className={mainClass} style={{ ...style, flexDirection: vertical ? 'column' : 'row' }}>
         {type === 'circular'
           ? (
             <svg viewBox="0 0 50 50" className={`${prefix}-svg`} style={{ width: size, height: size }}>

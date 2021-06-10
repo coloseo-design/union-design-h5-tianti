@@ -19,4 +19,3 @@ subtitle: 加载中
 | textSize | 文字大小，默认单位为 px | number \| string | 14px |  |
 | textColor | 文字颜色 | string | #A6A8A9 |  |
 | vertical | 是否垂直排列图标和文字内容 | boolean | - |  |
-| backgroundColor | 背景颜色 | string | rgba(0,0,0,0.80) |  |

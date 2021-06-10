@@ -9,13 +9,9 @@ subtitle: 轻提示
 
 ## API
 
-Toast.success(content, duration, onClose, mask)
+Toast.info(icon, content, duration, mask)
 
-Toast.fail(content, duration, onClose, mask)
-
-Toast.info(content, duration, onClose, mask)
-
-Toast.loading(content, duration, onClose, mask)
+Toast.loading(icon, content, duration, mask)
 
 Toast.hide()
 
@@ -23,7 +19,9 @@ Toast.hide()
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| content | 提示内容 | React.Element or String | - |  |
+| content | 提示内容 | string | - |  |
 | duration | 自动关闭的延时，单位秒 | number | 3 |  |
-| onClose | 关闭后回调 | Function | - |  |
-| mask | 是否显示透明蒙层，防止触摸穿透 | Boolean | true |  |
+| icon | 自定义图标 | string \| ReactNode | - |  |
+| mask | 是否显示透明蒙层，防止触摸穿透 | Boolean | false |  |
+| loadingType | loading图标类型 | 'spinner' \| 'circular' | spinner |  |
+| vertical | 是否垂直排列图标和文字内容 | boolean | true |  |

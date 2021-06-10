@@ -12,13 +12,13 @@ const containerStyle = {
 };
 const LoadingDemo = () => (
   <div style={containerStyle}>
-    <Loading color="#fff" />
+    <Loading />
     <br />
-    <Loading type="spinner" color="#fff" />
-    <Loading backgroundColor="none" />
-    <Loading backgroundColor="none" type="spinner" size={50} />
-    <Loading backgroundColor="none">加载中....</Loading>
-    <Loading backgroundColor="none" type="spinner" vertical>加载中...</Loading>
+    <Loading type="spinner" color="red" />
+    <br />
+    <Loading color="blue" textColor="blue">加载中....</Loading>
+    <br />
+    <Loading type="spinner" vertical>加载中...</Loading>
   </div>
 );
 

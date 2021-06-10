@@ -1,4 +1,6 @@
-import React, { Component, ReactNode } from 'react';
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-plusplus */
+import React, { Component, isValidElement, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import portal from './portal';
@@ -7,16 +9,20 @@ import Loading from '../loading';
 
 export interface BaseToastProps extends React.HTMLAttributes<HTMLSpanElement> {
   // 提示内容
-  content?: ReactNode | string;
+  content?: string;
   // 自动关闭的延时，单位秒
   duration?: number;
-  // 关闭后回调
-  onClose?: () => void;
   // 是否显示透明蒙层，防止触摸穿透
   mask?: boolean;
   /* 用户自定义类前缀，默认uni-toast */
   prefixCls?: string;
   type?: string;
+  // 自定义icon
+  icon?: string | ReactNode;
+  // loading类型
+  loadingType?: 'spinner' | 'circular';
+  // 是否垂直排列图标和文字内容
+  vertical?: boolean;
 }
 
 export interface ToastState {
@@ -26,12 +32,11 @@ export interface ToastState {
 class Toast extends Component<BaseToastProps, ToastState> {
   static defaultProps: BaseToastProps = {
     duration: 3,
-    mask: true,
+    mask: false,
+    type: 'info',
+    loadingType: 'spinner',
+    vertical: true,
   };
-
-  static success: (props: BaseToastProps) => void;
-
-  static fail: (props: BaseToastProps) => void;
 
   static info: (props: BaseToastProps) => void;
 
@@ -43,28 +48,34 @@ class Toast extends Component<BaseToastProps, ToastState> {
     const {
       prefixCls,
       className,
-      content,
+      content = '',
       type,
       mask,
+      icon,
+      loadingType,
+      vertical,
       ...rest
     } = this.props;
 
     const prefix = getPrefixCls('toast', prefixCls);
     const mainClass = classNames(prefix, className, {
       [`${prefix}-mask-${mask}`]: true,
+      [`${prefix}-vertical`]: vertical,
     });
 
     const iconMapping = {
-      success: <Icon type="success" />,
-      fail: <Icon type="delete" />,
-      loading: <Loading backgroundColor="none" color="#fff" />,
+      info: icon ? (isValidElement(icon) ? icon : <Icon type={icon} />) : '',
+      loading: <Loading type={loadingType} color="#fff" />,
     };
 
     return (
       <div {...rest} className={mainClass}>
-        <div className={`${prefix}-content`}>
-          {type && iconMapping[type]}
-          {content}
+        <div
+          className={`${prefix}-content`}
+          style={{ height: iconMapping[type] && content && vertical ? 160 : 'unset', width: iconMapping[type] && content && vertical ? 160 : 'unset' }}
+        >
+          <span className={content && iconMapping[type] ? `${prefix}-content-icon` : ''}>{iconMapping[type]}</span>
+          <span className={`${prefix}-content-description`}>{content}</span>
         </div>
       </div>
     );
@@ -79,9 +90,7 @@ class Toast extends Component<BaseToastProps, ToastState> {
   }
 }
 
-Toast.success = (props: BaseToastProps) => portal(<Toast {...props} type="success" />);
-Toast.fail = (props: BaseToastProps) => portal(<Toast {...props} type="fail" />);
-Toast.info = (props: BaseToastProps) => portal(<Toast {...props} />);
+Toast.info = (props: BaseToastProps) => portal(<Toast {...props} type="info" />);
 Toast.loading = (props: BaseToastProps) => portal(<Toast {...props} type="loading" />);
 Toast.hide = () => portal(<Toast duration={0} />);
 

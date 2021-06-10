@@ -12,9 +12,12 @@ const containerStyle = {
 };
 const ToastDemo = () => (
   <div style={containerStyle}>
-    <Button onClick={() => Toast.success({ content: 'success' })}>成功提示</Button>
-    <Button onClick={() => Toast.fail({ content: 'fail' })}>错误提示</Button>
-    <Button onClick={() => Toast.info({ content: 'info', mask: false })}>文字提示 允许穿透</Button>
+    <Button onClick={() => Toast.info({ icon: 'success' })}>自定义提示</Button>
+    <Button onClick={() => Toast.info({ content: '最多展示两行最多展示两行最多展示两行最多展示两行' })}>自定义提示</Button>
+
+    <Button onClick={() => Toast.info({ icon: 'success', content: '最多展示两行最多展示两行最多展示两行最多展示两行' })}>自定义提示</Button>
+    <Button onClick={() => Toast.info({ icon: 'success', content: '最多展示两行最多展示两行最多展示两行最多展示两行', vertical: false })}>自定义提示</Button>
+
     <Button onClick={() => Toast.loading({ content: 'loading' })}>加载提示</Button>
     <Button onClick={() => Toast.hide()}>关闭</Button>
   </div>
