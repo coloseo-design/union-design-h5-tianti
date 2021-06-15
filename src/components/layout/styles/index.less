@@ -4,12 +4,9 @@
 @layout-prefix-cls: ~'@{uni-prefix}-layout';
 
 .@{layout-prefix-cls} {
-  background: #DBDDDD;
-  &-content-card, &-content-content {
+  &-content-content {
     background-color: @white;
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
+    padding: 16px;
   }
 
   &-content-card {
@@ -17,10 +14,15 @@
   }
 }
 
-.@{layout-prefix-cls}-normal {
-  padding: 0 16px;
-}
 
 .@{layout-prefix-cls}-card {
-  padding: 0 12px;
+  margin: 0px 12px;
+}
+.@{layout-prefix-cls}-content-card {
+  margin-bottom: 10px;
+  background-color: @white;
+  padding: 16px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

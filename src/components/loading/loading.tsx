@@ -48,6 +48,8 @@ class Loading extends Component<BaseLoadingProps> {
     const textStyle = {
       color: textColor,
       fontSize: textSize,
+      paddingLeft: vertical ? 0 : 10,
+      paddingTop: vertical ? 10 : 0,
     };
 
     return (

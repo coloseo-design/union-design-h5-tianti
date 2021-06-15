@@ -42,7 +42,6 @@
       position: fixed;
       width: inherit;
       min-width: 2em;
-      background-color: @white;
       font-size: 1em;
       border-bottom: 1px solid @popup-border-color;
       padding: 0px 0.75em;
@@ -71,7 +70,6 @@
       display: flex;
       bottom: 0;
       position: fixed;
-      background-color: @white;
       padding: 8px 16px;
       z-index: 20002;
     }
@@ -90,8 +88,7 @@
       max-height: 80%;
       animation: maxHeight 0.3s linear;
       &-round {
-        border-bottom-left-radius: 1em;
-        border-bottom-right-radius: 1em;
+        border-radius: 0px 0px 12px 12px;
       }
       &-transition {
         max-height: 0;
@@ -105,8 +102,7 @@
       max-height: 80%;
       animation: maxHeight 0.3s linear;
       &-round {
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
+        border-radius: 12px 12px 0px 0px;
       }
       &-transition {
         max-height: 0;
@@ -120,8 +116,7 @@
       max-width: 80%;
       animation: maxWidth 0.3s linear;
       &-round {
-        border-top-right-radius: 1em;
-        border-bottom-right-radius: 1em;
+        border-radius: 0px 12px 12px 0px;
       }
       &-transition {
         max-width: 0;
@@ -135,8 +130,7 @@
       max-width: 80%;
       animation: maxWidth 0.3s linear;
       &-round {
-        border-top-left-radius: 1em;
-        border-bottom-left-radius: 1em;
+        border-radius: 12px 0px 0px 12px;
       }
       &-transition {
         max-width: 0;

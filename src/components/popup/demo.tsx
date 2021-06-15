@@ -60,6 +60,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         style={{ width: 320 }}
         header="标题"
+        round
       >
         {content(7)}
       </Popup>
@@ -101,6 +102,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         onOk={handleCancel}
         closeable={false}
+        round
         header={(
           <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
             <div onClick={handleCancel}>取消</div>

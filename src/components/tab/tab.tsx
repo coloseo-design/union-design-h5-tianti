@@ -349,7 +349,7 @@ Tab.Item = memo((props) => {
             </span>
           )}
         </div>
-        <div className="title">{text}</div>
+        <div className="title" style={{ color: '#646566' }}>{text}</div>
       </div>
     );
   }

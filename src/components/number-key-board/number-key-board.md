@@ -2,7 +2,7 @@
 category: Components
 type: 通用
 title: NumberKeyBoard
-subtitle: 输入框
+subtitle: 数字键盘
 ---
 
 虚拟数字键盘，可以配合密码输入框组件或自定义的输入框组件使用。

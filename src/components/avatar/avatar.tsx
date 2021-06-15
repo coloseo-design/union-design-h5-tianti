@@ -17,11 +17,16 @@ export interface BaseAvatarProps {
 class Avatar extends React.Component<BaseAvatarProps> {
     getBadge = (prefix : string) => {
       const { type, size = 32 } = this.props;
-      const w = size ? Math.ceil(size / 2.7) : 24;
+      const w = size <= 32 ? 10 : Math.ceil(size / 3.3) - 2;
       return (
-        <sub className={`${prefix}-sub-${type}`} style={{ width: w, height: w, lineHeight: `${w - 2}px` }}>
-          <Icon type={type === 'success' ? 'checkout' : type === 'error' ? 'close' : 'more'} />
-        </sub>
+        <div
+          className={`${prefix}-sub ${prefix}-sub-${type}`}
+          style={{
+            width: w, height: w, verticalAlign: 'middle', display: 'inline-block',
+          }}
+        >
+          <Icon type={type === 'success' ? 'checkout' : type === 'error' ? 'close' : 'more'} style={{ fontSize: w - 2, display: 'block', marginTop: 1 }} />
+        </div>
       );
     };
 
@@ -37,7 +42,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
       }, className);
         // 初始宽高 或  外部传入size
       const [w, h] = size ? [size, size] : [32, 32];
-      const fontSize = w < 46 ? 12 : Math.ceil(w / 2) - 10;
+      const fontSize = w <= 32 ? 12 : Math.ceil(w / 2.56);
       let srcNode = null;
       if (src && React.isValidElement(src)) {
         srcNode = src;

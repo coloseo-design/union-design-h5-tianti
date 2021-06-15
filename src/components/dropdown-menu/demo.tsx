@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  DropdownMenu, Icon, Button,
+  DropdownMenu, Icon, Collapse,
 } from '../index';
 
 const { DropdownItem } = DropdownMenu;
@@ -15,26 +15,6 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 export default () => {
-  const option = [
-    {
-      text:
-      '类别1',
-      value: '0',
-      icon: <Icon type="user" />,
-      card: `哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-        哈哈哈哈哈哈哈哈哈哈哈`,
-    },
-    { text: '类别2', value: '1', card: <div>swdwdwed </div> },
-    { text: '类别3', value: '2', card: <div>swdwdwed </div> },
-  ];
-
   const option2 = [
     { text: '默认排序', value: 'a' },
     { text: '好评排序', value: 'b' },
@@ -62,7 +42,6 @@ export default () => {
   const handleButton = () => {
     setToggle(false);
   };
-
   return (
     <div style={containerStyle}>
       <h1>基本用法</h1>
@@ -79,10 +58,27 @@ export default () => {
         </DropdownMenu>
       </div>
       <div style={{ marginTop: 32 }}>
-        <h1>每级带有card选项</h1>
+        <h1>自定义菜单内容</h1>
         <DropdownMenu>
-          <DropdownItem value="0" options={option} onChange={onChange} hasCard />
-          <DropdownItem value="b" options={option2} />
+          <DropdownItem options={option2} />
+          <DropdownItem title="筛选" toggle={toggle} onClick={handleToggle}>
+            <Collapse activeKey={1} accordion style={{ marginTop: 50 }}>
+              <Collapse.Panel header="类别(#N)1" key={1}>
+                <div onClick={handleButton}>
+                  我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                  我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                  我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                  我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                </div>
+              </Collapse.Panel>
+              <Collapse.Panel header="类别(#N)2" key={2}>
+                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+              </Collapse.Panel>
+            </Collapse>
+          </DropdownItem>
         </DropdownMenu>
       </div>
       <div style={{ marginTop: 32 }}>
@@ -90,19 +86,6 @@ export default () => {
         <DropdownMenu>
           <DropdownItem options={option2} disabled />
           <DropdownItem value="b" options={option2} disabled />
-        </DropdownMenu>
-      </div>
-      <div style={{ marginTop: 32 }}>
-        <h1>自定义菜单内容</h1>
-        <DropdownMenu>
-          <DropdownItem options={option2} />
-          <DropdownItem title="筛选" toggle={toggle} onClick={handleToggle}>
-            <div style={{ padding: '0px 32px' }}>
-              <div title="包邮" style={{ height: 52 }}>包邮</div>
-              <div title="团购" style={{ height: 52 }}>团购</div>
-              <Button type="primary" onClick={handleButton}>和哈哈哈哈</Button>
-            </div>
-          </DropdownItem>
         </DropdownMenu>
       </div>
     </div>

@@ -28,7 +28,6 @@ toc: false
 |disabled|是否禁用菜单|boolean|false| |
 |dropContentStyle| 下拉列表样式| object| --|
 |onChange|点击选项导致 value 变化时触发| (value) => void| --|
-|hasCard|是否带有卡片形式|boolean|false|--|
 
 
 ## Option 数据结构

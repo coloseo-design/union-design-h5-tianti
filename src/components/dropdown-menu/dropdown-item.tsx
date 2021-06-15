@@ -35,7 +35,6 @@ export interface DropdownItemProps {
   /* 点击item时触发 */
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   transitionEnd?: boolean;
-  hasCard?: boolean;
 }
 
 export interface DropdownItemState {
@@ -109,7 +108,6 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       direction,
       children,
       transitionEnd,
-      hasCard,
     } = this.props;
     const wrapper = getPrefixCls('dropdown-item-content', prefixCls);
     const content = classNames(wrapper, {
@@ -119,7 +117,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     });
 
     return (
-      <div className={content} style={{ backgroundColor: hasCard ? '#F5F6F6' : '#fff', ...dropContentStyle }} onClick={this.handleClick}>
+      <div className={content} style={{ ...dropContentStyle }} onClick={this.handleClick}>
         {children || this.renderCurrent(options || [])}
       </div>
     );
