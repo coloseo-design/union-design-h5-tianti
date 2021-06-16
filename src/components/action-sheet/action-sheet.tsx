@@ -177,7 +177,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
         <div className={`${containter}-inner`}>
           {renderData(data, isImg)}
         </div>
-      )
+      );
     }
     return null;
   };
@@ -199,9 +199,8 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
                     type === 'upload' ? ( // 上传样式
                       <>
                         {renderPanel((options || []).filter((i: any) => i.type === 'img'), true)}
-                        {(options || []).filter((i: any) => i.type !== 'img').length > 0 &&
-                          <div style={{ width: '100%', borderTop: '1px solid #DBDDDD', margin: 8 }} />
-                        }
+                        {(options || []).filter((i: any) => i.type !== 'img').length > 0
+                          && <div style={{ width: '100%', borderTop: '1px solid #DBDDDD', margin: 8 }} />}
                         {renderPanel((options || []).filter((i: any) => i.type !== 'img'))}
                       </>
                     ) : ( // 分享样式
