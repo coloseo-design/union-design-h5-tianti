@@ -46,6 +46,13 @@ const DemoAction = () => {
     { name: 'react', src: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg', type: 'img' },
     { name: '百度图片嘿嘿嘿444444党的十五大的', src: 'https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF', type: 'img' },
   ];
+
+  const opti12 = [
+    { name: '图片', src: 'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png', type: 'img' },
+    { name: 'logo', src: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg', type: 'img' },
+    { name: 'react', src: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg', type: 'img' },
+    { name: '百度图片嘿嘿嘿444444党的十五大的', src: 'https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF', type: 'img' },
+  ];
   return (
     <div style={containerStyle}>
       <Button onClick={() => { setVisible(true); }}>基本样式</Button>
@@ -66,7 +73,7 @@ const DemoAction = () => {
       <ActionSheet
         visible={visible1}
         onCancel={() => setVisible1(false)}
-        options={option1}
+        options={opti12}
         type="upload"
         title="上传面板"
       />

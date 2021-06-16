@@ -54,12 +54,13 @@ class ListItem extends React.Component<ListItemProps> {
       arrow,
       isLast,
       onIconClick,
+      style = {},
       ...rest
     } = this.props;
     const prex = getPrefixCls('list-item', prefixCls);
     const itemStyle = classNames(prex);
     return (
-      <div {...rest} className={itemStyle} style={{ borderBottom: isLast ? 'none' : '1px solid #EEF0F0' }}>
+      <div {...rest} className={itemStyle} style={{ borderBottom: isLast ? 'none' : '1px solid #EEF0F0', ...style }}>
         <ListItemContext.Provider
           value={{
             icon,

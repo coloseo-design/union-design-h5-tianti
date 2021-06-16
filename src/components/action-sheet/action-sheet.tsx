@@ -121,7 +121,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
   };
 
   const wrapStyle = {
-    backgroundColor: type !== 'basic' ? '#fff' : undefined,
+    backgroundColor: type !== 'basic' ? '#F5F6F6' : undefined,
     borderTopLeftRadius: type !== 'basic' ? 12 : undefined,
     borderTopRightRadius: type !== 'basic' ? 12 : undefined,
   };
@@ -131,13 +131,14 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
     return list;
   };
 
-  const renderData = (data: Option[] = []) => (
+  const renderData = (data: Option[] = [], isImg?: boolean) => (
     <>
       {data.map((option: any, index) => (
         <div
           key={`${index}`}
           className={`${containter}-inner-option`}
           onClick={handleSelect(option)}
+          style={{ paddingRight: isImg ? 12 : 24 }}
         >
           <div className={option.type === 'img' ? `${containter}-inner-option-image` : undefined}>
             {option.src && typeof option.src === 'string' ? <img src={option.src} alt="img" /> : option.src}
@@ -165,17 +166,20 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
               key={item}
               style={{ borderBottom: item === dataC.length - 1 ? undefined : '1px solid #DBDDDD' }}
             >
-              {renderData(data.slice(item * tem, item === 0 ? tem : tem * (item + 1)))}
+              {renderData(data.slice(item * tem, item === 0 ? tem : tem * (item + 1)), isImg)}
             </div>
           ))}
         </>
       );
     }
-    return (
-      <div className={`${containter}-inner`}>
-        {renderData(data)}
-      </div>
-    );
+    if (data && data.length > 0) {
+      return (
+        <div className={`${containter}-inner`}>
+          {renderData(data, isImg)}
+        </div>
+      )
+    }
+    return null;
   };
 
   return (
@@ -195,7 +199,9 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
                     type === 'upload' ? ( // 上传样式
                       <>
                         {renderPanel((options || []).filter((i: any) => i.type === 'img'), true)}
-                        <div style={{ width: '100%', borderTop: '1px solid #DBDDDD', margin: 8 }} />
+                        {(options || []).filter((i: any) => i.type !== 'img').length > 0 &&
+                          <div style={{ width: '100%', borderTop: '1px solid #DBDDDD', margin: 8 }} />
+                        }
                         {renderPanel((options || []).filter((i: any) => i.type !== 'img'))}
                       </>
                     ) : ( // 分享样式
