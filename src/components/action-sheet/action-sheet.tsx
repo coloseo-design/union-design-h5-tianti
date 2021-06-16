@@ -161,13 +161,15 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
       return (
         <>
           {(dataC || []).map((item: number) => (
-            <div
-              className={`${containter}-inner`}
-              key={item}
-              style={{ borderBottom: item === dataC.length - 1 ? undefined : '1px solid #DBDDDD' }}
-            >
-              {renderData(data.slice(item * tem, item === 0 ? tem : tem * (item + 1)), isImg)}
-            </div>
+            <>
+              <div
+                className={`${containter}-inner`}
+                key={item}
+              >
+                {renderData(data.slice(item * tem, item === 0 ? tem : tem * (item + 1)), isImg)}
+              </div>
+              {item !== dataC.length - 1 && <div style={{ width: 'calc(100% - 24px)', borderBottom: '1px solid #DBDDDD' }} />}
+            </>
           ))}
         </>
       );
@@ -200,7 +202,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
                       <>
                         {renderPanel((options || []).filter((i: any) => i.type === 'img'), true)}
                         {(options || []).filter((i: any) => i.type !== 'img').length > 0
-                          && <div style={{ width: '100%', borderTop: '1px solid #DBDDDD', margin: 8 }} />}
+                          && <div style={{ width: 'calc(100% - 24px)', borderTop: '1px solid #DBDDDD', margin: '8px 0px' }} />}
                         {renderPanel((options || []).filter((i: any) => i.type !== 'img'))}
                       </>
                     ) : ( // 分享样式

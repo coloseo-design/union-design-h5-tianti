@@ -70,27 +70,27 @@ class Step extends React.Component<StepProps> {
       <div className={wrapper} style={style} onClick={this.handleClick}>
         <div className={dotContent}>
           {type === 'card' && <div className={dot} />}
-          {type === 'browse' && <Avatar text={text || ''} size={32} src={src} type={statusS} />}
+          {type === 'browse' && <Avatar text={text || ''} size={40} src={src} type={statusS} />}
           {!isLast && <div className={line} style={{ top: type === 'card' ? '0.75em' : '2.25em' }} />}
         </div>
         {
           type === 'card' && (
-            <div className={content} style={{ marginBottom: '2em', position: 'relative' }}>
+            <div className={content} style={{ width: 'calc(100% - 24px)', marginBottom: '16px', position: 'relative' }}>
               <div className={`${content}-cardtitle`}>
                 <div>{title}</div>
-                <div className={`${content}-title-sub`}>{subTitle}</div>
+                {subTitle && <div className={`${content}-title-sub`}>{subTitle}</div>}
               </div>
               <div className={`${content}-card`}>
                 <Avatar size={32} text={text || ''} src={src} />
                 <span className={`${content}-card-name`}>{description}</span>
               </div>
-              {!isLast && <div style={{ borderBottom: '1px solid #EEF0F0', marginTop: '1em' }} />}
+              {!isLast && <div style={{ borderBottom: '1px solid #EEF0F0', marginTop: '1em', marginBottom: 6 }} />}
             </div>
           )
         }
         {
          type === 'browse' && (
-         <div className={content}>
+         <div className={content} style={{ width: 'calc(100% - 56px)' }}>
            <div className={`${content}-title`}>
              <div>{title}</div>
              <div className={`${content}-title-sub`}>{subTitle}</div>

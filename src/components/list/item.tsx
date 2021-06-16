@@ -94,12 +94,14 @@ const Avatar = (props: AvatarProps) => {
   const width = size || 32;
   const height = size || 32;
   const getPrefixClass = useGetPrefixClass('list-item-avatar');
+  const fontSize = width <= 20 ? 12 : Math.ceil(width / 2.56);
   const avaStyle = {
     ...style,
     width,
     height,
     lineHeight: `${height}px`,
     borderRadius: shape === 'circle' ? '50%' : '8px',
+    fontSize,
   };
   if (text) {
     Object.assign(avaStyle, {

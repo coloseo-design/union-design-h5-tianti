@@ -42,7 +42,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
       }, className);
         // 初始宽高 或  外部传入size
       const [w, h] = size ? [size, size] : [32, 32];
-      const fontSize = w <= 32 ? 12 : Math.ceil(w / 2.56);
+      const fontSize = w <= 20 ? 12 : Math.ceil(w / 2.56);
       let srcNode = null;
       if (src && React.isValidElement(src)) {
         srcNode = src;

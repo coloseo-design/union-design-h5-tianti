@@ -21,13 +21,13 @@ const StepsDemo = () => {
   return (
     <div style={containerStyle}>
       <h2>提交卡片流程</h2>
-      <Steps style={{ marginTop: 64, width: 400 }}>
+      <Steps style={{ marginTop: 64 }}>
         <Step title="审批部门" description="戴永民" text="永民" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
         <Step title="审批部门" description="戴永民" text="永民" />
       </Steps>
       <Divider style={{ margin: '32px 0px' }}>提交卡片流程</Divider>
       <h2>流程浏览带状</h2>
-      <Steps style={{ marginTop: 64, width: 400 }} type="browse">
+      <Steps style={{ marginTop: 64 }} type="browse">
         <Step
           status="success"
           title="发起审批"

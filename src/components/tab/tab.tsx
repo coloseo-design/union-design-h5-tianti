@@ -355,7 +355,7 @@ Tab.Item = memo((props) => {
   }
 
   return (
-    <div onClick={onClick} className={wrapClassName}>
+    <div onClick={onClick} className={wrapClassName} style={{ fontSize: type === 'label' ? 12 : undefined }}>
       {text}
       {dot && <div className="dot" />}
     </div>

@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     &-dot-content {
-      margin-right: 1.5em;
+      margin-right: 16px;
       position: relative;
       &-icon {
         width: 0.5em;
@@ -30,16 +30,14 @@
     }
     &-content {
       font-weight: 400;
-      flex: 1;
       min-height: 4.375em;
       &-cardtitle {
-        width: calc(100% - 2em);
-        position: absolute;
         font-size: 1em;
         color: @steps-text-color;
-        top: -1em;
         display: flex;
         justify-content: space-between;
+        font-weight: 400;
+        margin-top: -10px;
       }
       &-title {
         font-size: 1em;
@@ -67,12 +65,13 @@
       &-card {
         background-color: @steps-card-bg;
         border-radius: 2.25em;
-        width: 6.25em;
-        margin-top: 0.5em;
-        padding: 1px 0px 1px 2px;
+        margin-top: 4px;
+        padding: 2px 6px 2px 3px;
+        display: inline-block;
         &-name {
-          padding-left: 0.75em;
-          color: @steps-card-color;
+          font-size: 12px;
+          padding-left: 6px;
+          color: #646566;
           font-weight: 400;
           line-height: 2.25em;
         }

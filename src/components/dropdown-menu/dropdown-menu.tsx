@@ -298,7 +298,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
                 <DropdownItem
                   {...item}
                   onSelect={this.handleSelect}
-                  itemValue={item.value}
+                  itemValue={valueList[index] ? valueList[index] : ''}
                   visible={visible}
                   direction={direction}
                   activeColor={activeColor}

@@ -15,7 +15,7 @@ const TabType = (props: Omit<TabProps, 'children'>) => (
   <div style={containerStyle}>
     <Tab {...props}>
       <Tab.Item key="标签1" title="标签11111111" taskNum={22} taskWeight={2}>
-        <div style={{ marginTop: 20, alignSelf: 'center' }}>标签 1 页面</div>
+        <div style={{ marginTop: 20, alignSelf: 'center', height: 120 }}>标签 1 页面</div>
       </Tab.Item>
       <Tab.Item key="标签2" title="标签2222222" taskNum={42} taskWeight={2}>
         <div style={{ marginTop: 20, alignSelf: 'center' }}>标签 2 页面</div>
