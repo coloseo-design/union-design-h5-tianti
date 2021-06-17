@@ -16,9 +16,14 @@ const CollapseDemo = () => (
   <div style={containerStyle}>
     <Collapse activeKey={1} onChange={(a, b) => { console.log(a, b); }}>
       <Panel header="一级列表样式" key={1}>
-        <Collapse activeKey={1} onChange={(a, b) => { console.log(a, b); }}>
-          <Panel header="二级列表样式" key={1}>
+        <Collapse>
+          <Panel header="二级列表样式" key={5}>
             我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+            <Collapse>
+              <Panel header="二级列表样式" key={6}>
+                我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+              </Panel>
+            </Collapse>
           </Panel>
         </Collapse>
       </Panel>

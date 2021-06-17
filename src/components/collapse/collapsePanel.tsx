@@ -79,9 +79,17 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
         <div className={clazzName} style={{ ...styles }}>
           <div className={headerClass} onClick={this.headClick}>
             {
-              !accordion && <Icon type="fill-right" style={{ transform: show ? 'rotate(90deg)' : '' }} />
+              !accordion
+              && (
+              <Icon
+                type="fill-right"
+                style={{
+                  transform: show ? 'rotate(90deg)' : '', position: 'absolute', top: 21, left: 12,
+                }}
+              />
+              )
             }
-            <div style={{ display: 'inline-block', paddingLeft: accordion ? 0 : 9 }}>{header}</div>
+            <div style={{ display: 'inline-block', paddingLeft: accordion ? 0 : 0 }}>{header}</div>
             {
               accordion && <Icon type="right-circle" style={{ transform: show ? 'rotate(-90deg)' : 'rotate(90deg)', fontSize: 16 }} />
             }
