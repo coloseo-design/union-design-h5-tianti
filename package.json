@@ -1,6 +1,6 @@
 {
   "name": "union-design-h5",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "license": "MIT",
   "files": [
     "lib",
@@ -72,8 +72,8 @@
     }
   },
   "publishConfig": {
-		"registry": "https://nexus.coloseo.cn/repository/npm-hosted/"
-	},
+    "registry": "https://nexus.coloseo.cn/repository/npm-hosted/"
+  },
   "engines": {
     "node": ">=10"
   }
