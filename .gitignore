@@ -9,3 +9,10 @@ src/site/demos/
 src/site/dist/
 **/apidoc.js
 .DS_Store
+.yarnrc
+.npmrc
+yarn-error.log
+.yarnrc
+.npmrc
+yarn.lock
+package-lock.json
