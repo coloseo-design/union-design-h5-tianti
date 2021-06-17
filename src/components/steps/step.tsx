@@ -71,7 +71,7 @@ class Step extends React.Component<StepProps> {
         <div className={dotContent}>
           {type === 'card' && <div className={dot} />}
           {type === 'browse' && <Avatar text={text || ''} size={40} src={src} type={statusS} />}
-          {!isLast && <div className={line} style={{ top: type === 'card' ? '0.75em' : '2.25em' }} />}
+          {!isLast && <div className={line} style={{ top: type === 'card' ? '0.75em' : '2.75em' }} />}
         </div>
         {
           type === 'card' && (

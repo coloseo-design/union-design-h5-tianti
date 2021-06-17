@@ -77,7 +77,7 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       });
       return (
         <div className={clazzName} style={{ ...styles }}>
-          <div className={headerClass} onClick={this.headClick}>
+          <div className={headerClass} onClick={this.headClick} style={{ padding: accordion ? 16 : '16px 16px 16px 31px' }}>
             {
               !accordion
               && (
@@ -95,7 +95,7 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
             }
           </div>
           <div className={contentClass}>
-            <div className={boxClass}>{ children }</div>
+            <div className={boxClass} style={{ padding: accordion ? '10px 19px' : '10px 10px 10px 31px' }}>{ children }</div>
           </div>
         </div>
       );

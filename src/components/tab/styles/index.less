@@ -106,7 +106,7 @@
   }
 
   & > .tab.normal {  padding: 14px 0px; }
-  & > .tab.normal.line { padding: 14px 0 8px 0; }
+  & > .tab.normal.line { padding: 12px 0 10px 0; }
 
   & > .tab.card {
     font-size: 14px;
@@ -131,12 +131,12 @@
   }
 
   & > .tab.label {
-    font-size: 14px;
+    font-size: 12px;
     padding: 8px 0;
 
     & > .uni-tab-content {
-      padding: 2px;
-      border-radius: 4px;
+      padding: 0px 2px;
+      border-radius: 8px;
 
       & > .item {
         padding: 1px 8px;
@@ -153,19 +153,26 @@
   }
 
   & > .tab.task {
-
+    padding-top: 16px;
+    height: 70px;
+    margin-bottom: 0px;
     & > .uni-tab-content {
-      margin-top: 12px;
 
       & > .item {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-
+        & > .title {
+          font-weight: 400;
+          color: #646566;
+          font-size: 12px;
+          height: 16px;
+          margin-top: 4px;
+        }
         & > .num {
           font-size: 24px;
-          font-weight: 700;
-
+          font-weight: bold;
+          height: 24px;
           & > .overflow {
             font-size: 12px;
             vertical-align: top;
@@ -177,9 +184,9 @@
       }
 
       & > .item.weight1 {
-        color: #A6A8A9;
+        color: #C8CCCC;
 
-        & svg { stroke: #A6A8A9; }
+        & svg { stroke: #C8CCCC; }
       }
 
       & > .item.weight2 {

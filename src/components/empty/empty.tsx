@@ -25,8 +25,10 @@ class Empty extends React.Component<EmptyProps> {
     const { svg = '', label = '' } = newArry[0];
     return (
       <div className={clazzName}>
-        <div className={`${prefix}-svg`}>{ svg }</div>
-        { description || label }
+        <div className={`${prefix}-svg`}>
+          {svg}
+        </div>
+        <div style={{ marginTop: 4 }}>{ description || label }</div>
       </div>
     );
   };
