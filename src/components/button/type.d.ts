@@ -7,7 +7,7 @@ import { tuple, Omit } from '../utils/type';
  * 3种尺寸：默认，大号, 小号
  * 2种形状: circle, round
  */
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'link');
+const ButtonTypes = tuple('default', 'primary', 'light', 'link');
 const ButtonShapes = tuple('circle', 'round');
 const ButtonSizes = tuple('default', 'large', 'small');
 const ButtonHTMLTypes = tuple('submit', 'button', 'reset');

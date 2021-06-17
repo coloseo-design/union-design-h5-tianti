@@ -21,8 +21,8 @@ const ButtonDemo: React.FC<unknown> = () => (
       <Button type="primary" style={style} block disabled size="large">主按钮禁用(大)</Button>
       <Button type="default" style={style} block size="large">次按钮(大)</Button>
       <Button type="default" style={style} block disabled size="large">次按钮禁用(大)</Button>
-      <Button type="ghost" style={style} block size="large">幽灵按钮(大)</Button>
-      <Button type="ghost" style={style} block disabled size="large">幽灵按钮禁用(大)</Button>
+      <Button type="light" style={style} block size="large">幽灵按钮(大)</Button>
+      <Button type="light" style={style} block disabled size="large">幽灵按钮禁用(大)</Button>
       <Button type="link" style={style} block size="large" href="#">link</Button>
       <Button type="link" style={style} block disabled size="large" href="#">link</Button>
     </div>
@@ -33,6 +33,14 @@ const ButtonDemo: React.FC<unknown> = () => (
       <Button type="primary" style={style} loading block disabled size="large">主按钮禁用(大)</Button>
       <Button type="default" style={style} loading block size="large">次按钮(大)</Button>
       <Button type="default" style={style} loading block disabled size="large">次按钮禁用(大)</Button>
+    </div>
+
+    <div style={{ marginBottom: 10 }}>
+      <h5>带图标按钮</h5>
+      <Button type="primary" style={style} icon="add" block size="large">主按钮(大)</Button>
+      <Button type="primary" style={style} icon="add" block disabled size="large">主按钮禁用(大)</Button>
+      <Button type="default" style={style} icon="add" block size="large">次按钮(大)</Button>
+      <Button type="default" style={style} icon="add" block disabled size="large">次按钮禁用(大)</Button>
     </div>
 
     <div style={{ marginBottom: 10 }}>

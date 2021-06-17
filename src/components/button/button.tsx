@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     [`${prefixCls}-${type}`]: type,
     [`${prefixCls}-${shape}`]: shape,
     [`${prefixCls}-loading`]: !!loading,
-    [`${prefixCls}-background-ghost`]: ghost,
+    // [`${prefixCls}-background-ghost`]: ghost,
     [`${prefixCls}-block`]: block,
   });
   const iconName = loading ? 'loading-circle' : icon;
