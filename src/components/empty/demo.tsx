@@ -14,7 +14,7 @@ const EmptyDemo = () => (
   <div
     style={containerStyle}
   >
-    {/* <Empty /> */}
+    <Empty />
     <Empty type="ThereWasNothing" />
     <Empty type="ThereWasNothing" description="测试测试测试" />
     <Empty type="TakeACoffeeBreak" />
@@ -26,7 +26,7 @@ const EmptyDemo = () => (
     <Empty type="NoComment" />
     <Empty type="NoNotice" />
     <Empty type="NoNetwork" />
-    {/* <Empty type="NoDataAvailable" /> */}
+    <Empty type="NoDataAvailable" />
   </div>
 );
 
