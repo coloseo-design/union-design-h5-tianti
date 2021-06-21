@@ -71,9 +71,6 @@
       "path": "git-cz"
     }
   },
-  "publishConfig": {
-    "registry": "https://nexus.coloseo.cn/repository/npm-hosted/"
-  },
   "engines": {
     "node": ">=10"
   }
