@@ -17,11 +17,9 @@
 
   &-primary {
     .btn-primary;
-
     .@{btn-prefix-cls}-group &:not(:first-child):not(:last-child) {
       border-right-color: @btn-group-border;
       border-left-color: @btn-group-border;
-
       &:disabled {
         border-color: @btn-default-border;
       }
@@ -81,21 +79,21 @@
     .btn-circle(@btn-prefix-cls);
   }
 
-  &::before {
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    bottom: -1px;
-    left: -1px;
-    z-index: 1;
-    display: none;
-    background: @component-background;
-    border-radius: inherit;
-    opacity: 0.35;
-    transition: opacity 0.2s;
-    content: '';
-    pointer-events: none;
-  }
+  // &::before {
+  //   position: absolute;
+  //   top: -1px;
+  //   right: -1px;
+  //   bottom: -1px;
+  //   left: -1px;
+  //   z-index: 1;
+  //   display: none;
+  //   background: @component-background;
+  //   border-radius: inherit;
+  //   // opacity: 0.35;
+  //   transition: background 0.2s;
+  //   content: '';
+  //   pointer-events: none;
+  // }
 
   .@{iconfont-css-prefix} {
     transition: margin-left 0.3s @ease-in-out;

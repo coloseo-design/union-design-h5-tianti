@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     [`${prefixCls}-${sizeCls}`]: sizeCls,
     [`${prefixCls}-${type}`]: type,
     [`${prefixCls}-${shape}`]: shape,
-    [`${prefixCls}-loading`]: !!loading,
+    active: !!loading,
     // [`${prefixCls}-background-ghost`]: ghost,
     [`${prefixCls}-block`]: block,
   });

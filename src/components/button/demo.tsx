@@ -28,11 +28,10 @@ const ButtonDemo: React.FC<unknown> = () => (
     </div>
 
     <div style={{ marginBottom: 10 }}>
-      <h5>大尺寸loading</h5>
+      <h5>loading状态</h5>
       <Button type="primary" style={style} loading block size="large">主按钮(大)</Button>
-      <Button type="primary" style={style} loading block disabled size="large">主按钮禁用(大)</Button>
+      <Button type="light" style={style} loading block size="large">轻按钮(大)</Button>
       <Button type="default" style={style} loading block size="large">次按钮(大)</Button>
-      <Button type="default" style={style} loading block disabled size="large">次按钮禁用(大)</Button>
     </div>
 
     <div style={{ marginBottom: 10 }}>
