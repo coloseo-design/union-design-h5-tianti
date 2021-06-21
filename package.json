@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "union-tool run lint source=src/components",
     "apidoc": "node ./scripts/apidoc.js",
-    "compile": "node injector.js env=production && union-tool run compile source=src/components",
+    "compile": "union-tool run compile source=src/components",
     "dev": "node injector.js env=development && union-tool run dev",
     "commit": "npx git-cz",
     "init:commit": "npx commitizen init cz-conventional-changelog --yarn --dev --exact",
