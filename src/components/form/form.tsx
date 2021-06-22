@@ -89,6 +89,10 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   );
 };
 
-const FormFC: React.ForwardRefExoticComponent<Omit<FormProps, 'forwardRef'> & React.RefAttributes<HTMLFormElement>> & { FormItem: React.FC<FormItemProps> } = React.forwardRef<HTMLFormElement, Omit<FormProps, 'forwardRef'>>((props, ref) => <Form forwardRef={ref} {...props} />);
-FormFC.FormItem = FormItem;
-export default FormFC;
+const FormFC = React.forwardRef<FormInstance | undefined, Omit<FormProps, 'forwardRef'>>((props, ref) => <Form forwardRef={ref} {...props} />);
+const ComposedFormFC = FormFC as typeof FormFC & {
+  FormItem: typeof FormItem;
+};
+
+ComposedFormFC.FormItem = FormItem;
+export default ComposedFormFC;

@@ -33,6 +33,10 @@ const FormDemo = () => {
           onSubmitFailed={onSubmitFailed}
           name="login"
           ref={ref}
+          initialValues={{
+            username: 'admin',
+            password: '123456',
+          }}
         >
           <Form.FormItem
             name="username"
@@ -53,7 +57,7 @@ const FormDemo = () => {
               { required: true, message: '请填写密码' },
             ]}
           >
-            <Field placeholder="请输入密码" type="password" leftIcon={null} />
+            <Field placeholder="请输入密码" fieldType="password" leftIcon={null} />
           </Form.FormItem>
           <Row gutter={40} justify="space-between">
             <Col span={6}>

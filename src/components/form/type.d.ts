@@ -5,7 +5,7 @@ export type FormProps = {
   onSubmit: (values: Values) => void;
   onSubmitFailed: (errors: Errors) => void;
   initialValues?: Values;
-  forwardRef: React.LegacyRef<HTMLFormElement>
+  forwardRef: React.LegacyRef<FormInstance | null>;
   name: string;
 } & Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit'>;
 

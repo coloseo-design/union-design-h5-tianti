@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React, {
-  Component, CSSProperties, forwardRef, isValidElement, ReactNode,
+  Component, CSSProperties, forwardRef, isValidElement, LegacyRef, ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
@@ -11,7 +11,7 @@ export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | H
   leftIcon?: string | ReactNode; // 左侧图标
   fieldType?: 'normal' | 'password' | 'textarea'; // 普通输入框、密码输入框、多行输入框
   leftStyle?: CSSProperties; // 左边图标样式
-  placeholder?: string; // 输入框占位提示文字
+  // placeholder?: string; // 输入框占位提示文字
   maxLength?: number; // 输入的最大字符数
   status?: 'error'; // 是否将输入内容标红
   autosize?: boolean; // 是否自适应内容高度，只对 textarea 有效
@@ -20,7 +20,7 @@ export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | H
   onChange?: React.ChangeEventHandler<HTMLInputElement>; // 输入框内容变化时触发
   prefixCls?: string; // 用户自定义类前缀，默认uni-field
   showWordLimit?: boolean; // 是否显示字数统计，需要设置maxLength属性
-  forwardedRef?: React.LegacyRef<HTMLTextAreaElement | HTMLInputElement>;
+  forwardedRef: React.LegacyRef<HTMLTextAreaElement | HTMLInputElement>;
 }
 
 export interface FieldState {
@@ -35,9 +35,14 @@ class Field extends Component<FieldProps, FieldState> {
   constructor(props: FieldProps) {
     super(props);
     // 劫持value
-    const { value, type = 'text', fieldType = 'normal' } = props;
-    this.state = {
+    const {
       value,
+      type = 'text',
+      fieldType = 'normal',
+      defaultValue,
+    } = props;
+    this.state = {
+      value: value || defaultValue,
       type: fieldType === 'password' ? 'password' : type,
     };
   }
@@ -45,8 +50,9 @@ class Field extends Component<FieldProps, FieldState> {
   componentDidUpdate(prevProps: FieldProps) {
     const { value } = this.props;
     if (value !== prevProps.value) {
+      console.log('value-->', value);
       this.setState({
-        value,
+        value: typeof value === 'undefined' ? '' : value,
       });
     }
   }
@@ -58,6 +64,8 @@ class Field extends Component<FieldProps, FieldState> {
     const {
       value, type, focus, eyesOpen, textHeight,
     } = this.state;
+
+    console.log('values', value);
 
     const prefix = getPrefixCls('field', prefixCls);
     const mainClass = classNames(prefix, className, {
@@ -105,7 +113,7 @@ class Field extends Component<FieldProps, FieldState> {
             value={value}
             onChange={handleChange}
             style={{ height: autosize ? textHeight : 'unset' }}
-            ref={forwardedRef}
+            ref={forwardedRef as LegacyRef<HTMLTextAreaElement>}
           />
           {maxLength && showWordLimit && (
             <div className={`${prefix}-word-limit`}>
@@ -122,7 +130,7 @@ class Field extends Component<FieldProps, FieldState> {
       <div className={mainClass} style={style}>
         {leftIcon && (
           <span className={`${prefix}-left-icon`} style={leftStyle}>
-            {isValidElement(leftIcon) ? leftIcon : <Icon type={leftIcon} />}
+            {isValidElement(leftIcon) ? leftIcon : <Icon type={leftIcon as string} />}
           </span>
         )}
         <input
@@ -133,7 +141,7 @@ class Field extends Component<FieldProps, FieldState> {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
-          ref={forwardedRef}
+          ref={forwardedRef as LegacyRef<HTMLInputElement>}
         />
         {visibilityToggle && fieldType === 'password' && (
           <span className={`${prefix}-right-icon`}>
@@ -153,6 +161,6 @@ class Field extends Component<FieldProps, FieldState> {
   }
 }
 
-const NewField = forwardRef((props, ref) => <Field {...props} forwardedRef={ref} />);
+const NewField = forwardRef<HTMLInputElement| HTMLTextAreaElement, Omit<FieldProps, 'forwardedRef'>>((props, ref) => <Field {...props} forwardedRef={ref} />);
 
 export default NewField;
