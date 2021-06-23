@@ -61,7 +61,7 @@ export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
         >
           {leftIcon && (
             <div
-              className="left-icon"
+              className={this.gpc('left-icon')}
               onClick={leftIconOnClick}
             >
               {typeof leftIcon === 'string' ? (
@@ -71,16 +71,16 @@ export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
           )}
           <div
             onClick={textOnClick}
-            className={this.classNames('text', {
-              'text-multiline': multiline,
-              'text-oneline': !multiline,
+            className={this.classNames(this.gpc('text'), {
+              [this.gpc('text-multiline')]: multiline,
+              [this.gpc('text-oneline')]: !multiline,
             })}
           >
             {text}
           </div>
           {rightIcon && (
             <div
-              className="right-icon"
+              className={this.gpc('right-icon')}
               onClick={rightIconOnClick}
             >
               {typeof rightIcon === 'string' ? (

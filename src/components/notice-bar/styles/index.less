@@ -2,6 +2,12 @@
 @import "../../style/mixins/index";
 
 @notice-bar: ~"@{uni-prefix}-notice-bar";
+@notice-bar-text: ~"@{notice-bar}-text";
+@notice-bar-text-multiline: ~"@{notice-bar}-text-multiline";
+@notice-bar-text-oneline: ~"@{notice-bar}-text-oneline";
+
+@notice-bar-left-icon: ~"@{notice-bar}-left-icon";
+@notice-bar-right-icon: ~"@{notice-bar}-right-icon";
 
 .notice-bar-container {
     position: fixed;
@@ -28,8 +34,8 @@
     user-select: none;
     padding: 10px 0;
 
-    & > .left-icon,
-    & > .right-icon {
+    & > .@{notice-bar-left-icon},
+    & > .@{notice-bar-right-icon} {
         position: relative;
         padding: 0 8px;
         font-size: 20px;
@@ -38,38 +44,38 @@
         align-items: center;
     }
 
-    & > .left-icon {
+    & > .@{notice-bar-left-icon} {
         margin-left: 8px;
     }
 
-    & > .right-icon {
+    & > .@{notice-bar-right-icon} {
         margin-right: 8px;
     }
 
-    & > .text,
-    & > .text-multiline,
-    & > .text-oneline {
+    & > .@{notice-bar-text},
+    & > .@{notice-bar-text-multiline},
+    & > .@{notice-bar-text-oneline} {
         flex: 1;
     }
 
-    & > .text-oneline{
-        text-overflow: ellipsis; 
-        overflow: hidden; 
+    & > .@{notice-bar-text-oneline} {
+        text-overflow: ellipsis;
+        overflow: hidden;
         white-space: nowrap;
     }
 
-    & > .text:first-of-type {
+    & > .@{notice-bar-text}:first-of-type {
         margin-left: 16px;
     }
 
-    & > .text:last-of-type {
+    & > .@{notice-bar-text}:last-of-type {
         margin-right: 16px;
     }
 
     &:not(.@{notice-bar}-base) {
-        & > .left-icon {
+        & > .@{notice-bar-left-icon} {
             font-size: 18px;
-    
+
             &::after {
                 content: "";
                 position: absolute;
@@ -93,7 +99,7 @@
 }
 
 .@{notice-bar}-warning {
-    & > .left-icon {
+    & > .@{notice-bar-left-icon} {
         &::after {
             border: 1px solid #ED6A0C;
         }
@@ -117,7 +123,7 @@
     background-color: rgb(238, 248, 240);
     color: #07C160;
 
-    & > .left-icon {
+    & > .@{notice-bar-left-icon} {
         &::after {
             border: 1px solid #07C160;
         }
@@ -132,7 +138,7 @@
     background-color: rgb(252, 235, 236);
     color: #EE0A24;
 
-    & > .left-icon {
+    & > .@{notice-bar-left-icon} {
         &::after {
             border: 1px solid #EE0A24;
         }
@@ -147,7 +153,7 @@
     background-color: rgb(238, 240, 244);
     color: #576B95;
 
-    & > .left-icon {
+    & > .@{notice-bar-left-icon} {
         &::after {
             border: 1px solid #576B95;
         }
