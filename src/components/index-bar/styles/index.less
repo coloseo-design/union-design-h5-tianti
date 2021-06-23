@@ -3,12 +3,18 @@
 
 @index-bar: ~"@{uni-prefix}-index-bar";
 
+@index-bar-content: ~"@{index-bar}-content";
+@index-bar-item: ~"@{index-bar}-item";
+@index-bar-anchor-item: ~"@{index-bar}-anchor-item";
+@index-bar-anchor-item-active: ~"@{index-bar}-anchor-item-active";
+@index-bar-anchor-tag: ~"@{index-bar}-anchor-tag";
+
 .@{index-bar} {
   position: relative;
   width: 100%;
   height: 100%;
 
-  .@{index-bar}-content {
+  .@{index-bar-content} {
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -19,7 +25,7 @@
       display:none
     }
 
-    .anchor-item {
+    .@{index-bar-anchor-item} {
       position: sticky;
       top: 0;
       padding: 16px;
@@ -30,7 +36,7 @@
     }
   }
 
-  .anchor-tag {
+  .@{index-bar-anchor-tag} {
     position: absolute;
     top: 0;
     right: 0;
@@ -54,7 +60,7 @@
     //   display:none
     // }
 
-    & > .item{
+    & > .@{index-bar-item} {
       flex-shrink: 1;
       flex-basis: 24px;
       width: 36px;
@@ -64,8 +70,8 @@
     }
   }
 
-  .content div.anchor-item-active,
-  .anchor-tag div.anchor-item-active {
+  .@{index-bar-content} div.@{index-bar-anchor-item-active},
+  .@{index-bar-anchor-tag} div.@{index-bar-anchor-item-active} {
     color: #F31D39;
   }
 }

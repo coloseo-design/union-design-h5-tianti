@@ -87,7 +87,7 @@ const IndexBar = memo((props) => {
 
   return (
     <div className={getPrefixClass()}>
-      <div className="uni-index-bar-content" ref={contentRef} onScroll={contentOnScroll}>
+      <div className={getPrefixClass('content')} ref={contentRef} onScroll={contentOnScroll}>
         <IndexBarContext.Provider value={{
           sticky,
           anchorMap,
@@ -96,11 +96,11 @@ const IndexBar = memo((props) => {
           {children}
         </IndexBarContext.Provider>
       </div>
-      <div className="anchor-tag">
+      <div className={getPrefixClass('anchor-tag')}>
         {anchorList.map((item) => (
           <div
             key={item}
-            className={classNames('item', { 'anchor-item-active': sticky === item })}
+            className={classNames(getPrefixClass('item'), { [getPrefixClass('anchor-item-active')]: sticky === item })}
             onClick={() => anchorTagItemOnClick(item)}
           >
             {item}
@@ -115,6 +115,7 @@ IndexBar.Anchor = memo((props) => {
   const { id } = props ?? {};
   const anchorRef = useRef<HTMLDivElement>(null);
   const { sticky, anchorMap } = useContext(IndexBarContext);
+  const getPrefixClass = useGetPrefixClass('index-bar');
   const classNames = useClassNames();
 
   anchorMap && (anchorMap.current[id] = anchorRef.current?.offsetTop ?? 1);
@@ -123,8 +124,8 @@ IndexBar.Anchor = memo((props) => {
     <>
       <div data-id={id} ref={anchorRef} />
       <div
-        className={classNames('anchor-item', {
-          'anchor-item-active': sticky === id,
+        className={classNames(getPrefixClass('anchor-item'), {
+          [getPrefixClass('anchor-item-active')]: sticky === id,
         })}
       >
         {id}
