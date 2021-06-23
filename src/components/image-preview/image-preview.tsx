@@ -80,10 +80,30 @@ export default class ImagePreview extends BaseComponent<ImagePreviewProps, Image
           style={imgStyle}
           onLoad={this.onLoad}
           onError={this.onError}
-          className={this.classNames(imgClassName, `img ${status}`)}
+          className={this.classNames(
+            imgClassName,
+            this.gpc('img'),
+            this.gpc(`${status}`),
+          )}
         />
-        <div className={`overlay ${status}`}><Icon type="image" /></div>
-        {status === 'error' && <div className={`overlay ${status}`}><Icon type="image-damage" /></div>}
+        <div
+          className={this.classNames(
+            this.gpc('overlay'),
+            this.gpc(`${status}`),
+          )}
+        >
+          <Icon type="image" />
+        </div>
+        {status === 'error' && (
+          <div
+            className={this.classNames(
+              this.gpc('overlay'),
+              this.gpc(`${status}`),
+            )}
+          >
+            <Icon type="image-damage" />
+          </div>
+        )}
         {enableFullScreen && (
           <Overlay
             style={{ backgroundColor: '#000', overflow: 'auto' }}
