@@ -128,10 +128,10 @@ const Tabbar = memo((props) => {
   return (
     <TabbarContext.Provider value={tabbarContextProvider}>
       <div style={style} className={tabbarClassName}>
-        <div style={contentStyle} className={classNames('uni-tabbar-content', contentClassName)}>
+        <div style={contentStyle} className={classNames(getPrefixClass('content'), contentClassName)}>
           {contentView}
         </div>
-        <div style={itemStyle} className={classNames('item', itemClassName)}>
+        <div style={itemStyle} className={classNames(getPrefixClass('item'), itemClassName)}>
           {item}
         </div>
       </div>
@@ -161,6 +161,7 @@ Tabbar.Item = memo((props) => {
     _key,
   } = props ?? {};
   const classNames = useClassNames();
+  const getPrefixClass = useGetPrefixClass('tabbar');
   const { setSelectedKey, selectedKey } = useContext(TabbarContext);
 
   const onClick = useCallback(() => setSelectedKey?.(_key ?? '-1'), [setSelectedKey, _key]);
@@ -194,30 +195,30 @@ Tabbar.Item = memo((props) => {
   );
 
   const itemWrapClassName = useMemo(
-    () => classNames('item-wrap', className, { [`${selectedClassName}`]: _key === selectedKey }),
-    [classNames, className, selectedClassName, selectedKey, _key],
+    () => classNames(getPrefixClass('item-wrap'), className, { [`${selectedClassName}`]: _key === selectedKey }),
+    [getPrefixClass, classNames, className, selectedClassName, selectedKey, _key],
   );
 
   const itemIconClassName = useMemo(
     () => classNames(
-      'icon',
+      getPrefixClass('icon'),
       iconClassName, {
-        'tabbar-select-icon': _key === selectedKey,
+        [getPrefixClass('select-icon')]: _key === selectedKey,
         [`${selectedIconClassName}`]: _key === selectedKey,
       },
     ),
-    [classNames, iconClassName, selectedIconClassName, selectedKey, _key],
+    [getPrefixClass, classNames, iconClassName, selectedIconClassName, selectedKey, _key],
   );
 
   const itemTitleClassName = useMemo(
     () => classNames(
-      'title',
+      getPrefixClass('title'),
       titleClassName, {
-        'tabbar-select-title': _key === selectedKey,
+        [getPrefixClass('select-title')]: _key === selectedKey,
         [`${selectedTitleClassName}`]: _key === selectedKey,
       },
     ),
-    [classNames, titleClassName, selectedTitleClassName, selectedKey, _key],
+    [getPrefixClass, classNames, titleClassName, selectedTitleClassName, selectedKey, _key],
   );
 
   return (
@@ -228,8 +229,8 @@ Tabbar.Item = memo((props) => {
     >
       <div style={itemIconStyle} className={itemIconClassName}>
         {iconView}
-        {dot && !badge && <div className="dot" />}
-        {!!badge && <div className="badge">{badge}</div>}
+        {dot && !badge && <div className={getPrefixClass('dot')} />}
+        {!!badge && <div className={getPrefixClass('badge')}>{badge}</div>}
       </div>
       <div style={itemTitleStyle} className={itemTitleClassName}>
         {title}

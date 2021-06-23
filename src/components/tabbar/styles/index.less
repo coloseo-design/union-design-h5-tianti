@@ -3,20 +3,33 @@
 
 @tabbar: ~"@{uni-prefix}-tabbar";
 
+@tabbar-content: ~"@{tabbar}-content";
+
+@tabbar-item: ~"@{tabbar}-item";
+@tabbar-item-wrap: ~"@{tabbar}-item-wrap";
+
+@tabbar-icon: ~"@{tabbar}-icon";
+@tabbar-dot: ~"@{tabbar}-dot";
+@tabbar-badge: ~"@{tabbar}-badge";
+@tabbar-title: ~"@{tabbar}-title";
+
+@tabbar-select-icon: ~"@{tabbar}-select-icon";
+@tabbar-select-title: ~"@{tabbar}-select-title";
+
 .@{tabbar} {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
 
-  & > .uni-tabbar-content {
+  & > .@{tabbar-content} {
     flex-grow: 1;
     flex-shrink: 0;
     display: flex;
     flex-flow: column nowrap;
   }
 
-  & > .item {
+  & > .@{tabbar-item} {
     background: #FFFFFF;
     box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.05);
     height: 52px;
@@ -26,7 +39,7 @@
     user-select: none;
     cursor: pointer;
 
-    .item-wrap {
+    .@{tabbar-item-wrap} {
       flex-grow: 1;
       flex-shrink: 0;
       position: relative;
@@ -35,7 +48,7 @@
       align-items: center;
       flex-flow: column nowrap;
       padding: 8px 0px 4px 0px;
-      & > .icon {
+      & > .@{tabbar-icon} {
         position: relative;
         width: 24px;
         height: 24px;
@@ -44,7 +57,7 @@
         align-items: center;
         font-size: 24px;
         color: #A6A8A9;
-        & > .dot {
+        & > .@{tabbar-dot} {
           position: absolute;
           top: -2px;
           right: -2px;
@@ -55,7 +68,7 @@
           background-color: #ee0a24;
           border-radius: 100%;
         }
-        & > .badge {
+        & > .@{tabbar-badge} {
           position: absolute;
           top: -2px;
           right: 0;
@@ -70,17 +83,17 @@
           transform: scale(0.9) translateX(50%);
         }
       }
-      & > .tabbar-select-icon  {
+      & > .@{tabbar-select-icon}  {
         color: #F32727;
         opacity: 0.9;
       }
-      & > .title {
+      & > .@{tabbar-title} {
         font-size: 12px;
         transform: scale(0.84);
         margin-top: 2px;
         color: #A6A8A9;
       }
-      & > .tabbar-select-title {
+      & > .@{tabbar-select-title} {
         color: #F31D39;
       }
     }
