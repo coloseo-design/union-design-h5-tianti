@@ -3,6 +3,14 @@
 
 @skeleton: ~"@{uni-prefix}-skeleton";
 
+@skeleton-circle: ~"@{skeleton}-circle";
+@skeleton-square: ~"@{skeleton}-square";
+@skeleton-round: ~"@{skeleton}-round";
+@skeleton-avatar: ~"@{skeleton}-avatar";
+@skeleton-content: ~"@{skeleton}-content";
+@skeleton-paragraph: ~"@{skeleton}-paragraph";
+@skeleton-title: ~"@{skeleton}-title";
+
 .@{skeleton} {
   width: 100%;
   background-color: #fff;
@@ -10,48 +18,48 @@
   display: flex;
   flex-flow: row nowrap;
 
-  .circle{
+  .@{skeleton-circle} {
     border-radius: 50%;
   }
 
-  .square {
+  .@{skeleton-square} {
     border-radius: 8px;
   }
 
-  .round {
+  .@{skeleton-round} {
     border-radius: 4px;
   }
 
-  .avatar {
+  .@{skeleton-avatar} {
     background-color: #EDEEEE;
   }
 
-  .content {
+  .@{skeleton-content} {
     flex-grow: 1;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
   }
 
-  .avatar + .content {
+  .@{skeleton-avatar} + .@{skeleton-content} {
     margin-left: 12px;
   }
 
-  .title {
+  .@{skeleton-title} {
     height: 16px;
     background-color: #EDEEEE;
   }
 
-  .title + .paragraph {
+  .@{skeleton-title} + .@{skeleton-paragraph} {
     margin-top: 12px;
   }
 
-  .paragraph {
+  .@{skeleton-paragraph} {
     height: 12px;
     background-color: #EDEEEE;
   }
 
-  .paragraph + .paragraph {
+  .@{skeleton-paragraph} + .@{skeleton-paragraph} {
     margin-top: 8px;
   }
 }

@@ -48,20 +48,20 @@ const Skeleton = memo<SkeletonProps>((props) => {
     return (
       <div
         style={{ width: avatarSize, height: avatarSize }}
-        className={classNames('avatar', `${avatarShape}`)}
+        className={classNames(getPrefixClass('avatar'), getPrefixClass(`${avatarShape}`))}
       />
     );
-  }, [classNames, avatar, avatarShape, avatarSize]);
+  }, [getPrefixClass, classNames, avatar, avatarShape, avatarSize]);
 
   const titleView = useMemo(() => {
     if (!title) return <></>;
     return (
       <div
         style={{ width: titleWidth }}
-        className={classNames('title', { round })}
+        className={classNames(getPrefixClass('title'), { [getPrefixClass('round')]: round })}
       />
     );
-  }, [classNames, round, title, titleWidth]);
+  }, [getPrefixClass, classNames, round, title, titleWidth]);
 
   const paragraphView = useMemo(() => {
     if (!paragraph) return [];
@@ -71,19 +71,19 @@ const Skeleton = memo<SkeletonProps>((props) => {
       .map((item) => (
         <div
           key={item}
-          className={classNames('paragraph', { round })}
+          className={classNames(getPrefixClass('paragraph'), { [getPrefixClass('round')]: round })}
           style={{ width: paragraphRowWidth[item] ?? '100%' }}
         />
       ));
 
     return view;
-  }, [classNames, round, paragraph, paragraphRow, paragraphRowWidth]);
+  }, [getPrefixClass, classNames, round, paragraph, paragraphRow, paragraphRowWidth]);
 
   if (loading) {
     return (
       <div className={getPrefixClass()}>
         {avatarView}
-        <div className="content">
+        <div className={getPrefixClass('content')}>
           {titleView}
           {paragraphView}
         </div>
