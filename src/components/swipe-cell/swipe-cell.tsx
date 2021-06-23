@@ -227,7 +227,7 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
   return (
     <div className={wrapClassName} onMouseLeave={handleEnd}>
       {left && (
-        <div style={style.leftStyle} className="left" ref={leftRef}>
+        <div style={style.leftStyle} className={getPrefixClass('left')} ref={leftRef}>
           {left.map((item, index) => (
             <div
               className={item.className}
@@ -241,7 +241,7 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
         </div>
       )}
       {right && (
-        <div style={style.rightStyle} className="right" ref={rightRef}>
+        <div style={style.rightStyle} className={getPrefixClass('right')} ref={rightRef}>
           {right.map((item, index) => (
             <div
               className={item.className}

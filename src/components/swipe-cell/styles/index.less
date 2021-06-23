@@ -3,6 +3,10 @@
 
 @swipe-cell: ~"@{uni-prefix}-swipe-cell";
 
+@swipe-cell-left: ~"@{swipe-cell}-left";
+@swipe-cell-right: ~"@{swipe-cell}-right";
+
+
 .@{swipe-cell} {
   position: relative;
   overflow: hidden;
@@ -17,8 +21,8 @@
     width: 100%;
   }
 
-  & > .left,
-  & > .right {
+  & > .@{swipe-cell-left},
+  & > .@{swipe-cell-right} {
     position: absolute;
     height: 100%;
     display: flex;
@@ -29,11 +33,11 @@
     }
   }
 
-  & > .left {
+  & > .@{swipe-cell-left} {
     left: 0;
   }
 
-  & > .right {
+  & > .@{swipe-cell-right} {
     right: 0;
   }
 }
