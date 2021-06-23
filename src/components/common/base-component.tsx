@@ -37,6 +37,15 @@ export abstract class BaseComponent<
     return getPrefixCls?.(`${this.classPrefix}`, prefixCls);
   };
 
+  protected gpc = (prefix?: string) => {
+    const { prefixCls } = this.props;
+    const { getPrefixCls } = this.config;
+
+    if (prefix) return getPrefixCls?.(`${this.classPrefix}-${prefix}`, prefixCls);
+
+    return getPrefixCls?.(`${this.classPrefix}`, prefixCls);
+  };
+
   private init = (config: ConfigConsumerProps) => {
     this.config = config;
     return this.view();
