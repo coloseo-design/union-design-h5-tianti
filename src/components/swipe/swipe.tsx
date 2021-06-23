@@ -96,10 +96,10 @@ const Swipe: FC<SwipeProps> = (props) => {
         style={contentStyle}
         onTransitionEnd={onTransitionEnd}
       >
-        {React.Children.map(childrenView, (item) => <div className="item">{item}</div>)}
-        <div className="item">{childrenView[0]}</div>
+        {React.Children.map(childrenView, (item) => <div className={`${swipeClassName}-item`}>{item}</div>)}
+        <div className={`${swipeClassName}-item`}>{childrenView[0]}</div>
       </div>
-      <div className="tip">{tip}</div>
+      <div className={`${swipeClassName}-tip`}>{tip}</div>
     </div>
   );
 };

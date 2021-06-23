@@ -3,6 +3,9 @@
 
 @swipe: ~"@{uni-prefix}-swipe";
 
+@swipe-item: ~"@{swipe}-item";
+@swipe-tip: ~"@{swipe}-tip";
+
 .@{swipe} {
   position: relative;
   overflow: hidden;
@@ -13,14 +16,14 @@
     flex-flow: row nowrap;
     transform: translateX(0);
 
-    & > .item {
+    & > .@{swipe-item} {
       flex-shrink: 0;
       width: 100%;
       height: 100%;
     }
   }
 
-  & > .tip {
+  & > .@{swipe-tip} {
     position: absolute;
     bottom: 5px;
     right: 5px;
