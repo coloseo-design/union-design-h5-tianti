@@ -3,6 +3,17 @@
 
 @uploader: ~"@{uni-prefix}-uploader";
 
+@uploader-list: ~"@{uploader}-list";
+@uploader-item: ~"@{uploader}-item";
+@uploader-icon: ~"@{uploader}-icon";
+@uploader-name: ~"@{uploader}-name";
+@uploader-progress: ~"@{uploader}-progress";
+@uploader-progressDesc: ~"@{uploader}-progressDesc";
+@uploader-open: ~"@{uploader}-open";
+@uploader-preview: ~"@{uploader}-preview";
+@uploader-delete: ~"@{uploader}-delete";
+@uploader-content: ~"@{uploader}-content";
+
 .@{uploader} {
   position: relative;
   display: flex;
@@ -11,24 +22,24 @@
   user-select: none;
   padding: 16px;
 
-  & > .list {
+  & > .@{uploader-list} {
     display: flex;
     flex-flow: column nowrap;
 
-    & > .item + .item  { margin-top: 12px; }
+    & > .@{uploader-item} + .@{uploader-item}  { margin-top: 12px; }
 
-    & > .item {
+    & > .@{uploader-item} {
       height: 48px;
       display: flex;
       flex-flow: row nowrap;
 
-      & > .icon {
+      & > .@{uploader-icon} {
         position: relative;
         width: 42px;
         height: 48px;
       }
 
-      & > .content {
+      & > .@{uploader-content} {
         margin-left: 16px;
         flex: 1;
         width: 0;
@@ -42,44 +53,44 @@
           text-overflow:ellipsis;
         }
 
-        & > .name {
+        & > .@{uploader-name} {
           font-size: 16px;
           color: #1C1D1D;
         }
 
-        & > .progress {
+        & > .@{uploader-progress} {
           font-size: 12px;
           color: #A6A8A9;
         }
       }
 
-      & > .delete,
-      & > .preview {
+      & > .@{uploader-delete},
+      & > .@{uploader-preview} {
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
       }
 
-      & > .preview { margin-left: 16px; }
+      & > .@{uploader-preview} { margin-left: 16px; }
 
-      & > .delete { padding: 0px 16px; }
+      & > .@{uploader-delete} { padding: 0px 16px; }
     }
   }
 
-  & > .list + .icon {
+  & > .@{uploader-list} + .@{uploader-icon} {
     margin-top: 12px;
   }
 
-  & > .list:empty + .icon {
+  & > .@{uploader-list}:empty + .@{uploader-icon} {
     margin-top: 0;
   }
 
-  & > .icon {
+  & > .@{uploader-icon} {
     align-self: start;
     user-select: none;
     cursor: pointer;
 
-    & .icon {
+    & .@{uploader-icon} {
       width: 48px;
       height: 48px;
       border: 1px dashed #DBDDDD;
@@ -94,7 +105,7 @@
   }
 }
 
-.@{uploader}-preview {
+.@{uploader}-tag-preview {
   width: 100%;
   height: 100%;
   position: relative;
@@ -102,17 +113,17 @@
   flex-flow: column nowrap;
   padding: 0 45px;
 
-  & > div:not(.progress) {
+  & > div:not(.@{uploader-progress}) {
     align-self: center;
   }
 
-  & > .icon {
+  & > .@{uploader-icon} {
     margin-top: 18.2%;
     width: 64px;
     height: 64px;
   }
 
-  & > .name {
+  & > .@{uploader-name} {
     margin-top: 14px;
     font-size: 16px;
     line-height: 22px;
@@ -120,7 +131,7 @@
     color: #1C1D1D;
   }
 
-  & > .progress {
+  & > .@{uploader-progress} {
     margin-top: 10.4%;
     display: flex;
     flex-flow: row nowrap;
@@ -145,14 +156,14 @@
     }
   }
 
-  & > .progressDesc {
+  & > .@{uploader-progressDesc} {
     margin-top: 8px;
     color: #F31D39;
     font-size: 14px;
     line-height: 20px;
   }
 
-  & > .open {
+  & > .@{uploader-open} {
     flex: 1;
     width: 61.6%;
     display: flex;

@@ -324,35 +324,35 @@ Uploader.List = memo((props) => {
 
   return (
     <div style={style} className={wrapDivClassName}>
-      <div className="list">
+      <div className={getPrefixClass('list')}>
         {fileList.map((file) => (
-          <div key={file.uid} className="item">
-            <div className="icon">
+          <div key={file.uid} className={getPrefixClass('item')}>
+            <div className={getPrefixClass('icon')}>
               {iconView ? iconView(file) || handleIcon(file.name) : handleIcon(file.name)}
             </div>
-            <div className="content">
-              <div className="name">{file.name}</div>
-              <div className="progress">{`${fileSize(file.size * file.progress)}/${file.unitSize}`}</div>
+            <div className={getPrefixClass('content')}>
+              <div className={getPrefixClass('name')}>{file.name}</div>
+              <div className={getPrefixClass('progress')}>{`${fileSize(file.size * file.progress)}/${file.unitSize}`}</div>
             </div>
             {file.status === 'success' && onPreview && (
-              <div className="preview">
+              <div className={getPrefixClass('preview')}>
                 <Button size="small">预览</Button>
               </div>
             )}
             {file.status === 'success' && (
-              <div className="delete" onClick={() => deleteOnClick(file)}>
+              <div className={getPrefixClass('delete')} onClick={() => deleteOnClick(file)}>
                 <Icon type="delete" />
               </div>
             )}
           </div>
         ))}
       </div>
-      <div className="icon">
+      <div className={getPrefixClass('icon')}>
         <Uploader
           {...uploaderProps}
           onChange={onUploadChange}
         >
-          <div className="icon">
+          <div className={getPrefixClass('icon')}>
             <Icon type="add" />
           </div>
         </Uploader>
@@ -388,16 +388,16 @@ Uploader.Preview = memo((props) => {
     iconView,
   } = props ?? {};
 
-  const getPrefixClass = useGetPrefixClass('uploader-preview');
+  const getPrefixClass = useGetPrefixClass('uploader');
 
   return (
-    <div className={getPrefixClass()}>
-      <div className="icon">
+    <div className={getPrefixClass('tag-preview')}>
+      <div className={getPrefixClass('icon')}>
         {iconView ? iconView(file) || handleIcon(file.name) : handleIcon(file.name)}
       </div>
-      <div className="name">{file.name}</div>
+      <div className={getPrefixClass('name')}>{file.name}</div>
       {showProgress && (
-        <div className="progress">
+        <div className={getPrefixClass('progress')}>
           <div>
             <div style={{ width: `${progress * 100}%` }} />
           </div>
@@ -409,10 +409,10 @@ Uploader.Preview = memo((props) => {
         </div>
       )}
       {showProgressDesc && (
-        <div className="progressDesc">{progressDesc}</div>
+        <div className={getPrefixClass('progressDesc')}>{progressDesc}</div>
       )}
       {showBtn && (
-        <div className="open">
+        <div className={getPrefixClass('open')}>
           <Button size="large" style={{ width: '100%' }} type="primary" onClick={onBtnClick}>
             {btnText}
           </Button>
