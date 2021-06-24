@@ -3,6 +3,26 @@
 
 @tab: ~"@{uni-prefix}-tab";
 
+@tab-overlay-left: ~"@{tab}-overlay-left";
+@tab-overlay-right: ~"@{tab}-overlay-right";
+@tab-content: ~"@{tab}-content";
+@tab-item: ~"@{tab}-item";
+@tab-tab: ~"@{tab}-tab";
+@tab-dot: ~"@{tab}-dot";
+@tab-line: ~"@{tab}-line";
+@tab-normal: ~"@{tab}-normal";
+@tab-card: ~"@{tab}-card";
+@tab-label: ~"@{tab}-label";
+@tab-task: ~"@{tab}-task";
+@tab-scroll: ~"@{tab}-scroll";
+@tab-fixed: ~"@{tab}-fixed";
+@tab-active: ~"@{tab}-active";
+@tab-title: ~"@{tab}-title";
+@tab-num: ~"@{tab}-num";
+@tab-weight1: ~"@{tab}-weight1";
+@tab-weight2: ~"@{tab}-weight2";
+@tab-overflow: ~"@{tab}-overflow";
+
 .@{tab} {
   position: relative;
   width: 100%;
@@ -12,39 +32,39 @@
   font-weight: 400;
   font-family: PingFangSC-Regular;
 
-  & > .overlay-left,
-  & > .overlay-right {
+  & > .@{tab-overlay-left},
+  & > .@{tab-overlay-right} {
     position: absolute;
     top: 0;
     width: 16px;
   }
 
-  & > .overlay-left {
+  & > .@{tab-overlay-left} {
     left: 0;
     background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255,1));
   }
 
-  & > .overlay-right {
+  & > .@{tab-overlay-right} {
      right: 0;
      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255,1));
   }
 
-  & > .content {
+  & > .@{tab-content} {
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
     position: relative;
   }
 
-  & > .tab {
+  & > .@{tab-tab} {
     background-color: #FFFFFF;
 
-    & > .content > .item {
+    & > .@{tab-content} > .@{tab-item} {
       position: relative;
       user-select: none;
       cursor: pointer;
 
-      & > .dot {
+      & > .@{tab-dot} {
         width: 6px;
         height: 6px;
         border: 2px solid #F31D39;
@@ -55,7 +75,7 @@
       }
     }
 
-    & > .line {
+    & > .@{tab-line} {
       border-radius: 4px;
       background-color: #F31D39;
       margin-top: 4px;
@@ -64,7 +84,7 @@
     }
   }
 
-  & > .tab.scroll {
+  & > .@{tab-tab}.@{tab-scroll} {
     scroll-behavior: smooth;
     overflow-x: auto;
     -ms-overflow-style: none;
@@ -74,50 +94,50 @@
       display:none
     }
 
-    & > .uni-tab-content {
+    & > .@{tab-content} {
       white-space: nowrap;
 
-      & > .item {
+      & > .@{tab-item} {
         display: inline-block;
         vertical-align: top;
       }
     }
   }
 
-  & > .tab.fixed {
-    & > .uni-tab-content {
+  & > .@{tab-tab}.@{tab-fixed} {
+    & > .@{tab-content} {
       display: flex;
       justify-content: space-around;
     }
   }
 
-  & > .tab.normal,
-  & > .tab.normal.line {
+  & > .@{tab-tab}.@{tab-normal},
+  & > .@{tab-tab}.@{tab-normal}.@{tab-line} {
     font-size: 16px;
     line-height: 22px;
 
-    & > .uni-tab-content {
-      & > .item:first-of-type { margin-left: 16px; }
-      & > .item:last-of-type {margin-right: 16px; }
-      & > .item { color: #A6A8A9; }
-      & > .item + .item { margin-left: 20px; }
-      & > .item.active { color: #1C1D1D; }
+    & > .@{tab-content} {
+      & > .@{tab-item}:first-of-type { margin-left: 16px; }
+      & > .@{tab-item}:last-of-type {margin-right: 16px; }
+      & > .@{tab-item} { color: #A6A8A9; }
+      & > .@{tab-item} + .@{tab-item} { margin-left: 20px; }
+      & > .@{tab-item}.@{tab-active} { color: #1C1D1D; }
     }
   }
 
-  & > .tab.normal {  padding: 14px 0px; }
-  & > .tab.normal.line { padding: 12px 0 10px 0; }
+  & > .@{tab-tab}.@{tab-normal} {  padding: 14px 0px; }
+  & > .@{tab-tab}.@{tab-normal}.@{tab-line} { padding: 12px 0 10px 0; }
 
-  & > .tab.card {
+  & > .@{tab-tab}.@{tab-card} {
     font-size: 14px;
     padding: 10px 12px;
 
-    & > .uni-tab-content {
+    & > .@{tab-content} {
       padding: 2px;
       border-radius: 4px;
       background-color: #F5F6F6;
 
-      & > .item {
+      & > .@{tab-item} {
         flex: 1;
         padding: 4px 0;
         display: flex;
@@ -126,54 +146,54 @@
         border-radius: 3px;
       }
 
-      & > .item.active { background-color: #fff; }
+      & > .@{tab-item}.@{tab-active} { background-color: #fff; }
     }
   }
 
-  & > .tab.label {
+  & > .@{tab-tab}.@{tab-label} {
     font-size: 12px;
     padding: 8px 0;
 
-    & > .uni-tab-content {
+    & > .@{tab-content} {
       padding: 0px 2px;
       border-radius: 8px;
 
-      & > .item {
+      & > .@{tab-item} {
         padding: 1px 8px;
         border-radius: 20px;
         background-color: #F5F6F6;
         color: #646566;
       }
 
-      & > .item:first-of-type { margin-left: 12px; }
-      & > .item:last-of-type {margin-right: 12px; }
-      & > .item + .item { margin-left: 12px; }
-      & > .item.active { color: #F31D39; }
+      & > .@{tab-item}:first-of-type { margin-left: 12px; }
+      & > .@{tab-item}:last-of-type {margin-right: 12px; }
+      & > .@{tab-item} + .@{tab-item} { margin-left: 12px; }
+      & > .@{tab-item}.@{tab-active} { color: #F31D39; }
     }
   }
 
-  & > .tab.task {
+  & > .@{tab-tab}.@{tab-task} {
     padding-top: 16px;
     height: 70px;
     margin-bottom: 0px;
-    & > .uni-tab-content {
+    & > .@{tab-content} {
 
-      & > .item {
+      & > .@{tab-item} {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        & > .title {
+        & > .@{tab-title} {
           font-weight: 400;
           color: #646566;
           font-size: 12px;
           height: 16px;
           margin-top: 4px;
         }
-        & > .num {
+        & > .@{tab-num} {
           font-size: 24px;
           font-weight: bold;
           height: 24px;
-          & > .overflow {
+          & > .@{tab-overflow} {
             font-size: 12px;
             vertical-align: top;
             margin-right: -12px;
@@ -183,19 +203,19 @@
         }
       }
 
-      & > .item.weight1 {
+      & > .@{tab-item}.@{tab-weight1} {
         color: #C8CCCC;
 
         & svg { stroke: #C8CCCC; }
       }
 
-      & > .item.weight2 {
+      & > .@{tab-item}.@{tab-weight2} {
         color: #1C1D1D;
 
         & svg { stroke: #1C1D1D; }
       }
 
-      & > .item.active {
+      & > .@{tab-item}.@{tab-active} {
         color: #F31D39;
 
         & svg { stroke: #F31D39; }

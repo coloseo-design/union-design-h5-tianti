@@ -149,13 +149,13 @@ const Tab = memo<TabProps>((props) => {
   ), [getPrefixClass, classNames, className]);
 
   const tabDivClassName = useMemo(() => classNames(
-    'tab', tabClassName, type,
+    getPrefixClass('tab'), tabClassName, getPrefixClass(`${type}`),
     {
-      line: state.line,
-      scroll: state.mode === 'scroll',
-      fixed: state.mode === 'fixed',
+      [getPrefixClass('line')]: state.line,
+      [getPrefixClass('scroll')]: state.mode === 'scroll',
+      [getPrefixClass('fixed')]: state.mode === 'fixed',
     },
-  ), [classNames, tabClassName, type, state.line, state.mode]);
+  ), [getPrefixClass, classNames, tabClassName, type, state.line, state.mode]);
 
   const tabLineDivStyle = useMemo(() => ({
     ...lineStyle,
@@ -163,8 +163,8 @@ const Tab = memo<TabProps>((props) => {
   }), [tabLineStyle, lineStyle]);
 
   const tabLineDivClassName = useMemo(() => classNames(
-    'line', lineClassName,
-  ), [classNames, lineClassName]);
+    getPrefixClass('line'), lineClassName,
+  ), [getPrefixClass, classNames, lineClassName]);
 
   const tabContextProvider = useMemo(() => ({
     ...state,
@@ -265,16 +265,16 @@ const Tab = memo<TabProps>((props) => {
     <TabContext.Provider value={tabContextProvider}>
       <div style={style} className={wrapDivClassName}>
         <div style={tabStyle} ref={tabRef} className={tabDivClassName}>
-          <div className={`${wrapDivClassName}-content`}>{tabView}</div>
+          <div className={getPrefixClass('content')}>{tabView}</div>
           {state.line && <div style={tabLineDivStyle} className={tabLineDivClassName} />}
         </div>
-        <div className={`${wrapDivClassName}-content`}>
+        <div className={getPrefixClass('content')}>
           {contentView[state.selectedIndex]}
         </div>
         {state.mode === 'scroll' && (
           <>
-            <div className="overlay-left" style={{ height: tabRef.current?.offsetHeight }} />
-            <div className="overlay-right" style={{ height: tabRef.current?.offsetHeight }} />
+            <div className={getPrefixClass('overlay-left')} style={{ height: tabRef.current?.offsetHeight }} />
+            <div className={getPrefixClass('overlay-right')} style={{ height: tabRef.current?.offsetHeight }} />
           </>
         )}
       </div>
@@ -300,6 +300,7 @@ Tab.Item = memo((props) => {
     selectedIndex,
     setSelectedTab,
   } = useContext(TabContext);
+  const getPrefixClass = useGetPrefixClass('tab');
 
   const classNames = useClassNames();
 
@@ -309,11 +310,11 @@ Tab.Item = memo((props) => {
   );
 
   const wrapClassName = useMemo(
-    () => classNames('item', {
-      active: (selectedKey === _key) || (selectedIndex === _index),
-      ...type === 'task' && { [`weight${taskWeight}`]: true },
+    () => classNames(getPrefixClass('item'), {
+      [getPrefixClass('active')]: (selectedKey === _key) || (selectedIndex === _index),
+      ...type === 'task' && { [getPrefixClass(`weight${taskWeight}`)]: true },
     }),
-    [classNames, taskWeight, type, selectedKey, selectedIndex, _key, _index],
+    [getPrefixClass, classNames, taskWeight, type, selectedKey, selectedIndex, _key, _index],
   );
 
   const [num, numOverflow] = useMemo(() => {
@@ -341,15 +342,15 @@ Tab.Item = memo((props) => {
   if (type === 'task') {
     return (
       <div onClick={onClick} className={wrapClassName}>
-        <div className="num">
+        <div className={getPrefixClass('num')}>
           {num}
           {numOverflow && (
-            <span className="overflow">
+            <span className={getPrefixClass('overflow')}>
               <Icon type="add" />
             </span>
           )}
         </div>
-        <div className="title">{text}</div>
+        <div className={getPrefixClass('title')}>{text}</div>
       </div>
     );
   }
@@ -357,7 +358,7 @@ Tab.Item = memo((props) => {
   return (
     <div onClick={onClick} className={wrapClassName}>
       {text}
-      {dot && <div className="dot" />}
+      {dot && <div className={getPrefixClass('dot')} />}
     </div>
   );
 });
