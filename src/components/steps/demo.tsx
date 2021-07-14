@@ -1,5 +1,7 @@
 import React from 'react';
 import { Steps, Divider } from '../index';
+import './styles/index';
+import '../divider/styles/index';
 
 const StepsDemo = () => {
   const { Step } = Steps;

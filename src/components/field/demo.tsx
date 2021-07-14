@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, Avatar } from '../index';
+import './styles/index';
+import '../avatar/styles/index';
 
 const Demo = () => (
   <div>

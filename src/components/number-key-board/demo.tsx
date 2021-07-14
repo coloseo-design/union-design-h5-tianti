@@ -2,6 +2,7 @@ import React from 'react';
 import {
   NumberKeyBoard, Button, Toast, Divider,
 } from '../index';
+import './styles/index';
 
 const KeyBoardDemo = () => {
   const [show, setShow] = React.useState(false);

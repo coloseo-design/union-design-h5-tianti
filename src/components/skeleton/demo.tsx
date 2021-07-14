@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Skeleton, Switch } from '../index';
+import './styles/index';
+import '../switch/styles/index';
 
 const Demo = () => {
   const containerStyle = {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Swipe, ImagePreview } from '../index';
+import './styles/index';
+import '../image-preview/styles/index';
 
 const containerStyle = {
   width: 377,

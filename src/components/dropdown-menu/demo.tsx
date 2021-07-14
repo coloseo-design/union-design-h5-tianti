@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-  DropdownMenu, Icon, Collapse,
+  DropdownMenu, Collapse,
 } from '../index';
+import './styles/index';
+import '../collapse/styles/index';
 
 const { DropdownItem } = DropdownMenu;
 

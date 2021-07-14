@@ -34,7 +34,7 @@ each(@med-query-map, {
 .generate-col(@size: ~'') {
   @prefix: ~".@{col-cls}@{size}";
   each(@cols, {
-    @col-width: percentage(@index/@grid-columns);
+    @col-width: percentage((@index/@grid-columns));
     @{prefix}-@{index} {
       width: @col-width;
     };

@@ -1,5 +1,8 @@
 import React from 'react';
 import { List, Icon, Button } from '../index';
+import './styles/index';
+import '../button/styles/index';
+import '../icon/styles/index';
 
 const containerStyle = {
   width: 377,

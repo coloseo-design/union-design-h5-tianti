@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loading } from '../index';
+import './styles/index';
 
 const containerStyle = {
   width: 377,

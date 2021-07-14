@@ -2,6 +2,10 @@ import React from 'react';
 import {
   NavBar, Avatar, Icon, Divider,
 } from '../index';
+import './styles/index';
+import '../avatar/styles/index';
+import '../icon/styles/index';
+import '../divider/styles/index';
 
 const NavDemo = () => {
   const style = {

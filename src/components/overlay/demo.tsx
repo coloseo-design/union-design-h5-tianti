@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Overlay } from '../index';
+import './styles/index';
+import '../button/styles/index';
 
 const containerStyle = {
   width: 377,

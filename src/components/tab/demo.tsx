@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab } from '../index';
 import { TabProps } from './tab';
+import './styles/index';
 
 const containerStyle = {
   width: 377,

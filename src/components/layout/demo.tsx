@@ -1,5 +1,7 @@
 import React from 'react';
 import { Layout, List } from '../index';
+import './styles/index';
+import '../list/styles/index';
 
 const { Card, Content } = Layout;
 

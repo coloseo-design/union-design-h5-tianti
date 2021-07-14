@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Icon } from '../index';
+import './styles/index';
+import '../icon/styles/index';
 
 const style = {
   marginBottom: 10,

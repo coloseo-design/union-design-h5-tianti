@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Uploader } from '../index';
 import { UploaderFile } from './uploader';
+import './styles/index';
 
 const Demo = () => {
   const [file, setFile] = useState<UploaderFile>();

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Picker, Popup } from '../index';
+import './styles/index';
+import '../button/styles/index';
+import '../popup/styles/index';
 
 const PickerDemo = () => {
   useEffect(() => {

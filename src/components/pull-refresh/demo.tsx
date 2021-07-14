@@ -1,5 +1,6 @@
 import React from 'react';
 import { PullRefresh } from '../index';
+import './styles/index';
 
 const containerStyle = {
   width: 377,

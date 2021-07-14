@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Cascader, Button } from '../index';
 import { Option } from '../picker/type';
+import './styles/index';
+import '../button/styles/index';
 
 const containerStyle = {
   width: 377,

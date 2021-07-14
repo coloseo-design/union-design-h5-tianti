@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { Checkbox } from '../index';
+import './styles/index';
 
 const containerStyle = {
   width: 377,

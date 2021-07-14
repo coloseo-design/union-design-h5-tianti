@@ -1,5 +1,6 @@
 import React, { ReactNode, useCallback, useMemo } from 'react';
 import { IndexBar } from '../index';
+import './styles/index';
 
 export const Demo = () => {
   const getRandom = useCallback(

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Tabbar, Icon } from '../index';
+import './styles/index';
+import '../icon/styles/index';
 
 const containerStyle = {
   width: 377,

@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { Button, DatePicker } from '../index';
+import './styles/index';
 
 const TimePickerDemo = () => {
   const [visible, setVisible] = useState(false);

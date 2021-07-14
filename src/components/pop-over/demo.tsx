@@ -1,5 +1,7 @@
 import React from 'react';
 import { PopOver, Button } from '../index';
+import './styles/index';
+import '../button/styles/index';
 
 const containerStyle = {
   width: 377,

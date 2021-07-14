@@ -3,6 +3,11 @@ import {
   Field, Form, Button, Row, Col, Icon,
 } from '../index';
 import { Errors, FormInstance, Values } from './type';
+import './styles/index';
+import '../field/styles';
+import '../button/styles';
+import '../grid/styles';
+import '../icon/styles';
 
 const FormDemo = () => {
   const ref = useRef<FormInstance>();

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Divider, ActionSheet } from '../index';
+import './styles/index';
+import '../button/styles/index';
+import '../divider/styles/index';
 
 const containerStyle = {
   width: 377,

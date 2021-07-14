@@ -1,5 +1,7 @@
 import React from 'react';
 import { GridLayout, Icon } from '../index';
+import './styles/index';
+import '../icon/styles/index';
 
 const Demo = () => {
   const data = [

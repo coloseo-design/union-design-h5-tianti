@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Slider } from '../index';
+import './styles/index';
 
 const SliderDemo = () => {
   const [value] = useState(0);
