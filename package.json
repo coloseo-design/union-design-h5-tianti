@@ -1,6 +1,6 @@
 {
   "name": "union-design-h5",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "files": [
     "lib",
@@ -21,18 +21,15 @@
     "demo": "npx gulp md"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.11",
-    "@types/react-dom": "^17.0.5",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
-    "core-js": "^3.8.3",
     "dayjs": "^1.10.4",
     "omit.js": "^1.0.2",
-    "react-router-dom": "5.2.0",
-    "shallowequal": "^1.1.0",
-    "union-icons-react": "0.0.3"
+    "union-icons-react": "^0.0.4"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/react-dom": "^17.0.5",
     "@types/react-instantsearch-dom": "^6.10.0",
     "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
@@ -40,6 +37,7 @@
     "algoliasearch": "^4.9.1",
     "commitizen": "^4.2.2",
     "conventional-changelog-cli": "^2.1.1",
+    "core-js": "^3.8.3",
     "del": "^6.0.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-typescript": "^2.3.0",
@@ -55,10 +53,11 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-instantsearch-dom": "^6.11.0",
+    "react-router-dom": "5.2.0",
     "single-line-log": "^1.1.2",
     "through2": "^4.0.2",
     "typescript": "^4.1.3",
-    "union-design": "^0.0.18",
+    "union-design": "^1.0.2",
     "union-tool": "0.0.8"
   },
   "peerDependencies": {

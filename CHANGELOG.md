@@ -1,3 +1,21 @@
+## [1.0.2](http://10.124.128.2:8888/muses/union-design-h5/compare/v0.0.19...v1.0.2) (2021-07-27)
+
+
+### Bug Fixes
+
+* 🐛 dialog ([5e2b0de](http://10.124.128.2:8888/muses/union-design-h5/commits/5e2b0de37d21536a55a5772284f29fc01e4a988c))
+* 🐛 image-preview ([b69532f](http://10.124.128.2:8888/muses/union-design-h5/commits/b69532f4d85e0ec7b9b9aa0e83ec429eae482a12))
+* 🐛 index-bar ([2086789](http://10.124.128.2:8888/muses/union-design-h5/commits/2086789496921f38a4c9ce9617dcb5cf419c63f9))
+* 🐛 notice bar ([b7011a3](http://10.124.128.2:8888/muses/union-design-h5/commits/b7011a346fe405a12e6f7a28cf027fa4e11c0f45))
+* 🐛 skeleton ([9955652](http://10.124.128.2:8888/muses/union-design-h5/commits/995565277f56cb4c333406d1ed9a01e25c7c3191))
+* 🐛 swipe ([81166fa](http://10.124.128.2:8888/muses/union-design-h5/commits/81166faed93508cc355278e886537b86ba665f69))
+* 🐛 swipe-cell ([9483a7e](http://10.124.128.2:8888/muses/union-design-h5/commits/9483a7ea1fada1f7e92e01eff6fd3193e8496bb2))
+* 🐛 tab ([3c4c314](http://10.124.128.2:8888/muses/union-design-h5/commits/3c4c3143270466479eede19f16dd215358ec7eb9))
+* 🐛 tabbar ([75c4ee2](http://10.124.128.2:8888/muses/union-design-h5/commits/75c4ee2101d8a4df6750e7560a2867db9446e003))
+* 🐛 uploader ([da727bb](http://10.124.128.2:8888/muses/union-design-h5/commits/da727bb3297e272a563302b2fd4b4fb5a662f2c5))
+
+
+
 ## [1.0.1](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.0...v1.0.1) (2021-07-14)
 
 
