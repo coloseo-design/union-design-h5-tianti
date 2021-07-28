@@ -2,7 +2,7 @@
 category: Components
 type: 反馈
 title: SwipeCell
-subtitle: 滑动单元格组件
+subtitle: 滑动单元格
 ---
 
 可以左右滑动来展示操作按钮的单元格组件。

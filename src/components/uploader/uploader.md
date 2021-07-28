@@ -2,7 +2,7 @@
 category: Components
 type: 数据录入
 title: Uploader
-subtitle: 上传组件
+subtitle: 文件上传
 ---
 
 用于将本地的图片或文件上传至服务器，并在上传过程中展示预览图和上传进度。

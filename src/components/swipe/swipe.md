@@ -2,7 +2,7 @@
 category: Components
 type: 数据展示
 title: Swipe
-subtitle: 图片轮播组件
+subtitle: 轮播图
 ---
 
 用于循环播放一组图片或内容

@@ -1,9 +1,8 @@
 ---
 category: Components
-subtitle: 下拉菜单
 type: 通用
 title: Popup
-toc: false
+subtitle: 弹出层
 ---
 
 弹出层容器，用于展示弹窗、信息提示等内容。

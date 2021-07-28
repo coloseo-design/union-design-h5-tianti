@@ -2,7 +2,7 @@
 category: Components
 type: 通用
 title: Picker
-subtitle: 选择器
+subtitle: 基础选择器
 ---
 ## API
 

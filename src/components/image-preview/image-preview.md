@@ -2,7 +2,7 @@
 category: Components
 type: 数据展示
 title: ImagePreview
-subtitle: 图片预览组件
+subtitle: 图片预览
 ---
 
 图片放大预览

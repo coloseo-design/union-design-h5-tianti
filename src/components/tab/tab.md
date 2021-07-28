@@ -2,7 +2,7 @@
 category: Components
 type: 导航
 title: Tab
-subtitle: 标签页组件
+subtitle: 标签页
 ---
 
 ## API

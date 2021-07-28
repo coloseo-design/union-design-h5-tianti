@@ -1,7 +1,7 @@
 ---
 category: Components
 type: 通用
-title: empty
+title: Empty
 subtitle: 空状态
 ---
 

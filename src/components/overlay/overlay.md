@@ -2,7 +2,7 @@
 category: Components
 type: 反馈
 title: Overlay
-subtitle: 遮罩组件
+subtitle: 遮罩层
 ---
 
 ## API

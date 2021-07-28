@@ -2,7 +2,7 @@
 category: Components
 type: 通用
 title: Popover
-subtitle: 气泡弹出框
+subtitle: 气泡卡片
 ---
 
 

@@ -2,7 +2,7 @@
 category: Components
 type: 数据录入
 title: Radio
-subtitle: 单项选择器
+subtitle: 单选框
 ---
 
 按钮用于开始一个即时操作。

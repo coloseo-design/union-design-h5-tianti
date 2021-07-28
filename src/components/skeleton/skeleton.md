@@ -2,7 +2,7 @@
 category: Components
 type: 数据展示
 title: Skeleton
-subtitle: 骨架屏组件
+subtitle: 骨架屏
 ---
 
 用于在内容加载过程中展示一组占位图形。

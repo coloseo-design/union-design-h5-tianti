@@ -2,7 +2,7 @@
 category: Components
 type: 反馈
 title: Dialog
-subtitle: 对话框组件
+subtitle: 对话框
 ---
 
 弹出模态框，常用于消息提示、消息确认，或在当前页面内完成特定的交互操作。

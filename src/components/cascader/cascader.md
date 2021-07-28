@@ -2,7 +2,7 @@
 category: Components
 type: 通用
 title: Cascader
-subtitle: 选择器
+subtitle: 级联选择
 ---
 
 级联选择框，用于多层级数据的选择，典型场景为省市区选择
