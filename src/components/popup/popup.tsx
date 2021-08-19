@@ -145,10 +145,6 @@ class Popup extends React.Component<PopupProps, PopupState> {
       </>
     );
 
-    const maxStyle = {
-      maxWidth: '80%',
-    };
-
     return (
       visible ? (
         <Portal {...({ getPopupContainer })}>
@@ -158,7 +154,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
               className={prexContent}
               style={style}
             >
-              <div className={contenHeader} style={(position === 'left' || position === 'right') ? maxStyle : undefined}>
+              <div className={contenHeader}>
                 {React.isValidElement(header) ? header : <span>{header}</span>}
                 {closeable && (
                 <span className={headerIcon} onClick={this.cancel}>
@@ -175,12 +171,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
               </div>
               {visible
                   && (
-                    <div
-                      className={contentFooter}
-                      style={(position === 'left' || position === 'right')
-                        ? { ...maxStyle, position: 'fixed' }
-                        : { position: position === 'top' ? 'sticky' : 'fixed' }}
-                    >
+                    <div className={contentFooter}>
                       {footerButton}
                     </div>
                   )}

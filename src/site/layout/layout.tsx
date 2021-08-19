@@ -7,9 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { Icon } from 'union-design';
 import './layout.less';
 import Menus, { Menu } from './menus';
-import { Anchor } from 'union-design';
+// import { Anchor } from 'union-design';
 
-const { Link } = Anchor;
+// const { Link } = Anchor;
 import Search from './search';
 
 interface LayoutProps {
@@ -199,7 +199,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         </footer>
       </div>
 
-      <Anchor
+      {/* <Anchor
         style={{
           position: 'fixed', top: 40, right: 20, width: 120
         }}
@@ -207,7 +207,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         {allId.map(item => (
           <Link key={item.id} href={`#${item.id}`} title={item.innerText} />
         ))}
-      </Anchor>
+      </Anchor> */}
     </div>
   );
 };
