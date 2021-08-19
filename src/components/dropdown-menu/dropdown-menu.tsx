@@ -247,7 +247,8 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
 
     const currentMenuClass = (item: any, index: number) => {
       let names = menuItem;
-      if (visible && idx === index && item.value !== undefined && item.value !== '') {
+      // visible && idx === index && item.value !== undefined && item.value !== ''
+      if (visible && idx === index && valueList[index]) {
         names = `${menuItem} ${dropWrapper}-item-select`;
       }
       if (item.disabled) {
@@ -263,6 +264,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
             <div
               className={currentMenuClass(item, index)}
               onClick={this.handleClick(index, item)}
+              title={item.title ? item.title : renderValue(item, index)}
             >
               <span
                 className={`${dropWrapper}-item-text`}

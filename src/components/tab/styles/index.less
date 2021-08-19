@@ -57,7 +57,7 @@
   }
 
   & > .@{tab-tab} {
-    background-color: #FFFFFF;
+    background-color: @white;
 
     & > .@{tab-content} > .@{tab-item} {
       position: relative;
@@ -67,7 +67,7 @@
       & > .@{tab-dot} {
         width: 6px;
         height: 6px;
-        border: 2px solid #F31D39;
+        border: 2px solid @primary-color;
         border-radius: 3px;
         position: absolute;
         top: -2px;
@@ -77,7 +77,7 @@
 
     & > .@{tab-line} {
       border-radius: 4px;
-      background-color: #F31D39;
+      background-color: @primary-color;
       margin-top: 4px;
       height: 4px;
       width: 16px;
@@ -146,7 +146,7 @@
         border-radius: 3px;
       }
 
-      & > .@{tab-item}.@{tab-active} { background-color: #fff; }
+      & > .@{tab-item}.@{tab-active} { background-color: @white; }
     }
   }
 
@@ -168,7 +168,7 @@
       & > .@{tab-item}:first-of-type { margin-left: 12px; }
       & > .@{tab-item}:last-of-type {margin-right: 12px; }
       & > .@{tab-item} + .@{tab-item} { margin-left: 12px; }
-      & > .@{tab-item}.@{tab-active} { color: #F31D39; }
+      & > .@{tab-item}.@{tab-active} { color: @primary-color; }
     }
   }
 
@@ -216,9 +216,9 @@
       }
 
       & > .@{tab-item}.@{tab-active} {
-        color: #F31D39;
+        color: @primary-color;
 
-        & svg { stroke: #F31D39; }
+        & svg { stroke: @primary-color; }
       }
     }
   }

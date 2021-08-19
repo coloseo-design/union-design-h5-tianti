@@ -18,7 +18,7 @@
   position: relative;
   display: flex;
   flex-flow: column nowrap;
-  background-color: #fff;
+  background-color: @white;
   user-select: none;
   padding: 16px;
 
@@ -93,13 +93,13 @@
     & .@{uploader-icon} {
       width: 48px;
       height: 48px;
-      border: 1px dashed #DBDDDD;
+      border: 1px dashed @modal-border-color;
       border-radius: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 30px;
-      color: #DBDDDD;
+      color: @modal-border-color;
       background-color: rgb(246, 246, 246);
     }
   }
@@ -137,7 +137,7 @@
     flex-flow: row nowrap;
     align-items: center;
     font-size: 16px;
-    color: #F31D39;
+    color: @primary-color;
 
     & > div + div { margin-left: 12px; }
 
@@ -151,14 +151,14 @@
 
       & > div {
         height: 100%;
-        background-color: #F31D39;
+        background-color: @primary-color;
       }
     }
   }
 
   & > .@{uploader-progressDesc} {
     margin-top: 8px;
-    color: #F31D39;
+    color: @primary-color;
     font-size: 14px;
     line-height: 20px;
   }
