@@ -26,4 +26,4 @@ subtitle: 步骤条
 |subTitle|子标题| string ｜ ReactNode | --| |
 |description|步骤的详情描述| ReactNode|--| |
 |status| 指定当前步骤的状态|'success' ｜ 'error' ｜ 'info' ｜ undefined|--| |
-|src| 人员头像链接 或者姓名 | string | --| | |
+|src| 人员头像链接 或者姓名 | string | --| |
