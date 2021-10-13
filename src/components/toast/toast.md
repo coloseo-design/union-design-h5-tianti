@@ -15,8 +15,6 @@ Toast.loading(icon, content, duration, mask)
 
 Toast.hide()
 
-## Toast
-
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | content | 提示内容 | string | - |  |

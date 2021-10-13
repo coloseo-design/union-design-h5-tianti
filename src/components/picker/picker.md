@@ -19,7 +19,7 @@ subtitle: 基础选择器
 | itemHeight   | 渲染元素高度 | number | 44  |
 
 
-## Picker.Cascader API
+### Picker.Cascader
 
 | 参数      | 说明           | 类型          | 默认值 |
 | :-------- | :------------- | :------------ | :----- |

@@ -14,7 +14,7 @@ title: Checkbox
 
 ## API
 
-#### Checkbox
+### Checkbox
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -23,7 +23,7 @@ title: Checkbox
 | disabled | 失效状态 | boolean | false |  |
 | onChange | 变化时回调函数 | function(e:Event) | - |  |
 
-#### Checkbox Group
+### Checkbox Group
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -35,7 +35,7 @@ title: Checkbox
 | onChange | 变化时回调函数 | function(checkedValue) | - |  |
 
 
-##### Option
+### Option
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | label | 标签 | string|React.ReactNode[] |  |

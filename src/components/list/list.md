@@ -16,7 +16,7 @@ subtitle: 列表
 
 
 
-## List.Item
+### List.Item
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |arrow|右侧的Icon| 'arrow' \| ReactNode |-- |--|
@@ -25,7 +25,7 @@ subtitle: 列表
 |style|listItem样式| object| --|--|
 |className|listItem类名| string |--|--|
 
-## List.Item.Avatar
+### List.Item.Avatar
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |size|头像大小|number| 32|--|
@@ -34,11 +34,11 @@ subtitle: 列表
 |shape| 头像的形状| 'circle' ｜'square' | circle|--|
 |style|头像样式| object|--|--|
 
-## List.Item.Content
+### List.Item.Content
 list.item的内容 (可以传style， className)
-## List.Item.Title
+### List.Item.Title
 list.item的内容标题(可以传style， className)
-## List.Item.SubTitle
+### List.Item.SubTitle
 list.item的内容小标题(可以传style， className)
 
 

@@ -8,7 +8,7 @@ toc: false
 向下弹出的菜单列表。
 ## API
 
-## DropdownMenu
+### DropdownMenu
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -19,7 +19,7 @@ toc: false
 |style| dropmenu样式｜object|--|| |
 |activeColor|菜单标题颜色 和选项选中颜色| string | --||
 
-## DropdownItem API
+### DropdownItem
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -30,7 +30,7 @@ toc: false
 |onChange|点击选项导致 value 变化时触发| (value) => void| --|  |
 
 
-## Option 数据结构
+### Option 数据结构
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

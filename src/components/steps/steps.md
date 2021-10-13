@@ -9,6 +9,8 @@ subtitle: 步骤条
 
 ## API
 
+### Steps
+
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |type| 步骤条类型| 'card' ｜ 'browse' | 'card'| |
@@ -18,7 +20,7 @@ subtitle: 步骤条
 |onChange|点击切换步骤时触发|(current) => void| --| |
 
 
-## Steps.Step 
+### Steps.Step 
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

@@ -7,13 +7,13 @@ subtitle: 索引栏
 
 ## API
 
-## IndexBar
+### IndexBar
 
 | 参数      | 说明     | 类型     | 默认值  |
 | :-------- | :------- | :------- | :------ |
 | indexList | 锚点列表 | string[] | \[A-Z\] |
 
-## IndexBar.Anchor
+### IndexBar.Anchor
 
 | 参数 | 说明 | 类型   | 默认值 |
 | :--- | :--- | :----- | :----- |

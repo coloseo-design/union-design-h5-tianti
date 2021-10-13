@@ -7,6 +7,8 @@ subtitle: 标签页
 
 ## API
 
+### Tab
+
 | 参数               | 说明             | 类型                                 | 默认值   |
 | :----------------- | :--------------- | :----------------------------------- | :------- |
 | style              | 整体样式         | CSSProperties                        | -        |
@@ -22,7 +24,7 @@ subtitle: 标签页
 | lineStyle          | 底部条样式       | CSSProperties                        | -        |
 | lineClassName      | 底部条样式       | string                               | -        |
 
-## Tab.Item
+### Tab.Item
 
 | 参数       | 说明                                                         | 类型    | 默认值 |
 | :--------- | :----------------------------------------------------------- | :------ | :----- |
@@ -33,7 +35,7 @@ subtitle: 标签页
 | taskWeight | TabProps type为task 时候的数字颜色 不重要内容：1 重要内容：2 | 1\|2    | 1      |
 | dot        | 右上角红点                                                   | boolean | -      |
 
-## Tab.Config 全局配置
+### Tab.Config 全局配置
 
 ```javascript
 Tab.Config = {

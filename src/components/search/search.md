@@ -9,8 +9,6 @@ subtitle: 搜索
 
 ## API
 
-## Search
-
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | defaultValue | 搜索框的默认值 | string | - |  |

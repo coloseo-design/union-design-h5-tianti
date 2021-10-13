@@ -15,7 +15,7 @@ NoticeBar.supplement(conf: NoticeBarConf);
 NoticeBar.grey(conf: NoticeBarConf);
 NoticeBar.close(id?: string); 当打开多个NoticeBar的时候，可以通过id来关闭指定的NoticeBar，如果不传就关闭所有的NoticeBar
 
-## NoticeBarConf 
+### NoticeBarConf 
 
 | 参数             | 说明                                | 类型                                                                  | 默认值 |
 | :--------------- | :---------------------------------- | :-------------------------------------------------------------------- | :----- |
