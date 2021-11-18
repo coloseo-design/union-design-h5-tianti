@@ -1,3 +1,17 @@
+## [1.0.6](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.3...v1.0.6) (2021-11-18)
+
+
+### Bug Fixes
+
+* 🐛 popup 布局修改 ([7082c72](http://10.124.128.2:8888/muses/union-design-h5/commits/7082c7210a15771b302a7780b5704281b326cef4))
+
+
+### Features
+
+* 🎸 tabber 改为受控组件 ([7e74957](http://10.124.128.2:8888/muses/union-design-h5/commits/7e749576c9aa26e80e0e19751ec1820adc831d7f))
+
+
+
 ## [1.0.5](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.4...v1.0.5) (2021-10-13)
 
 
