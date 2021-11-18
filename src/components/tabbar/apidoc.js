@@ -5,5 +5,5 @@
 /* eslint-disable object-curly-spacing */
 module.exports = {
   name: 'Tabbar 标签栏',
-  content: {'tabbar-Tabbar标签栏':['Tabbar 标签栏'],'tabbar-API':['API'],'tabbar-TabbarItem':['Tabbar.Item'],'tabbar-代码演示':['代码演示']}
+  content: {'tabbar-Tabbar标签栏':['Tabbar 标签栏'],'tabbar-API':['API'],'tabbar-Tabbar':['Tabbar'],'tabbar-TabbarItem':['Tabbar.Item'],'tabbar-代码演示':['代码演示']}
 };

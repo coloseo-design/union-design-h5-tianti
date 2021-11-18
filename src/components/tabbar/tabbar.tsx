@@ -1,6 +1,6 @@
 import React, {
-  CSSProperties, useContext, createContext,
-  memo, ReactNode, useMemo, useState, useCallback,
+  CSSProperties, useContext, createContext, useEffect,
+  memo, ReactNode, useMemo, useState,
 } from 'react';
 import { useClassNames, useGetPrefixClass } from '../common/base-component';
 import Icon from '../icon';
@@ -21,9 +21,10 @@ export type TabbarProps = {
   /** 图标容器样式 */
   itemClassName?: string;
   /** 默认选择的Key */
-  initKey?: string;
-
+  // initKey?: string;
+  activeKey?: string;
   children?: ReactNode;
+  onChange?: (key: string) => void;
 };
 
 export type TabbarItemProps = {
@@ -74,6 +75,8 @@ export type TabbarType = React.NamedExoticComponent<TabbarProps>
 type TabbarContextType = {
   selectedKey: string;
   setSelectedKey: (key: string) => void;
+  onChange?: (key: string) => void;
+  activeKey?: string;
 };
 
 const TabbarContext = createContext<Partial<TabbarContextType>>({});
@@ -88,9 +91,16 @@ const Tabbar = memo((props) => {
     contentClassName,
     itemStyle,
     itemClassName,
-    initKey,
+    activeKey,
+    onChange,
   } = props ?? {};
-  const [selectedKey, setSelectedKey] = useState(initKey ?? '');
+  const [selectedKey, setSelectedKey] = useState(activeKey ?? '');
+  useEffect(() => {
+    if (activeKey) {
+      onChange && onChange(activeKey);
+    }
+    setSelectedKey(activeKey ?? '');
+  }, [activeKey]);
   const getPrefixClass = useGetPrefixClass('tabbar');
   const classNames = useClassNames();
   const tabbarClassName = useMemo(() => classNames(
@@ -123,7 +133,9 @@ const Tabbar = memo((props) => {
   const tabbarContextProvider = useMemo<TabbarContextType>(() => ({
     selectedKey: selectedKey === '' ? Object.keys(content)[0] : selectedKey,
     setSelectedKey,
-  }), [setSelectedKey, selectedKey, content]);
+    onChange,
+    activeKey,
+  }), [setSelectedKey, selectedKey, content, activeKey]);
 
   return (
     <TabbarContext.Provider value={tabbarContextProvider}>
@@ -162,9 +174,23 @@ Tabbar.Item = memo((props) => {
   } = props ?? {};
   const classNames = useClassNames();
   const getPrefixClass = useGetPrefixClass('tabbar');
-  const { setSelectedKey, selectedKey } = useContext(TabbarContext);
+  const {
+    setSelectedKey, selectedKey, onChange,
+  } = useContext(TabbarContext);
 
-  const onClick = useCallback(() => setSelectedKey?.(_key ?? '-1'), [setSelectedKey, _key]);
+  // const onClick = useCallback(() => {
+  //   if (activeKey) {
+  //     onChange && onChange(_key ?? '-1');
+  //   } else {
+  //     onChange && onChange(_key ?? '-1');
+  //     console.log('==>', _key);
+  //     setSelectedKey?.(_key ?? '-1');
+  //   }
+  // }, [setSelectedKey, _key, onChange]);
+  const onClick = () => {
+    onChange && onChange(_key ?? '-1');
+    setSelectedKey?.(_key ?? '-1');
+  };
 
   const iconView = useMemo(() => {
     const tempIcon = _key === selectedKey ? (selectedIcon ?? icon) : icon;

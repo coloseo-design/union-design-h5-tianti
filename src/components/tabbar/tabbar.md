@@ -18,7 +18,8 @@ subtitle: 标签栏
 | contentClassName | 图标对应内容的样式     | string            | -        |
 | itemStyle        | 图标对应内容的内容样式 | CSSProperties     | -        |
 | itemClassName    | 图标对应内容的内容样式 | string            | -        |
-| initKey          | 默认选择的Key          | string            | -        |
+| activeKey          | 选择页面的Key          | string            | -        |
+|onChange          |key改变的事件          | (key: string) => void      | -        |
 
 ### Tabbar.Item
 
