@@ -8,7 +8,12 @@ import {
 } from './utils';
 
 const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
-  const { options, value, defaultValue } = props;
+  const {
+    options,
+    value,
+    defaultValue,
+    onChange: onchangeOfProps,
+  } = props;
   const [_value, setValue] = useState<string[]>(defaultValue || []);
   const onChange = (item: Option) => {
     const currentValue = item.value;
@@ -17,7 +22,7 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
     const right = getChildren(v);
     const newValue: string[] = [...left, v?.value, ...right] as string[];
     setValue(newValue);
-    props.onChange && props.onChange(newValue);
+    onchangeOfProps && onchangeOfProps(newValue);
   };
 
   useEffect(() => {

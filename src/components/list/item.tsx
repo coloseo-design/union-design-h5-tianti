@@ -140,7 +140,6 @@ const SubTitle = (props: React.HTMLAttributes<HTMLDivElement>) => {
 const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const {
     children,
-    style = {},
     ...rest
   } = props;
   const {
@@ -165,7 +164,6 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
     <div
       {...rest}
       className={getPrefixClass()}
-      style={style}
     >
       <div style={contentStyle}>
         <div>{children}</div>
