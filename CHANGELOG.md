@@ -1,3 +1,12 @@
+## [1.0.7](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.4...v1.0.7) (2021-11-19)
+
+
+### Features
+
+* 🎸 按需加载修复 ([ee39df6](http://10.124.128.2:8888/muses/union-design-h5/commits/ee39df6dfbafb8a41226031db4820a1a0c9a28d9))
+
+
+
 ## [1.0.4](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.6...v1.0.4) (2021-11-18)
 
 
