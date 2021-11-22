@@ -1,3 +1,12 @@
+## [1.0.8](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.7...v1.0.8) (2021-11-22)
+
+
+### Features
+
+* 🎸 popup 自定义footer ([f5b164d](http://10.124.128.2:8888/muses/union-design-h5/commits/f5b164d33d57210bf20e8d309b0662607f9eaf89))
+
+
+
 ## [1.0.7](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.4...v1.0.7) (2021-11-19)
 
 
