@@ -47,6 +47,8 @@ export interface PopupProps {
   bodyStyle?: React.CSSProperties;
   /* 点击关闭按钮时触发 */
   clickCloseIcon?: () => void;
+  /* 自定义footer 或者不要footer */
+  footer?: React.ReactNode | null,
 }
 
 export interface PopupState {
@@ -117,6 +119,9 @@ class Popup extends React.Component<PopupProps, PopupState> {
       style,
       round = true,
       bodyStyle,
+      okText,
+      cancelText,
+      footer,
     } = this.props;
     const { visible, translationS } = this.state;
     const prex = getPrefixCls('popup', prefixCls);
@@ -140,8 +145,8 @@ class Popup extends React.Component<PopupProps, PopupState> {
 
     const footerButton = (
       <>
-        <Button style={{ marginRight: '2em' }} block onClick={this.cancel}>取消</Button>
-        <Button type="primary" onClick={this.ok} block>确认</Button>
+        <Button style={{ marginRight: '2em' }} block onClick={this.cancel}>{cancelText || '取消'}</Button>
+        <Button type="primary" onClick={this.ok} block>{okText || '确认'}</Button>
       </>
     );
 
@@ -169,12 +174,11 @@ class Popup extends React.Component<PopupProps, PopupState> {
               <div className={contentBody} style={bodyStyle}>
                 {children}
               </div>
-              {visible
-                  && (
-                    <div className={contentFooter}>
-                      {footerButton}
-                    </div>
-                  )}
+              {(footer === null || footer !== undefined) ? footer : (
+                <div className={contentFooter}>
+                  {footerButton}
+                </div>
+              )}
             </div>
           </div>
         </Portal>

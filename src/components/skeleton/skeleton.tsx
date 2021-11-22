@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { memo, ReactNode, useMemo } from 'react';
 import { useClassNames, useGetPrefixClass } from '../common/base-component';
 

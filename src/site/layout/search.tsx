@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { memo, useEffect } from 'react';
 import algoliasearch from 'algoliasearch';
 import {

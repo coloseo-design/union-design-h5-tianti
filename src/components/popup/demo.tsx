@@ -20,6 +20,7 @@ const PopupDemo = () => {
   const [vmodel4, setVmodel4] = useState(false);
   const [vmodel5, setVmodel5] = useState(false);
   const [vmodel6, setVmodel6] = useState(false);
+  const [vmodel7, setVmodel7] = useState(false);
 
   const handleCancel = () => {
     setModal(false);
@@ -56,6 +57,8 @@ const PopupDemo = () => {
       <Button onClick={() => setVmodel4(true)}>右侧弹出</Button>
       <h1>自定义弹出header</h1>
       <Button onClick={() => setVmodel6(true)}>自定义弹出header</Button>
+      <h1>自定义弹出footer</h1>
+      <Button onClick={() => setVmodel7(true)}>自定义弹出footer</Button>
       <Popup
         visible={vmodel}
         position="center"
@@ -104,6 +107,8 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         onOk={handleCancel}
         closeable={false}
+        okText="测试ok"
+        cancelText="测试cancel"
         round
         header={(
           <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
@@ -115,6 +120,17 @@ const PopupDemo = () => {
       >
         {content(52)}
         <p>swqsqw</p>
+      </Popup>
+      <Popup
+        visible={vmodel7}
+        position="bottom"
+        onCancel={() => setVmodel7(false)}
+        onOk={handleCancel}
+        closeable={false}
+        round
+        footer={<div style={{ textAlign: 'center', paddingBottom: 12 }}><Button onClick={() => () => setVmodel7(false)} type="primary">自定义footer</Button></div>}
+      >
+        {content(52)}
       </Popup>
     </div>
   );

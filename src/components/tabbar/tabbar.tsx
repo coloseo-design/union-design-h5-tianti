@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, {
   CSSProperties, useContext, createContext, useEffect,
   memo, ReactNode, useMemo, useState,

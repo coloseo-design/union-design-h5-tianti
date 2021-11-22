@@ -16,7 +16,8 @@ const containerStyle = {
   borderRadius: 12,
   boxShadow: '#ebedf0 0 4px 12px',
 };
-export default () => {
+
+const Demo = () => {
   const option2 = [
     { text: '默认排序', value: 'a' },
     { text: '好评排序', value: 'b' },
@@ -93,3 +94,5 @@ export default () => {
     </div>
   );
 };
+
+export default Demo;
