@@ -1,3 +1,14 @@
+## [1.0.8](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.5...v1.0.8) (2021-12-06)
+
+
+### Features
+
+* 🎸 按需加载修复 ([ee39df6](http://10.124.128.2:8888/muses/union-design-h5/commits/ee39df6dfbafb8a41226031db4820a1a0c9a28d9))
+* 🎸 popup 自定义footer ([f5b164d](http://10.124.128.2:8888/muses/union-design-h5/commits/f5b164d33d57210bf20e8d309b0662607f9eaf89))
+* 🎸 tabber 改为受控组件 ([7e74957](http://10.124.128.2:8888/muses/union-design-h5/commits/7e749576c9aa26e80e0e19751ec1820adc831d7f))
+
+
+
 ## [1.0.7](http://10.124.128.2:8888/muses/union-design-h5/compare/v1.0.4...v1.0.7) (2021-11-19)
 
 
