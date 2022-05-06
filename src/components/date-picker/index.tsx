@@ -83,8 +83,6 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     const v = getTimeValue(valueFromProps);
     setValue(v);
   }, [valueFromProps]);
-
-  console.log('value', value);
   return (
     <Popup
       header={title}

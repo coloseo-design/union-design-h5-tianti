@@ -22,7 +22,7 @@ export const validateRule: ValidateRuleType = async (name, value, rule) => {
   try {
     await validator.validate({ [name]: value });
   } catch ({ errors, fields }) {
-    if (errors) {
+    if (errors && Array.isArray(errors)) {
       return errors.map((item, index) => {
         if (React.isValidElement(item.message)) {
           return React.cloneElement(item.message, { key: `error_at_${index}` });
@@ -49,7 +49,7 @@ export const validateRules = (
     // reset validator
     const validator = (
       rule: RuleItem,
-      value: any,
+      value: unknown,
       callback: (error?: string) => void,
     ) => {
       let hasPromise = false;

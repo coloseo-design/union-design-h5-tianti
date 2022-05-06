@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import Omit from 'omit.js';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import Icon from '../icon';
 
@@ -51,10 +52,11 @@ class Praise extends Component<BasePraiseProps, PraiseState> {
       color = '#F31D39',
       size = '20px',
       className,
-      status: propsStatus,
+      // status: propsStatus,
       onChange,
-      ...rest
+      ...Allrest
     } = this.props;
+    const rest = Omit(Allrest, ['status']);
     const { number, status, show } = this.state;
     const prefix = getPrefixCls('praise', prefixCls);
     const mainClass = classNames(prefix, className, {

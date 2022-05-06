@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
-export interface PortalProps {
+export interface PortalProps extends HTMLAttributes<HTMLDivElement> {
   getPopupContainer?: () => HTMLElement | null;
 }
 
 class Portal extends React.Component<PortalProps> {
   root: HTMLDivElement;
+
+  static defaultProps = {
+    getPopupContainer: () => document.body,
+  }
 
   constructor(props: PortalProps) {
     super(props);
@@ -35,7 +39,7 @@ class Portal extends React.Component<PortalProps> {
     return ReactDOM.createPortal(
       children,
       this.root,
-    );
+    ) as ReactNode;
   }
 }
 

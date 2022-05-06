@@ -45,7 +45,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
 
   const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
   const [title, setTitle] = useState(defaultTitle);
-  const options = [getRange(0, 23), getRange(0, 59), getRange(0, 59)];
+  const options = [getRange(0, 24), getRange(0, 60), getRange(0, 60)];
   const onChange = (item: Option, index: number) => {
     value[index] = item.value;
     const newValue = options.map((v, idx) => {

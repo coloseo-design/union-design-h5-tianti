@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface BaseAvatarProps {
+export interface BaseAvatarProps extends HTMLAttributes<HTMLElement> {
     src? : string | React.ReactNode;
     text?: string
     size?: number;

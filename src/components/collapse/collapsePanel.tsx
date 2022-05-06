@@ -1,20 +1,10 @@
 /* eslint-disable camelcase */
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-// export interface CollapsePanelProps {
-//     key?: number;
-//     header?:React.ReactNode;
-//     className?: string;
-//     prefixCls?: string;
-//     style?: CSSProperties;
-//     showArrow?:boolean;
-//     collapsible?:boolean
-// }
-
-export interface CollapsePanelProps {
+export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
     header?:React.ReactNode;
     key?:number;
     onChange?:(value:number| undefined, show:boolean) => void;

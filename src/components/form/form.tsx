@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../config-provider/context';
 import FormItem from './form-item';
 import {
-  Errors, FormContenxtProps, FormInstance, FormItemProps, FormProps, Values,
+  Errors, FormContenxtProps, FormInstance, FormProps, Values,
 } from './type';
 import FormContext from './utils/form-context';
 

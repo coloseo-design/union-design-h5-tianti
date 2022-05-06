@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React, { ReactNode } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import Loading from '../loading';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface PullRefreshProps {
+export interface PullRefreshProps extends HTMLAttributes<HTMLElement> {
   /* 是否在加载中 */
   loading?: boolean;
   /* 自定义前缀 */
@@ -74,7 +74,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     } = this.props;
     switch (status) {
       case 'loading': {
-        return <div>{loadingText || <Loading backgroundColor="none">加载中....</Loading>}</div>;
+        return <div>{loadingText || <Loading style={{ backgroundColor: 'none' }}>加载中....</Loading>}</div>;
       }
       case 'loosing': return <div>{loosingText}</div>;
       case 'pulling': return <div>{pullingText}</div>;
