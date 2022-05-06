@@ -21,6 +21,7 @@ export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | H
   prefixCls?: string; // 用户自定义类前缀，默认uni-field
   showWordLimit?: boolean; // 是否显示字数统计，需要设置maxLength属性
   forwardedRef: React.LegacyRef<HTMLTextAreaElement | HTMLInputElement>;
+  type?: string;
 }
 
 export interface FieldState {
@@ -50,7 +51,6 @@ class Field extends Component<FieldProps, FieldState> {
   componentDidUpdate(prevProps: FieldProps) {
     const { value } = this.props;
     if (value !== prevProps.value) {
-      console.log('value-->', value);
       this.setState({
         value: typeof value === 'undefined' ? '' : value,
       });
@@ -64,8 +64,6 @@ class Field extends Component<FieldProps, FieldState> {
     const {
       value, type, focus, eyesOpen, textHeight,
     } = this.state;
-
-    console.log('values', value);
 
     const prefix = getPrefixCls('field', prefixCls);
     const mainClass = classNames(prefix, className, {

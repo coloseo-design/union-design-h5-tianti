@@ -126,7 +126,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
       className, prefixCls,
     } = this.props;
     const { value = 0 } = this.state;
-    const prefix = getPrefixCls!('slider-mobile', prefixCls);
+    const prefix = getPrefixCls?.('slider-mobile', prefixCls);
     const wrapperClass = classnames(prefix, className);
     const dotClass = classnames(`${prefix}-dot`, {});
     return (

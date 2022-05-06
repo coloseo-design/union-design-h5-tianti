@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import svgType from './emptySvg';
 
-export interface EmptyProps {
+export interface EmptyProps extends HTMLAttributes<HTMLElement> {
   type?: 'ThereWasNothing' | 'TakeACoffeeBreak' | 'NoPermission' | 'SearchForSomethingElse' | 'HighlyEfficientWork' | 'ThePageIsMissing' | 'NoBrowsingRecord' | 'NoComment' | 'NoNotice' | 'NoNetwork' | 'NoDataAvailable';
   description?: React.ReactNode;
   prefixCls?: string;
-  style?: React.CSSProperties;
-  className?: string;
 }
 
 class Empty extends React.Component<EmptyProps> {

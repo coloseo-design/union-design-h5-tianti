@@ -1,13 +1,10 @@
 import React, {
-  CSSProperties, FC, memo, ReactNode, useCallback, useEffect, useMemo, useRef, useState,
+  // CSSProperties,
+  FC, HTMLAttributes, memo, ReactNode, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { useClassNames, useGetPrefixClass } from '../common/base-component';
 
-export type SwipeProps = {
-  /** 样式 */
-  style?: CSSProperties;
-  /** 样式 */
-  className?: string;
+export interface SwipeProps extends HTMLAttributes<HTMLElement> {
   /** 自动轮播间隔，单位为 ms */
   autoplay?: number;
   /** 动画时长，单位为 ms */
@@ -18,11 +15,9 @@ export type SwipeProps = {
   width?: number | string;
   /** 滑块高度 */
   height?: number | string;
+}
 
-  children?: ReactNode;
-};
-
-const Swipe: FC<SwipeProps> = (props) => {
+const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
   const {
     children = [],
     style,
@@ -32,7 +27,7 @@ const Swipe: FC<SwipeProps> = (props) => {
     defaultIndex = 0,
     width = '100%',
     height = '100%',
-  } = props ?? {};
+  } = props;
   const containerRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(defaultIndex);
   const [transition, setTransition] = useState(true);

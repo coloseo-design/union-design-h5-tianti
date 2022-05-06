@@ -3,15 +3,19 @@ import omit from 'omit.js';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/context';
 import Icon from '../icon';
-import { AnchorButtonProps, ButtonProps, NativeButtonProps } from './type';
+import {
+  AnchorButtonProps, ButtonProps, ButtonSize, NativeButtonProps,
+} from './type';
 
 const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const { getPrefixCls } = useContext(ConfigContext);
-  const ButtonSizeMap = {
+  const ButtonSizeMap: {
+    [key: ButtonSize[number]]: string;
+  } = {
     large: 'lg',
     small: 'sm',
     default: '',
-  } as any;
+  };
   const {
     children,
     size = 'default',
@@ -20,7 +24,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     shape,
     icon,
     block = false,
-    ghost,
+    // ghost,
     prefixCls: customizedPrefixCls,
     forwardedRef,
     onClick: onClickFromProps,

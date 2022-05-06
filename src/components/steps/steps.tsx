@@ -1,14 +1,13 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import Step from './step';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface StepsProps {
+export interface StepsProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
   prefixCls?: string;
   /* 步骤条类型 */
   type?: 'card' | 'browse';
-  style?: React.CSSProperties;
   className?: string;
   /* 指定当前步骤 */
   current?: number;

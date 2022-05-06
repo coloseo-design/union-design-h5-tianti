@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import CollapsePanel from './collapsePanel';
 
-export interface CollapseProps {
+export interface CollapseProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
     activeKey?:number;
     defaultActiveKey?:number;
     onChange?:(value:number| undefined, show:boolean) => void;

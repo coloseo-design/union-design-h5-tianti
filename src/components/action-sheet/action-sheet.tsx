@@ -26,8 +26,6 @@ export interface ActionSheetProps {
   title?: string;
   /* 取消按钮文字 */
   cancelText?: string | React.ReactNode;
-  /* 标题下方的辅助文字 */
-  description?: string | React.ReactNode;
   /* 是否显示遮罩层 */
   overlay?: boolean;
   /* 是否显示上拉菜单 */

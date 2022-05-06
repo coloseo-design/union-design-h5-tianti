@@ -1,9 +1,10 @@
-import React, { ChangeEventHandler, Component } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, Component } from 'react';
 import classNames from 'classnames';
+import omit from 'omit.js';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import Icon from '../icon';
 
-export interface BaseSearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface BaseSearchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onSubmit'> {
   // 搜索框的默认值
   defaultValue?: string;
   // 搜索框的当前值
@@ -69,7 +70,6 @@ class Input extends Component<BaseSearchProps, SearchState> {
     const {
       prefixCls,
       className,
-      defaultValue,
       style,
       cancelText = '取消',
       showCancelButton,
@@ -80,15 +80,16 @@ class Input extends Component<BaseSearchProps, SearchState> {
       onFocus,
       onBlur,
       onSubmit,
-      ...rest
+      ...restAll
     } = this.props;
+    const rest = omit(restAll, ['defaultValue']);
     const { value, focus } = this.state;
     const prefix = getPrefixCls('search', prefixCls);
     const mainClass = classNames(prefix, className, {
 
     });
 
-    const handleClear = (e) => {
+    const handleClear = () => {
       this.setState({ value: '' });
       if (onClear) {
         onClear(value);
@@ -98,7 +99,7 @@ class Input extends Component<BaseSearchProps, SearchState> {
       }
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       const { value: eventValue } = e.target;
       this.setState({ value: eventValue });
       if (onChange) {
@@ -123,10 +124,7 @@ class Input extends Component<BaseSearchProps, SearchState> {
       }
     };
 
-    const onKeyPress = (e:
-      React.ChangeEvent<HTMLInputElement> |
-      React.MouseEvent<HTMLElement, MouseEvent>
-      | React.KeyboardEvent<HTMLInputElement> | undefined) => {
+    const onKeyPress = (e: KeyboardEvent) => {
       let keyCode;
       if (e && e.which) {
         keyCode = e.which;

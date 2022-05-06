@@ -14,9 +14,16 @@ const TimePickerDemo = () => {
       <TimePicker
         visible={visible}
         title="请选择"
-        onCancel={() => setVisible(false)}
+        onCancel={() => {
+          console.log('cancel');
+          setVisible(false);
+        }}
         onChange={onChange}
         value={value}
+        onOk={() => {
+          console.log('ok');
+          setVisible(false);
+        }}
       />
     </div>
   );

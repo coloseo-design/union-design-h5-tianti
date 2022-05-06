@@ -6,7 +6,7 @@ import Button from '../button';
 import Portal from '../common/portal';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
-export interface PopupProps {
+export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
   /* 弹出位置 */
   position?: 'top' | 'bottom' | 'left' | 'right' | 'center';
   /* 是否显示弹出层 */
@@ -57,6 +57,14 @@ export interface PopupState {
 }
 
 class Popup extends React.Component<PopupProps, PopupState> {
+  static defaultProps = {
+    position: 'center',
+    visible: false,
+    prefixCls: '',
+    cancelText: '取消',
+    okText: '确认',
+  };
+
   constructor(props: PopupProps) {
     super(props);
     const { visible } = this.props;

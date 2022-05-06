@@ -94,6 +94,10 @@ export default [
         key: 'date-picker',
       },
       {
+        title: 'TimePicker 时间选择',
+        key: 'time-picker',
+      },
+      {
         title: 'Field 输入框',
         key: 'field',
       },

@@ -88,7 +88,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
       }
       if (element.props && element.props[trigger]) {
         Object.assign(extProps, {
-          [trigger]: (...args: any[]) => {
+          [trigger]: (...args: unknown[]) => {
             element.props[trigger](...args);
             onFormItemChange(...args);
           },

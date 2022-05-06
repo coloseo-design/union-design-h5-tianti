@@ -36,7 +36,8 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'linebreak-style': 'off',
-
+    'react/require-default-props': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
   settings: {
     'import/resolver': {

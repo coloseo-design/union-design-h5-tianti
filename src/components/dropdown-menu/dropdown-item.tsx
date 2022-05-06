@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import CurrentItem from './current';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
@@ -12,7 +12,7 @@ export interface Option {
   card?: string | React.ReactNode;
 }
 
-export interface DropdownItemProps {
+export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLElement>, 'value'|'onChange'|'onSelect'> {
   value?: string;
   prefixCls?: string;
   options?: Option[];

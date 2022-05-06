@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface DividerProps {
+export interface DividerProps extends HTMLAttributes<HTMLElement> {
     className?: string;
     prefixCls?: string;
     style?: React.CSSProperties;
@@ -20,8 +20,8 @@ class Divider extends React.Component<DividerProps> {
       return (
         <div className={clazzName} style={{ ...style }}>
           {
-                    children && <span className={`${prefix}-text`}>{children}</span>
-                }
+            children && <span className={`${prefix}-text`}>{children}</span>
+          }
         </div>
       );
     }

@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface PopoverProps {
+export interface PopoverProps extends HTMLAttributes<HTMLElement> {
   placement?: 'top'| 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
   content?: React.ReactNode;
   color?: 'white' | 'black' | 'red';
-  style?: React.CSSProperties;
-  className?: string;
   prefixCls?: string;
 }
 

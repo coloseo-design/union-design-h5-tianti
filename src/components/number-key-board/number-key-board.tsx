@@ -16,7 +16,7 @@ export interface NumberKeyBoardProps {
   /* 删除按钮文字， 没有展示删除图标 */
   deleteButtonText?: string;
   /* 点击外部时是否收起键盘 */
-  hideOnClickOutside?: boolean;
+  // hideOnClickOutside?: boolean;
   /* 点击按键时触发 */
   onInput?: (value: unknown) => void;
   /* 额外按键处理 */
@@ -161,7 +161,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
           </div>
           )}
           <div className={content}>
-            {Array.from(Array(9), (_, k) => k + 1).map((item: number, index: number) => (
+            {Array.from(Array(9), (_, k) => k + 1).map((item: number) => (
               <div
                 key={item}
                 className={`${prex}-content-number`}

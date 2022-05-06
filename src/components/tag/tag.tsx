@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
-export interface TagProps {
+export interface TagProps extends HTMLAttributes<HTMLElement> {
     prefixCls?: string;
     className?: string;
     style?: React.CSSProperties;
