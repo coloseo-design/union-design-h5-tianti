@@ -21,7 +21,7 @@ export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | H
   prefixCls?: string; // 用户自定义类前缀，默认uni-field
   showWordLimit?: boolean; // 是否显示字数统计，需要设置maxLength属性
   forwardedRef: React.LegacyRef<HTMLTextAreaElement | HTMLInputElement>;
-  type: string;
+  type?: string;
 }
 
 export interface FieldState {
