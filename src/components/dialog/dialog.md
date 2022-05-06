@@ -9,8 +9,7 @@ subtitle: 对话框
 
 ## API
 
-Dialog.open(conf: DialogConf);
-Dialog.close(id?: string); 当打开多个dialog的时候，可以通过id来关闭指定的dialog，如果不传就关闭所有的dialog
+Dialog.open(conf: DialogConf); Dialog.close(id?: string); 当打开多个dialog的时候，可以通过id来关闭指定的dialog，如果不传就关闭所有的dialog。
 
 ### DialogConf 
 

@@ -5,7 +5,7 @@ title: ImagePreview
 subtitle: 图片预览
 ---
 
-图片放大预览
+图片放大预览。
 
 ## API
 
