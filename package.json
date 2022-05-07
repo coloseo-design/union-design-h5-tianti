@@ -1,6 +1,6 @@
 {
   "name": "union-design-h5",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "files": [
     "lib",
@@ -28,10 +28,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
-    "@types/react-dom": "^17.0.5",
-    "@types/react-instantsearch-dom": "^6.10.0",
-    "@types/react-router-dom": "^5.1.7",
-    "algoliasearch": "^4.9.1",
+    "@types/react-dom": "^17.0.0",
     "commitizen": "^4.2.2",
     "conventional-changelog-cli": "^2.1.1",
     "core-js": "^3.8.3",
@@ -45,7 +42,6 @@
     "react-dom": "^16.8.0",
     "react-instantsearch-dom": "^6.11.0",
     "react-router-dom": "5.2.0",
-    "single-line-log": "^1.1.2",
     "through2": "^4.0.2",
     "union-design": "^1.0.2",
     "union-tool": "^0.1.1"
