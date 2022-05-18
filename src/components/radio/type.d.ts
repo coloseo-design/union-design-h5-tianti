@@ -1,5 +1,4 @@
 import React from 'react';
-import { ConfigConsumerProps } from '../config-provider';
 
 export interface RadioGroupState {
   /** 选中 */

@@ -7,10 +7,6 @@ import { useHistory } from 'react-router-dom';
 import { Icon } from 'union-design';
 import './layout.less';
 import Menus, { Menu } from './menus';
-// import { Anchor } from 'union-design';
-
-// const { Link } = Anchor;
-import Search from './search';
 
 interface LayoutProps {
   menus: Menu[];
@@ -148,7 +144,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
             <input className="input" />
           </div> */}
           <div className="search-box-v2">
-            <Search />
+            {/* <Search /> */}
             <span className="icon"><Icon type="search" /></span>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ConfigConsumerProps } from '../config-provider';
 
 export interface CheckboxGroupState {
   /** 选中 */
