@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useCallback, useMemo } from 'react';
 import classname from 'classnames';
-import { Icon } from 'union-design';
+// import { Icon } from 'union-design';
 import { useHistory } from 'react-router-dom';
 
 export interface Menu {
@@ -49,7 +49,7 @@ const Menus: React.FC<MenuFCProps> = (props: MenuFCProps) => {
           {item.title}
         </div>
         <div className="icon">
-          <Icon type="down" />
+          {/* <Icon type="down" /> */}
         </div>
       </div>
       <div className={subMenusCls}>

@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import classname from 'classnames';
 import { useHistory } from 'react-router-dom';
-import { Icon } from 'union-design';
+// import { Icon } from 'union-design';
 import './layout.less';
 import Menus, { Menu } from './menus';
 
@@ -145,7 +145,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
           </div> */}
           <div className="search-box-v2">
             {/* <Search /> */}
-            <span className="icon"><Icon type="search" /></span>
+            {/* <span className="icon"><Icon type="search" /></span> */}
           </div>
         </div>
         <Menus menus={menus} routeConfig={routeConfig} />
@@ -167,7 +167,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
               routeConfig.pre && (
                 <>
                   <div className="arrow">
-                    <Icon type="arrow-left" />
+                    {/* <Icon type="arrow-left" /> */}
                   </div>
                   <div className="action">
                     <div className="title">下一页</div>
@@ -186,7 +186,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
                     <div className="sub-title">{routeConfig.next?.subTitle}</div>
                   </div>
                   <div className="arrow">
-                    <Icon type="arrow-right" />
+                    {/* <Icon type="arrow-right" /> */}
                   </div>
                 </>
               )

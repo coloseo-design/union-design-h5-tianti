@@ -24,7 +24,8 @@
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.10.4",
-    "omit.js": "^1.0.2"
+    "omit.js": "^1.0.2",
+    "union-icons-react": "^0.0.4"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -41,7 +42,6 @@
     "react-dom": "^16.8.0",
     "react-router-dom": "^5.2.0",
     "through2": "^4.0.2",
-    "union-design": "^1.0.34",
     "union-tool": "^0.1.1"
   },
   "peerDependencies": {
