@@ -19,8 +19,24 @@
     &-header {
       height: 52px;
       padding: 16px 16px 16px 31px;
+      display: flex;
+      align-items: center;
       cursor:pointer;
-      position: relative;
+      &-left-icon {
+        margin-right: 12px;
+        &-active {
+          transform: rotate(90deg);
+        }
+      }
+      &-extra {
+        margin-left: auto;
+      }
+      &-right-icon {
+        transform: rotate(90deg);
+        &-down {
+          transform: rotate(-90deg);
+        }
+      }
       span{
         transition:all .5s;
       }
