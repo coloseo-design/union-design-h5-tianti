@@ -1,3 +1,3 @@
 import '../../style/index.less';
 import './index.less';
-import '../../loading/styles/index';
+import '../../loading/styles/index.less';
