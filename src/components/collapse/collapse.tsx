@@ -32,6 +32,7 @@ class Collapse extends React.Component<CollapseProps> {
         style,
         children,
         accordion,
+        onChange,
         expandIcon = ({ isActive }) => (<Icon type="fill-right" style={{ transform: isActive ? 'rotate(90deg)' : 'none', marginRight: 12 }} />),
       } = this.props;
       const prefix = getPrefixCls('collapse-mobile', prefixCls);
@@ -47,6 +48,7 @@ class Collapse extends React.Component<CollapseProps> {
               const props = {
                 show: key === defaultActiveKey || key === activeKey,
                 accordion,
+                onChange: onChange?.bind(null, key),
                 /** 自定义切换图标 */
                 expandIcon,
                 ...item.props,

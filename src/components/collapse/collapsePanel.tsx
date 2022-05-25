@@ -6,8 +6,8 @@ import { CollapseProps, expandIconProps } from './collapse';
 
 export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
     header?:React.ReactNode;
-    key?:number;
-    onChange?:(value:number| undefined, show:boolean) => void;
+    // key?:number;
+    onChange?:(show:boolean) => void;
     // className?: string;
     prefixCls?: string;
     // style?: CSSProperties;
@@ -38,12 +38,12 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
 
   headClick = () => {
     const { show } = this.state;
-    const { onChange, key } = this.props;
+    const { onChange } = this.props;
     this.setState({
       show: !show,
     });
     if (onChange) {
-      onChange(key, !show);
+      onChange(!show);
     }
   };
 
