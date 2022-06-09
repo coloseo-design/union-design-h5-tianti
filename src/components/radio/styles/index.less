@@ -1,13 +1,13 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
 
-@checkbox-prefix-cls: ~'@{uni-prefix}-radio';
+@radio-prefix-cls: ~'@{uni-prefix}-radio';
 
-.@{checkbox-prefix-cls} {
+.@{radio-prefix-cls} {
   font-size: 16px;
   display: flex;
   align-items: center;
-  .@{checkbox-prefix-cls}-icon {
+  .@{radio-prefix-cls}-icon {
     transition: background .3s ease-in-out;
     width: 1em;
     height: 1em;
@@ -31,7 +31,7 @@
     }
   }
   &&-checked {
-    .@{checkbox-prefix-cls}-icon {
+    .@{radio-prefix-cls}-icon {
       &::after {
         background: @primary-bg;
         transform: scale(1);
@@ -39,12 +39,12 @@
     }
   }
   &&-disabled {
-    .@{checkbox-prefix-cls}-icon {
+    .@{radio-prefix-cls}-icon {
       background: #F5F6F6;
     }
   }
   &&-checked&-disabled{
-    .@{checkbox-prefix-cls}-icon {
+    .@{radio-prefix-cls}-icon {
       &::after {
         background: #C8CCCC;
       }
