@@ -45,6 +45,10 @@ const Demo = () => {
   const handleButton = () => {
     setToggle(false);
   };
+
+  const [testDis, setDis] = React.useState(true);
+  const [testDis1, setDis1] = React.useState(false);
+  const [val, setVal] = React.useState('b');
   return (
     <div style={containerStyle}>
       <h1>基本用法</h1>
@@ -86,9 +90,10 @@ const Demo = () => {
       </div>
       <div style={{ marginTop: 32 }}>
         <h1>禁止菜单</h1>
+        <button onClick={() => { setDis(!testDis); setVal('a'); setDis1(!testDis1)}}>change disabled</button>
         <DropdownMenu>
-          <DropdownItem options={option2} disabled />
-          <DropdownItem value="b" options={option2} disabled />
+          <DropdownItem value={val} options={option2} disabled={testDis} />
+          <DropdownItem value="b" options={option2} disabled={testDis1} />
         </DropdownMenu>
       </div>
     </div>

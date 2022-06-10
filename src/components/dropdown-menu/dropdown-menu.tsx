@@ -118,6 +118,11 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
         });
       }
     }
+    if (children !== prevChildren) {
+      this.setState({
+        childrenList: lastC,
+      });
+    }
   }
 
   componentWillUnmount() {
