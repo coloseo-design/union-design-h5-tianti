@@ -34,8 +34,11 @@ const Demo = () => {
     { text: '销量排序6', value: '6' },
     { text: '销量排序7', value: '0' },
   ];
+  const [v1, setV] = React.useState('a');
+
   const onChange = (value: string) => {
     console.log('--value', value);
+    setV(value);
   };
   const [toggle, setToggle] = React.useState(false);
   const handleToggle = () => {
@@ -48,18 +51,18 @@ const Demo = () => {
 
   const [testDis, setDis] = React.useState(true);
   const [testDis1, setDis1] = React.useState(false);
-  const [val, setVal] = React.useState('b');
+
   return (
     <div style={containerStyle}>
       <h1>基本用法</h1>
-      <DropdownMenu>
+      <DropdownMenu closeOnClickOverlay={false}>
         <DropdownItem value="b" options={option2} />
-        <DropdownItem value="c" options={option3} />
+        <DropdownItem options={option3} />
       </DropdownMenu>
       <div style={{ marginTop: 32 }}>
         <h1>向上弹出</h1>
         <DropdownMenu direction="up">
-          <DropdownItem options={option2} onChange={onChange} />
+          <DropdownItem value={v1} options={option2} onChange={onChange} />
           <DropdownItem value="b" options={option3} />
           <DropdownItem options={option3} />
         </DropdownMenu>
@@ -90,9 +93,9 @@ const Demo = () => {
       </div>
       <div style={{ marginTop: 32 }}>
         <h1>禁止菜单</h1>
-        <button onClick={() => { setDis(!testDis); setVal('a'); setDis1(!testDis1)}}>change disabled</button>
+        <button onClick={() => { setDis(!testDis); setDis1(!testDis1)}}>change disabled</button>
         <DropdownMenu>
-          <DropdownItem value={val} options={option2} disabled={testDis} />
+          <DropdownItem value='a' options={option2} disabled={testDis} />
           <DropdownItem value="b" options={option2} disabled={testDis1} />
         </DropdownMenu>
       </div>

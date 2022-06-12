@@ -16,7 +16,7 @@ export interface NumberKeyBoardProps {
   /* 删除按钮文字， 没有展示删除图标 */
   deleteButtonText?: string;
   /* 点击外部时是否收起键盘 */
-  // hideOnClickOutside?: boolean;
+  hideOnClickOutside?: boolean;
   /* 点击按键时触发 */
   onInput?: (value: unknown) => void;
   /* 额外按键处理 */
@@ -52,9 +52,8 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
   }
 
   componentDidMount() {
-    if (this.node) {
-      this.node.focus();
-    }
+    const { hideOnClickOutside } = this.props;
+    hideOnClickOutside && document.addEventListener('click', this.bodyClick, false);
   }
 
   componentDidUpdate(prevProps: NumberKeyBoardProps) {
@@ -79,8 +78,17 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
     }
   }
 
+  componentWillUnmount() {
+    const { hideOnClickOutside } = this.props;
+    hideOnClickOutside && document.removeEventListener('click', this.bodyClick, false);
+  }
+
   getNode = (node: HTMLDivElement) => {
     this.node = node;
+  }
+
+  bodyClick = () => {
+    this.blur();
   }
 
   blur = () => {
@@ -89,8 +97,7 @@ class NumberKeyBoard extends React.Component<NumberKeyBoardProps, NumberKeyBoard
   };
 
   handleComplete = () => {
-    const { onBlur } = this.props;
-    onBlur && onBlur();
+    this.blur();
   }
 
   click = (current: unknown) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

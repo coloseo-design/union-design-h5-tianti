@@ -81,9 +81,9 @@ class CurrentItem extends React.Component<CurrentItemProps> {
                 style={{
                   fontSize: 18,
                   marginTop: isExpand ? -3 : 1,
-                  marginLeft: -1,
                   fontWeight: 'bold',
                   color: 'rgba(0,0,0,0.65)',
+                  textAlign: 'center',
                 }}
                 onClick={this.handleExpan}
               />

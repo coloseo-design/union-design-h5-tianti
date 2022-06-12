@@ -13,29 +13,32 @@ const KeyBoardDemo = () => {
     console.log('--value', value);
   };
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShow(true);
     setShow1(false);
     setShow2(false);
     setShow3(false);
   };
-  const handleClick1 = (e: any) => {
+  const handleClick1 = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     setShow(false);
     setShow1(true);
     setShow2(false);
     setShow3(false);
   };
-  const handleClick2 = (e: any) => {
+  const handleClick2 = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     setShow(false);
     setShow1(false);
     setShow2(true);
     setShow3(false);
   };
-  const handleClick3 = (e: any) => {
+  const handleClick3 = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     setShow(false);
     setShow1(false);
     setShow2(false);
@@ -64,12 +67,13 @@ const KeyBoardDemo = () => {
       <Divider style={{ margin: '32px 0px' }}>身份证键盘</Divider>
       <Button onClick={handleClick3}>带title的键盘</Button>
       <Divider style={{ margin: '32px 0px' }}>带title的键盘</Divider>
-      <NumberKeyBoard show={show} onBlur={() => setShow(false)} onInput={handleInput} />
-      <NumberKeyBoard show={show1} complete onBlur={() => setShow1(false)} onInput={handleInput} />
-      <NumberKeyBoard show={show2} extraKey="X" onBlur={() => setShow2(false)} onInput={handleInput} />
+      <NumberKeyBoard hideOnClickOutside={false} show={show} onBlur={() => setShow(false)} onInput={handleInput} />
+      <NumberKeyBoard hideOnClickOutside show={show1} complete onBlur={() => setShow1(false)} onInput={handleInput} />
+      <NumberKeyBoard hideOnClickOutside show={show2} extraKey="X" onBlur={() => setShow2(false)} onInput={handleInput} />
       <NumberKeyBoard
         show={show3}
         title="标题"
+        hideOnClickOutside
         onBlur={() => setShow3(false)}
         value="12345"
         onDelete={handleDelete}

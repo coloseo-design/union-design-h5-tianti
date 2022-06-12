@@ -14,6 +14,8 @@ export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLElement>, 'o
     expandIcon?: CollapseProps['expandIcon'];
     /** 头部右边部分 */
     extra?: (data: expandIconProps) => React.ReactNode;
+    show?: boolean;
+    accordion?: boolean;
 }
 
 export interface CollapsePanelState {
@@ -26,15 +28,15 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
   constructor(props:CollapsePanelProps) {
     super(props);
     this.state = {
-      show: false,
-      accordion: false,
+      show: props.show || false,
+      accordion: props.accordion || false,
     };
   }
 
-  UNSAFE_componentWillMount() {
-    const { show = false, accordion = false } = { ...this.props };
-    this.setState({ show, accordion });
-  }
+  // UNSAFE_componentWillMount() {
+  //   const { show = false, accordion = false } = { ...this.props };
+  //   this.setState({ show, accordion });
+  // }
 
   headClick = () => {
     const { show } = this.state;

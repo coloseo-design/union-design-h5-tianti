@@ -1,18 +1,14 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable max-len */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
-import classNames from 'classnames';
-import Icon from '../icon';
 import DropdownItem from './dropdown-item';
+import { DropDownMenuContext } from './context';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
 export interface DropdownMenuProps {
   /* 菜单展开方向 */
   direction?: 'up' | 'down',
   prefixCls?: string;
-  children?: any;
+  children?: unknown;
   /* 是否显示遮罩层 */
   overlay?: boolean;
   /* 是否在点击遮罩层后关闭菜单 */
@@ -27,296 +23,87 @@ export interface DropdownMenuProps {
 }
 
 export interface DropdownMenuState {
-  visible: boolean;
-  selected: boolean;
   top: number;
-  idx: number;
-  bottom?: number;
-  originToggle?: any[];
-  childrenList: any[];
-  valueList: any[];
-  toogleList: any[];
-  transitionEnd?: boolean;
+  currentTargetId?: string,
 }
 
 class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState> {
   static DropdownItem: typeof DropdownItem;
 
-  node: HTMLSpanElement | undefined;
+  node: HTMLDivElement | undefined;
 
   constructor(props: DropdownMenuProps) {
     super(props);
     this.state = {
-      visible: false,
-      selected: false,
       top: 0,
-      idx: 0,
-      childrenList: [],
-      valueList: [],
-      toogleList: [],
-      transitionEnd: false,
+      currentTargetId: undefined,
     };
-  }
-
-  static getDerivedStateFromProps(nextProps: DropdownMenuProps, nextState: DropdownMenuState) {
-    const { children } = nextProps;
-    const { childrenList } = nextState;
-    if (children && childrenList.length === 0) {
-      const c: any[] = [];
-      const val: any[] = [];
-      const tog: any[] = [];
-      React.Children.map(children, (child: any) => {
-        c.push(child?.props);
-        val.push(child?.props.value);
-        tog.push(child?.props.toggle);
-      });
-      return {
-        childrenList: c,
-        valueList: val,
-        toogleList: tog,
-      };
-    }
-    return null;
-  }
-
-  componentDidMount() {
-    const { closeOnClickOutside = true } = this.props;
-    this.getNodeLocation();
-    closeOnClickOutside && document.addEventListener('click', this.bodyClick);
-    document.addEventListener('scroll', this.bodyScroll);
-  }
-
-  componentDidUpdate(prevProps: DropdownMenuProps) {
-    const { idx, valueList, toogleList } = this.state;
-    const { children: prevChildren } = prevProps;
-    const { children } = this.props;
-    const PrevC = prevChildren ? React.Children.toArray(prevChildren) : [];
-    const lastPrevC = (PrevC || []).map((i: any) => i.props);
-    const c = children ? React.Children.toArray(children) : [];
-    const lastC = (c || []).map((i: any) => i.props);
-    if (lastC[idx] && lastPrevC[idx] && lastC[idx].value !== lastPrevC[idx].value) {
-      const list = [...valueList];
-      list.splice(idx, 1, lastC[idx].value);
-      this.setState({
-        valueList: list,
-      });
-    }
-    if (lastC[idx] && lastPrevC[idx] && (lastC[idx].toggle !== lastPrevC[idx].toggle)) {
-      const list = [...toogleList];
-      list.splice(idx, 1, lastC[idx].toggle);
-      if (lastC[idx].toggle === false) {
-        this.setState({ transitionEnd: true });
-        setTimeout(() => {
-          this.setState({
-            toogleList: list,
-            transitionEnd: false,
-          });
-        }, 300);
-      } else {
-        this.setState({
-          toogleList: list,
-        });
-      }
-    }
-    if (children !== prevChildren) {
-      this.setState({
-        childrenList: lastC,
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    const { closeOnClickOutside = true } = this.props;
-    closeOnClickOutside && document.removeEventListener('click', this.bodyClick);
-  }
-
-  bodyScroll = () => {
-    const { visible } = this.state;
-    if (this.node && visible) {
-      this.getNodeLocation();
-    }
-  };
-
-  bodyClick = () => {
-    this.setState({ transitionEnd: true });
-    setTimeout(() => {
-      this.setState({ visible: false, transitionEnd: false });
-    }, 300);
   }
 
   getNode = (node: HTMLDivElement) => {
     this.node = node;
   }
 
-  handleSelect = (value: string) => {
-    const { idx, childrenList, valueList } = this.state;
-    valueList.splice(idx, 1, value);
-    this.setState({ childrenList, valueList });
+  bodyScroll = () => {
+    if (this.node) {
+      this.getNodeLocation();
+    }
   };
+
+  changeParentState = (obj: DropdownMenuState) => {
+    const tem = this.state;
+    Object.assign(tem, {
+      ...obj,
+    });
+    this.setState({
+      ...tem,
+    });
+  }
 
   getNodeLocation = () => {
     const { direction = 'down' } = this.props;
-    setTimeout(() => {
-      if (this.node?.getBoundingClientRect) {
-        const {
-          height, top,
-        } = this.node.getBoundingClientRect();
-        // const offsetTop = window.pageXOffset + top;
-        this.setState({
-          top: direction === 'down' ? top + height : top,
-        });
-      }
-    }, 100);
-  }
-
-  handleClick = (index: number, item: any) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    const { selected, visible } = this.state;
-    if (item.toggle !== undefined) {
-      const { onClick } = item;
-      onClick && onClick(e);
-    }
-    if (!item.disabled && !item.toggle) {
-      if (visible) {
-        this.setState({ transitionEnd: true });
-        setTimeout(() => {
-          this.setState({ transitionEnd: false, visible: false });
-        }, 300);
-      } else {
-        this.setState({ visible: true });
-        this.getNodeLocation();
-      }
-    }
-    if (!item.disabled) {
-      this.setState({ selected: !selected, idx: index });
+    if (this.node?.getBoundingClientRect) {
+      const {
+        height, top,
+      } = this.node.getBoundingClientRect();
+      this.setState({ top: direction === 'down' ? top + height : top });
     }
   }
-
-  handleMask = (item: any) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    if (item.toggle === undefined) {
-      if (e.currentTarget === e.target) {
-        const { closeOnClickOverlay = true } = this.props;
-        if (closeOnClickOverlay) {
-          this.bodyClick();
-        } else {
-          e.stopPropagation();
-        }
-      }
-    } else {
-      e.stopPropagation();
-    }
-  };
 
   renderDropdownMenu = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
-      overlay = true,
-      style,
-      direction = 'down',
+      children,
       activeColor,
-      // className,
+      direction = 'down',
+      overlay = true,
+      closeOnClickOverlay = true,
+      closeOnClickOutside = true,
     } = this.props;
-    const {
-      childrenList,
-      selected, top, visible, idx,
-      toogleList,
-      valueList,
-      transitionEnd,
-    } = this.state;
+    const { top, currentTargetId } = this.state;
     const dropWrapper = getPrefixCls('dropdown-menu', prefixCls);
-    const menuItem = classNames(`${dropWrapper}-item`);
-    const itemPreix = getPrefixCls('dropdown-item', prefixCls);
-    const itemcontainter = classNames(itemPreix, {
-      [`${itemPreix}-show`]: visible,
-      [`${itemPreix}-hidden`]: transitionEnd && visible,
-    });
-
-    const renderValue = (source: any, index: number) => {
-      let text = '';
-      if (valueList[index]) {
-        const loopOption = (data: any) => data.forEach((i: any) => {
-          if (i.value === valueList[index]) {
-            text = i.text;
-          }
-          if (i.children && i.children.length > 0) {
-            loopOption(i.children);
-          }
-        });
-        loopOption(source.options || []);
-      }
-      return text;
-    };
-
-    const currentMenuClass = (item: any, index: number) => {
-      let names = menuItem;
-      // visible && idx === index && item.value !== undefined && item.value !== ''
-      if (visible && idx === index && valueList[index]) {
-        names = `${menuItem} ${dropWrapper}-item-select`;
-      }
-      if (item.disabled) {
-        names = `${menuItem} ${dropWrapper}-item-disabled`;
-      }
-      return names;
-    };
 
     return (
-      <div className={dropWrapper} style={style} ref={this.getNode}>
-        {(childrenList || []).map((item, index) => (
-          <div key={index} className={`${dropWrapper}-content`}>
-            <div
-              className={currentMenuClass(item, index)}
-              onClick={this.handleClick(index, item)}
-              title={item.title ? item.title : renderValue(item, index)}
-            >
-              <span
-                className={`${dropWrapper}-item-text`}
-                style={{ color: item.disabled ? '#C8CCCC' : (activeColor || undefined) }}
-              >
-                {item.title ? item.title : renderValue(item, index)}
-              </span>
-              <Icon
-                type={selected && idx === index ? 'up' : 'down'}
-                className={`${menuItem}-icon`}
-                style={{
-                  color: item.disabled ? '#C8CCCC' : (visible && idx === index && item.value) ? '#F31D39' : '#646566',
-                }}
-              />
-            </div>
-            {idx === index && (item.toggle !== undefined ? toogleList[index] : visible) && (
-            <div
-              className={itemcontainter}
-              style={{
-                top: direction === 'down' ? top : 0,
-                left: 0,
-                bottom: direction === 'down' ? 0 : `calc(100% - ${top}px)`,
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.2)',
-                  width: '100%',
-                  height: '100%',
-                }}
-                onClick={this.handleMask(item)}
-              >
-                <DropdownItem
-                  {...item}
-                  onSelect={this.handleSelect}
-                  itemValue={valueList[index] ? valueList[index] : ''}
-                  visible={visible}
-                  direction={direction}
-                  activeColor={activeColor}
-                  isChildren={item.children}
-                  transitionEnd={transitionEnd}
-                />
-              </div>
-            </div>
-            )}
-          </div>
-        ))}
+      <div className={dropWrapper} ref={this.getNode}>
+        <DropDownMenuContext.Provider
+          value={{
+            prefixCls,
+            activeColor,
+            dropWrapper,
+            parentNode: this.node,
+            direction,
+            top,
+            changeParentState: this.changeParentState,
+            overlay,
+            getNodeLocation: this.getNodeLocation,
+            closeOnClickOverlay,
+            closeOnClickOutside,
+            bodyScroll: this.bodyScroll,
+            currentTargetId,
+          }}
+        >
+          {children}
+        </DropDownMenuContext.Provider>
       </div>
     );
   }
