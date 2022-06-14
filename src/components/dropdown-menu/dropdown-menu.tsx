@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unused-prop-types */
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import DropdownItem from './dropdown-item';
 import { DropDownMenuContext } from './context';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
-export interface DropdownMenuProps {
+export interface DropdownMenuProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
   /* 菜单展开方向 */
   direction?: 'up' | 'down',
   prefixCls?: string;
@@ -15,8 +15,6 @@ export interface DropdownMenuProps {
   closeOnClickOverlay?: boolean;
   /* 是否在点击外部元素后关闭菜单 */
   closeOnClickOutside?: boolean;
-  /* menu样式 */
-  style?: React.CSSProperties;
   /* 菜单标题颜色 和选项选中颜色 */
   activeColor?: string;
   className?: string;
@@ -79,12 +77,13 @@ class DropdownMenu extends React.Component<DropdownMenuProps, DropdownMenuState>
       overlay = true,
       closeOnClickOverlay = true,
       closeOnClickOutside = true,
+      ...rest
     } = this.props;
     const { top, currentTargetId } = this.state;
     const dropWrapper = getPrefixCls('dropdown-menu', prefixCls);
 
     return (
-      <div className={dropWrapper} ref={this.getNode}>
+      <div {...rest} className={dropWrapper} ref={this.getNode}>
         <DropDownMenuContext.Provider
           value={{
             prefixCls,

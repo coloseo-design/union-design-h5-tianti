@@ -42,7 +42,7 @@ const Demo = () => {
   };
   const [toggle, setToggle] = React.useState(false);
   const handleToggle = () => {
-    setToggle(true);
+    setToggle(!toggle);
   };
 
   const handleButton = () => {

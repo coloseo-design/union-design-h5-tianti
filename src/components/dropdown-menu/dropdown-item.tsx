@@ -162,10 +162,13 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
   };
 
   bodyClick = () => {
-    this.setState({ transitionEnd: true });
-    setTimeout(() => {
-      this.setState({ visible: false, transitionEnd: false });
-    }, 300);
+    const { toggle } = this.props;
+    if (typeof toggle === 'undefined') {
+      this.setState({ transitionEnd: true });
+      setTimeout(() => {
+        this.setState({ visible: false, transitionEnd: false });
+      }, 300);
+    }
   }
 
   renderCurrent = (data: Option[] | any) => {
@@ -200,6 +203,8 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       children,
       disabled,
       title,
+      onChange: _,
+      ...rest
     } = this.props;
     const {
       selectedValue, visible, transitionEnd, onlyid,
@@ -228,7 +233,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
           });
 
           return (
-            <div className={`${dropWrapper}-content`}>
+            <div {...rest} className={`${dropWrapper}-content`}>
               <div
                 className={classNames(menuItem, {
                   [`${dropWrapper}-item-disabled`]: disabled,
