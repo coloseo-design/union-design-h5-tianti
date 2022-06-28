@@ -19,5 +19,5 @@ subtitle: 级联选择
 | defaultValue | 默认选中的值  | string[]        | -      |
 | onChange   | 选择回调函数 | (value: string[])=>void      | -      |
 | renderItem   | 选项渲染函数 | (value: Option)=> string ｜ React.RactNode | -  |
-| itemHeight   | 渲染元素高度 | ｜ number | 52  |
-| visibleItemCount   | 默认渲染多少可见对象 ｜ number | 6  |  |
+| itemHeight   | 渲染元素高度 | number | 52  |
+| visibleItemCount  | 默认渲染多少可见对象 | number | 6 |
