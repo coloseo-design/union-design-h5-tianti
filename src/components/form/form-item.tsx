@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { Icon } from '../index';
 import { ConfigContext } from '../config-provider/context';
 import { FormItemProps } from './type';
@@ -64,6 +64,28 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
       onCollect(newValues);
     }
   };
+
+  useEffect(() => {
+    if (name) {
+      const newValue = values[name] as string;
+      const newValues = { ...values, [name]: values[name] };
+      validateRules(name, newValue, rules, true, {})
+        .then((e) => {
+          onError({
+            ...errors,
+            [name]: e,
+          });
+        })
+        .catch((e) => {
+          // 更新错误信息
+          onError({
+            ...errors,
+            [name]: e,
+          });
+        });
+      onCollect(newValues);
+    }
+  }, []);
 
   let error: (string | React.ReactNode)[] = [];
   if (name && errors[name]) {

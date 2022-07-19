@@ -40,13 +40,12 @@ const FormDemo = () => {
           ref={ref}
           initialValues={{
             username: 'admin',
-            password: '123456',
+            // password: '123456',
           }}
         >
           <Form.FormItem
             name="username"
             label="请输入用户名"
-            required
             rules={[{ required: true, message: '请填写用户名' }]}
           >
             <Field
@@ -57,7 +56,6 @@ const FormDemo = () => {
           <Form.FormItem
             name="password"
             label="请输入密码"
-            required
             rules={[
               { required: true, message: '请填写密码' },
             ]}

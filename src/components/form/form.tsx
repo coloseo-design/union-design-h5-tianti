@@ -32,16 +32,16 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   };
 
   const reset = () => {
-    setValues({});
+    setValues({ ...initialValues });
   };
 
   const submit = () => {
     setIsValidating(true);
-    const withoutError = Object.entries(errors).reduce((prev, current) => current.length && prev, true);
-    if (withoutError) {
-      onSubmit(values);
-    } else {
+    const hasError = Object.keys(errors).some((key) => errors[key].length > 0);
+    if (hasError) {
       onSubmitFailed(errors);
+    } else {
+      onSubmit(values);
     }
   };
 
