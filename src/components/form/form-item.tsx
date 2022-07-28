@@ -28,7 +28,8 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
     onCollect,
     onError,
     onSubmit,
-    isValidating,
+    status,
+    onStatus,
   } = useContext(FormContext);
 
   const isRequired = useCallback(() => {
@@ -49,6 +50,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
       const newValues = { ...values, [name]: newValue };
       validateRules(name, newValue, rules, true, {})
         .then((e) => {
+          onStatus(name, false);
           onError({
             ...errors,
             [name]: e,
@@ -56,6 +58,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
         })
         .catch((e) => {
           // 更新错误信息
+          onStatus(name, true);
           onError({
             ...errors,
             [name]: e,
@@ -69,6 +72,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
     if (name) {
       const newValue = values[name] as string;
       const newValues = { ...values, [name]: values[name] };
+      onStatus(name, false);
       validateRules(name, newValue, rules, true, {})
         .then((e) => {
           onError({
@@ -85,13 +89,62 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
         });
       onCollect(newValues);
     }
-  }, []);
+  }, []); // 组件mont收集错误信息
+
+  useEffect(() => {
+    if (name) {
+      const newValue = values[name] as string;
+      onStatus(name, false);
+      validateRules(name, newValue, rules, true, {})
+        .then((e) => {
+          onError({
+            ...errors,
+            [name]: e,
+          });
+        })
+        .catch((e) => {
+          // 更新错误信息
+          onError({
+            ...errors,
+            [name]: e,
+          });
+        });
+    }
+    return () => {
+      if (name) {
+        onError({
+          [name]: [],
+        });
+      }
+    };
+  }, [name]); // 组件被卸载收集错误信息情况
+
+  useEffect(() => {
+    if (name) {
+      const newValue = values[name] as string;
+      validateRules(name, newValue, rules, true, {})
+        .then((e) => {
+          onError({
+            ...errors,
+            [name]: e,
+          });
+        })
+        .catch((e) => {
+          // 更新错误信息
+          onError({
+            ...errors,
+            [name]: e,
+          });
+        });
+    }
+  }, [status]); // 组件错误状态更新
 
   let error: (string | React.ReactNode)[] = [];
   if (name && errors[name]) {
     error = errors[name];
   }
-  const hasError = error && error.length > 0 && isValidating;
+
+  const hasError = error && error.length > 0 && status[name || ''];
 
   const extProps = {
     status: hasError ? 'error' : undefined,

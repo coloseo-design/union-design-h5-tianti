@@ -12,6 +12,8 @@ export type FormProps = {
 export type FormInstance = {
   reset: () => void;
   setFieldsValue: (value: Values) => void;
+  getFieldValue: (value: string) => void;
+  getFieldsValue: (values: string[] | boolean) => void;
   submit: () => void;
 };
 
@@ -21,11 +23,21 @@ export type FormContenxtProps = {
   values: Values;
   errors: Errors;
   name: string;
-  isValidating: boolean;
+  // isValidating: boolean;
   onError: (error: Errors) => void;
   onCollect: (value: Values) => void;
   onSubmit: (evt: React.MouseEvent<HTMLDivElement>) => void;
+  status: FormStatus;
+  onStatus: (name: string, s: boolean) => void;
 };
+
+export interface FormStatus {
+  [key: string]: boolean;
+}
+
+export interface FormValues {
+  [key:string]: unknown;
+}
 
 export type FormItemProps = {
   name?: string;

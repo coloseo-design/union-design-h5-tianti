@@ -1,10 +1,12 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable max-len */
 import classNames from 'classnames';
 import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../config-provider/context';
 import FormItem from './form-item';
 import {
-  Errors, FormContenxtProps, FormInstance, FormProps, Values,
+  Errors, FormContenxtProps, FormInstance, FormProps, Values, FormStatus,
 } from './type';
 import FormContext from './utils/form-context';
 
@@ -24,7 +26,8 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
   const formClassName = classNames(prefix, className);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Errors>({});
-  const [isValidating, setIsValidating] = useState(false);
+  const [status, setStatus] = useState<FormStatus>({});
+  // const [isValidating, setIsValidating] = useState(false);
 
   const setFieldsValue = (value: Values) => {
     Object.assign(values, value);
@@ -33,23 +36,58 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
 
   const reset = () => {
     setValues({ ...initialValues });
+    for (const key in status) {
+      Object.assign(status, {
+        [key]: false,
+      });
+    }
+    setStatus({ ...status });
+  };
+
+  const getFieldValue = (value: string) => values[value];
+
+  const getFieldsValue = (list: string[] | boolean) => {
+    if (typeof list === 'boolean' && list) {
+      return values;
+    }
+    if (Array.isArray(list)) {
+      const obj = {};
+      list.forEach((item) => {
+        Object.assign(obj, {
+          [item]: values[item],
+        });
+      });
+      return obj;
+    }
+    return null;
   };
 
   const submit = () => {
-    setIsValidating(true);
+    // setIsValidating(true);
     const hasError = Object.keys(errors).some((key) => errors[key].length > 0);
+    for (const key in status) {
+      Object.assign(status, {
+        [key]: true,
+      });
+    }
+    setStatus({ ...status });
     if (hasError) {
       onSubmitFailed(errors);
     } else {
       onSubmit(values);
     }
   };
+  const onStatus = (itemName: string, s: boolean) => {
+    Object.assign(status, {
+      [itemName]: s || false,
+    });
+    setStatus({ ...status });
+  };
 
   const contextValue: FormContenxtProps = {
     errors,
     values,
     name,
-    isValidating,
     onCollect: (value) => {
       Object.assign(values, value);
       setValues({ ...values });
@@ -62,11 +100,15 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
       evt.preventDefault();
       submit();
     },
+    status,
+    onStatus,
   };
 
   const current: FormInstance = {
     reset,
     setFieldsValue,
+    getFieldValue,
+    getFieldsValue,
     submit,
   };
 

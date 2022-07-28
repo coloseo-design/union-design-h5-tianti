@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Field, Form, Button, Row, Col, Icon,
 } from '../index';
@@ -29,9 +29,17 @@ const FormDemo = () => {
     borderRadius: 12,
     boxShadow: '#ebedf0 0 4px 12px',
   };
+  React.useEffect(() => {
+    const { current } = ref;
+    const fileds = current?.getFieldsValue(['username', 'password']);
+    const fileds1 = current?.getFieldsValue(true);
+    console.log('=fileds=', fileds, fileds1);
+  }, []);
+
+  const [status, $status] = useState(true);
   return (
     <div style={containerStyle}>
-      <div style={{ fontSize: 20, textAlign: 'center' }}>登录</div>
+      <div style={{ fontSize: 20, textAlign: 'center' }} onClick={() => $status(!status)}>登录</div>
       <div>
         <Form
           onSubmit={onSubmit}
@@ -53,7 +61,7 @@ const FormDemo = () => {
               leftIcon={<Icon type="user" style={{ color: '#A6A8A9', fontSize: '1.5em' }} />}
             />
           </Form.FormItem>
-          <Form.FormItem
+          {status ? <Form.FormItem
             name="password"
             label="请输入密码"
             rules={[
@@ -61,6 +69,24 @@ const FormDemo = () => {
             ]}
           >
             <Field placeholder="请输入密码" fieldType="password" leftIcon={null} />
+          </Form.FormItem>
+          : 
+          <Form.FormItem
+            name="账号"
+            label="请输入账号"
+            rules={[
+              { required: true, message: '请输入账号' },
+            ]}
+          >
+            <Field placeholder="请输入账号" />
+          </Form.FormItem>
+          
+          }
+          <Form.FormItem
+            name="professor"
+            label="职业"
+          >
+            <Field placeholder="请输入职业" />
           </Form.FormItem>
           <Row gutter={40} justify="space-between">
             <Col span={6}>
