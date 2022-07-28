@@ -33,7 +33,8 @@ const FormDemo = () => {
     const { current } = ref;
     const fileds = current?.getFieldsValue(['username', 'password']);
     const fileds1 = current?.getFieldsValue(true);
-    console.log('=fileds=', fileds, fileds1);
+    const fileds2 = current?.getFieldValue('username');
+    console.log('=fileds=', fileds, fileds1, fileds2);
   }, []);
 
   const [status, $status] = useState(true);

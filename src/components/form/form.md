@@ -48,6 +48,8 @@ title: Form
 | trigger | 设置收集字段值变更的时机 | string | onChange |  |
 | rules | 校验规则，设置字段的校验逻辑 | Rules |  |  |
 | getValueFromEvent | 设置如何将 event 的值转换成字段值 | (..args: any[]) => any |  |  |
+|getFieldsValue|获取一组字段名对应的值，会按照对应结构返回。默认返回现存字段值，当调用 getFieldsValue(true) 时返回所有值| (values: string[] |boolean) => any | --|
+|getFieldValue|获取一个字段名对应的值|(name: string) => any | --|
 
 ### FormInstance
 
