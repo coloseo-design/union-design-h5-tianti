@@ -1,0 +1,85 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@calendar: ~'@{uni-prefix}-calendar';
+
+.@{calendar} {
+  width: 100%;
+  &-header {
+    display: flex;
+    height: 52px;
+    border-bottom: 1px solid #E5E5E5;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #1C1D1D;
+    font-weight: 500;
+    padding: 0px 32px;
+    &-right {
+      color: #F31D39;
+      font-weight: 400;
+    }
+  }
+
+  &-body {
+    width: 100%;
+    // text-align: center;
+    &-header {
+      font-size: 16px;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 32px;
+      div {
+        flex: 1;
+        &:first-child, &:last-child {
+          color: #A6A8A9;
+        }
+      }
+    }
+    &-body {
+      margin: 24px 32px 32px 32px;
+      &-row {
+        display: flex;
+        margin-top: 16px;
+        &:first-child {
+          margin-top: 0px;
+        }
+      }
+      &-col {
+        flex: 1;
+      }
+    }
+    &-cell {
+      width: 32px;
+      height: 32px;
+      padding: 3px 0px;
+      position: relative;
+      text-align: center;
+      color: #1C1D1D;
+      line-height: 1;
+      &-gregotian {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      &-lunar {
+        font-size: 16px;
+        margin-top: -2px;
+        transform: scale(0.5);
+      }
+    }
+    &-gray {
+      color: #A6A8A9;
+    }
+    &-selected {
+      border-radius: 50%;
+      background-color: #646566;
+      color: #fff
+    }
+    &-today {
+      border-radius: 50%;
+      background-color: #F31D39;
+      color: #fff
+    }
+  }
+}

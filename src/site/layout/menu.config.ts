@@ -98,6 +98,10 @@ export default [
         key: 'time-picker',
       },
       {
+        title: 'Calendar 日历',
+        key: 'calendar',
+      },
+      {
         title: 'Field 输入框',
         key: 'field',
       },
