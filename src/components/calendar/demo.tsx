@@ -1,11 +1,12 @@
 import React from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { Calendar, DropdownMenu } from '..';
+import { Calendar, DropdownMenu, Button } from '..';
 import './styles/index';
 const { DropdownItem } = DropdownMenu;
 
 const CalendarDemo = () => {
   const [value, $val] = React.useState<Dayjs | string | undefined>();
+  const [mode, $mode] = React.useState<'week' | 'month'>('week');
   const option = [
     { text: '1月', value: '1' },
     { text: '2月', value: '2' },
@@ -24,11 +25,11 @@ const CalendarDemo = () => {
   }
   return (
     <div style={{ marginTop: 32 }}>
-        {/* <Button onClick={() => $val('2022-07-01')}>改变value</Button> */}
+        <Button onClick={() => $mode('month')}>改变mode</Button>
         <h2>mode === 'week'</h2>
         <Calendar
           actionRightHeader="全部日程"
-          mode="week"
+          mode={mode}
           dateCellRender={(date: Dayjs) => {
             if (dayjs(date).format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD')) {
               return <div style={{

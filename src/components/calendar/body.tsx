@@ -45,12 +45,14 @@ const BodyC: React.FC<BodyProps> = (props: BodyProps) => {
 
   const handlChange = (_: number, direction?: string) => {
     if (direction === 'next') {
-      mode === 'month' && setValue(dayjs(value).add(1, 'month'));
-      mode === 'week' && setValue(dayjs(value).add(7, 'day'));
+      const val = mode === 'week' ? dayjs(value).add(7, 'day') : dayjs(value).add(1, 'month');
+      setValue(val);
+      onChange && onChange(val);
     }
     if (direction === 'prev') {
-      mode === 'month' && setValue(dayjs(value).subtract(1, 'month'));
-      mode === 'week' && setValue(dayjs(value).subtract(7, 'day'));
+      const val = mode === 'week' ? dayjs(value).subtract(7, 'day') : dayjs(value).subtract(1, 'month');
+      setValue(val);
+      onChange && onChange(val);
     }
   };
 
@@ -59,13 +61,13 @@ const BodyC: React.FC<BodyProps> = (props: BodyProps) => {
       <div className={`${prefix}-header`}>
         {weeks.map((item) => <div key={item.key}>{item.value}</div>)}
       </div>
-      <Swipe autoplay={false} onChange={handlChange} isTips={false} onfilterList={() => 0}>
+      <Swipe autoplay={false} onChange={handlChange} isTips={false} isCustomList>
         {swipeData.map((swipe: dateType[][], sx: number) => (
           <div
             className={`${prefix}-body`}
             key={sx}
           >
-            {swipe.map((tr: dateType[], index: number) => {
+            {(swipe || []).map((tr: dateType[], index: number) => {
               return (
                 <div key={index} className={`${prefix}-body-row`}>
                   {(tr || []).map((td: dateType, idx: number) => (

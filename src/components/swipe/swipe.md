@@ -14,8 +14,12 @@ subtitle: 轮播图
 | :----------- | :------------------- | :--------------- | :----- |
 | style        | 样式                 | CSSProperties    | -      |
 | className    | 样式                 | string           | -      |
-| autoplay     | 自动轮播间隔，单位为 | number           | 3000   |
+| autoplay     | 是否自动轮播 |     boolean      | true   |
 | duration     | 动画时长，单位为     | number           | 600    |
 | defaultIndex | 初始位置索引值       | number           | 0      |
 | width        | 滑块宽度             | number \| string | '100%' |
 | height       | 滑块高度             | number \| string | '100%' |
+|onChange      |切换面板的回调（idx为当前第几个，type为'prev','next' ） |(idx: number, type?: string) => void|--|
+|autotiming|自动轮播间隔 单位为 ms|number|3000|
+|isTips|是否展示右下角的当前位置和总数|boolean|true|
+

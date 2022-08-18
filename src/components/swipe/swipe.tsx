@@ -1,7 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable max-len */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   // CSSProperties,
   FC, HTMLAttributes, memo, ReactNode, useCallback, useEffect, useMemo, useRef, useState,
@@ -26,7 +23,7 @@ export interface SwipeProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'
   /* 是否展示当前数量面板 */
   isTips?: boolean;
   /* 自己定义展示当前第几个 */
-  onfilterList?: (index: number) => number;
+  isCustomList?: boolean;
 }
 
 const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
@@ -41,7 +38,7 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
     height = '100%',
     autoplay = true,
     isTips = true,
-    onfilterList,
+    isCustomList,
     onChange,
   } = props;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,15 +66,15 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
     if (c.length === 1) {
       setList(c);
     } else if (c.length > 1) {
-      let idx = index;
-      if (onfilterList) {
-        idx = onfilterList(index);
+      if (isCustomList) {
+        setList(c);
+      } else {
+        setList([
+          c[index - 1 < 0 ? c.length - 1 : index - 1],
+          c[index],
+          c[index + 1 > c.length - 1 ? 0 : index + 1],
+        ]);
       }
-      setList([
-        c[idx - 1 < 0 ? c.length - 1 : idx - 1],
-        c[idx],
-        c[idx + 1 > c.length - 1 ? 0 : idx + 1],
-      ]);
     }
     setSwipeIndex(1);
   }, [index, children]);
@@ -95,7 +92,7 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
       setIndex(directionMove > 0 ? rightIndex : leftIndex);
       const idx = directionMove > 0 ? rightIndex : leftIndex;
       onChange && onChange(idx + 1, directionMove > 0 ? 'prev' : 'next');
-      // setDirection(0);
+      setDirection(0);
       setTouch(false);
     }
   }, [isHalf, swipeIndex]);
@@ -108,7 +105,7 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
   }, [index, childrenView]);
 
   const contentStyle = useMemo(() => {
-    const move = `calc(-${swipeIndex * 100}% + ${touchDiff}px)`;
+    const move = childrenView.length === 1 ? '0px' : `calc(-${swipeIndex * 100}% + ${touchDiff}px)`;
     return {
       transition: transition ? `all ${duration / 1000}s ease-in-out` : 'unset',
       transform: `translateX(${move})`,
@@ -125,7 +122,7 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
     [classNames, className, swipeClass]);
 
   useEffect(() => {
-    let timer: any;
+    let timer: NodeJS.Timeout;
     if (autoplay) {
       timer = setInterval(() => {
         setTransition(true);
@@ -146,26 +143,29 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
     const startX = temTouch.pageX;
     let touchdiff = 0;
     const { width: targetW } = e.currentTarget.getBoundingClientRect();
-    e.target.addEventListener('touchmove', (evt: any) => {
-      const moveTouch = evt.targetTouches[0];
-      const diff = moveTouch.pageX - startX;
-      touchdiff = diff;
-      setTouchDiff(diff);
-      setDirection(diff);
-    });
-    e.target.addEventListener('touchend', () => {
-      setTransition(true);
-      setTouchDiff(0);
-      const swipeLeft = swipeIndex + 1 > 2 ? 0 : swipeIndex + 1;
-      const swipeRight = swipeIndex - 1 < 0 ? 2 : swipeIndex - 1;
-      const swx = touchdiff > 0 ? swipeRight : swipeLeft;
-      if (Math.abs(touchdiff) >= targetW / 2) {
-        setHalf(true);
-        setSwipeIndex(swx);
-      } else {
-        setHalf(false);
-      }
-    });
+    e.currentTarget.addEventListener('touchmove',
+      (evt: TouchEvent) => {
+        const moveTouch = evt.targetTouches[0];
+        const diff = moveTouch.pageX - startX;
+        touchdiff = diff;
+        setTouchDiff(diff);
+        setDirection(diff);
+      });
+    e.currentTarget.addEventListener('touchend',
+      () => {
+        setTransition(true);
+        setTouchDiff(0);
+        const swipeLeft = swipeIndex + 1 > 2 ? 0 : swipeIndex + 1;
+        const swipeRight = swipeIndex - 1 < 0 ? 2 : swipeIndex - 1;
+        const swx = touchdiff > 0 ? swipeRight : swipeLeft;
+        if (Math.abs(touchdiff) >= targetW / 2) {
+          setHalf(true);
+          setSwipeIndex(swx);
+        } else {
+          setHalf(false);
+          setSwipeIndex(1);
+        }
+      });
   };
 
   return (

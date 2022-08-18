@@ -95,7 +95,7 @@ const handleMonthData = (computeValue?: string | Dayjs, propsValue?: string | Da
 
   const allData = [...preDay, ...cMonthData, ...nextDay];
   const threeMonth = [...preMonthData, ...cMonthData, ...nextMonthData];
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < 6; i += 1) {
     for (let j = 0; j < 7; j += 1) {
       (list[i] ??= []).push(allData[i * 7 + j]);
     }
@@ -151,14 +151,14 @@ const Calendar: React.FC<CalendarProps> = (props: CalendarProps) => {
   useEffect(() => {
     if (mode === 'week') {
       const { currentWeek, prevWeek, nextWeek } = handleMonthData(showValue, propsValue);
-      setSwipeData([[currentWeek], [nextWeek], [prevWeek]]);
+      setSwipeData([[prevWeek], [currentWeek], [nextWeek]]);
     } else {
       const preVal = dayjs(showValue).subtract(1, 'month');
       const nextVal = dayjs(showValue).add(1, 'month');
       const { data: dataC } = handleMonthData(showValue, propsValue); // 当前月
       const { data: dataP } = handleMonthData(preVal, propsValue); // 上个月
       const { data: dataN } = handleMonthData(nextVal, propsValue); // 下个月
-      setSwipeData([dataC, dataN, dataP]);
+      setSwipeData([dataP, dataC, dataN]);
     }
   }, [showValue, mode]);
 
