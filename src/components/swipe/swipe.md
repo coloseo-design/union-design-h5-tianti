@@ -19,7 +19,7 @@ subtitle: 轮播图
 | defaultIndex | 初始位置索引值       | number           | 0      |
 | width        | 滑块宽度             | number \| string | '100%' |
 | height       | 滑块高度             | number \| string | '100%' |
-|onChange      |切换面板的回调（idx为当前第几个，type为'prev','next' ） |(idx: number, type?: string) => void|--|
+|onChange      |切换面板的回调,autoplay为false时左右滑动切换（idx为当前第几个，type为'prev','next' ） |(idx: number, type?: string) => void|--|
 |autotiming|自动轮播间隔 单位为 ms|number|3000|
 |isTips|是否展示右下角的当前位置和总数|boolean|true|
 

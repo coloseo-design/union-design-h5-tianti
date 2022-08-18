@@ -2,6 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import omit from 'omit.js';
 import Icon from '../icon';
 import { DropDownMenuContext } from './context';
 import CurrentItem from './current';
@@ -203,7 +204,6 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       children,
       disabled,
       title,
-      onChange: _,
       ...rest
     } = this.props;
     const {
@@ -214,6 +214,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       return current ? current.text : '';
     };
 
+    const omitRest = omit(rest, ['onChange']);
     return (
       <DropDownMenuContext.Consumer>
         {({
@@ -233,7 +234,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
           });
 
           return (
-            <div {...rest} className={`${dropWrapper}-content`}>
+            <div {...omitRest} className={`${dropWrapper}-content`}>
               <div
                 className={classNames(menuItem, {
                   [`${dropWrapper}-item-disabled`]: disabled,
