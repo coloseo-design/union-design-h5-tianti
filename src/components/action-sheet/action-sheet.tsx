@@ -159,7 +159,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
     let dataC: number[] = [];
     const tem = isImg ? currentCol.image || 3 : currentCol.icon || 4;
     if (multiple) {
-      dataC = isImg ? array(Math.ceil(data.length / tem)) : array(Math.ceil(data.length / tem));
+      dataC = array(Math.ceil(data.length / tem));
       return (
         <>
           {(dataC || []).map((item: number) => (

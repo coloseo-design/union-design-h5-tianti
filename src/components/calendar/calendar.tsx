@@ -110,7 +110,11 @@ const handleMonthData = (computeValue?: string | Dayjs, propsValue?: string | Da
   const nextWeek: dateType[] = []; // 下一周
   threeMonth.forEach((item) => {
     if (dayjs(current).diff(dayjs(item.value), 'day') < 7 && dayjs(current).diff(dayjs(item.value), 'day') >= 0) {
-      currentWeek.push(item);
+      if (item.type === 'pre') {
+        currentWeek.unshift(item);
+      } else {
+        currentWeek.push(item);
+      }
     }
     if (dayjs(prev).diff(dayjs(item.value), 'day') < 7 && dayjs(prev).diff(dayjs(item.value), 'day') >= 0) {
       prevWeek.push(item);
