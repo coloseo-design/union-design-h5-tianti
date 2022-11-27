@@ -8,7 +8,7 @@ import React, {
   ReactNode, HTMLAttributes, useState, useEffect, useContext,
 } from 'react';
 import { ConfigContext } from '../config-provider/context';
-import { MonthData } from './data';
+import { MonthData, getLunarInfo } from './data';
 import Header from './header';
 import Body from './body';
 
@@ -90,45 +90,51 @@ const handleMonthData = (computeValue?: string | Dayjs, propsValue?: string | Da
   const nextMonthData = MonthData(nextMonth, month + 1 <= 12 ? year : year + 1, 'next', propsValue);
   const cStartWeek = cMonthData[0].weekValue;
   const cEndWeek = 6 - cMonthData[cMonthData.length - 1].weekValue;
-  const preDay = cStartWeek ? preMonthData.reverse().slice(0, cStartWeek) : [];
+  const tem = [...preMonthData];
+  const preDay = cStartWeek ? tem.reverse().slice(0, cStartWeek) : [];
   const nextDay = cEndWeek ? nextMonthData.slice(0, cEndWeek) : [];
 
   const allData = [...preDay, ...cMonthData, ...nextDay];
-  const threeMonth = [...preMonthData, ...cMonthData, ...nextMonthData];
   for (let i = 0; i < 6; i += 1) {
     for (let j = 0; j < 7; j += 1) {
       (list[i] ??= []).push(allData[i * 7 + j]);
     }
   }
 
-  const current = dayjs(computeValue).endOf('week').format('YYYY-MM-DD');
-  const prev = dayjs(computeValue).endOf('week').subtract(7, 'day').format('YYYY-MM-DD');
-  const next = dayjs(computeValue).endOf('week').add(7, 'day').format('YYYY-MM-DD');
+  return list;
+};
 
-  const currentWeek: dateType[] = []; // 当前周
-  const prevWeek: dateType[] = []; // 上一周
-  const nextWeek: dateType[] = []; // 下一周
-  threeMonth.forEach((item) => {
-    if (dayjs(current).diff(dayjs(item.value), 'day') < 7 && dayjs(current).diff(dayjs(item.value), 'day') >= 0) {
-      if (item.type === 'pre') {
-        currentWeek.unshift(item);
-      } else {
-        currentWeek.push(item);
-      }
-    }
-    if (dayjs(prev).diff(dayjs(item.value), 'day') < 7 && dayjs(prev).diff(dayjs(item.value), 'day') >= 0) {
-      prevWeek.push(item);
-    }
-    if (dayjs(next).diff(dayjs(item.value), 'day') < 7 && dayjs(next).diff(dayjs(item.value), 'day') >= 0) {
-      nextWeek.push(item);
-    }
-  });
+const weekDate = (start: Dayjs, end: Dayjs, type: currentMonth, v?: string | Dayjs) => {
+  const list: dateType[] = [];
+  let time = start;
+  while (time < end) {
+    list.push({
+      value: dayjs(time).format('YYYY-MM-DD'),
+      type,
+      date: time,
+      current: dayjs(time).format('D'),
+      weeks: weeks[dayjs(time).day()].value,
+      weekValue: dayjs(time).day(),
+      gray: dayjs(time).day() === 6 || dayjs(time).day() === 0,
+      selected: v ? dayjs(v).format('YYYY-MM-DD') === time.format('YYYY-MM-DD') : false,
+      today: dayjs().format('YYYY-MM-DD') === time.format('YYYY-MM-DD'),
+      ...getLunarInfo(time),
+    });
+    time = time.add(1, 'day');
+  }
+  return list;
+};
 
+const handleWeek = (dateValue?: string | Dayjs, propsValue?: string | Dayjs) => {
+  const start = dayjs(dateValue).startOf('week');
+  const end = dayjs(dateValue).endOf('week');
+  const currentWeek = weekDate(start, end, 'current', propsValue);
+  const prevWeek = weekDate(start.subtract(7, 'day'), end.subtract(7, 'day'), 'pre', propsValue);
+  const nextWeek = weekDate(start.add(7, 'day'), end.add(7, 'day'), 'next', propsValue);
   return {
-    data: list,
     currentWeek,
-    prevWeek,
     nextWeek,
+    prevWeek,
   };
 };
 
@@ -154,14 +160,14 @@ const Calendar: React.FC<CalendarProps> = (props: CalendarProps) => {
 
   useEffect(() => {
     if (mode === 'week') {
-      const { currentWeek, prevWeek, nextWeek } = handleMonthData(showValue, propsValue);
+      const { currentWeek, prevWeek, nextWeek } = handleWeek(showValue, propsValue);
       setSwipeData([[prevWeek], [currentWeek], [nextWeek]]);
     } else {
       const preVal = dayjs(showValue).subtract(1, 'month');
       const nextVal = dayjs(showValue).add(1, 'month');
-      const { data: dataC } = handleMonthData(showValue, propsValue); // 当前月
-      const { data: dataP } = handleMonthData(preVal, propsValue); // 上个月
-      const { data: dataN } = handleMonthData(nextVal, propsValue); // 下个月
+      const dataC = handleMonthData(showValue, propsValue); // 当前月
+      const dataP = handleMonthData(preVal, propsValue); // 上个月
+      const dataN = handleMonthData(nextVal, propsValue); // 下个月
       setSwipeData([dataP, dataC, dataN]);
     }
   }, [showValue, mode]);

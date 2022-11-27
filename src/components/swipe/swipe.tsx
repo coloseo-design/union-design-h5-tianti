@@ -26,6 +26,12 @@ export interface SwipeProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'
   isCustomList?: boolean;
 }
 
+let start = 0;
+
+let moveDiff = 0;
+
+let timer = null as NodeJS.Timeout | null;
+
 const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
   const {
     children = [],
@@ -53,6 +59,14 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
   const classNames = useClassNames();
   const getPrefixClass = useGetPrefixClass('swipe');
   const swipeClass = useMemo(getPrefixClass, [getPrefixClass]);
+  const [targetWidth, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const { width: t } = containerRef.current?.getBoundingClientRect();
+      setWidth(t);
+    }
+  }, [containerRef]);
 
   const childrenView = useMemo(() => {
     if (React.isValidElement(children)) {
@@ -85,7 +99,7 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
     if (autoplay) {
       setIndex(leftIndex);
       setTransition(false);
-      onChange && onChange(leftIndex + 1);
+      onChange && onChange(leftIndex + 1, 'next');
     }
     if (touch && isHalf) {
       setTransition(false);
@@ -121,13 +135,16 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
   const swipeClassName = useMemo(() => classNames(swipeClass, className),
     [classNames, className, swipeClass]);
 
+  const AutoInterval = () => {
+    timer = setInterval(() => {
+      setTransition(true);
+      setSwipeIndex(2);
+    }, autotiming);
+  };
+
   useEffect(() => {
-    let timer: NodeJS.Timeout;
     if (autoplay) {
-      timer = setInterval(() => {
-        setTransition(true);
-        setSwipeIndex(2);
-      }, autotiming);
+      AutoInterval();
     }
 
     return () => {
@@ -140,42 +157,54 @@ const Swipe: FC<SwipeProps> = (props: SwipeProps) => {
     setTouch(true);
     setHalf(false);
     const temTouch = e.targetTouches[0];
-    const startX = temTouch.pageX;
-    let touchdiff = 0;
-    const { width: targetW } = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.addEventListener('touchmove',
-      (evt: TouchEvent) => {
-        const moveTouch = evt.targetTouches[0];
-        const diff = moveTouch.pageX - startX;
-        touchdiff = diff;
-        setTouchDiff(diff);
-        setDirection(diff);
-      });
-    e.currentTarget.addEventListener('touchend',
-      () => {
-        setTransition(true);
-        setTouchDiff(0);
-        const swipeLeft = swipeIndex + 1 > 2 ? 0 : swipeIndex + 1;
-        const swipeRight = swipeIndex - 1 < 0 ? 2 : swipeIndex - 1;
-        const swx = touchdiff > 0 ? swipeRight : swipeLeft;
-        if (Math.abs(touchdiff) >= targetW / 2) {
-          setHalf(true);
-          setSwipeIndex(swx);
-        } else {
-          setHalf(false);
-          setSwipeIndex(1);
-        }
-      });
+    start = temTouch.pageX;
+    if (autoplay) {
+      timer && clearInterval(timer);
+    }
   };
 
+  const onTouchMove = useCallback((evt: React.TouchEvent<HTMLDivElement>) => {
+    const moveTouch = evt.targetTouches[0];
+    const diff = moveTouch.pageX - start;
+    if (Math.abs(diff) > targetWidth) {
+      const w = diff > 0 ? targetWidth : -targetWidth;
+      moveDiff = w;
+      setTouchDiff(w);
+      setDirection(w);
+    } else {
+      moveDiff = diff;
+      setTouchDiff(diff);
+      setDirection(diff);
+    }
+  }, [start]);
+
+  const onTouchEnd = useCallback(() => {
+    setTransition(true);
+    setTouchDiff(0);
+    const swipeLeft = swipeIndex + 1 > 2 ? 0 : swipeIndex + 1;
+    const swipeRight = swipeIndex - 1 < 0 ? 2 : swipeIndex - 1;
+    const swx = moveDiff > 0 ? swipeRight : swipeLeft;
+    if (Math.abs(moveDiff) >= targetWidth / 2) {
+      setHalf(true);
+      setSwipeIndex(swx);
+    } else {
+      setHalf(false);
+      setSwipeIndex(1);
+    }
+    if (autoplay) {
+      AutoInterval();
+    }
+  }, [moveDiff]);
+
   return (
-    <div className={swipeClassName} style={swipeStyle}>
+    <div className={swipeClassName} style={swipeStyle} ref={containerRef}>
       <div
         className={`${swipeClassName}-content`}
-        ref={containerRef}
         style={contentStyle}
         onTransitionEnd={onTransitionEnd}
         onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
         {swipeList.map((item: ReactNode, idx: number) => <div key={idx} className={`${swipeClassName}-item`}>{item}</div>)}
       </div>
