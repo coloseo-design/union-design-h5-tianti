@@ -25,7 +25,7 @@
     "classnames": "^2.2.6",
     "dayjs": "^1.10.4",
     "omit.js": "^1.0.2",
-    "union-icons-react": "^0.0.4"
+    "@uni/icons-react": "^0.0.5"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -55,8 +55,5 @@
   },
   "engines": {
     "node": ">=10"
-  },
-  "publishConfig": {
-    "registry": "https://nexus.coloseo.cn/repository/npm-hosted/"
   }
 }

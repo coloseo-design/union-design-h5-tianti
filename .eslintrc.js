@@ -38,6 +38,7 @@ module.exports = {
     'linebreak-style': 'off',
     'react/require-default-props': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'react/destructuring-assignment': 'off',
   },
   settings: {
     'import/resolver': {
