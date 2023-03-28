@@ -38,3 +38,6 @@ NoticeBar.close(id?: string);
 | textOnClick      | 文本点击事件                        | () => void                                                            | -      |
 | leftIconOnClick  | 左边图标点击事件                    | () => void                                                            | -      |
 | rightIconOnClick | 右边图标点击事件                    | () => void                                                            | -      |
+| zIndex | 弹窗层级                    | number                                                           | -      |
+| duration | 自动关闭的延时，单位秒。设为 0 时不自动关闭                    | number                                                           | -      |
+|container|弹窗位置容器|() =>  HTMLElement | null|() => document.body|

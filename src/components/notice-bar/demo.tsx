@@ -18,6 +18,7 @@ const Demo = () => (
       type="button"
       onClick={() => NoticeBar.open({
         text: '这是正文这是正文这是正文这是正文这是正文这是正文',
+        zIndex: 1000,
       })}
     >
       普通展示样式
@@ -81,7 +82,8 @@ const Demo = () => (
       type="button"
       onClick={() => NoticeBar.open({
         multiline: true,
-        text: '这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文',
+        leftIcon: 'send',
+        text: '这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文这是正文',
       })}
     >
       通知栏 / 多行文本通知样式
@@ -135,6 +137,21 @@ const Demo = () => (
       })}
     >
       小提示置灰
+    </button>
+
+    <h1>渲染到指定容器</h1>
+    <div id="testContainer" style={{ position: "relative", height: 200, backgroundColor: "grey" }}>
+
+    </div>
+    <button
+      type="button"
+      onClick={() => NoticeBar.open({
+        text: '这是正文这是正文这是正文这是正文这是正文这是正文',
+        container: () => document.getElementById("testContainer"),
+        zIndex: 1000,
+      })}
+    >
+      普通展示样式
     </button>
   </div>
 );
