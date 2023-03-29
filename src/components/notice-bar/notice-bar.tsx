@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-classes-per-file */
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
@@ -34,6 +35,7 @@ export type NoticeBarConf = BaseProps<{
   rightIconOnClick: () => void;
   container?: () => HTMLElement | null;
   zIndex?: number;
+  only?: string;
 }>;
 
 export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
@@ -43,10 +45,12 @@ export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
     super(props);
 
     const { id, duration } = props;
-
     if (duration) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
+        clearTimeout(timer);
         NoticeBar.close(id);
+        const container = document.querySelector('.notice-bar-container');
+        container && props.container?.()?.removeChild(container);
       }, duration * 1000);
     }
   }
@@ -127,7 +131,6 @@ export default class NoticeBar {
 
   static open = (conf: NoticeBarConf) => {
     const newConf = { ...conf };
-
     newConf.id ??= `${(new Date()).getTime()}`;
     newConf.type ??= 'base';
     newConf.duration ??= 3;
@@ -137,7 +140,6 @@ export default class NoticeBar {
       conf: newConf,
       el: <NoticeBarComponent key={newConf.id} {...newConf} />,
     });
-
     NoticeBar.render();
   };
 
@@ -148,48 +150,50 @@ export default class NoticeBar {
     } else {
       NoticeBar.noticeBarArr = [];
     }
-
     NoticeBar.render();
   };
 
   static render = () => {
     const map = new Map<HTMLElement, ReactNode[]>();
-
-    NoticeBar.noticeBarArr.forEach((i) => {
-      const container = i.conf.container?.() || document.body;
-      const temp = map.get(container);
-      if (temp) {
-        temp.push(i.el);
-      } else {
-        (container as any).dataZIndex = i.conf.zIndex;
-        map.set(container, [i.el]);
-      }
-    });
-
-    Array.from(map).forEach(([k, v]) => {
-      let container: HTMLElement | null = null;
-      const temp = k.querySelectorAll('div.notice-bar-container');
-      const arr = Array.from(temp);
-      for (let i = 0; i < arr.length; i += 1) {
-        if (arr[i].parentElement === k) {
-          container = arr[i] as HTMLElement;
-          break;
+    if (NoticeBar.noticeBarArr.length > 0) {
+      NoticeBar.noticeBarArr.forEach((i) => {
+        const container = i.conf.container?.() || document.body;
+        const temp = map.get(container);
+        if (temp) {
+          temp.push(i.el);
+        } else {
+          (container as any).dataZIndex = i.conf.zIndex;
+          map.set(container, [i.el]);
         }
-      }
-
-      if (!container) {
-        container = document.createElement('div');
-        container.className = 'notice-bar-container';
-        if (k.nodeName !== 'BODY') {
-          (container as any).style.position = 'absolute';
+      });
+      Array.from(map).forEach(([k, v]) => {
+        let container: HTMLElement | null = null;
+        const temp = k.querySelectorAll('div.notice-bar-container');
+        const arr = Array.from(temp);
+        for (let i = 0; i < arr.length; i += 1) {
+          if (arr[i].parentElement === k) {
+            container = arr[i] as HTMLElement;
+            break;
+          }
         }
-        if ((k as any).dataZIndex) {
-          (container as any).style.zIndex = (k as any).dataZIndex;
+        if (!container) {
+          container = document.createElement('div');
+          container.className = 'notice-bar-container';
+          if (k.nodeName !== 'BODY') {
+            (container as any).style.position = 'absolute';
+          }
+          if ((k as any).dataZIndex) {
+            (container as any).style.zIndex = (k as any).dataZIndex;
+          }
+          k.append(container);
         }
-        k.append(container);
-      }
-
-      ReactDOM.render(<>{v}</>, container);
-    });
+        ReactDOM.render(<>{v}</>, container);
+      });
+    } else {
+      const container = document.querySelectorAll('.notice-bar-container');
+      (container || []).forEach((i) => {
+        i && i.remove?.();
+      });
+    }
   };
 }

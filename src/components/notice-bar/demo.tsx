@@ -18,7 +18,8 @@ const Demo = () => (
       type="button"
       onClick={() => NoticeBar.open({
         text: '这是正文这是正文这是正文这是正文这是正文这是正文',
-        zIndex: 1000,
+        rightIcon: 'right',
+        duration: 7,
       })}
     >
       普通展示样式
@@ -148,10 +149,35 @@ const Demo = () => (
       onClick={() => NoticeBar.open({
         text: '这是正文这是正文这是正文这是正文这是正文这是正文',
         container: () => document.getElementById("testContainer"),
-        zIndex: 1000,
+        zIndex: 800,
+        duration: 2,
       })}
     >
       普通展示样式
+    </button>
+    <button
+      type="button"
+      onClick={() => NoticeBar.open({
+        text: '这是正文这是正文222',
+        container: () => document.getElementById("testContainer"),
+        zIndex: 800,
+        duration: 5,
+      })}
+    >
+      普通展示样式22
+    </button>
+    <div id="testContainer1" style={{ position: "relative", height: 200, backgroundColor: "grey" }}>
+    </div>
+    <button
+      type="button"
+      onClick={() => NoticeBar.open({
+        text: '这是正文这是正文333',
+        container: () => document.getElementById("testContainer1"),
+        zIndex: 1000,
+        duration: 5,
+      })}
+    >
+      普通展示样式22
     </button>
   </div>
 );
