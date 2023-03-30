@@ -142,7 +142,7 @@ const Demo = () => (
 
     <h1>渲染到指定容器</h1>
     <div id="testContainer" style={{ position: "relative", height: 200, backgroundColor: "grey" }}>
-
+      <div>哈哈哈</div>
     </div>
     <button
       type="button"
@@ -161,7 +161,6 @@ const Demo = () => (
         text: '这是正文这是正文222',
         container: () => document.getElementById("testContainer"),
         zIndex: 800,
-        duration: 5,
       })}
     >
       普通展示样式22

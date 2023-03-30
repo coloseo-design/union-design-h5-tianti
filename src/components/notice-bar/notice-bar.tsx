@@ -49,8 +49,6 @@ export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
       const timer = setTimeout(() => {
         clearTimeout(timer);
         NoticeBar.close(id);
-        const container = document.querySelector('.notice-bar-container');
-        container && props.container?.()?.removeChild(container);
       }, duration * 1000);
     }
   }
@@ -100,8 +98,16 @@ export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
   };
 }
 
+const div = document.createElement('div');
+div.className = 'notice-bar-container';
+
+const temp = document.createElement('div');
+temp.className = 'notice-bar-container';
+
 export default class NoticeBar {
   static noticeBarArr: { conf: NoticeBarConf, el: ReactElement }[] = [];
+
+  static noticeContainer: (HTMLElement | null)[] = [];
 
   static success = (conf: NoticeBarConf) => NoticeBar.open({
     ...conf,
@@ -136,6 +142,20 @@ export default class NoticeBar {
     newConf.duration ??= 3;
     newConf.multiline ??= false;
 
+    const c = conf.container?.();
+    if (c) {
+      if (c && !c.contains(temp)) {
+        temp.setAttribute('style', `position: absolute; z-index: ${conf.zIndex || 1}`);
+        c && c.appendChild(temp.cloneNode(true));
+      }
+      !NoticeBar.noticeContainer.includes(c) && NoticeBar.noticeContainer.push(c);
+    } else {
+      if (!document.body.contains(div)) {
+        document.body.appendChild(div);
+      }
+      !NoticeBar.noticeContainer.includes(div) && NoticeBar.noticeContainer.push(div);
+    }
+
     NoticeBar.noticeBarArr.push({
       conf: newConf,
       el: <NoticeBarComponent key={newConf.id} {...newConf} />,
@@ -153,47 +173,61 @@ export default class NoticeBar {
     NoticeBar.render();
   };
 
+  static getObj = (
+    key: number | string,
+    obj: any,
+    i: HTMLElement | null,
+    j: {conf: NoticeBarConf, el: ReactElement},
+  ) => {
+    if (!(obj.body?.child || []).some(((m: any) => m.key === j.conf.id))) {
+      Object.assign(obj, {
+        [key]: {
+          child: (obj[key]?.child || []).concat(j.el),
+          container: key === 'body' ? div : i,
+          conf: j.conf,
+        },
+      });
+    }
+  };
+
   static render = () => {
-    const map = new Map<HTMLElement, ReactNode[]>();
-    if (NoticeBar.noticeBarArr.length > 0) {
-      NoticeBar.noticeBarArr.forEach((i) => {
-        const container = i.conf.container?.() || document.body;
-        const temp = map.get(container);
-        if (temp) {
-          temp.push(i.el);
-        } else {
-          (container as any).dataZIndex = i.conf.zIndex;
-          map.set(container, [i.el]);
+    const obj: any = {};
+    NoticeBar.noticeContainer.forEach((i, index) => {
+      NoticeBar.noticeBarArr.forEach((j) => {
+        if (j.conf.container?.() && i === j.conf.container?.()) {
+          NoticeBar.getObj(index, obj, i, j);
+        }
+        if (!j.conf.container?.()) {
+          NoticeBar.getObj('body', obj, i, j);
         }
       });
-      Array.from(map).forEach(([k, v]) => {
-        let container: HTMLElement | null = null;
-        const temp = k.querySelectorAll('div.notice-bar-container');
-        const arr = Array.from(temp);
-        for (let i = 0; i < arr.length; i += 1) {
-          if (arr[i].parentElement === k) {
-            container = arr[i] as HTMLElement;
-            break;
-          }
+    });
+
+    Object.entries(obj).forEach(([key, value]) => {
+      if (key === 'body') {
+        ReactDOM.render(<>{(value as any).child}</>, (value as any).container);
+      } else {
+        const container = ((value as any).container as HTMLElement).querySelector('div.notice-bar-container');
+        if (container) {
+          ReactDOM.render(
+            <>
+              {(value as any).child}
+            </>, container,
+          );
         }
-        if (!container) {
-          container = document.createElement('div');
-          container.className = 'notice-bar-container';
-          if (k.nodeName !== 'BODY') {
-            (container as any).style.position = 'absolute';
-          }
-          if ((k as any).dataZIndex) {
-            (container as any).style.zIndex = (k as any).dataZIndex;
-          }
-          k.append(container);
-        }
-        ReactDOM.render(<>{v}</>, container);
-      });
-    } else {
-      const container = document.querySelectorAll('.notice-bar-container');
-      (container || []).forEach((i) => {
-        i && i.remove?.();
-      });
+      }
+    });
+
+    const values = (Object.values(obj) || []).map((i: any) => i.container);
+    const current: HTMLElement | undefined | null = NoticeBar.noticeContainer.find((i) => !values.includes(i));
+    if (current) {
+      if (current === div) {
+        ReactDOM.render(<></>, div);
+      } else {
+        const currentNotice = current.querySelector('div.notice-bar-container');
+        currentNotice && ReactDOM.render(<></>, currentNotice);
+      }
+      NoticeBar.noticeContainer = NoticeBar.noticeContainer.filter((i) => i !== current);
     }
   };
 }
