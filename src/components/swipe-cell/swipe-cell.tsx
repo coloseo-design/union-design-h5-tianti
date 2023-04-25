@@ -225,8 +225,22 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
     one && handleMove((one as Touch).clientX);
   }, [handleMove]);
 
+  const allClose = () => {
+    close();
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('touchstart', allClose, true);
+    return () => {
+      document.removeEventListener('touchstart', allClose, true);
+    };
+  }, []);
+
   return (
-    <div className={wrapClassName} onMouseLeave={handleEnd}>
+    <div
+      className={wrapClassName}
+      onMouseLeave={handleEnd}
+    >
       {left && (
         <div style={style.leftStyle} className={getPrefixClass('left')} ref={leftRef}>
           {left.map((item, index) => (
