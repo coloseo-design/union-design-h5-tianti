@@ -27,4 +27,4 @@ subtitle: 滑动单元格
 | content   | 按钮     | ReactNode     | -      |
 | style     | 样式     | CSSProperties | -      |
 | className | 样式     | string        | -      |
-| onPress   | 点击事件 | () => void    | -      |
+| onPress   | 点击事件 | (e: Event) => void    | -      |

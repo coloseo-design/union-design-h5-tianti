@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
@@ -15,7 +16,7 @@ export type SwipeCellButton = {
   /** 样式 */
   className?: string;
   /** 点击事件 */
-  onPress?: () => void;
+  onPress?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 export type SwipeCellProps = {
@@ -206,8 +207,8 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
     else close();
   }, [store, close, open]);
 
-  const itemOnClick = useCallback((cb?: () => void) => {
-    cb?.();
+  const itemOnClick = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>, cb?: (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => void) => {
+    cb?.(e);
     autoClose && close();
   }, [autoClose, close]);
 
@@ -225,8 +226,14 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
     one && handleMove((one as Touch).clientX);
   }, [handleMove]);
 
-  const allClose = () => {
-    close();
+  const allClose = (event: Event) => {
+    // console.log('==event', event.target, leftRef.current);
+    const target = event.target as HTMLElement;
+    const leftDiv = leftRef.current;
+    const rightDiv = rightRef.current;
+    if (!((rightDiv && rightDiv.contains(target)) || (leftDiv && leftDiv.contains(target)))) {
+      close();
+    }
   };
 
   React.useEffect(() => {
@@ -248,7 +255,7 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
               className={item.className}
               style={item.style}
               key={index}
-              onClick={() => itemOnClick(item.onPress)}
+              onClick={(e) => itemOnClick(e, item.onPress)}
             >
               {item.content}
             </div>
@@ -262,7 +269,7 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
               className={item.className}
               style={item.style}
               key={index}
-              onClick={() => itemOnClick(item.onPress)}
+              onClick={(e) => itemOnClick(e, item.onPress)}
             >
               {item.content}
             </div>

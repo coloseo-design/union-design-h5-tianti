@@ -1,5 +1,5 @@
 import React from 'react';
-import { SwipeCell } from '../index';
+import { SwipeCell, Icon } from '../index';
 import './styles/index';
 
 const containerStyle = {
@@ -18,7 +18,9 @@ const Demo = () => (
       onClose={() => console.log('close')}
       left={[
         { content: 'Option1', style: { backgroundColor: 'green' } },
-        { content: <div>Option2</div>, style: { backgroundColor: 'pink' } },
+        { content: <div>Option2</div>, style: { backgroundColor: 'pink' }, onPress: () => {
+          console.log('===presss');
+        } },
         { content: 'Option3', style: { backgroundColor: 'green' } },
         { content: 'Option4', style: { backgroundColor: 'green' } },
       ]}
@@ -30,8 +32,21 @@ const Demo = () => (
     <div style={{ height: 30 }} />
     <SwipeCell
       right={[
-        { content: 'Option1', style: { backgroundColor: 'orange' } },
-        { content: <div>Option2</div>, style: { backgroundColor: 'blue' } },
+        // { content: 'Option1', style: { backgroundColor: 'orange' } },
+        // { content: <div>Option2</div>, style: { backgroundColor: 'blue' } },
+        {
+          content: (
+            <div
+              style={{ backgroundColor: 'pink', width: '100px' }}
+              
+            >
+              <Icon type="delete" />
+            </div>
+          ),
+          onPress: (e) => {
+            console.log('==pink click', e)
+          }
+        }
       ]}
     >
       <div style={{ height: 100, backgroundColor: 'red' }}>
