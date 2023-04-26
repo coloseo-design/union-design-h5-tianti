@@ -1,3 +1,7 @@
+## [1.0.29](http://gitlab.tianti.tg.unicom.local/muses/union-design-h5/compare/v1.0.28...v1.0.29) (2023-04-26)
+
+
+
 ## [1.0.28](http://gitlab.tianti.tg.unicom.local/muses/union-design-h5/compare/v1.0.27...v1.0.28) (2023-04-25)
 
 
