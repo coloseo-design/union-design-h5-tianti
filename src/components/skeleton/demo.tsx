@@ -15,9 +15,7 @@ const Demo = () => {
   };
   const [loading, setLoading] = useState(true);
   return (
-    <div
-      style={containerStyle}
-    >
+    <div>
       <Switch checked={loading} onChange={(e) => setLoading(e)} />
       <div style={{ height: 20 }} />
       <Skeleton

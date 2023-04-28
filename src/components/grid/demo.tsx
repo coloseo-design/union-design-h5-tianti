@@ -21,7 +21,7 @@ const containerStyle = {
 };
 
 const GridDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <p>设置不同屏幕大小的不同gutter</p>
     <Row
       align="top"

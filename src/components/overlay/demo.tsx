@@ -15,7 +15,7 @@ const containerStyle = {
 const Demo = () => {
   const [visible, setVisible] = useState(false);
   return (
-    <div style={containerStyle}>
+    <div>
       <Button onClick={() => setVisible(true)}>打开 遮罩</Button>
       <Overlay visible={visible} onClick={() => setVisible(false)}>
         <div style={{

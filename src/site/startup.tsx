@@ -8,6 +8,7 @@ import {
   RouteComponentProps,
 } from 'react-router-dom';
 import { BasePageComponent } from './utils';
+import IframeComponent from './utils/pages';
 import Layout, { menus } from './layout';
 
 const BaseComponent: React.FC<RouteComponentProps<{}>> = (props) => {
@@ -16,13 +17,19 @@ const BaseComponent: React.FC<RouteComponentProps<{}>> = (props) => {
   return <BasePageComponent name={name} />;
 };
 
+const BaseComponentI: React.FC<any> = (BasC: any) => (props: any) => {
+  const { match: { params: { name } } } = props;
+  return <BasC name={name} />
+};
+
 const Startup = () => (
   <Router>
+          <Switch>
+     <Route path="/iframe/:name" component={BaseComponentI(IframeComponent)} />
     <Layout menus={menus}>
-      <Switch>
         <Route path="/develop/components/:name" component={BaseComponent} />
-      </Switch>
     </Layout>
+    </Switch>
   </Router>
 );
 

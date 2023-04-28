@@ -63,7 +63,7 @@ const data = [
 
 const { Item } = List;
 const LayoutDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Layout type="card">
       <Card>
         <List

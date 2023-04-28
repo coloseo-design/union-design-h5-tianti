@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const Demo = () => (
-  <div style={containerStyle}>
+  <div>
     <div style={{ margin: 20, display: 'flex', flexFlow: 'column nowrap' }}>
       <button
         type="button"

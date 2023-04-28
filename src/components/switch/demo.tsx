@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const switchDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <h3>默认不选中</h3>
     <Switch checked={false} />
     <h3>选中状态 自定义颜色为红色</h3>

@@ -15,7 +15,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const CollapseDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Collapse activeKey={1} onChange={(a, b) => { console.log(a, b); }}>
       <Panel header="一级列表样式" key={1}>
         <Collapse>

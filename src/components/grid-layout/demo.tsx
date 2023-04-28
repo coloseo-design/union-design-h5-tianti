@@ -69,7 +69,7 @@ const Demo = () => {
     boxShadow: '#ebedf0 0 4px 12px',
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <h2>自定义展示样式</h2>
       <GridLayout
         data={data}

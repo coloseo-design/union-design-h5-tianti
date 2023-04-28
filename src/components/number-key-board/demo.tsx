@@ -58,7 +58,7 @@ const KeyBoardDemo = () => {
     boxShadow: '#ebedf0 0 4px 12px',
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <Button onClick={handleClick}>默认键盘1 </Button>
       <Divider style={{ margin: '32px 0px' }}>默认键盘</Divider>
       <Button onClick={handleClick1}>默认键盘2</Button>

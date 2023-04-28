@@ -44,7 +44,7 @@ const PopupDemo = () => {
   );
 
   return (
-    <div style={containerStyle}>
+    <div>
       <h1>基础用法</h1>
       <Button onClick={() => setModal(true)}>基础</Button>
       <h1>顶部弹出</h1>

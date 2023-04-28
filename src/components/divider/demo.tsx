@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const DividerDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <p>
       {
       ` Lorem ipsum dolor sit amet, consectetur adipiscing elit.

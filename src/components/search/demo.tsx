@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const SearchDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Search placeholder="搜索" onSubmit={(value) => alert(value)} />
     <Search placeholder="搜索" showCancelButton />
     <Search placeholder="搜索" showBackIcon />

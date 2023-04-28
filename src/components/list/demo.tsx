@@ -95,7 +95,7 @@ const listDemo = () => {
     },
   ];
   return (
-    <div style={containerStyle}>
+    <div>
       <h1>基础列表</h1>
       <List
         dataSource={data}

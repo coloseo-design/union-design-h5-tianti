@@ -13,7 +13,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const popoverDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <PopOver content="气泡弹出框内容" placement="topLeft" style={{ paddingLeft: 80 }} color="black">
       <Button>top Left black</Button>
     </PopOver>

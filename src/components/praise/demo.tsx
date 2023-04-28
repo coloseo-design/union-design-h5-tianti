@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const PraiseDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Praise />
     <br />
     <Praise number={100} status onChange={(number) => { console.log('number', number); }} />

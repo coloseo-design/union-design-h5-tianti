@@ -14,7 +14,7 @@ const SliderDemo = () => {
     boxShadow: '#ebedf0 0 4px 12px',
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <div style={{ padding: 10, marginBottom: 20 }}>
         <Slider value={value} min={0} max={10} />
       </div>

@@ -12,9 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const EmptyDemo = () => (
-  <div
-    style={containerStyle}
-  >
+  <div>
     <Empty />
     <Empty type="ThereWasNothing" />
     <Empty type="ThereWasNothing" description="测试测试测试" />

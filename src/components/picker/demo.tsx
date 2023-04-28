@@ -158,7 +158,7 @@ const PickerDemo = () => {
     boxShadow: '#ebedf0 0 4px 12px',
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <Button onClick={() => setVisible1(true)}>多列</Button>
       <Button onClick={() => setVisible2(true)}>级联</Button>
       <Button onClick={() => setVisible3(true)}>单列</Button>

@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const LoadingDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Loading />
     <br />
     <Loading type="spinner" color="red" />

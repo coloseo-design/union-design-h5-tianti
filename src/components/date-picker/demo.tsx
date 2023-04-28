@@ -19,7 +19,7 @@ const TimePickerDemo = () => {
     boxShadow: '#ebedf0 0 4px 12px',
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <Button onClick={() => setVisible(true)}>选择日期</Button>
       <DatePicker
         visible={visible}

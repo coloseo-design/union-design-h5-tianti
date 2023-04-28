@@ -53,7 +53,7 @@ const Demo = () => {
   const [testDis1, setDis1] = React.useState(false);
 
   return (
-    <div style={containerStyle}>
+    <div>
       <h1>基本用法</h1>
       <DropdownMenu closeOnClickOverlay={false}>
         <DropdownItem value="b" options={option2} />

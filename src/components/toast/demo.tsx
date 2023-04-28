@@ -13,7 +13,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const ToastDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Button onClick={() => Toast.info({ icon: 'success' })}>自定义提示</Button>
     <Button onClick={() => Toast.info({ content: '最多展示两行最多展示两行最多展示两行最多展示两行' })}>自定义提示</Button>
 

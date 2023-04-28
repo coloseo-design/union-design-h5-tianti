@@ -13,7 +13,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const CheckboxDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <div>
       <Checkbox onChange={(checked) => console.log('checked', checked)}>复选框（默认）</Checkbox>
       <Checkbox checked>复选框（选中）</Checkbox>

@@ -39,7 +39,7 @@ const FormDemo = () => {
 
   const [status, $status] = useState(true);
   return (
-    <div style={containerStyle}>
+    <div>
       <div style={{ fontSize: 20, textAlign: 'center' }} onClick={() => $status(!status)}>登录</div>
       <div>
         <Form

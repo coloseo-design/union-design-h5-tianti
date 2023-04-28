@@ -57,7 +57,7 @@ const Demo = () => {
     });
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
         <div>
           <div onClick={click1}>基础用法</div>

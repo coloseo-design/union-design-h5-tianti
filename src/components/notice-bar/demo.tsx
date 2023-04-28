@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const Demo = () => (
-  <div style={containerStyle}>
+  <div>
     <h1>通知栏 / 基础样式</h1>
     <button
       type="button"

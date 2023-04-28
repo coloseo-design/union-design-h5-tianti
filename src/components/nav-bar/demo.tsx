@@ -26,7 +26,7 @@ const NavDemo = () => {
     boxShadow: '#ebedf0 0 4px 12px',
   };
   return (
-    <div style={containerStyle}>
+    <div>
       <NavBar
         icon={<Avatar size={32} text="姓名" />}
         title="用户姓名"

@@ -1,8 +1,9 @@
 /* eslint-disable */
 import React from 'react';
 import * as PageComponents from '../docs';
-import * as DemoComponents from '../demos';
+// import * as DemoComponents from '../demos';
 // import * as CodeDemoComponents from '../code-demos';
+import '../assets/style/page.less';
 
 export function element(params: any) {
   if (typeof params === 'string') {
@@ -42,19 +43,19 @@ function rename(name: string, sparator = '-') {
   return arr;
 }
 
+const iframePath = 'http://127.0.0.1:3000';
 export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   const { name } = props;
   const componentName: string = rename(name);
   const data = PageComponents[componentName];
-  const CurrentComponent = DemoComponents[componentName];
+  // const CurrentComponent = DemoComponents[componentName];
   // const CodeComponent = CodeDemoComponents[componentName];
   return (
     <div className='box'>
       {element(data.content)}
-      {/* <div> */}
-        { React.createElement(CurrentComponent, {}, null)}
-      {/* </div> */}
-      {/* { React.createElement(CodeComponent, {}, null)} */}
+      <div className="iframe">
+        <iframe src={`${iframePath}/#/iframe/${componentName}`} frameBorder="0" />
+      </div>
     </div>
   );
 };

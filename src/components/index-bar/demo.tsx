@@ -30,7 +30,7 @@ export const Demo = () => {
       <div
         style={{
           margin: 40,
-          width: 360,
+          // width: '100%',
           height: 700,
           border: '1px solid black',
           display: 'flex',
@@ -45,7 +45,7 @@ export const Demo = () => {
       <div
         style={{
           margin: 40,
-          width: 360,
+          // width: '100%',
           height: 700,
           border: '1px solid black',
           display: 'flex',

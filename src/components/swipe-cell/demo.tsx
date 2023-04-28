@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const Demo = () => (
-  <div style={containerStyle}>
+  <div>
     <SwipeCell
       onOpen={() => console.log('open')}
       onClose={() => console.log('close')}

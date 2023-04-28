@@ -20,7 +20,7 @@ const section = {
   },
 };
 const RadioDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <div>
       <Radio onChange={(checked) => console.log('checked', checked)}>复选框（默认）</Radio>
       <Radio checked>复选框（选中）</Radio>

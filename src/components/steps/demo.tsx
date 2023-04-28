@@ -21,7 +21,7 @@ const StepsDemo = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
       <h2>提交卡片流程</h2>
       <Steps style={{ marginTop: 64 }}>
         <Step title="审批部门" description="戴永民" text="永民" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

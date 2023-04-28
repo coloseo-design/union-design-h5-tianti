@@ -4,7 +4,6 @@ import './styles/index';
 import '../icon/styles/index';
 
 const containerStyle = {
-  width: 377,
   height: 548,
   backgroundColor: '#fafafa',
   padding: 10,

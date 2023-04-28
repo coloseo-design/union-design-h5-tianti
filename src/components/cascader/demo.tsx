@@ -179,7 +179,7 @@ const CascaderDemo = () => {
     },
   ];
   return (
-    <div style={containerStyle}>
+    <div>
       <Button onClick={() => setVisible(true)}>打开</Button>
       <Cascader
         titles={['省份', '城市', '区县']}

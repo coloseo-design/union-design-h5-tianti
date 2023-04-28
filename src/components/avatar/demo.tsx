@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const AvatarDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Avatar>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} size={48}>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} size={64}>姓名</Avatar>

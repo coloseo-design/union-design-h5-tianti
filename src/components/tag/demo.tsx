@@ -12,7 +12,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const TagDemo = () => (
-  <div style={containerStyle}>
+  <div>
     <Tag>标签</Tag>
     <Tag round style={{ marginLeft: 50 }}>标签</Tag>
     <br />

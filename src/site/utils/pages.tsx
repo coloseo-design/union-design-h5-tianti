@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import * as PageComponents from '../pages/index';
+import * as DemoComponents from '../demos';
 
 export interface PageProps {
   name: string;
@@ -21,13 +21,27 @@ function rename(name: string, sparator = '-') {
 }
 
 export const PagesComponent: React.FC<PageProps> = (props) => {
-  const { match } = props;
-  const { params: { child } } = match;
-  const componentName: string = rename(child);
-  const CurrentComponent = PageComponents[componentName];
+  const { name } = props;
+  const componentName: string = rename(name);
+  const CurrentComponent = (DemoComponents as any)[componentName];
   return (
     <div>
-      {React.createElement(CurrentComponent)}
+      <div
+        style={{
+          height: 52,
+          textAlign: 'center',
+          position: 'fixed',
+          fontSize: 32,
+          lineHeight: '52px',
+          background: '#fafafa',
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 10,
+          }}>{componentName}</div>
+      <div style={{ padding: '62px 12px 62px 12px' }}>
+        {React.createElement(CurrentComponent)}
+      </div>
     </div>
   );
 };

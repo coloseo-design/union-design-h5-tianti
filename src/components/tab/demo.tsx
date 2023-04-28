@@ -13,7 +13,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const TabType = (props: Omit<TabProps, 'children'>) => (
-  <div style={containerStyle}>
+  <div>
     <Tab {...props}>
       <Tab.Item key="标签1" title="标签11111111" taskNum={22} taskWeight={2}>
         <div style={{ marginTop: 20, alignSelf: 'center', height: 120 }}>标签 1 页面</div>
@@ -48,10 +48,10 @@ const TabType = (props: Omit<TabProps, 'children'>) => (
 
 const Demo = () => (
   <div
-    style={{
-      display: 'flex',
-      flexFlow: 'row wrap',
-    }}
+    // style={{
+    //   display: 'flex',
+    //   flexFlow: 'row wrap',
+    // }}
   >
     {TabType({ type: 'normal', onTabChange: (key) => console.log(key) })}
     {TabType({ type: 'normal', mode: 'fixed' })}

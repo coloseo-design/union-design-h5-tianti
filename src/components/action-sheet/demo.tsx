@@ -69,7 +69,7 @@ const DemoAction = () => {
     { name: '百度图片嘿嘿嘿444444党的十五大的', src: 'https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF', type: 'img' },
   ];
   return (
-    <div style={containerStyle}>
+    <div>
       <Button onClick={() => { setVisible(true); }}>基本样式</Button>
       <Divider style={{ margin: '32px 0px' }}>基本操作样式</Divider>
       <Button onClick={() => setVisible1(true)}>上传面板</Button>

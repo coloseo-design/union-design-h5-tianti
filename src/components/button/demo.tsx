@@ -16,7 +16,7 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const ButtonDemo: React.FC<unknown> = () => (
-  <div style={containerStyle}>
+  <div>
     <div style={{ marginBottom: 10 }}>
       <h5>大尺寸</h5>
       <Button type="primary" style={style} block size="large">主按钮(大)</Button>

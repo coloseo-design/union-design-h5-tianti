@@ -17,9 +17,7 @@ const onChange = (idx: number, direction?: string) => {
 };
 
 const Demo = () => (
-  <div
-    style={containerStyle}
-  >
+  <div>
     <Swipe onChange={onChange} autoplay={false} width={343} height={152} style={{ marginTop: 20 }}>
       <div style={{ height: 152, background: 'pink'}}>1111</div>
       <div style={{ height: 152, background: 'green'}}>222</div>
