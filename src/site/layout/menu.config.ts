@@ -9,6 +9,10 @@ export default [
         key: 'button',
       },
       {
+        title: 'ButtonList 按钮列表',
+        key: 'button-list',
+      },
+      {
         title: 'Icon 图标',
         key: 'icon',
       },

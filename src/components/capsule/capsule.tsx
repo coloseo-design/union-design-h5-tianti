@@ -22,11 +22,11 @@ const Capsule = React.memo<CapsuleProps>((props) => {
   return (
     <div className={classnames(getPrefixClass(), className)} style={style}>
       <div className={getPrefixClass("left")} onClick={onOption}>
-        <Icon type="more-line" style={{ fontSize: 32 }} />
+        <Icon type="more-line" />
       </div>
       <div className={getPrefixClass("split")} />
       <div className={getPrefixClass("right")} onClick={onClose}>
-        <Icon type="close" style={{ fontSize: 25 }} />
+        <Icon type="close" />
       </div>
     </div>
   );

@@ -54,6 +54,7 @@ export { default as SwipeCell } from './swipe-cell';
 export { default as Tab } from './tab';
 export { default as Uploader } from './uploader';
 export { default as Capsule } from './capsule';
+export { default as ButtonList } from './button-list';
 
 //
 export { default as Collapse } from './collapse';
