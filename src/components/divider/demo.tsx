@@ -1,32 +1,39 @@
-import React from 'react';
-import { Divider } from '../index';
-import './styles/index';
+import React from "react";
+import { Divider } from "../index";
+import "./styles/index";
 
 const containerStyle = {
   width: 377,
   height: 548,
-  backgroundColor: '#fafafa',
+  backgroundColor: "#fafafa",
   padding: 10,
-  overflow: 'scroll',
+  overflow: "scroll",
   borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
+  boxShadow: "#ebedf0 0 4px 12px",
 };
 const DividerDemo = () => (
   <div>
     <p>
-      {
-      ` Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.`
-      }
+      {` Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.`}
     </p>
     <Divider />
     <p>
-      {
-      ` Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.`
-      }
+      {` Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.`}
     </p>
     <Divider>标题</Divider>
+    <div style={{ display: "flex", flexFlow: "row nowrap" }}>
+      <p>
+        {` Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.`}
+      </p>
+      <Divider type="vertical" />
+      <p>
+        {` Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.`}
+      </p>
+    </div>
   </div>
 );
 

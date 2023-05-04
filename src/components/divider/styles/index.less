@@ -3,16 +3,16 @@
 @divider: ~'@{uni-prefix}-divider-mobile';
 
 
-.@{divider}{
+.@{divider} {
 
-  border-top: @border-width-base solid rgba(0,0,0,.06);
+  border-top: @border-width-base solid rgba(0, 0, 0, .06);
   display: flex;
   clear: both;
   width: 100%;
   min-width: 100%;
   margin: 24px 0;
 
-  &-text{
+  &-text {
     padding: 0 12px;
     display: inline-block;
   }
@@ -25,7 +25,7 @@
     white-space: nowrap;
     text-align: center;
     border-top: 0;
-    border-top-color: rgba(0,0,0,.06);
+    border-top-color: rgba(0, 0, 0, .06);
 
     &::before,
     &::after {
@@ -42,3 +42,8 @@
 
 }
 
+.@{divider}-vertical {
+  width: 1px;
+  margin: 14px 16px;
+  background-color: rgba(0, 0, 0, .06);
+}
