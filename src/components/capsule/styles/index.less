@@ -1,0 +1,36 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@capsule: ~"@{uni-prefix}-capsule";
+
+.@{capsule} {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  box-sizing: border-box;
+  align-items: center;
+  width: 128px;
+  height: 44px;
+  border-radius: 50px;
+  border: 1px solid rgb(219, 221, 221);
+  background: rgb(255, 255, 255);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+
+  &>.@{capsule}-left,
+  &>.@{capsule}-right {
+    flex: 1;
+    flex-shrink: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &>.@{capsule}-split {
+    height: 16px;
+    width: 1px;
+    background-color: rgb(219, 221, 221);
+  }
+}

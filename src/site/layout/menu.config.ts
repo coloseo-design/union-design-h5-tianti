@@ -196,6 +196,10 @@ export default [
     themeColor: '#5C57F2',
     children: [
       {
+        title: 'Capsule 胶囊',
+        key: 'capsule',
+      },
+      {
         title: 'SwipeCell 滑动单元格',
         key: 'swipe-cell',
       },
