@@ -1,10 +1,13 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/display-name */
 /* eslint-disable quotes */
 import React from "react";
-import { useGetPrefixClass } from "../common/base-component";
+import { useClassNames, useGetPrefixClass } from "../common/base-component";
 import Icon from "../icon";
 
 export type CapsuleProps = {
+  className?: string;
+  style?: React.CSSProperties;
   /** 点击关闭 */
   onClose?: () => void;
   /** 点击选项 */
@@ -12,11 +15,12 @@ export type CapsuleProps = {
 };
 
 const Capsule = React.memo<CapsuleProps>((props) => {
-  const { onClose, onOption } = props ?? {};
+  const { className, style, onClose, onOption } = props ?? {};
   const getPrefixClass = useGetPrefixClass("capsule");
+  const classnames = useClassNames();
 
   return (
-    <div className={getPrefixClass()}>
+    <div className={classnames(getPrefixClass(), className)} style={style}>
       <div className={getPrefixClass("left")} onClick={onOption}>
         <Icon type="more-line" style={{ fontSize: 32 }} />
       </div>
