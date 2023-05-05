@@ -1,0 +1,73 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@file: ~"@{uni-prefix}-file";
+
+.@{file} {
+  height: 48px;
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+
+  &>.@{file}-icon,
+  &>.@{file}-opt {
+    flex-shrink: 0;
+  }
+
+  &>.@{file}-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>* {
+      width: 36px;
+      height: 40px;
+    }
+  }
+
+  &>.@{file}-content {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 0 12px;
+    overflow: hidden;
+
+    &>.@{file}-name,
+    &>.@{file}-desc {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &>.@{file}-name {
+      font-size: 16px;
+      color: #1C1D1D;
+      line-height: 22px;
+    }
+
+    &>.@{file}-desc {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #A6A8A9;
+      line-height: 16px;
+    }
+  }
+
+  &>.@{file}-opt {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    &>* {
+      user-select: none;
+      cursor: pointer;
+    }
+
+    &>*+* {
+      margin-left: 16px;
+    }
+  }
+}

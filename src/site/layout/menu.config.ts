@@ -149,6 +149,10 @@ export default [
     themeColor: '#D6386B',
     children: [
       {
+        title: 'File 文件',
+        key: 'file',
+      },
+      {
         title: 'Card 卡片',
         key: 'card',
       },
