@@ -149,6 +149,10 @@ export default [
     themeColor: '#D6386B',
     children: [
       {
+        title: 'Card 卡片',
+        key: 'card',
+      },
+      {
         title: 'Skeleton 骨架屏',
         key: 'skeleton',
       },

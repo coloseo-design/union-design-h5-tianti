@@ -55,6 +55,7 @@ export { default as Tab } from './tab';
 export { default as Uploader } from './uploader';
 export { default as Capsule } from './capsule';
 export { default as ButtonList } from './button-list';
+export { default as Card } from './card';
 
 //
 export { default as Collapse } from './collapse';
