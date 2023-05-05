@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
-import { Popup, Button } from '../index';
+import { Popup, Button, Icon, Capsule } from '../index';
 import './styles/index';
 import '../button/styles/index';
 
-const containerStyle = {
-  width: 377,
-  height: 548,
-  backgroundColor: '#fafafa',
-  padding: 10,
-  overflow: 'scroll',
-  borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
-};
+
 const PopupDemo = () => {
   const [vmodel, setModal] = useState(false);
   const [vmodel1, setVmodel1] = useState(false);
   const [vmodel2, setVmodel2] = useState(false);
   const [vmodel3, setVmodel3] = useState(false);
   const [vmodel4, setVmodel4] = useState(false);
-  const [vmodel5, setVmodel5] = useState(false);
   const [vmodel6, setVmodel6] = useState(false);
   const [vmodel7, setVmodel7] = useState(false);
+  const [fullVisible, setFull] = useState(false);
+  const [containerVisible, setContainer] = useState(false);
 
   const handleCancel = () => {
     setModal(false);
     setVmodel6(false);
-    setVmodel5(false);
     setVmodel4(false);
     setVmodel3(false);
     setVmodel2(false);
     setVmodel1(false);
+    setFull(false);
+    setContainer(false);
   };
 
   const content = (num: number) => (
     <div style={{ textAlign: 'center' }}>
       {
-        (Array.from(Array(num), (v, k) => k + 1) || []).map((item) => (
+        (Array.from(Array(num), (_, k) => k + 1) || []).map((item) => (
           <p key={item}>这是一条内容</p>
         ))
       }
@@ -44,7 +38,11 @@ const PopupDemo = () => {
   );
 
   return (
-    <div>
+    <div id="container" style={{ position: 'relative' }}>
+      <h1>在父级中弹出</h1>
+      <Button onClick={() => setContainer(true)}>在父级中弹出</Button>
+      <h1>全屏展示</h1>
+      <Button onClick={() => setFull(true)}>全屏展示</Button>
       <h1>基础用法</h1>
       <Button onClick={() => setModal(true)}>基础</Button>
       <h1>顶部弹出</h1>
@@ -59,6 +57,44 @@ const PopupDemo = () => {
       <Button onClick={() => setVmodel6(true)}>自定义弹出header</Button>
       <h1>自定义弹出footer</h1>
       <Button onClick={() => setVmodel7(true)}>自定义弹出footer</Button>
+      <Popup
+        visible={containerVisible}
+        position="right"
+        header="标题"
+        onCancel={handleCancel}
+        getPopupContainer={() => document.getElementById('container')}
+      >
+        {content(7)}
+      </Popup>
+      <Popup
+        closeable={false}
+        visible={fullVisible}
+        position='left'
+        onCancel={handleCancel}
+        fullScreen
+        footer={null}
+        headerStyle={{ border: 'none', height: 'auto', padding: 14, fontWeight: 400, }}
+        header={
+          <div style={{ width: '100%' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Icon type="right" />
+              <div>确认同意</div>
+              <Capsule
+                onClose={() => {
+                  handleCancel()
+                }}
+              />
+            </div>
+            <div style={{ marginTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>确认同意</div>
+                <div style={{ color: 'red' }}>完成</div>
+            </div>
+          </div>
+        }
+      >
+        <div style={{ width: '100%', height: 12, backgroundColor: 'rgb(250, 250, 250)'}} />
+        {content(7)}
+      </Popup>
       <Popup
         visible={vmodel}
         position="center"
@@ -128,7 +164,8 @@ const PopupDemo = () => {
         onOk={handleCancel}
         closeable={false}
         round
-        footer={<div style={{ textAlign: 'center', paddingBottom: 12 }}><Button onClick={() => () => setVmodel7(false)} type="primary">自定义footer</Button></div>}
+        footer={null}
+        // footer={<div style={{ textAlign: 'center', paddingBottom: 12 }}><Button onClick={() => () => setVmodel7(false)} type="primary">自定义footer</Button></div>}
       >
         {content(52)}
       </Popup>

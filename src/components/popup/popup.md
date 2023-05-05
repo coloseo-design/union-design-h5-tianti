@@ -13,7 +13,7 @@ subtitle: 弹出层
 | --- | --- | --- | --- | --- |
 |position	| 弹出位置	'top', 'left' , 'right' ,'bottom', 'center'	|string| center |--|
 |visible	|是否显示弹出层| boolean	| false|  |
-|getPopupContainer |	指定挂载的节点|	() => Element|--|	  |
+|getPopupContainer |	指定挂载的节点|	() => Element， 使用时挂载的节点需要使用position:'relative'|--|	  |
 |header	|弹出层header|	string｜ReactNode	|--|  |
 |okText|	确认按钮文字|	string ｜ReactNode|	确认|  |
 |cancelText	|取消按钮文字	|string ｜ReactNode	|取消|  |
@@ -29,3 +29,7 @@ subtitle: 弹出层
 |style|	弹出层样式|	object|	--|  |
 |bodyStyle|	弹出层内容body样式|	object|	--|  |
 |clickCloseIcon |	点击关闭图标时触发	|() => void |	--|  |
+|headerStyle|	弹出层内容header样式|	object|	--|  |
+|footer|底部内容，默认两个button展示, 传值为null时不展示footer|React.Node\|null|--||
+|fullScreen|是否全屏展示弹窗，默认最大展示80%|boolean|false||
+|isTransition|是否需要动画|boolean|true||

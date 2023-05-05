@@ -20,6 +20,7 @@ class Portal extends React.Component<PortalProps> {
     this.root.style.top = '0';
     this.root.style.left = '0';
     this.root.style.width = '100%';
+    this.root.style.height = '100%';
   }
 
   componentDidMount() {

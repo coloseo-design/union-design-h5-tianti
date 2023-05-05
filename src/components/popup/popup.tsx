@@ -45,10 +45,16 @@ export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
   style?: React.CSSProperties;
   /* 弹出层body样式 */
   bodyStyle?: React.CSSProperties;
+  /* 弹出层header样式 */
+  headerStyle?: React.CSSProperties;
   /* 点击关闭按钮时触发 */
   clickCloseIcon?: () => void;
   /* 自定义footer 或者不要footer */
   footer?: React.ReactNode | null,
+  /* 是都全屏展示弹窗 */
+  fullScreen?: boolean;
+  /* 是否展示动画 */
+  isTransition?: boolean;
 }
 
 export interface PopupState {
@@ -63,6 +69,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
     prefixCls: '',
     cancelText: '取消',
     okText: '确认',
+    isTransition: true,
   };
 
   constructor(props: PopupProps) {
@@ -75,13 +82,14 @@ class Popup extends React.Component<PopupProps, PopupState> {
   }
 
   componentDidUpdate(prevProps: PopupProps) {
-    const { visible } = this.props;
+    const { visible, isTransition } = this.props;
     if (visible !== prevProps.visible) {
       if (!visible) {
         this.setState({ translationS: true });
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          clearTimeout(timer);
           this.setState({ visible: false, translationS: false });
-        }, 300);
+        }, isTransition ? 300 : 0);
       } else {
         this.setState({
           visible,
@@ -120,6 +128,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
       children,
       overlay = true,
       overlayStyle,
+      headerStyle,
       overlayClass,
       closeable = true,
       closeIcon,
@@ -130,26 +139,30 @@ class Popup extends React.Component<PopupProps, PopupState> {
       okText,
       cancelText,
       footer,
+      fullScreen,
+      isTransition,
     } = this.props;
     const { visible, translationS } = this.state;
-    const prex = getPrefixCls('popup', prefixCls);
-    const prexWrapper = classNames(prex, {
-      [`${prex}-${position}`]: position,
+    const prefix = getPrefixCls('popup', prefixCls);
+    const prefixWrapper = classNames(prefix, {
+      [`${prefix}-fullScreen`]: fullScreen,
+      [`${prefix}-container`]: getPopupContainer?.(),
+      [`${prefix}-noTransition`]: !isTransition,
     });
 
-    const mask = classNames(`${prex}-mask`, overlayClass, {
-      [`${prex}-mask-hidden`]: translationS,
+    const mask = classNames(`${prefix}-mask`, overlayClass, {
+      [`${prefix}-mask-hidden`]: translationS,
     });
-    const prexContent = classNames(`${prex}-content`, {
-      [`${prex}-content-${position}`]: position && visible,
-      [`${prex}-content-${position}-round`]: round,
-      [`${prex}-content-${position}-transition`]: visible && translationS,
+    const prefixContent = classNames(`${prefix}-content`, {
+      [`${prefix}-content-${position}`]: position && visible,
+      [`${prefix}-content-${position}-round`]: fullScreen ? false : round,
+      [`${prefix}-content-${position}-transition`]: visible && translationS,
     });
 
-    const contenHeader = classNames(`${prex}-content-header`);
-    const headerIcon = classNames(`${prex}-content-header-icon`);
-    const contentBody = classNames(`${prex}-content-body`);
-    const contentFooter = classNames(`${prex}-content-footer`);
+    const contentHeader = classNames(`${prefix}-content-header`);
+    const headerIcon = classNames(`${prefix}-content-header-icon`);
+    const contentBody = classNames(`${prefix}-content-body`);
+    const contentFooter = classNames(`${prefix}-content-footer`);
 
     const footerButton = (
       <>
@@ -158,16 +171,17 @@ class Popup extends React.Component<PopupProps, PopupState> {
       </>
     );
 
+    const contentStyle = fullScreen ? { ...style } : style;
     return (
       visible ? (
         <Portal {...({ getPopupContainer })}>
-          <div className={prexWrapper}>
+          <div className={prefixWrapper}>
             {overlay && <div className={mask} style={overlayStyle} onClick={this.handleMask} />}
             <div
-              className={prexContent}
-              style={style}
+              className={prefixContent}
+              style={contentStyle}
             >
-              <div className={contenHeader}>
+              <div style={headerStyle} className={contentHeader}>
                 {React.isValidElement(header) ? header : <span>{header}</span>}
                 {closeable && (
                 <span className={headerIcon} onClick={this.cancel}>
@@ -182,7 +196,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
               <div className={contentBody} style={bodyStyle}>
                 {children}
               </div>
-              {(footer === null || footer !== undefined) ? footer : (
+              {(footer === null || typeof footer !== 'undefined') ? footer : (
                 <div className={contentFooter}>
                   {footerButton}
                 </div>
