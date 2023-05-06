@@ -1,0 +1,88 @@
+@import "../../style/themes/index";
+@import "../../style/mixins/index";
+
+@stepsv2: ~"@{uni-prefix}-stepsv2";
+@stepv2: ~"@{uni-prefix}-stepv2";
+
+.@{stepsv2} {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: white;
+
+  &>.@{stepv2} {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 16px;
+    position: relative;
+
+    &>.@{stepv2}-left {
+      flex-shrink: 0;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+
+      &>.@{stepv2}-up-line,
+      &>.@{stepv2}-down-line {
+        width: 1px;
+        background-color: #EEF0F0;
+        position: absolute;
+      }
+
+      &>.@{stepv2}-up-line {
+        top: 0;
+      }
+
+      &>.@{stepv2}-down-line {
+        bottom: 0;
+      }
+
+      &>.@{stepv2}-dot {
+        box-sizing: border-box;
+        width: 9px;
+        height: 9px;
+      }
+    }
+
+    &>.@{stepv2}-right {
+      flex: 1;
+      display: flex;
+      flex-flow: column nowrap;
+      margin-left: 8px;
+
+      &>.@{stepv2}-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: @stepsv2-title-color;
+        position: relative;
+        border-width: 0;
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &::before {
+          height: 20px;
+          width: 5px;
+          background-color: white;
+          left: -15px;
+        }
+
+        &::after {
+          box-sizing: border-box;
+          width: 9px;
+          height: 9px;
+          border-width: 2px;
+          border-style: solid;
+          border-radius: 5px;
+          border-color: inherit;
+          left: -17px;
+        }
+      }
+    }
+  }
+
+}

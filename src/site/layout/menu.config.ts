@@ -68,7 +68,7 @@ export default [
       },
       {
         title: 'Steps 步骤条',
-        key: 'steps',
+        key: 'steps-v2',
       },
       {
         title: 'NavBar 导航栏',

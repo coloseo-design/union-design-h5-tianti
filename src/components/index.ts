@@ -22,7 +22,7 @@ export { default as DropdownMenu } from './dropdown-menu';
 export { default as Field } from './field';
 export { default as Loading } from './loading';
 export { default as Praise } from './praise';
-export { default as Steps } from './steps';
+// export { default as Steps } from './steps';
 export { default as Search } from './search';
 export { default as Toast } from './toast';
 export { default as Layout } from './layout';
@@ -57,6 +57,7 @@ export { default as Capsule } from './capsule';
 export { default as ButtonList } from './button-list';
 export { default as Card } from './card';
 export { default as File } from './file';
+export { default as Steps } from './steps-v2';
 
 //
 export { default as Collapse } from './collapse';
