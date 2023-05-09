@@ -1,99 +1,40 @@
 import React from 'react';
-import { PullRefresh } from '../index';
+import { PullRefresh, Tab } from '../index';
 import './styles/index';
 
-const containerStyle = {
-  width: 377,
-  height: 548,
-  backgroundColor: '#fafafa',
-  padding: 10,
-  overflow: 'scroll',
-  borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
-};
 const Demo = () => {
-  const [loading, setLoading] = React.useState(false);
-  const handleRefresh = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  };
-  const [style1, setStyle1] = React.useState({ display: 'block' });
-  const [style2, setStyle2] = React.useState({ display: 'none' });
-  const [style3, setStyle3] = React.useState({ display: 'none' });
-
-  const click1 = () => {
-    setStyle1({
-      display: 'block',
-    });
-    setStyle2({
-      display: 'none',
-    });
-    setStyle3({
-      display: 'none',
-    });
-  };
-  const click2 = () => {
-    setStyle2({
-      display: 'block',
-    });
-    setStyle1({
-      display: 'none',
-    });
-    setStyle3({
-      display: 'none',
-    });
-  };
-  const click3 = () => {
-    setStyle3({
-      display: 'block',
-    });
-    setStyle2({
-      display: 'none',
-    });
-    setStyle1({
-      display: 'none',
-    });
+  const sleep = (timer: number) => {
+    return new Promise((resolve) => setTimeout(resolve, timer));
+  }
+  const handleRefresh = async() => {
+    await sleep(3000);
   };
   return (
     <div>
-      <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-        <div>
-          <div onClick={click1}>基础用法</div>
-        </div>
-        <div>
-          <div onClick={click2}>成功提示</div>
-        </div>
-        <div>
-          <div onClick={click3}>自定义提示</div>
-        </div>
-      </div>
-      <div style={style1}>
-        <PullRefresh
-          onRefresh={handleRefresh}
-          loading={loading}
-        >
+      <Tab>
+        <Tab.Item key="1" title='基础用法'>
+        <PullRefresh onRefresh={handleRefresh}>
           <p>
             刷新次数1
           </p>
+          <div style={{ height: 300, border: '1px solid red' }}></div>
+          <div style={{ height: 300, border: '1px solid green' }}></div>
         </PullRefresh>
-      </div>
-      <div style={style2}>
+        </Tab.Item>
+        <Tab.Item key="2" title='成功提示'>
+          <PullRefresh
+            onRefresh={handleRefresh}
+            successDuration={2000}
+            successText={<div>哈哈哈哈我成功刷新了</div>}
+          >
+          <div style={{ minHeight: '100vh'}}>
+              刷新次数2
+            </div>
+          </PullRefresh>
+        </Tab.Item>
+        <Tab.Item key="3" title='自定义提示'>
         <PullRefresh
           onRefresh={handleRefresh}
-          loading={loading}
-          successText={<div>哈哈哈哈我成功刷新了</div>}
-        >
-          <p>
-            刷新次数2
-          </p>
-        </PullRefresh>
-      </div>
-      <div style={style3}>
-        <PullRefresh
-          onRefresh={handleRefresh}
-          loading={loading}
           pullingText={<div>下拉中</div>}
           headHeight={120}
           successDuration={1000}
@@ -110,11 +51,12 @@ const Demo = () => {
             </div>
           )}
         >
-          <p>
+          <div style={{ minHeight: '100vh'}}>
             刷新次数3
-          </p>
+          </div>
         </PullRefresh>
-      </div>
+        </Tab.Item>
+      </Tab>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 import React, { HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
@@ -6,7 +7,7 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context'
 
 export interface PullRefreshProps extends HTMLAttributes<HTMLElement> {
   /* 是否在加载中 */
-  loading?: boolean;
+  // loading?: boolean;
   /* 自定义前缀 */
   prefixCls?: string;
   /* 下拉过程提示文案 */
@@ -22,7 +23,7 @@ export interface PullRefreshProps extends HTMLAttributes<HTMLElement> {
   /* 成功提示时长 */
   successDuration?: number;
   /* 下拉刷新时触发 */
-  onRefresh: (evt: React.TouchEvent<HTMLDivElement>) => void;
+  onRefresh: () => Promise<any>;
   style?: React.CSSProperties;
   className?: string;
 }
@@ -49,19 +50,12 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     };
   }
 
-  componentDidUpdate(prevProps: PullRefreshProps) {
-    const { loading, successDuration = 300 } = this.props;
-    if (loading !== prevProps.loading && loading === false) {
-      this.setState({
-        status: 'success',
-      });
-      setTimeout(() => {
-        this.setState({
-          status: 'normal',
-          distance: 0,
-        });
-      }, successDuration);
-    }
+  componentWillUnmount() {
+    this.setState({
+      status: 'normal',
+      distance: 0,
+      startY: 0,
+    });
   }
 
   renderStatus = () => {
@@ -111,10 +105,20 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
   onTouchEnd = async (event: React.TouchEvent<HTMLDivElement>) => {
     event.nativeEvent.stopImmediatePropagation();
     const { distance } = this.state;
-    const { headHeight = 96, onRefresh } = this.props;
+    const { headHeight = 96, onRefresh, successDuration = 300 } = this.props;
     if (distance > headHeight) {
       this.setState({ status: 'loading', distance: headHeight });
-      onRefresh && onRefresh(event);
+      await onRefresh?.();
+      this.setState({
+        status: 'success',
+      });
+      const timer = setTimeout(() => {
+        clearTimeout(timer);
+        this.setState({
+          status: 'normal',
+          distance: 0,
+        });
+      }, successDuration);
     } else {
       this.setState({ distance: 0, status: 'normal' });
     }
@@ -134,7 +138,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     const content = classNames(`${wrapper}-content`);
     return (
       <div
-        style={{ height: `calc(100vh - ${headHeight}px)`, ...style }}
+        style={style}
         className={wrapper}
       >
         <div
@@ -142,7 +146,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
           onTouchStart={this.onTouchStart}
           onTouchMove={this.onTouchMove}
           onTouchEnd={this.onTouchEnd}
-          style={{ transform: `translateY(${distance}px)`, transition: 'transform 0.3s linear' }}
+          style={{ minHeight: headHeight + 10, transform: `translateY(${distance}px)`, transition: 'transform 0.3s linear' }}
         >
           <div className={`${content}-head`} style={{ height: headHeight }}>
             {this.renderStatus()}
