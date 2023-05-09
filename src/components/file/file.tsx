@@ -4,7 +4,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/display-name */
 /* eslint-disable quotes */
-import React from "react";
+import React, { ReactNode } from "react";
 import { useClassNames, useGetPrefixClass } from "../common/base-component";
 import { cacheFunc } from "../utils/cacheFunc";
 import Uploader from "../uploader";
@@ -36,6 +36,7 @@ export type FileProps = {
   closeEnable?: boolean;
   onClose?: () => void;
   btnList?: { name: string; onClick: () => void }[];
+  iconRender?: (name: string, icon: ReactNode | undefined) => ReactNode;
 };
 
 const File = React.memo<FileProps>((props) => {
@@ -47,10 +48,11 @@ const File = React.memo<FileProps>((props) => {
     closeEnable = false,
     onClose,
     btnList = [],
+    iconRender
   } = props ?? {};
   const getPrefixClass = useGetPrefixClass("file");
   const classnames = useClassNames();
-  const icon = handleIcon(name);
+  const icon = iconRender ? iconRender(name ?? "", handleIcon(name)) : handleIcon(name);
 
   return (
     <div className={classnames(getPrefixClass(), className)} style={style}>

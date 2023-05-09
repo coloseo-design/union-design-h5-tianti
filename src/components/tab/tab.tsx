@@ -12,7 +12,8 @@ export type TabProps = {
   style?: CSSProperties;
   /** 整体样式 */
   className?: string;
-
+  /** 内容方向 */
+  contentDirection?: "normal" | "vertical";
   /** 模式 */
   mode?: 'scroll' | 'fixed';
   /** 风格 */
@@ -89,6 +90,7 @@ const TabContext = createContext<Partial<TabContextType>>({});
 const Tab = memo<TabProps>((props) => {
   const {
     children,
+    contentDirection = "normal",
     mode = 'scroll',
     type = 'normal',
     tabNum,
@@ -246,9 +248,10 @@ const Tab = memo<TabProps>((props) => {
   useEffect(() => {
     let index = -1;
     const len = tabView.length;
+    const tempSK = selectedKey ?? state.selectedKey;
     for (let i = 0; i < len; i += 1) {
       // eslint-disable-next-line no-underscore-dangle
-      if (tabView[i].props._key === selectedKey) {
+      if (tabView[i].props._key === tempSK) {
         index = i;
         break;
       }
@@ -262,6 +265,7 @@ const Tab = memo<TabProps>((props) => {
       }));
     }
   }, [selectedKey, tabView]);
+
   return (
     <TabContext.Provider value={tabContextProvider}>
       <div style={style} className={wrapDivClassName}>
@@ -270,7 +274,8 @@ const Tab = memo<TabProps>((props) => {
           {state.line && <div style={tabLineDivStyle} className={tabLineDivClassName} />}
         </div>
         <div className={getPrefixClass('content')}>
-          {contentView[state.selectedIndex]}
+          {contentDirection === "normal" && contentView[state.selectedIndex]}
+          {contentDirection === "vertical" && contentView}
         </div>
         {state.mode === 'scroll' && (
           <>

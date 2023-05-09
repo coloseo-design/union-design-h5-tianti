@@ -3,15 +3,6 @@ import { Tab } from '../index';
 import { TabProps } from './tab';
 import './styles/index';
 
-const containerStyle = {
-  width: 377,
-  height: 548,
-  backgroundColor: '#fafafa',
-  padding: 10,
-  overflow: 'scroll',
-  borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
-};
 const TabType = (props: Omit<TabProps, 'children'>) => (
   <div>
     <Tab {...props}>
@@ -48,16 +39,13 @@ const TabType = (props: Omit<TabProps, 'children'>) => (
 
 const Demo = () => (
   <div
-    // style={{
-    //   display: 'flex',
-    //   flexFlow: 'row wrap',
-    // }}
   >
-    {TabType({ type: 'normal', onTabChange: (key) => console.log(key) })}
-    {TabType({ type: 'normal', mode: 'fixed' })}
-    {TabType({ type: 'card' })}
+    {TabType({ type: 'normal', defaultSelectedKey: "标签3", onTabChange: (key) => console.log(key) })}
+    {TabType({ type: 'normal', mode: 'fixed', selectedKey: "标签3" })}
+    {TabType({ type: 'card', })}
     {TabType({ type: 'label' })}
     {TabType({ type: 'task' })}
+    {TabType({ type: 'normal', contentDirection: "vertical", onTabChange: (key) => console.log(key) })}
   </div>
 );
 

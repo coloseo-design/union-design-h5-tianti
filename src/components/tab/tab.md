@@ -13,6 +13,7 @@ subtitle: 标签页
 | :----------------- | :--------------- | :----------------------------------- | :------- |
 | style              | 整体样式         | CSSProperties                        | -        |
 | className          | 整体样式         | string                               | -        |
+| contentDirection   | 内容方向         | "normal" \| "vertical"               | "normal" |
 | mode               | 模式             | 'scroll' \| 'fixed'                  | 'scroll' |
 | type               | 风格             | 'normal'\|'card'\|'label' \|'task'   | 'normal' |
 | defaultSelectedKey | 处始选择哪个     | string                               | -        |
