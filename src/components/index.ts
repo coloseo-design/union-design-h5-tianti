@@ -57,7 +57,7 @@ export { default as Capsule } from './capsule';
 export { default as ButtonList } from './button-list';
 export { default as Card } from './card';
 export { default as File } from './file';
-export { default as Steps } from './steps-v2';
+export { default as Steps } from './steps';
 export { default as InfiniteScroll } from './infinite-scroll';
 
 //

@@ -1,69 +1,45 @@
-/* eslint-disable react/no-array-index-key */
-import React, { HTMLAttributes } from 'react';
-import classNames from 'classnames';
-import Step from './step';
-import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
+/* eslint-disable no-plusplus */
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/display-name */
+/* eslint-disable quotes */
+import React from "react";
+import { useClassNames, useGetPrefixClass } from "../common/base-component";
+import { Step, StepProps } from "./step";
 
-export interface StepsProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
-  prefixCls?: string;
-  /* 步骤条类型 */
-  type?: 'card' | 'browse';
+export type StepsProps = {
   className?: string;
-  /* 指定当前步骤 */
-  current?: number;
-  /* 指定当前步骤的状态 */
-  status?: 'success' | 'error' | 'info' | undefined;
-  onChange?: (current: number) => void;
-}
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+};
 
-class Steps extends React.Component<StepsProps> {
-  static Step: typeof Step;
+export type StepsType = React.NamedExoticComponent<StepsProps> & {
+  Step: React.NamedExoticComponent<StepProps>;
+};
 
-  handleChange = (index: number) => {
-    const { onChange } = this.props;
-    onChange && onChange(index);
-  };
+let uid = 0;
 
-  renderSteps = ({ getPrefixCls }: ConfigConsumerProps) => {
-    const {
-      prefixCls,
-      children,
-      style,
-      type,
-      className,
-      current,
-      status,
-    } = this.props;
-    const prex = getPrefixCls('steps', prefixCls);
-    const container = classNames(prex, className);
-    const child = React.Children.toArray(children);
-    return (
-      <div className={container} style={style}>
-        {(child || []).map((item, index) => (
-          <div key={index}>
-            <Step
-              {...item?.props}
-              type={type}
-              isLast={index === child.length - 1}
-              current={current}
-              parentStatus={status}
-              currentIndex={index}
-              onChange={this.handleChange}
-            />
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  render() {
-    return (
-      <ConfigConsumer>
-        {this.renderSteps}
-      </ConfigConsumer>
-    );
-  }
-}
+const Steps = React.memo<StepsProps>((props) => {
+  const { className, style, children } = props ?? {};
+  const getPrefixClass = useGetPrefixClass("stepsv2");
+  const classnames = useClassNames();
+  const len = React.Children.count(children) - 1;
+  return (
+    <div className={classnames(getPrefixClass(), className)} style={style}>
+      {React.Children.map(children, (item: any, index: number) => (
+        <Step
+          {...item.props}
+          key={`${uid++}`}
+          isFirst={index === 0}
+          isLast={index === len}
+        />
+      ))}
+    </div>
+  );
+}) as StepsType;
 
 Steps.Step = Step;
 

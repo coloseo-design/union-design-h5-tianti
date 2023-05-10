@@ -1,0 +1,81 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@steps: ~'@{uni-prefix}-steps';
+
+.@{steps} {
+  width: 100%;
+  font-size: 16px;
+  &-item {
+    width: 100%;
+    display: flex;
+    &-dot-content {
+      margin-right: 16px;
+      position: relative;
+      &-icon {
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 50%;
+        background-color: @steps-dot-bg;
+      }
+      &-line {
+        position: absolute;
+        top: 0.75em;
+        bottom: 0.25em;
+        width: 0.125em;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: @steps-dot-bg;
+      }
+    }
+    &-content {
+      font-weight: 400;
+      min-height: 4.375em;
+      &-cardtitle {
+        font-size: 1em;
+        color: @steps-text-color;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 400;
+        margin-top: -10px;
+      }
+      &-title {
+        font-size: 1em;
+        color: @steps-text-color;
+        display: flex;
+        justify-content: space-between;
+        &-sub {
+          font-size: 0.75em;
+          color: @steps-color;
+        }
+      }
+      &-description {
+        font-size: 0.75em;
+        color: @steps-color;
+        &-info {
+          color: @steps-info-color;
+        }
+        &-success {
+          color:@steps-success-color;
+        }
+        &-error {
+          color: @steps-error-color;
+        }
+      }
+      &-card {
+        background-color: @steps-card-bg;
+        border-radius: 2.25em;
+        margin-top: 4px;
+        padding: 2px 6px 2px 3px;
+        display: inline-block;
+        &-name {
+          font-size: 12px;
+          padding-left: 6px;
+          color: #646566;
+          font-weight: 400;
+          line-height: 2.25em;
+        }
+      }
+    }
+  }
+}
