@@ -58,6 +58,7 @@ export { default as ButtonList } from './button-list';
 export { default as Card } from './card';
 export { default as File } from './file';
 export { default as Steps } from './steps-v2';
+export { default as InfiniteScroll } from './infinite-scroll';
 
 //
 export { default as Collapse } from './collapse';

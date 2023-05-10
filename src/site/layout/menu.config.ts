@@ -208,6 +208,10 @@ export default [
     themeColor: '#5C57F2',
     children: [
       {
+        title: 'InfiniteScroll 无限滚动',
+        key: 'infinite-scroll',
+      },
+      {
         title: 'Capsule 胶囊',
         key: 'capsule',
       },
