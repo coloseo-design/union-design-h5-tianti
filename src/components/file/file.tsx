@@ -48,7 +48,7 @@ const File = React.memo<FileProps>((props) => {
     closeEnable = false,
     onClose,
     btnList = [],
-    iconRender
+    iconRender,
   } = props ?? {};
   const getPrefixClass = useGetPrefixClass("file");
   const classnames = useClassNames();

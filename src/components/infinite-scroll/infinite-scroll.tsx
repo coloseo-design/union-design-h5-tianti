@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/display-name */
 /* eslint-disable quotes */
@@ -41,7 +42,7 @@ const InfiniteScroll = React.memo<InfiniteScrollProps>((props) => {
       },
       {
         root: ref.current?.parentElement,
-      }
+      },
     );
 
     ref.current && obs.observe(ref.current);

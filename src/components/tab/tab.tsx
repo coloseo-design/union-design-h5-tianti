@@ -13,7 +13,7 @@ export type TabProps = {
   /** 整体样式 */
   className?: string;
   /** 内容方向 */
-  contentDirection?: "normal" | "vertical";
+  contentDirection?: 'normal' | 'vertical';
   /** 模式 */
   mode?: 'scroll' | 'fixed';
   /** 风格 */
@@ -90,7 +90,7 @@ const TabContext = createContext<Partial<TabContextType>>({});
 const Tab = memo<TabProps>((props) => {
   const {
     children,
-    contentDirection = "normal",
+    contentDirection = 'normal',
     mode = 'scroll',
     type = 'normal',
     tabNum,
@@ -274,8 +274,8 @@ const Tab = memo<TabProps>((props) => {
           {state.line && <div style={tabLineDivStyle} className={tabLineDivClassName} />}
         </div>
         <div className={getPrefixClass('content')}>
-          {contentDirection === "normal" && contentView[state.selectedIndex]}
-          {contentDirection === "vertical" && contentView}
+          {contentDirection === 'normal' && contentView[state.selectedIndex]}
+          {contentDirection === 'vertical' && contentView}
         </div>
         {state.mode === 'scroll' && (
           <>
