@@ -32,4 +32,13 @@
     flex-shrink: 0;
     position: relative;
   }
+
+  & > .@{buttonlist}-btn {
+    flex-shrink: 0;
+    flex: 1;
+  }
+
+  & > .@{buttonlist}-btn + .@{buttonlist}-btn {
+    margin-left: 10px;
+  }
 }

@@ -16,12 +16,18 @@ export type ButtonListProps = {
     | {
         type: string;
         name: string;
-        onClick: () => void;
+        onClick?: () => void;
       }
     | React.ReactNode
   )[];
-  buttonText?: string;
-  onButtonClick?: () => void;
+  buttonList?: (
+    | React.ReactNode
+    | {
+        type?: string;
+        name: string;
+        onClick?: () => void;
+      }
+  )[];
 };
 
 let uid = 0;
@@ -31,8 +37,7 @@ const ButtonList = React.memo<ButtonListProps>((props) => {
     className,
     style,
     iconButtonList = [],
-    onButtonClick,
-    buttonText,
+    buttonList = [],
   } = props ?? {};
   const getPrefixClass = useGetPrefixClass("buttonlist");
   const classnames = useClassNames();
@@ -55,9 +60,17 @@ const ButtonList = React.memo<ButtonListProps>((props) => {
           )}
         </div>
       ))}
-      <Button type="primary" block onClick={onButtonClick}>
-        {buttonText}
-      </Button>
+      {buttonList.map((item: any) => (
+        <div className={getPrefixClass("btn")} key={`${uid++}`}>
+          {React.isValidElement(item) ? (
+            item
+          ) : (
+            <Button block type={item.type} onClick={item?.onClick}>
+              {item.name}
+            </Button>
+          )}
+        </div>
+      ))}
     </div>
   );
 });

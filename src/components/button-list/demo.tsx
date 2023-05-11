@@ -20,40 +20,35 @@ const Demo = () => {
       type: "more",
       onClick: () => console.log("更多"),
     },
-    <div
-      style={{ height: "100%", width: "100%" }}
-      onClick={() => {
-        console.log("自定义");
-      }}
-    >
-      自定义
-    </div>,
+  ];
+
+  const buttonList = [
+    {
+      name: "发送",
+      onClick: () => console.log("发送"),
+    },
+    {
+      name: "按钮",
+      type: "primary",
+      onClick: () => console.log("按钮"),
+    },
   ];
 
   return (
-    <div style={{ backgroundColor: "rgba(0,0,0,0.02)" }}>
+    <div style={{ backgroundColor: "rgba(0,0,0,0.02)", margin: "0 -12px" }}>
       <ButtonList
         iconButtonList={iconList.slice(0, 1)}
-        buttonText="发送"
-        onButtonClick={() => console.log("1")}
+        buttonList={buttonList}
       />
       <div style={{ height: 20 }} />
       <ButtonList
         iconButtonList={iconList.slice(0, 2)}
-        buttonText="发送"
-        onButtonClick={() => console.log("2")}
+        buttonList={buttonList}
       />
       <div style={{ height: 20 }} />
       <ButtonList
         iconButtonList={iconList.slice(0, 3)}
-        buttonText="发送"
-        onButtonClick={() => console.log("3")}
-      />
-      <div style={{ height: 20 }} />
-      <ButtonList
-        iconButtonList={iconList.slice(0, 4)}
-        buttonText="发送"
-        onButtonClick={() => console.log("4")}
+        buttonList={buttonList}
       />
     </div>
   );
