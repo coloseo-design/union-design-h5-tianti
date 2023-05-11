@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 import React, { HTMLAttributes, ReactNode } from 'react';
@@ -124,35 +125,35 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     }
   }
 
-  renderPullrefresh = ({ getPrefixCls }: ConfigConsumerProps) => {
+  renderPullRefresh = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
       children,
-      headHeight = 96,
       style = {},
       className,
     } = this.props;
     const { distance } = this.state;
     const prefix = getPrefixCls('pull-refresh', prefixCls);
     const wrapper = classNames(prefix, className);
-    const content = classNames(`${wrapper}-content`);
+    const content = classNames(`${prefix}-content`);
     return (
       <div
         style={style}
         className={wrapper}
+        onTouchStart={this.onTouchStart}
+        onTouchMove={this.onTouchMove}
+        onTouchEnd={this.onTouchEnd}
       >
         <div
-          className={content}
-          onTouchStart={this.onTouchStart}
-          onTouchMove={this.onTouchMove}
-          onTouchEnd={this.onTouchEnd}
-          style={{ minHeight: headHeight + 10, transform: `translateY(${distance}px)`, transition: 'transform 0.3s linear' }}
+          className={`${prefix}-head`}
+          style={{
+            height: distance,
+            transition: 'all 0.3s linear',
+          }}
         >
-          <div className={`${content}-head`} style={{ height: headHeight }}>
-            {this.renderStatus()}
-          </div>
-          {children}
+          {this.renderStatus()}
         </div>
+        <div className={content}>{children}</div>
       </div>
     );
   }
@@ -160,7 +161,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
   render() {
     return (
       <ConfigConsumer>
-        {this.renderPullrefresh}
+        {this.renderPullRefresh}
       </ConfigConsumer>
     );
   }

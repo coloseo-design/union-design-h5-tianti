@@ -14,11 +14,9 @@ const Demo = () => {
       <Tab>
         <Tab.Item key="1" title='基础用法'>
         <PullRefresh onRefresh={handleRefresh}>
-          <p>
+          <p style={{ minHeight: '100vh', background: 'red' }}>
             刷新次数1
           </p>
-          <div style={{ height: 300, border: '1px solid red' }}></div>
-          <div style={{ height: 300, border: '1px solid green' }}></div>
         </PullRefresh>
         </Tab.Item>
         <Tab.Item key="2" title='成功提示'>

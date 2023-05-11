@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import Step from './step';
+import Step from './step-v1';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 
 export interface StepsProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
