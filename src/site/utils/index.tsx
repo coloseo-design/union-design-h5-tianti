@@ -52,7 +52,7 @@ export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   // const CodeComponent = CodeDemoComponents[componentName];
   return (
     <div className='box'>
-      {/* {element(data.content)} */}
+      {element(data.content)}
       <div className="iframe">
         <iframe src={`${iframePath}/#/iframe/${componentName}`} frameBorder="0" />
       </div>

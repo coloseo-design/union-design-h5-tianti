@@ -172,11 +172,14 @@ const Tab = memo<TabProps>((props) => {
   const tabContextProvider = useMemo(() => ({
     ...state,
     type,
-    setSelectedTab: (key: string, index: number) => setState((obj) => ({
-      ...obj,
-      selectedKey: key,
-      selectedIndex: index,
-    })),
+    setSelectedTab: (key: string, index: number) => {
+      onTabChange?.(key, index);
+      setState((obj) => ({
+        ...obj,
+        selectedKey: key,
+        selectedIndex: index,
+      }));
+    },
   }), [state, type]);
 
   /**
@@ -239,11 +242,6 @@ const Tab = memo<TabProps>((props) => {
       setState((obj) => ({ ...obj, ...temp }));
     }
   }, [type, mode, tabView]);
-
-  useEffect(
-    () => { state.selectedKey && onTabChange?.(state.selectedKey, state.selectedIndex); },
-    [onTabChange, state.selectedKey, state.selectedIndex],
-  );
 
   useEffect(() => {
     let index = -1;
