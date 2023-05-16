@@ -15,7 +15,7 @@ subtitle: 上拉菜单
 |closeOnClickOverlay|点击遮罩层是否关闭|boolean|true|  |
 |type|上拉菜单类型|string: `basic`, `upload`, `share` |`basic`|  |
 |options|展示的数据源|Option[]| --|  |
-|title|顶部标题|string | --|  |
+|title|顶部标题（当type不为basic有效）|string | --|  |
 |cancelText|取消按钮文字|string｜ReactNode | 取消|  |
 |overlay|是否显示遮罩层|boolean | true|  |
 |multiple|是否多行展示(图片默认超出三个换行， 图标默认超出四个是否换行)|boolean|false|  |
