@@ -82,7 +82,11 @@ const DemoAction = () => {
       <Divider style={{ margin: '32px 0px' }}>指定每行数量面板</Divider>
       <ActionSheet
         visible={visible}
-        onCancel={() => setVisible(false)}
+        closeOnClickOverlay={true}
+        onCancel={() => {
+          setVisible(false);
+        }}
+        onSelect={(option) => console.log('option', option)}
         options={options}
       />
       <ActionSheet
