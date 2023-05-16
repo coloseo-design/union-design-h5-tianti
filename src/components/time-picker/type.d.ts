@@ -1,5 +1,5 @@
 import React from 'react';
-import { BasePickerProps } from '../picker/type';
+import { BasePickerProps, Option } from '../picker/type';
 
 export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defaultValue' | 'onChange' | 'renderItem'> & {
   /* 取消按钮文字 */
@@ -15,4 +15,8 @@ export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defau
   value?: dayjs.Dayjs | string | number;
   defaultValue?: Date | dayjs.Dayjs | string | number;
   onChange: (time: dayjs.Dayjs) => void;
+
+  position?: 'center' | 'bottom' | 'top' | 'left' | 'right';
+
+  renderItem?: (value: Option) => string | React.ReactNode;
 }

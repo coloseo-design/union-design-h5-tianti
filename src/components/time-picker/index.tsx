@@ -25,7 +25,7 @@ const getTimeValue = (input: Date) => {
   const hour = time.hour();
   const minute = time.minute();
   const second = time.second();
-  const result = [`${hour}`, `${minute}`, `${second}`];
+  const result = [`${hour}`, `${minute}`.padStart(2, '0'), `${second}`.padStart(2, '0')];
   return result;
 };
 
@@ -41,9 +41,10 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     onCancel,
     onOk,
     position,
+    renderItem,
   } = props;
 
-  const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
+  const [value, setValue] = useState<string[]>(defaultValue || valueFromProps);
   const [title, setTitle] = useState(defaultTitle);
   const options = [getRange(0, 24), getRange(0, 60), getRange(0, 60)];
   const onChange = (item: Option, index: number) => {
@@ -66,8 +67,9 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   /**
    * 当value变化的时候，重新渲染值选择
    */
+
   useEffect(() => {
-    const v = getTimeValue(valueFromProps);
+    const v = getTimeValue(valueFromProps || defaultValue);
     setValue(v);
   }, [valueFromProps]);
 
@@ -83,7 +85,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
         options={options}
         itemHeight={itemHeight || 44}
         visibleItemCount={visibleItemCount || 6}
-        renderItem={(item) => item.value}
+        renderItem={renderItem || ((item) => item.value)}
         value={value}
         onChange={onChange}
       />

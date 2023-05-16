@@ -4,9 +4,9 @@ import { Button, TimePicker } from '../index';
 
 const TimePickerDemo = () => {
   const [visible, setVisible] = useState(false);
-  const [value, setValue] = useState(dayjs());
+  // const [value, setValue] = useState(dayjs());
   const onChange = (v: dayjs.Dayjs) => {
-    setValue(v);
+    // setValue(v);
   };
   return (
     <div>
@@ -19,7 +19,11 @@ const TimePickerDemo = () => {
           setVisible(false);
         }}
         onChange={onChange}
-        value={value}
+        // value={value}
+        defaultValue={dayjs('21:02:02', 'HH:mm:ss')}
+        renderItem={(val: any) => {
+          return <span>{val.value}</span>;
+        }}
         onOk={() => {
           console.log('ok');
           setVisible(false);

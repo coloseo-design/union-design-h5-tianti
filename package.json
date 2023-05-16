@@ -24,7 +24,7 @@
     "@uni/icons-react": "^2.0.2",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
-    "dayjs": "^1.10.4",
+    "dayjs": "^1.11.7",
     "omit.js": "^1.0.2"
   },
   "devDependencies": {

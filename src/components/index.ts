@@ -1,3 +1,6 @@
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
 const ENV = process.env.NODE_ENV;
 if (
   ENV !== 'production'
@@ -12,6 +15,8 @@ if (
       please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size.`,
   );
 }
+
+dayjs.extend(customParseFormat);
 
 // 请在此处导出所有组件
 export { default as Icon } from './icon';
