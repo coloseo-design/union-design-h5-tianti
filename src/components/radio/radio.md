@@ -18,6 +18,7 @@ subtitle: 单选框
 | --- | --- | --- | --- |
 | disabled | 禁用 Radio | boolean | false |
 | value | 根据 value 进行比较，判断是否选中 | any | - |
+| defaultChecked | 默认选中 | boolean | false |
 
 ### RadioGroup
 

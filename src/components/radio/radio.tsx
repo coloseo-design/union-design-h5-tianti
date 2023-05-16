@@ -8,8 +8,8 @@ import { ConfigContext } from '../config-provider/context';
 
 const Radio: React.FC<RadioProps> | {Group: RadioGroupProps} = (props: RadioProps) => {
   const {
-    checked: checkedFromProps = false,
-    defaultChecked = false,
+    checked: checkedFromProps,
+    defaultChecked,
     disabled = false,
     onChange,
     children,
@@ -22,7 +22,7 @@ const Radio: React.FC<RadioProps> | {Group: RadioGroupProps} = (props: RadioProp
   const [checked, setChecked] = useState(checkedFromProps || defaultChecked || false);
 
   useEffect(() => {
-    setChecked(checkedFromProps);
+    setChecked(checkedFromProps || defaultChecked || false);
   }, [checkedFromProps]);
   const radioGroupContext = useContext(Context);
 
@@ -31,9 +31,12 @@ const Radio: React.FC<RadioProps> | {Group: RadioGroupProps} = (props: RadioProp
     if (disabled) return;
     if (radioGroupContext && radioGroupContext.onChange) {
       radioGroupContext.onChange(value);
+      return;
     }
     const toggleChecked = !checked;
-    setChecked(toggleChecked);
+    if (typeof checkedFromProps === 'undefined') {
+      setChecked(toggleChecked);
+    }
     onChange && onChange(toggleChecked);
   };
 

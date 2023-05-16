@@ -11,14 +11,16 @@ const Checkbox: React.FC<CheckboxProps> = (props: CheckboxProps) => {
     disabled = false,
     children,
     value = '',
-    checked: checkedFromProps = false,
+    defaultChecked,
+    checked: checkedFromProps,
     onChange,
     ...rest
   } = props;
-
-  const [checked, setChecked] = useState(checkedFromProps || false);
+  const [checked, setChecked] = useState(checkedFromProps || defaultChecked);
   useEffect(() => {
-    setChecked(checkedFromProps);
+    if (checkedFromProps) {
+      setChecked(checkedFromProps);
+    }
   }, [checkedFromProps]);
   const checkboxGroupContext = useContext(Context);
   const onClick = () => {
@@ -26,9 +28,12 @@ const Checkbox: React.FC<CheckboxProps> = (props: CheckboxProps) => {
     if (disabled) return;
     if (checkboxGroupContext && checkboxGroupContext.onChange) {
       checkboxGroupContext.onChange(value);
+      return;
     }
     const toggleChecked = !checked;
-    setChecked(toggleChecked);
+    if (typeof checkedFromProps === 'undefined') {
+      setChecked(toggleChecked);
+    }
     onChange && onChange(toggleChecked);
   };
 
