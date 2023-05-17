@@ -25,9 +25,11 @@ const RadioGroup: React.FC<RadioGroupProps> = (props: RadioGroupProps) => {
   const [value, setValue] = useState(valueFromProps || defaultValue || '');
   const { getPrefixCls } = useContext(ConfigContext);
   const onGroupChange = useCallback((_value: string) => {
-    if (valueFromProps && valueFromProps === value) return;
+    if (valueFromProps && valueFromProps === value) {
+      onChange && onChange(_value);
+      return;
+    }
     setValue(_value);
-    onChange && onChange(_value);
   }, [onChange, value]);
 
   const contextValue = {
