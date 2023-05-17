@@ -21,7 +21,7 @@ title: Checkbox
 | checked | 指定当前是否选中 | boolean | false |  |
 | defaultChecked | 初始是否选中 | boolean | false |  |
 | disabled | 失效状态 | boolean | false |  |
-| onChange | 变化时回调函数 | function(e:Event) | - |  |
+| onChange | 变化时回调函数 | function(value:boolean) | - |  |
 
 ### Checkbox Group
 
@@ -32,12 +32,12 @@ title: Checkbox
 | name | CheckboxGroup 下所有 `input[type="checkbox"]` 的 `name` 属性 | string | - |  |
 | options | 指定可选项 | string\[] \| Option\[] | \[] |  |
 | value | 指定选中的选项 | string\[] | \[] |  |
-| onChange | 变化时回调函数 | function(checkedValue) | - |  |
+| onChange | 变化时回调函数 | function(checkedValue: string[]) | - |  |
 
 
 ### Option
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| label | 标签 | string|React.ReactNode[] |  |
-| value | 值 | string | false |  |
-| disabled | 是否禁用 | boolean | - |  |
+| label | 标签 | string\|React.ReactNode | - | |
+| value | 值 | string | - |  |
+| disabled | 是否禁用 | boolean | false |  |

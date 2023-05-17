@@ -64,16 +64,16 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
   } = props;
 
   const [visible, setVisible] = React.useState(propsVisible);
-  const [anmitionEnd, setAnmitionEnd] = React.useState(false);
+  const [animationEnd, setAnimationEnd] = React.useState(false);
 
   useEffect(() => {
     if (propsVisible) {
       setVisible(propsVisible);
     } else {
-      setAnmitionEnd(true);
+      setAnimationEnd(true);
       setTimeout(() => {
         setVisible(false);
-        setAnmitionEnd(false);
+        setAnimationEnd(false);
       }, 300);
     }
   }, [propsVisible]);
@@ -88,11 +88,11 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
   const classNames = useClassNames();
   const mask = classNames(prefix(), className, {
     [`${prefix()}-show`]: visible,
-    [`${prefix()}-hidden`]: anmitionEnd && visible,
+    [`${prefix()}-hidden`]: animationEnd && visible,
   });
   const wrapper = classNames(`${prefix()}-wrapper`, {
     [`${prefix()}-wrapper-show`]: visible,
-    [`${prefix()}-wrapper-hidden`]: anmitionEnd && visible,
+    [`${prefix()}-wrapper-hidden`]: animationEnd && visible,
   });
   const content = classNames(`${prefix()}-content`);
   const footer = classNames(`${prefix()}-footer`, {
@@ -110,11 +110,15 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
   };
 
   const handleCancel = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
+    event.nativeEvent?.stopImmediatePropagation();
     onCancel && onCancel(event);
   };
 
   const handleSelect = (option: any) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
+    event.stopPropagation();
+    event.nativeEvent?.stopImmediatePropagation();
     onSelect && onSelect(option);
     onCancel && onCancel(event);
   };
