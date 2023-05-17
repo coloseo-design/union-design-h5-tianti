@@ -1,6 +1,8 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-plusplus */
-import React, { Component, isValidElement, ReactNode } from 'react';
+import React, {
+  Component, CSSProperties, isValidElement, ReactNode,
+} from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import portal from './portal';
@@ -23,6 +25,8 @@ export interface BaseToastProps extends React.HTMLAttributes<HTMLSpanElement> {
   loadingType?: 'spinner' | 'circular';
   // 是否垂直排列图标和文字内容
   vertical?: boolean;
+  // 设置mask 样式
+  maskStyle?: CSSProperties;
 }
 
 export interface ToastState {
@@ -54,6 +58,7 @@ class Toast extends Component<BaseToastProps, ToastState> {
       icon,
       loadingType,
       vertical,
+      maskStyle,
       ...rest
     } = this.props;
 
@@ -70,6 +75,7 @@ class Toast extends Component<BaseToastProps, ToastState> {
 
     return (
       <div {...rest} className={mainClass}>
+        {mask && <div className={`${prefix}-mask`} style={maskStyle} />}
         <div
           className={`${prefix}-content`}
           style={{ height: iconMapping[type] && content && vertical ? 160 : 'unset', width: iconMapping[type] && content && vertical ? 160 : 'unset' }}

@@ -12,6 +12,7 @@ const portal = (children: JSX.Element) => {
   container.style.top = '0';
   container.style.left = '0';
   container.style.width = '100%';
+  container.style.zIndex = '100';
   document.body.appendChild(container);
 
   const destroy = () => {
