@@ -35,13 +35,14 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props: CheckboxGroupProps) 
   const { getPrefixCls } = useContext(ConfigContext);
 
   const onGroupChange = (input: string) => {
-    const index = value.indexOf(input);
+    const v = [...value];
+    const index = v.indexOf(input);
     if (index >= 0) {
-      value.splice(index, 1);
+      v.splice(index, 1);
     } else {
-      value.push(input);
+      v.push(input);
     }
-    const newState = [...value];
+    const newState = v;
     if (value && value === valueFromProps) {
       onChange && onChange(newState);
       return;

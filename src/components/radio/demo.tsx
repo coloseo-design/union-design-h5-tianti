@@ -49,8 +49,8 @@ const RadioDemo = () => {
       <h5 style={section.title}>Radio.Group数据源为options</h5>
       <div style={section.content}>
         <Radio.Group
-          defaultValue="A"
-          onChange={(values) => console.log('values', values)}
+          defaultValue="B"
+          onChange={(values) => console.log('values1223', values)}
           options={[
             {
               value: 'A',

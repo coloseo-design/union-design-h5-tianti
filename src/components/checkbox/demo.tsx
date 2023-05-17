@@ -14,7 +14,7 @@ const containerStyle = {
 };
 const CheckboxDemo = () => {
   const [v, setV] = useState(['A']);
-  const [c, setC] = useState(false);
+  const [c, setC] = useState(true);
   const onchange = (changed: boolean) => {
     console.log('changed', changed);
     setC(changed)

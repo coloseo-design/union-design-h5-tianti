@@ -29,6 +29,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props: RadioGroupProps) => {
       onChange && onChange(_value);
       return;
     }
+    onChange && onChange(_value);
     setValue(_value);
   }, [onChange, value]);
 
