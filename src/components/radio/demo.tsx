@@ -13,6 +13,28 @@ const section = {
 const RadioDemo = () => {
   const [c, setC] = useState('C');
   const [b, setB] = useState(false);
+  const [value, setValue] = useState('');
+  const loginList = [
+    {
+      deptName: '广东省分公司财务部',
+      siteType: '1',
+    },
+    {
+
+      deptName: '广州分公司财务部',
+      siteType: '2',
+    },
+    {
+
+      deptName: '韶关市分公司财务部',
+      siteType: '3',
+    },
+    {
+
+      deptName: '深圳市分公司财务部',
+      siteType: '4',
+    },
+  ]
   return (
     <div>
       <div>
@@ -83,7 +105,25 @@ const RadioDemo = () => {
           <Radio value="C" style={{ marginBottom: 8 }}>C</Radio>
         </Radio.Group>
       </div>
-
+      <div>
+        <Radio.Group
+          value={value}
+          onChange={val =>{
+            setValue(val)
+          }}
+        >
+          {
+            loginList.map((item, key) => (
+                <Radio value={`${key}`} key={`${key}`}>
+                  <div>
+                    <div>{item.deptName}</div>
+                    <div>{item.siteType}</div>
+                  </div>
+                </Radio>
+            ))
+          }
+        </Radio.Group>
+      </div>
     </div>
   );
 };

@@ -22,10 +22,10 @@ const RadioGroup: React.FC<RadioGroupProps> = (props: RadioGroupProps) => {
     ...rest
   } = props;
   let { children } = props;
-  const [value, setValue] = useState(valueFromProps || defaultValue || '');
+  const [value, setValue] = useState(valueFromProps || defaultValue);
   const { getPrefixCls } = useContext(ConfigContext);
   const onGroupChange = useCallback((_value: string) => {
-    if (valueFromProps && valueFromProps === value) {
+    if (typeof valueFromProps !== 'undefined' && valueFromProps === value) {
       onChange && onChange(_value);
       return;
     }
@@ -40,9 +40,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props: RadioGroupProps) => {
   };
 
   useEffect(() => {
-    if (valueFromProps) {
-      setValue(valueFromProps);
-    }
+    setValue(valueFromProps || defaultValue);
   }, [valueFromProps]);
 
   const formateOptions = (_options: RadioGroupOptions) => _options.map(
