@@ -5,7 +5,7 @@ import '../button/styles/index';
 
 const ToastDemo = () => (
   <div>
-    <Button onClick={() => Toast.info({ icon: 'success', mask: true })}>自定义提示</Button>
+    <Button onClick={() => Toast.info({ icon: 'success', duration: true })}>自定义提示</Button>
     <Button onClick={() => Toast.info({ content: '最多展示两行最多展示两行最多展示两行最多展示两行' })}>自定义提示</Button>
 
     <Button onClick={() => Toast.info({ icon: 'success', content: '最多展示两行最多展示两行最多展示两行最多展示两行' })}>自定义提示</Button>

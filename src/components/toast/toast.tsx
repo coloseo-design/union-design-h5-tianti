@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
+import Omit from 'omit.js';
 import portal from './portal';
 import Icon from '../icon';
 import Loading from '../loading';
@@ -13,7 +14,7 @@ export interface BaseToastProps extends React.HTMLAttributes<HTMLSpanElement> {
   // 提示内容
   content?: string;
   // 自动关闭的延时，单位秒
-  duration?: number;
+  duration?: number | boolean;
   // 是否显示透明蒙层，防止触摸穿透
   mask?: boolean;
   /* 用户自定义类前缀，默认uni-toast */
@@ -68,13 +69,14 @@ class Toast extends Component<BaseToastProps, ToastState> {
       [`${prefix}-vertical`]: vertical,
     });
 
+    const OmitRest = Omit(rest, ['duration']);
     const iconMapping = {
       info: icon ? (isValidElement(icon) ? icon : <Icon type={icon} />) : '',
       loading: <Loading type={loadingType} color="#fff" />,
     };
 
     return (
-      <div {...rest} className={mainClass}>
+      <div {...OmitRest} className={mainClass}>
         {mask && <div className={`${prefix}-mask`} style={maskStyle} />}
         <div
           className={`${prefix}-content`}

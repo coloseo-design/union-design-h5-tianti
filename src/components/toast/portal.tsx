@@ -32,9 +32,11 @@ const portal = (children: JSX.Element) => {
   ReactDOM.render(children, container);
 
   if (duration) {
-    setTimeout(() => {
-      destroy();
-    }, duration * 1000);
+    if (typeof duration !== 'boolean') {
+      setTimeout(() => {
+        destroy();
+      }, duration * 1000);
+    }
   } else {
     destroy();
   }
