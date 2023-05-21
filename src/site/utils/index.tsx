@@ -43,7 +43,7 @@ function rename(name: string, sparator = '-') {
   return arr;
 }
 
-const iframePath = 'http://127.0.0.1:3000';
+const iframePath = window.location.origin;
 export const BasePageComponent: React.FC<PageProps> = (props: PageProps) => {
   const { name } = props;
   const componentName: string = rename(name);
