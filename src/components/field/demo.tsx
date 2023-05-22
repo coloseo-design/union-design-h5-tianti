@@ -15,10 +15,10 @@ const Demo = () => (
         在输入框中添加图标：用于对输入框含义补充解释，提输入内容识别效率。
       </p>
       <p>有线框输入框</p>
-      <Field placeholder="内容标题" border />
+      <Field placeholder="内容标题" border disabled />
       <p>无线框输入框</p>
       <div style={{ background: '#fff', padding: 16 }}>
-        <Field placeholder="内容标题" />
+        <Field placeholder="内容标题" style={{ width: 100 }} />
       </div>
     </section>
 
@@ -47,7 +47,7 @@ const Demo = () => (
       <div style={{ background: '#fff' }}>
         <Field placeholder="单行输入" fieldType="textarea" rows={1} />
         <Field placeholder="自适应内容高度" fieldType="textarea" autosize />
-        <Field value="多行输入" fieldType="textarea" showWordLimit maxLength={500} />
+        <Field value="多行输入" isResize={false} fieldType="textarea" showWordLimit maxLength={500} />
         <div style={{ display: 'flex', alignItems: 'center', padding: 16 }}>
           <Avatar text="姓名" style={{ marginRight: 16 }} />
           <Field placeholder="我来说几句" fieldType="textarea" rows={1} style={{ flex: 1 }} />

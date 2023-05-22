@@ -22,6 +22,8 @@ export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | H
   showWordLimit?: boolean; // 是否显示字数统计，需要设置maxLength属性
   forwardedRef: React.LegacyRef<HTMLTextAreaElement | HTMLInputElement>;
   type?: string;
+  disabled?: boolean;
+  isResize?: boolean;
 }
 
 export interface FieldState {
@@ -59,7 +61,7 @@ class Field extends Component<FieldProps, FieldState> {
 
   renderField = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
-      fieldType = 'normal', prefixCls, style, className, border, status, leftIcon = fieldType === 'password' && 'password', leftStyle, visibilityToggle = true, maxLength, showWordLimit, autosize, onChange, onBlur, onFocus, forwardedRef, ...rest
+      fieldType = 'normal', prefixCls, style, className, border, status, leftIcon = fieldType === 'password' && 'password', leftStyle, visibilityToggle = true, maxLength, showWordLimit, autosize, onChange, onBlur, onFocus, forwardedRef, isResize = true, ...rest
     } = this.props;
     const {
       value, type, focus, eyesOpen, textHeight,
@@ -110,7 +112,7 @@ class Field extends Component<FieldProps, FieldState> {
             maxLength={maxLength}
             value={value}
             onChange={handleChange}
-            style={{ height: autosize ? textHeight : 'unset' }}
+            style={{ height: autosize ? textHeight : 'unset', resize: (isResize ? 'auto' : 'none') as any }}
             ref={forwardedRef as LegacyRef<HTMLTextAreaElement>}
           />
           {maxLength && showWordLimit && (

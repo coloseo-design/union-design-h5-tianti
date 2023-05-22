@@ -24,3 +24,5 @@ subtitle: 输入框
 | value | 输入框内容 | string \| number | - |  |
 | visibilityToggle | 是否显示切换的小眼睛，只对密码输入框有效 | boolean | true |  |
 | showWordLimit | 是否显示字数统计，需要设置maxLength属性 | boolean | - |  |
+| disabled | 是否可以输入 | boolean | - |  |
+|isResize|多行输入框textarea 是否可以拖动改变宽高|boolean|true|

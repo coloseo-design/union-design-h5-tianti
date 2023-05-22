@@ -4,8 +4,8 @@ import React, {
   Component, CSSProperties, isValidElement, ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import Omit from 'omit.js';
+import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import portal from './portal';
 import Icon from '../icon';
 import Loading from '../loading';

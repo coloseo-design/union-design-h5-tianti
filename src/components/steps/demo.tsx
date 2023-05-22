@@ -42,9 +42,11 @@ const UserCard = React.memo<UserCardProps>((props) => {
             fontSize: 12,
             lineHeight: "16px",
             padding: "5px 8px",
+            wordBreak: 'break-all',
           }}
         >
           回复内容
+          xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </div>
       </div>
     </div>
