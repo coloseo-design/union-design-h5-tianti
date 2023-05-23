@@ -227,7 +227,6 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
   }, [handleMove]);
 
   const allClose = (event: Event) => {
-    // console.log('==event', event.target, leftRef.current);
     const target = event.target as HTMLElement;
     const leftDiv = leftRef.current;
     const rightDiv = rightRef.current;
@@ -249,7 +248,14 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
       onMouseLeave={handleEnd}
     >
       {left && (
-        <div style={style.leftStyle} className={getPrefixClass('left')} ref={leftRef}>
+        <div
+          style={{
+            maxHeight: Object.keys(style.leftStyle || {}).length > 0 ? undefined : 0,
+            ...(style.leftStyle || {}),
+          }}
+          className={getPrefixClass('left')}
+          ref={leftRef}
+        >
           {left.map((item, index) => (
             <div
               className={item.className}
@@ -263,7 +269,14 @@ const SwipeCell = memo<SwipeCellProps>((props) => {
         </div>
       )}
       {right && (
-        <div style={style.rightStyle} className={getPrefixClass('right')} ref={rightRef}>
+        <div
+          style={{
+            maxHeight: Object.keys(style.rightStyle || {}).length > 0 ? undefined : 0,
+            ...(style.rightStyle || {}),
+          }}
+          className={getPrefixClass('right')}
+          ref={rightRef}
+        >
           {right.map((item, index) => (
             <div
               className={item.className}
