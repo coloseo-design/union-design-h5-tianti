@@ -7,6 +7,7 @@ const Demo = () => {
     return new Promise((resolve) => setTimeout(resolve, timer));
   }
   const handleRefresh = async() => {
+    console.log('====触发');
     await sleep(3000);
   };
   return (
@@ -14,8 +15,10 @@ const Demo = () => {
       <Tab>
         <Tab.Item key="1" title='基础用法'>
         <PullRefresh onRefresh={handleRefresh}>
-          <p style={{ minHeight: '100vh', background: 'red' }}>
+          <p style={{ minHeight: '100vh' }}>
             刷新次数1
+            <div style={{ height: 400, background: 'green',color: '#fff' }}>滚动1</div>
+            <div style={{ height: 400, background: 'blue', color: '#fff' }}>滚动12</div>
           </p>
         </PullRefresh>
         </Tab.Item>
@@ -27,6 +30,7 @@ const Demo = () => {
           >
           <div style={{ minHeight: '100vh'}}>
               刷新次数2
+                
             </div>
           </PullRefresh>
         </Tab.Item>

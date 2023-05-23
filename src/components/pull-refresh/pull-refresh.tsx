@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
-import React, { HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 import Loading from '../loading';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
@@ -40,14 +40,18 @@ export interface PullRefreshState {
   status: PullRefreshStatus;
   distance: number;
   startY: number;
+  isTop?: boolean;
 }
 class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
+  contentRef = createRef<HTMLDivElement>();
+
   constructor(props: PullRefreshProps) {
     super(props);
     this.state = {
       status: 'normal',
       distance: 0,
       startY: 0,
+      isTop: false,
     };
   }
 
@@ -80,48 +84,67 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
 
   onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     event.nativeEvent.stopImmediatePropagation();
-    const { status } = this.state;
-    if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
-      const currentY = event.touches[0].pageY;
-      this.setState({
-        startY: currentY,
-        status: 'pulling',
-      });
+    if (this.contentRef.current) { // 只有在顶部的时候才会触发
+      const info = this.contentRef.current.getBoundingClientRect();
+      if (info.y >= 0) {
+        this.setState({ isTop: true });
+        const { status } = this.state;
+        if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
+          const currentY = event.touches[0].pageY;
+          this.setState({
+            startY: currentY,
+            status: 'pulling',
+          });
+        }
+      } else {
+        this.setState({ isTop: false });
+      }
     }
   };
 
   onTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
     event.nativeEvent.stopImmediatePropagation();
-    const { startY, status } = this.state;
+    const { startY, status, isTop } = this.state;
     const { headHeight = 96 } = this.props;
-    if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
-      const currentY = event.touches[0].pageY;
-      this.setState({
-        distance: currentY - startY,
-        status: (currentY - startY) > headHeight ? 'loosing' : 'pulling',
-      });
+    if (isTop) {
+      if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
+        const currentY = event.touches[0].pageY;
+        this.setState({
+          distance: currentY - startY,
+          status: (currentY - startY) > headHeight ? 'loosing' : 'pulling',
+        });
+      }
     }
   };
 
+  initState = () => {
+    this.setState({
+      status: 'normal',
+      distance: 0,
+      isTop: false,
+    });
+  }
+
   onTouchEnd = async (event: React.TouchEvent<HTMLDivElement>) => {
     event.nativeEvent.stopImmediatePropagation();
-    const { distance } = this.state;
+    const { distance, isTop } = this.state;
     const { headHeight = 96, onRefresh, successDuration = 300 } = this.props;
-    if (distance > headHeight) {
-      this.setState({ status: 'loading', distance: headHeight });
-      await onRefresh?.();
-      this.setState({
-        status: 'success',
-      });
-      const timer = setTimeout(() => {
-        clearTimeout(timer);
+    if (isTop) {
+      if (distance > headHeight) {
+        this.setState({ status: 'loading', distance: headHeight });
+        await onRefresh?.();
         this.setState({
-          status: 'normal',
-          distance: 0,
+          status: 'success',
         });
-      }, successDuration);
+        const timer = setTimeout(() => {
+          clearTimeout(timer);
+          this.initState();
+        }, successDuration);
+      } else {
+        this.initState();
+      }
     } else {
-      this.setState({ distance: 0, status: 'normal' });
+      this.initState();
     }
   }
 
@@ -153,7 +176,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
         >
           {this.renderStatus()}
         </div>
-        <div className={content}>{children}</div>
+        <div ref={this.contentRef} className={content}>{children}</div>
       </div>
     );
   }
