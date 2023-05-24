@@ -53,7 +53,7 @@ export const getOptions = (
   const key = keys.shift();
   for (let index = 0; index < options.length; index++) {
     const item = options[index];
-    if (key && item.key === key) {
+    if (key && item.value === key) {
       getOptions(item.children || [], keys, result);
     }
     if (!key && index === 0) {

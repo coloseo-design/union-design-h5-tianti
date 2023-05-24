@@ -77,72 +77,72 @@ const PickerDemo = () => {
 
   const cascaderOptions = [
     {
-      title: '0',
+      title: '四川省',
       key: '0',
-      value: '0',
+      value: '四川省',
       children: [
         {
-          title: '0-0',
+          title: '成都市',
           key: '0-0',
-          value: '0-0',
+          value: '成都市',
         },
         {
-          title: '0-1',
+          title: '绵阳市',
           key: '0-1',
-          value: '0-1',
+          value: '绵阳市',
         },
         {
-          title: '0-2',
+          title: '南充市',
           key: '0-2',
-          value: '0-2',
+          value: '南充市',
         },
       ],
     },
     {
-      title: '1',
+      title: '湖北省',
       key: '1',
-      value: '1',
+      value: '湖北省',
       children: [
         {
-          title: '1-0',
+          title: '武汉市',
           key: '1-0',
-          value: '1-0',
+          value: '武汉市',
         },
         {
-          title: '1-1',
+          title: '黄冈市',
           key: '1-1',
-          value: '1-1',
+          value: '黄冈市',
         },
         {
-          title: '1-2',
+          title: '荆门市',
           key: '1-2',
-          value: '1-2',
+          value: '荆门市',
         },
       ],
     },
     {
-      title: '2',
+      title: '湖南省',
       key: '2',
-      value: '2',
+      value: '湖南省',
       children: [
         {
-          title: '2-0',
+          title: '长沙市',
           key: '2-0',
-          value: '2-0',
+          value: '长沙市',
         },
         {
-          title: '2-1',
+          title: '湘潭市',
           key: '2-1',
-          value: '2-1',
+          value: '湘潭市',
         },
         {
-          title: '2-2',
+          title: '岳阳市',
           key: '2-2',
-          value: '2-2',
+          value: '岳阳市',
         },
       ],
     },
-  ];
+  ];;
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState([]);
   const [visible1, setVisible1] = useState(false);
@@ -220,7 +220,7 @@ const PickerDemo = () => {
           itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
-          defaultValue={['1', '1-1']}
+          // defaultValue={['1', '1-1']}
           onChange={(v) => {
             console.log('v', v);
           }}
