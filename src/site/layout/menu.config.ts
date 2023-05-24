@@ -157,6 +157,10 @@ export default [
         key: 'card',
       },
       {
+        title: 'ApproveCard 审批卡片',
+        key: 'approve-card',
+      },
+      {
         title: 'Skeleton 骨架屏',
         key: 'skeleton',
       },
