@@ -571,6 +571,27 @@ Uploader.Config = {
       </svg>
     ),
   },
+  txt: {
+    exts: ['txt'],
+    icon: (
+      <svg width="100%" height="100%" viewBox="0 0 176 200">
+        <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+          <g id="自定义预设-3" transform="translate(-350.000000, -1376.000000)">
+            <g id="PDF" transform="translate(350.500000, 1376.000000)">
+              <g id="ppt" fillRule="nonzero">
+                <path d="M15.9375,0 C7.1875,0 0,7.1875 0,15.9375 L0,184.0625 C0,192.8125 7.1875,200 15.9375,200 L159.0625,200 C167.8125,200 175,192.8125 175,184.0625 L175,63.4375 L115.9375,0 L15.9375,0 Z" id="路径" fill="#4C98FC" />
+                <path d="M175,63.75 L175,66.875 L135,66.875 C135,66.875 115.3125,62.8125 115.625,45.625 C115.625,45.625 116.5625,63.75 134.6875,63.75 L175,63.75 Z" id="路径" fill="#4C98FC" opacity="0.390647711" />
+                <path d="M115.9375,0 L115.9375,45.625 C115.9375,50.625 119.375,63.75 135,63.75 L175,63.75 L115.9375,0 Z" id="路径" fill="#92C2FD" opacity="0.595044513" />
+              </g>
+              <text fontFamily="PingFangSC-Semibold, PingFang SC" fontSize="52" fontWeight="500" fill="#FFFFFF">
+                <tspan x="36.5" y="141">TXT</tspan>
+              </text>
+            </g>
+          </g>
+        </g>
+      </svg>
+    ),
+  },
   excel: {
     exts: ['xls', 'xlsx'],
     icon: (

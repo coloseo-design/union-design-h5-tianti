@@ -8,7 +8,7 @@ subtitle: 文件
 ## API
 
 ### 文件后缀支持
-  wps, doc, docx, tiff, ppt, pptx, pdf, jpg, jpeg, png, xls, xlsx, bmp, wav, mov, mp4, avi
+  wps, doc, docx, tiff, ppt, pptx, pdf, jpg, jpeg, png, xls, xlsx, bmp, wav, mov, mp4, avi,txt
 
 
 ### Props
