@@ -19,7 +19,6 @@ export interface BaseSwitchState {
 
 class Switch extends React.Component<BaseSwitchProps, BaseSwitchState> {
   static defaultProps: BaseSwitchProps = {
-    checked: undefined,
     defaultChecked: false,
   };
 
