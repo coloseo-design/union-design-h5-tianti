@@ -62,9 +62,55 @@ export const getOptions = (
   }
 };
 
+/**
+ * 获取Cascader具体选择option值
+ * @param values 选中的values
+ * @param options 选项
+ * @returns
+ */
+export const getCascaderSelections = (values: string[], options: Option[]) => {
+  let list = options;
+  const extra = values.reduce((p, c) => {
+    const selected = list.find((option) => option.value === c);
+    if (selected) {
+      list = selected?.children || [];
+      p.push({
+        key: selected.key,
+        value: selected.value,
+        title: selected.title,
+      });
+    }
+    return p;
+  }, [] as Option[]);
+  return extra;
+};
+
+/**
+ * 获取Picker具体选择option值
+ * @param values 选中的values
+ * @param options 选项
+ * @returns
+ */
+export const getPickerSelections = (values: string[], options: Option[][]) => {
+  const extra = values.reduce((p, c, i) => {
+    const selected = options[i].find((option) => option.value === c);
+    if (selected) {
+      p.push({
+        key: selected.key,
+        value: selected.value,
+        title: selected.title,
+      });
+    }
+    return p;
+  }, [] as Option[]);
+  return extra;
+};
+
 export default {
   getValue,
   getChildren,
   getParent,
   getOptions,
+  getCascaderSelections,
+  getPickerSelections,
 };

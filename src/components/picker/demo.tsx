@@ -184,8 +184,8 @@ const PickerDemo = () => {
           itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
-          onChange={(v) => {
-            console.log('v', v);
+          onChange={(v, e) => {
+            console.log('v', v, e);
           }}
           value={value}
         />
@@ -202,8 +202,8 @@ const PickerDemo = () => {
           visibleItemCount={6}
           renderItem={(item) => item.value}
           defaultValue={['宁波', '金华', 'B']}
-          onChange={(v) => {
-            console.log('v', v);
+          onChange={(values, selectedOptions) => {
+            console.log('values 多列', values, selectedOptions);
           }}
           value={value}
         />
@@ -221,8 +221,8 @@ const PickerDemo = () => {
           visibleItemCount={6}
           renderItem={(item) => item.value}
           // defaultValue={['1', '1-1']}
-          onChange={(v) => {
-            console.log('v', v);
+          onChange={(values, selectedOptions) => {
+            console.log('values', values, selectedOptions);
           }}
         />
       </Popup>
