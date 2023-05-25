@@ -3,6 +3,7 @@ import PickerBase from './picker-base';
 import {
   CascaderProps, Option, PickerProps, PickerState,
 } from './type';
+import { getPickerSelections } from './utils';
 
 export default class Picker extends React.Component<PickerProps, PickerState> {
   static Cascader: React.FC<CascaderProps>;
@@ -33,10 +34,11 @@ export default class Picker extends React.Component<PickerProps, PickerState> {
       }
       return value[idx];
     });
+    const extra = getPickerSelections(newValue, options);
     this.setState({
       value: newValue,
     });
-    onChange && onChange(newValue);
+    onChange && onChange(newValue, extra);
   }
 
   render() {

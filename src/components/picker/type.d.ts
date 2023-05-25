@@ -61,10 +61,10 @@ export interface PickerColumnProps {
 }
 
 export interface PickerProps extends Omit<BasePickerProps, 'onChange'> {
-  onChange: (values: string[]) => void;
+  onChange: (values: string[], selectedOptions: Option[]) => void;
 }
 
 export interface CascaderProps extends Omit<BasePickerProps, 'onChange'> {
   options: Option[],
-  onChange: (values: string[]) => void;
+  onChange: (values: string[], selectedOptions: Option[]) => void;
 }
