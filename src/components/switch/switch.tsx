@@ -19,7 +19,7 @@ export interface BaseSwitchState {
 
 class Switch extends React.Component<BaseSwitchProps, BaseSwitchState> {
   static defaultProps: BaseSwitchProps = {
-    checked: false,
+    checked: undefined,
     defaultChecked: false,
   };
 
@@ -40,7 +40,9 @@ class Switch extends React.Component<BaseSwitchProps, BaseSwitchState> {
   handleClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const { checked } = this.state;
     const { onChange } = this.props;
-    this.setState({ checked: !checked });
+    if (!('checked' in this.props)) {
+      this.setState({ checked: !checked });
+    }
     if (onChange) {
       onChange(!checked, e);
     }
