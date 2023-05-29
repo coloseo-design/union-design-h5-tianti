@@ -6,7 +6,7 @@ export interface SliderProps {
   /* 默认值 */
   defaultValue?: number;
   /* 滑块取值，默认为0 */
-  value: number;
+  value?: number;
   /* 滑块拖拽事件 */
   onChange?: (value: number) => void;
   /** 自定义类名称 */
@@ -36,7 +36,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
   }
 
   componentDidUpdate(props: SliderProps) {
-    const { value } = this.props;
+    const { value = 0 } = this.props;
     if (value !== props.value) {
       this.setState({
         value,
@@ -60,35 +60,35 @@ class Slider extends React.Component<SliderProps, SliderState> {
       const { width: containerWidth, left } = this.node.getBoundingClientRect();
       const offsetX = evt.pageX - left - pageXOffset;
       const value = (offsetX / containerWidth) * max;
-      let formatedValue = value;
-      if (formatedValue > max) {
-        formatedValue = max;
+      let formattedValue = value;
+      if (formattedValue > max) {
+        formattedValue = max;
       }
-      if (formatedValue < min) {
-        formatedValue = min;
+      if (formattedValue < min) {
+        formattedValue = min;
       }
-      return formatedValue;
+      return formattedValue;
     }
     return 0;
   }
 
   onRailClick = (evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const formatedValue = this.translateOffsetToValue(evt as unknown as MouseEvent);
+    const formattedValue = this.translateOffsetToValue(evt as unknown as MouseEvent);
     const { onChange } = this.props;
-    onChange && onChange(this.formateValue(formatedValue));
+    onChange && onChange(this.formateValue(formattedValue));
     this.setState({
-      value: formatedValue,
+      value: formattedValue,
     });
   };
 
   onMouseMove = (evt: MouseEvent) => {
     const { canDrop } = this.state;
     if (canDrop) {
-      const formatedValue = this.translateOffsetToValue(evt);
+      const formattedValue = this.translateOffsetToValue(evt);
       const { onChange } = this.props;
-      onChange && onChange(this.formateValue(formatedValue));
+      onChange && onChange(this.formateValue(formattedValue));
       this.setState({
-        value: formatedValue,
+        value: formattedValue,
       });
     }
   }
