@@ -36,10 +36,10 @@ class Slider extends React.Component<SliderProps, SliderState> {
   }
 
   componentDidUpdate(props: SliderProps) {
-    const { value = 0 } = this.props;
+    const { value } = this.props;
     if (value !== props.value) {
       this.setState({
-        value,
+        value: value || 0,
       });
     }
   }
