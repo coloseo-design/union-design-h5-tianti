@@ -12,6 +12,6 @@ subtitle: 审批卡片
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 |title|大标题|string\|ReactNode|-|  |
-|status|状态|string\|ReactNode|-|  |
+|status|状态|''progress' \| 'rejected' \| 'success' \| ReactNode;|-|  |
 |description|状态|string\|ReactNode|-|  |
 
