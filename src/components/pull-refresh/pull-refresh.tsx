@@ -73,11 +73,11 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     } = this.props;
     switch (status) {
       case 'loading': {
-        return <div>{loadingText || <Loading style={{ backgroundColor: 'none' }}>加载中....</Loading>}</div>;
+        return loadingText || <Loading style={{ backgroundColor: 'none' }}>加载中....</Loading>;
       }
-      case 'loosing': return <div>{loosingText}</div>;
-      case 'pulling': return <div>{pullingText}</div>;
-      case 'success': return <div>{successText}</div>;
+      case 'loosing': return loosingText;
+      case 'pulling': return pullingText;
+      case 'success': return successText;
       default: return '';
     }
   }
@@ -170,8 +170,8 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
         <div
           className={`${prefix}-head`}
           style={{
-            height: distance,
-            transition: 'all 0.3s linear',
+            height: distance === 0 ? 0 : undefined,
+            minHeight: distance > 0 ? distance : undefined,
           }}
         >
           {this.renderStatus()}
