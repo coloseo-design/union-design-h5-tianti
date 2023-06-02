@@ -21,13 +21,14 @@
     "demo": "npx gulp md"
   },
   "dependencies": {
-    "@uni/icons-react": "^2.0.2",
+    "@uni/icons-react": "^2.0.3",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.7",
     "omit.js": "^1.0.2"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@types/classnames": "^2.2.11",
     "@types/react-dom": "^17.0.0",
     "commitizen": "^4.2.2",
