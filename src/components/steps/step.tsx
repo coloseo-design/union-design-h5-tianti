@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/display-name */
 /* eslint-disable quotes */
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
 import { useGetPrefixClass } from "../common/base-component";
 
 export type StepProps = {
@@ -10,10 +10,11 @@ export type StepProps = {
   dotColor?: string;
   isFirst?: boolean;
   isLast?: boolean;
+  style?: CSSProperties;
 };
 
 export const Step = React.memo<StepProps>((props) => {
-  const { title, children, isFirst, isLast, dotColor } = props ?? {};
+  const { title, children, isFirst, isLast, dotColor, style } = props ?? {};
   const getPrefixClass = useGetPrefixClass("stepv2");
   const dotRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -25,7 +26,7 @@ export const Step = React.memo<StepProps>((props) => {
   }, [height]);
 
   return (
-    <div className={getPrefixClass()}>
+    <div className={getPrefixClass()} style={style}>
       <div className={getPrefixClass("left")}>
         <div
           className={getPrefixClass("up-line")}
