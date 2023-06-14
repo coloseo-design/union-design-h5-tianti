@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Icon from '../icon';
 import { useGetPrefixClass, useClassNames } from '../common/base-component';
 
@@ -27,6 +27,7 @@ export interface NavBarProps extends React.HTMLAttributes<HTMLDivElement> {
   home?: boolean;
   /* 标题大小 */
   typeSize?: 'lg' | 'md' | 'sm' | 'xs';
+  titleStyle?: CSSProperties;
 }
 
 const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
@@ -42,6 +43,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
     rightTextColor,
     showBackTitle,
     home,
+    titleStyle = {},
     typeSize = 'md',
     ...rest
   } = props;
@@ -70,7 +72,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
     if (typeSize === 'xs') {
       return '0.75em';
     }
-    return '0.875em';
+    return '1em';
   };
 
   return (
@@ -91,6 +93,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
                 fontSize: renderSize(),
                 color: showBackTitle ? '#A6A8A9' : '#1C1D1D',
                 fontWeight: showBackTitle ? 400 : 500,
+                ...titleStyle,
               }}
             >
               {icon && <span style={{ paddingRight: '1em' }}>{icon}</span>}
