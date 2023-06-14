@@ -69,7 +69,7 @@ const PopupDemo = () => {
       <Popup
         closeable={false}
         visible={fullVisible}
-        position='left'
+        position='bottom'
         onCancel={handleCancel}
         fullScreen
         footer={null}
