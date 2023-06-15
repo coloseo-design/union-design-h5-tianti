@@ -17,7 +17,7 @@ const Demo = () => {
     <div>
       <Tab>
         <Tab.Item key="1" title='基础用法'>
-          <PullRefresh onRefresh={handleRefresh}>
+          <PullRefresh onRefresh={handleRefresh} headStyle={{ background: 'red' }}>
             <p style={{ minHeight: '100vh' }}>
               刷新次数1
               <div style={{ height: 400, background: 'green', color: '#fff' }}>滚动1</div>

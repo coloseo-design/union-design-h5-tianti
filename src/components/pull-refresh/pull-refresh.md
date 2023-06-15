@@ -20,3 +20,4 @@ toc: false
 |successDuration|成功提示时长|number|300|  |
 |onRefresh|下拉刷新时触发|() => Promise<any>|--|  |
 |className|class|string|--|  |
+|headStyle|下拉头部样式|CSSProperties|--||

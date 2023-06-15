@@ -27,6 +27,7 @@ export interface PullRefreshProps extends HTMLAttributes<HTMLElement> {
   onRefresh: () => Promise<any>;
   style?: React.CSSProperties;
   className?: string;
+  headStyle?: React.CSSProperties;
 }
 
 export type PullRefreshStatus =
@@ -154,6 +155,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
       children,
       style = {},
       className,
+      headStyle = {},
     } = this.props;
     const { distance } = this.state;
     const prefix = getPrefixCls('pull-refresh', prefixCls);
@@ -170,6 +172,7 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
         <div
           className={`${prefix}-head`}
           style={{
+            ...headStyle,
             height: distance === 0 ? 0 : undefined,
             minHeight: distance > 0 ? distance : undefined,
           }}
