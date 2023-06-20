@@ -15,7 +15,7 @@ const Demo = () => {
   };
   const [loading, setLoading] = useState(true);
   return (
-    <div>
+    <div style={{ padding: 32, background: 'pink' }}>
       <Switch checked={loading} onChange={(e) => setLoading(e)} />
       <div style={{ height: 20 }} />
       <Skeleton
@@ -25,6 +25,8 @@ const Demo = () => {
         title
         paragraph
         paragraphRow={4}
+        style={{ borderRadius: 6 }}
+        id="test2"
       >
         <div style={{ height: 100 }}>
           test

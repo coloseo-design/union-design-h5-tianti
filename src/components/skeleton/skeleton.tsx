@@ -1,8 +1,10 @@
 /* eslint-disable react/display-name */
-import React, { memo, ReactNode, useMemo } from 'react';
+import React, {
+  memo, ReactNode, useMemo, HtmlHTMLAttributes,
+} from 'react';
 import { useClassNames, useGetPrefixClass } from '../common/base-component';
 
-type SkeletonProps = {
+interface SkeletonProps extends Omit<HtmlHTMLAttributes<HTMLDivElement>, 'title'> {
   /** 为 true 时，显示占位图。反之则直接展示子组件 */
   loading?: boolean;
   /** 是否显示头像占位图 */
@@ -25,7 +27,7 @@ type SkeletonProps = {
   round?: boolean;
 
   children?: ReactNode;
-};
+}
 
 const Skeleton = memo<SkeletonProps>((props) => {
   const {
@@ -40,6 +42,7 @@ const Skeleton = memo<SkeletonProps>((props) => {
     paragraph,
     paragraphRow = 1,
     paragraphRowWidth = [],
+    ...rest
   } = props ?? {};
   const getPrefixClass = useGetPrefixClass('skeleton');
   const classNames = useClassNames();
@@ -82,7 +85,7 @@ const Skeleton = memo<SkeletonProps>((props) => {
 
   if (loading) {
     return (
-      <div className={getPrefixClass()}>
+      <div {...rest} className={getPrefixClass()}>
         {avatarView}
         <div className={getPrefixClass('content')}>
           {titleView}
