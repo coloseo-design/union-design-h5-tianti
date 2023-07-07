@@ -191,8 +191,9 @@
         }
         & > .@{tab-num} {
           font-size: 24px;
-          font-weight: bold;
+          font-weight: 700;
           height: 24px;
+          line-height: 1.2;
           & > .@{tab-overflow} {
             font-size: 12px;
             vertical-align: top;
@@ -221,5 +222,8 @@
         & svg { stroke: @primary-color; }
       }
     }
+  }
+  & > .@{tab-tab}.@{tab-task}>.@{tab-line} {
+    margin-top: 10px;
   }
 }
