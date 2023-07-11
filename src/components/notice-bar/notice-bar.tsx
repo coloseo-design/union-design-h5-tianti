@@ -35,7 +35,6 @@ export type NoticeBarConf = BaseProps<{
   rightIconOnClick: () => void;
   container?: () => HTMLElement | null;
   zIndex?: number;
-  only?: string;
 }>;
 
 export class NoticeBarComponent extends BaseComponent<NoticeBarConf> {
@@ -145,12 +144,13 @@ export default class NoticeBar {
     const c = conf.container?.();
     if (c) {
       if (c && !c.contains(temp)) {
-        temp.setAttribute('style', `position: absolute; z-index: ${conf.zIndex || 1}`);
+        temp.setAttribute('style', `position: absolute; z-index: ${conf.zIndex || 100}`);
         c && c.appendChild(temp.cloneNode(true));
       }
       !NoticeBar.noticeContainer.includes(c) && NoticeBar.noticeContainer.push(c);
     } else {
       if (!document.body.contains(div)) {
+        div.setAttribute('style', `z-index: ${conf.zIndex || 100}`);
         document.body.appendChild(div);
       }
       !NoticeBar.noticeContainer.includes(div) && NoticeBar.noticeContainer.push(div);
