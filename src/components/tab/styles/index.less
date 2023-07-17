@@ -14,6 +14,7 @@
 @tab-card: ~"@{tab}-card";
 @tab-label: ~"@{tab}-label";
 @tab-task: ~"@{tab}-task";
+@tab-task-mode: ~"@{tab}-task-mode";
 @tab-scroll: ~"@{tab}-scroll";
 @tab-fixed: ~"@{tab}-fixed";
 @tab-active: ~"@{tab}-active";
@@ -64,23 +65,23 @@
       user-select: none;
       cursor: pointer;
 
-      & > .@{tab-dot} {
-        width: 6px;
-        height: 6px;
-        border: 2px solid @primary-color;
-        border-radius: 3px;
-        position: absolute;
-        top: -2px;
-        right: -6px;
-      }
+      // & > .@{tab-dot} {
+      //   width: 6px;
+      //   height: 6px;
+      //   border: 2px solid @primary-color;
+      //   border-radius: 3px;
+      //   position: absolute;
+      //   top: -2px;
+      //   right: -6px;
+      // }
     }
 
     & > .@{tab-line} {
-      border-radius: 4px;
+      border-radius: 2px;
       background-color: @primary-color;
-      margin-top: 4px;
+      margin-top: 2px;
       height: 4px;
-      width: 16px;
+      width: 12px;
     }
   }
 
@@ -119,14 +120,14 @@
     & > .@{tab-content} {
       & > .@{tab-item}:first-of-type { margin-left: 16px; }
       & > .@{tab-item}:last-of-type {margin-right: 16px; }
-      & > .@{tab-item} { color: #A6A8A9; }
-      & > .@{tab-item} + .@{tab-item} { margin-left: 20px; }
+      & > .@{tab-item} { color: #646566; }
+      & > .@{tab-item} + .@{tab-item} { margin-left: 24px; }
       & > .@{tab-item}.@{tab-active} { color: #1C1D1D; }
     }
   }
 
   & > .@{tab-tab}.@{tab-normal} {  padding: 14px 0px; }
-  & > .@{tab-tab}.@{tab-normal}.@{tab-line} { padding: 12px 0 10px 0; }
+  & > .@{tab-tab}.@{tab-normal}.@{tab-line} { padding: 12px 0px; }
 
   & > .@{tab-tab}.@{tab-card} {
     font-size: 14px;
@@ -159,21 +160,24 @@
       border-radius: 8px;
 
       & > .@{tab-item} {
-        padding: 1px 8px;
-        border-radius: 20px;
+        padding: 2px 6px;
+        border-radius: 12px;
         background-color: #F5F6F6;
-        color: #646566;
+        color: #A6A8A9;
       }
 
-      & > .@{tab-item}:first-of-type { margin-left: 12px; }
-      & > .@{tab-item}:last-of-type {margin-right: 12px; }
-      & > .@{tab-item} + .@{tab-item} { margin-left: 12px; }
-      & > .@{tab-item}.@{tab-active} { color: @primary-color; }
+      & > .@{tab-item}:first-of-type { margin-left: 16px; }
+      & > .@{tab-item}:last-of-type {margin-right: 16px; }
+      & > .@{tab-item} + .@{tab-item} { margin-left: 8px; }
+      & > .@{tab-item}.@{tab-active} {
+        color: @primary-color;
+        background-color: #FFEBEF;
+      }
     }
   }
 
   & > .@{tab-tab}.@{tab-task} {
-    padding-top: 12px;
+    padding-top: 18px;
     height: 70px;
     margin-bottom: 0px;
     & > .@{tab-content} {
@@ -186,18 +190,18 @@
           font-weight: 400;
           color: #646566;
           font-size: 12px;
-          height: 16px;
-          margin-top: 4px;
+          line-height: 16px;
         }
         & > .@{tab-num} {
+          position: relative;
           font-size: 24px;
-          font-weight: 700;
-          height: 24px;
-          line-height: 1.2;
+          font-weight: 500;
+          line-height: 24px;
           & > .@{tab-overflow} {
-            font-size: 12px;
-            vertical-align: top;
-            margin-right: -12px;
+            font-size: 10px;
+            position: absolute;
+            right: -10px;
+            top: -6px;
 
             & svg { stroke-width: 50; }
           }
@@ -223,7 +227,25 @@
       }
     }
   }
+  & > .@{tab-tab}.@{tab-task-mode} {
+    height: 44px;
+    padding-top: 11px;
+    & > .@{tab-content} {
+      & > .@{tab-item} {
+        line-height: 22px;
+        font-size: 16px;
+      }
+      & > .@{tab-item}.@{tab-active} {
+        color: @primary-color;
+      }
+    }
+  }
+  & > .@{tab-tab}.@{tab-task-mode}>.@{tab-line} {
+    margin-top: 7px;
+    width: 16px;
+  }
   & > .@{tab-tab}.@{tab-task}>.@{tab-line} {
-    margin-top: 10px;
+    margin-top: 8px;
+    width: 16px;
   }
 }

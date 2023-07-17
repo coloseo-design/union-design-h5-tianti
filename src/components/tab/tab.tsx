@@ -17,7 +17,7 @@ export type TabProps = {
   /** 模式 */
   mode?: 'scroll' | 'fixed';
   /** 风格 */
-  type?: 'normal' | 'card' | 'label' | 'task';
+  type?: 'normal' | 'card' | 'label' | 'task' | 'task-mode';
   /** 处始选择哪个 */
   defaultSelectedKey?: string;
   /** 双向绑定选择哪个 */
@@ -51,7 +51,7 @@ export type TabItemProps = {
   /** TabProps type为task 时候的数字颜色 不重要内容：1 重要内容：2 */
   taskWeight?: 1 | 2;
   /** 右上角红点 */
-  dot?: boolean;
+  // dot?: boolean;
 
   children: ReactNode;
 
@@ -74,11 +74,12 @@ export type TabType = React.NamedExoticComponent<TabProps>
       card?: TabConfigItem,
       label?: TabConfigItem,
       task?: TabConfigItem,
+      'task-mode'?: TabConfigItem,
     }
   };
 
 type TabContextType = {
-  type: 'normal' | 'card' | 'label' | 'task';
+  type: 'normal' | 'card' | 'label' | 'task' | 'task-mode';
   curTabNum: number;
   selectedKey: string;
   selectedIndex: number;
@@ -230,11 +231,11 @@ const Tab = memo<TabProps>((props) => {
       curTabNum: tabView.length,
     } as typeof state;
 
-    if (['normal', 'task'].includes(type)) {
+    if (['normal', 'task', 'task-mode'].includes(type)) {
       temp.line = true;
     }
 
-    if (['card', 'task'].includes(type)) {
+    if (['card', 'task', 'task-mode'].includes(type)) {
       temp.mode = 'fixed';
     }
 
@@ -292,7 +293,7 @@ Tab.Item = memo((props) => {
     titleNum,
     taskNum = 0,
     taskWeight = 1,
-    dot = false,
+    // dot = false,
     _key,
     _index,
   } = props ?? {};
@@ -362,7 +363,7 @@ Tab.Item = memo((props) => {
   return (
     <div onClick={onClick} className={wrapClassName}>
       {text}
-      {dot && <div className={getPrefixClass('dot')} />}
+      {/* {dot && <div className={getPrefixClass('dot')} />} */}
     </div>
   );
 });
@@ -385,6 +386,10 @@ Tab.Config = {
   task: {
     tabNum: 4,
     textNum: 5,
+  },
+  'task-mode': {
+    tabNum: 4,
+    textNum: 4,
   },
 };
 

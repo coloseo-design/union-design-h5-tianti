@@ -10,11 +10,17 @@
   justify-content: space-between;
   background-color: @navbar-bg;
   align-items: center;
-  min-height: 2em;
+  height: 44px;
   padding: 0px 8px;
   color: @navbar-text-color;
   font-weight: 400;
-  &-right {
+  &-left {
+    display: flex;
+    align-items: center;
+    &-icon {
+      font-size: 20px;
+      // vertical-align: middle;
+    }
     white-space: nowrap;
   }
   &-home {
@@ -28,14 +34,22 @@
       margin-top: 0.625em;
     }
   }
-  &-lg {
-    min-height: 3.75em;
-  }
-  &-md {
-    min-height: 3.25em;
-  }
-  &-sm {
-    min-height: 2.75em;
+  &-header {
+    height: 60px;
+    color: #1C1D1D;
+    font-weight: 500;
+    padding: 0px 16px;
+    font-size: 20px;
+    &-title {
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+    &-right {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
   }
   &-title {
     font-weight: 500;
@@ -50,5 +64,10 @@
       white-space: nowrap;
       word-break: break-all;
     }
+  }
+  &-right {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
   }
 }

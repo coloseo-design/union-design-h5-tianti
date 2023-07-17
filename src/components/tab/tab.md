@@ -15,7 +15,7 @@ subtitle: 标签页
 | className          | 整体样式         | string                               | -        |
 | contentDirection   | 内容方向         | "normal" \| "vertical"               | "normal" |
 | mode               | 模式             | 'scroll' \| 'fixed'                  | 'scroll' |
-| type               | 风格             | 'normal'\|'card'\|'label' \|'task'   | 'normal' |
+| type               | 风格             | 'normal'\|'card'\|'label' \|'task'\|'task-mode'   | 'normal' |
 | defaultSelectedKey | 处始选择哪个     | string                               | -        |
 | selectedKey        | 双向绑定选择哪个 | string                               | -        |
 | tabNum             | 标签个数         | number                               | -        |
@@ -34,7 +34,7 @@ subtitle: 标签页
 | titleNum   | 标题最大长度                                                 | number  | -      |
 | taskNum    | TabProps type为task 时候的数字                               | number  | -      |
 | taskWeight | TabProps type为task 时候的数字颜色 不重要内容：1 重要内容：2 | 1\|2    | 1      |
-| dot        | 右上角红点                                                   | boolean | -      |
+<!-- | dot        | 右上角红点                                                   | boolean | -      | -->
 
 ### Tab.Config 全局配置
 
@@ -58,6 +58,10 @@ Tab.Config = {
   task: {
     tabNum: 4,
     textNum: 5,
+  },
+  'task-mode': {
+    tabNum: 4,
+    textNum: 4,
   },
 };
 ```

@@ -12,7 +12,7 @@ const TabType = (props: Omit<TabProps, 'children'>) => (
       <Tab.Item key="标签2" title="标签2222222" taskNum={42} taskWeight={2}>
         <div style={{ marginTop: 20, alignSelf: 'center' }}>标签 2 页面</div>
       </Tab.Item>
-      <Tab.Item key="标签3" title="标签333333" taskNum={129} dot>
+      <Tab.Item key="标签3" title="标签333333" taskNum={129}>
         <div style={{ marginTop: 20, alignSelf: 'center' }}>标签 3 页面</div>
       </Tab.Item>
       <Tab.Item key="标签4" title="标签4444444" taskNum={37}>
@@ -39,12 +39,14 @@ const TabType = (props: Omit<TabProps, 'children'>) => (
 
 const Demo = () => (
   <div
+  style={{ background: 'rgb(245, 246, 246)'}}
   >
     {TabType({ type: 'normal', defaultSelectedKey: "标签3", onTabChange: (key) => console.log(key) })}
     {TabType({ type: 'normal', mode: 'fixed', selectedKey: "标签3" })}
     {TabType({ type: 'card', })}
     {TabType({ type: 'label' })}
     {TabType({ type: 'task', lineStyle: { width: 30 } })}
+    {TabType({ type: 'task-mode' })}
     {TabType({ type: 'normal', contentDirection: "vertical", onTabChange: (key) => console.log(key) })}
   </div>
 );
