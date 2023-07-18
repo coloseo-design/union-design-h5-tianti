@@ -11,15 +11,36 @@
   border-radius: 6px;
   padding: 15px 16px;
   color: #1C1D1D;
+  font-size: 14px;
+  &-md {
+    height: 44px;
+    padding: 12px 16px;
+  }
+  &-sm {
+    height: 32px;
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+
   .@{field-prefix-cls}-left-icon, .@{field-prefix-cls}-right-icon {
     color: #646566;
-    font-size: 19px;
+    font-size: 16px;
+  }
+
+  &-password {
+    font-size: 16px;
+    .@{field-prefix-cls}-left-icon {
+      font-size: 24px;
+    }
   }
   .@{field-prefix-cls}-left-icon {
-    margin-right: 10px;
+    margin-right: 4px;
   }
-  .@{field-prefix-cls}-right-icon {
-    margin-left: 10px;
+  &-default {
+    .@{field-prefix-cls}-left-icon {
+      font-size: 24px;
+      margin-right: 8px;
+    }
   }
   input {
     outline: none;
@@ -58,12 +79,18 @@
     background: inherit;
   }
 }
-
+.@{field-prefix-cls}-textarea-container {
+  display: flex;
+  flex: 1;
+}
 .@{field-prefix-cls}-textarea {
   height: unset;
+  min-height: 32px;
   background: #F5F6F6;
-  padding: 0 12px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: flex;
+  // flex-flow: column wrap;
   .@{field-prefix-cls}-word-limit {
     height: 16px;
     line-height: 16px;
@@ -72,6 +99,13 @@
     right: 12px;
     color: #A6A8A9;
   }
+  &-icon {
+    font-size: 16px;
+    color: #C8CCCC;
+    margin-right: 4px;
+    vertical-align: top;
+    margin-top: -2px;
+  }
   textarea {
     width: 100%;
     border: none;
@@ -79,6 +113,9 @@
     border-radius: 4px;
     outline: none;
     caret-color:@primary-color;
+    &::placeholder {
+      color: #C8CCCC;
+    }
   }
 }
 

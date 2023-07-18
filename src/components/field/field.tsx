@@ -1,20 +1,20 @@
 /* eslint-disable react/display-name */
 import React, {
-  Component, CSSProperties, forwardRef, isValidElement, LegacyRef, ReactNode,
+  Component, CSSProperties, forwardRef, isValidElement, LegacyRef, ReactNode, createRef,
 } from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import { Icon } from '../index';
 
-export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | HTMLInputElement> {
+export interface FieldProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement | HTMLInputElement>, 'value' | 'defaultValue'> {
   border?: boolean; // 是否显示边框
   leftIcon?: string | ReactNode; // 左侧图标
   fieldType?: 'normal' | 'password' | 'textarea'; // 普通输入框、密码输入框、多行输入框
   leftStyle?: CSSProperties; // 左边图标样式
-  // placeholder?: string; // 输入框占位提示文字
   maxLength?: number; // 输入的最大字符数
   status?: 'error'; // 是否将输入内容标红
   autosize?: boolean; // 是否自适应内容高度，只对 textarea 有效
+  defaultValue?: string | number;
   value?: string | number; // 输入框内容
   visibilityToggle?: boolean; // 是否显示切换的小眼睛，只对密码输入框有效
   onChange?: React.ChangeEventHandler<HTMLInputElement>; // 输入框内容变化时触发
@@ -24,17 +24,23 @@ export interface FieldProps extends React.HTMLAttributes<HTMLTextAreaElement | H
   type?: string;
   disabled?: boolean;
   isResize?: boolean;
+  size?: 'default' | 'md' | 'sm';
+  rows?: number;
+  isClear?: boolean;
 }
 
 export interface FieldState {
-  value: string | number;
+  innerValue: string | number;
   type: string;
-  focus: boolean;
+  focus?: boolean;
   eyesOpen: boolean;
-  textHeight: number;
+  textHeight?: number;
+  hasClear?: boolean;
 }
 
 class Field extends Component<FieldProps, FieldState> {
+  public TextareaRef = createRef<HTMLTextAreaElement>();
+
   constructor(props: FieldProps) {
     super(props);
     // 劫持value
@@ -45,34 +51,80 @@ class Field extends Component<FieldProps, FieldState> {
       defaultValue,
     } = props;
     this.state = {
-      value: value || defaultValue,
+      innerValue: value || defaultValue || '',
       type: fieldType === 'password' ? 'password' : type,
+      hasClear: false,
+      eyesOpen: false,
+      focus: false,
+      textHeight: undefined,
     };
+  }
+
+  componentDidMount() {
+    this.getTextareaHeight();
   }
 
   componentDidUpdate(prevProps: FieldProps) {
     const { value } = this.props;
     if (value !== prevProps.value) {
       this.setState({
-        value: typeof value === 'undefined' ? '' : value,
+        innerValue: typeof value === 'undefined' ? '' : value,
       });
+      if (value) {
+        this.getTextareaHeight(value);
+      }
     }
+  }
+
+  getTextareaHeight = (val: string | number = '') => {
+    const { autosize, forwardedRef, fieldType } = this.props;
+    const { innerValue } = this.state;
+    if (autosize && fieldType === 'textarea' && (val || innerValue)) {
+      const temRef: any = forwardedRef || this.TextareaRef;
+      if (temRef.current) {
+        this.setState({ textHeight: temRef.current?.scrollHeight });
+      }
+    }
+  }
+
+  handleDelete = () => {
+    this.setState({ innerValue: '' });
   }
 
   renderField = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
-      fieldType = 'normal', prefixCls, style, className, border, status, leftIcon = fieldType === 'password' && 'password', leftStyle, visibilityToggle = true, maxLength, showWordLimit, autosize, onChange, onBlur, onFocus, forwardedRef, isResize = true, ...rest
+      fieldType = 'normal',
+      prefixCls,
+      style,
+      className,
+      border,
+      status,
+      leftIcon = fieldType === 'password' && 'password',
+      leftStyle,
+      visibilityToggle = true,
+      maxLength,
+      showWordLimit,
+      autosize,
+      onChange,
+      onBlur,
+      onFocus,
+      forwardedRef,
+      isResize = true,
+      size = 'default',
+      isClear = false,
+      ...rest
     } = this.props;
     const {
-      value, type, focus, eyesOpen, textHeight,
+      innerValue, type, focus, eyesOpen, textHeight, hasClear,
     } = this.state;
 
     const prefix = getPrefixCls('field', prefixCls);
     const mainClass = classNames(prefix, className, {
       [`${prefix}-${fieldType}`]: fieldType,
+      [`${prefix}-${size}`]: size,
       [`${prefix}-border`]: border,
       [`${prefix}-error`]: status === 'error',
-      [`${prefix}-focus`]: border && (focus || value),
+      [`${prefix}-focus`]: border && (focus || innerValue),
       [`${prefix}-showWordLimit`]: fieldType === 'textarea' && maxLength && showWordLimit,
     });
 
@@ -95,7 +147,7 @@ class Field extends Component<FieldProps, FieldState> {
     };
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
-      this.setState({ value: e.target.value });
+      this.setState({ innerValue: e.target.value });
       if (autosize && fieldType === 'textarea') {
         this.setState({ textHeight: e.target.scrollHeight });
       }
@@ -107,17 +159,24 @@ class Field extends Component<FieldProps, FieldState> {
     if (fieldType === 'textarea') {
       return (
         <div className={mainClass} style={style}>
-          <textarea
-            {...rest}
-            maxLength={maxLength}
-            value={value}
-            onChange={handleChange}
-            style={{ height: autosize ? textHeight : 'unset', resize: (isResize ? 'auto' : 'none') as any }}
-            ref={forwardedRef as LegacyRef<HTMLTextAreaElement>}
-          />
+          <div className={`${prefix}-textarea-container`}>
+            {leftIcon && (
+            <span className={`${prefix}-textarea-icon`} style={leftStyle}>
+              {isValidElement(leftIcon) ? leftIcon : <Icon type={leftIcon as string} />}
+            </span>
+            )}
+            <textarea
+              {...rest}
+              maxLength={maxLength}
+              value={innerValue}
+              onChange={handleChange}
+              style={{ height: autosize ? textHeight : 'unset', resize: (isResize ? 'auto' : 'none') as any }}
+              ref={forwardedRef as LegacyRef<HTMLTextAreaElement> || this.TextareaRef}
+            />
+          </div>
           {maxLength && showWordLimit && (
             <div className={`${prefix}-word-limit`}>
-              {value ? value.length : 0}
+              {innerValue ? innerValue.toString().length : 0}
               /
               {maxLength || 0}
             </div>
@@ -127,7 +186,20 @@ class Field extends Component<FieldProps, FieldState> {
     }
 
     return (
-      <div className={mainClass} style={style}>
+      <div
+        className={mainClass}
+        style={style}
+        onMouseOver={() => {
+          if (isClear && innerValue) {
+            this.setState({ hasClear: true });
+          }
+        }}
+        onMouseLeave={() => {
+          if (hasClear && isClear) {
+            this.setState({ hasClear: false });
+          }
+        }}
+      >
         {leftIcon && (
           <span className={`${prefix}-left-icon`} style={leftStyle}>
             {isValidElement(leftIcon) ? leftIcon : <Icon type={leftIcon as string} />}
@@ -136,7 +208,7 @@ class Field extends Component<FieldProps, FieldState> {
         <input
           {...rest}
           maxLength={maxLength}
-          value={value}
+          value={innerValue}
           type={type}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -145,7 +217,12 @@ class Field extends Component<FieldProps, FieldState> {
         />
         {visibilityToggle && fieldType === 'password' && (
           <span className={`${prefix}-right-icon`}>
-            <Icon type={eyesOpen ? 'eye-open' : 'eye-colose'} onClick={handleEye} />
+            <Icon type={eyesOpen ? 'preview-open-line' : 'preview-close-line'} onClick={handleEye} />
+          </span>
+        )}
+        {fieldType === 'normal' && hasClear && (
+          <span onClick={this.handleDelete} className={`${prefix}-right-icon`}>
+            <Icon type="close1-surface" />
           </span>
         )}
       </div>
