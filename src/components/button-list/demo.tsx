@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonList } from "../index";
+import { ButtonList, Icon, Checkbox } from "../index";
 import "./styles/index";
 import "../icon/styles/index";
 
@@ -34,8 +34,34 @@ const Demo = () => {
     },
   ];
 
+  const list = [
+    {
+      name: '文字',
+      icon: 'setting-line',
+    },
+    {
+      name: '文字',
+      icon: 'setting-line',
+    },
+    {
+      name: '文字',
+      icon: 'setting-line',
+    },
+    {
+      name: '文字',
+      icon: 'setting-line',
+    },
+    {
+      name: '文字',
+      icon: <Icon type="setting-line" style={{ fontSize: 24 }} />,
+    },
+  ];
+
   return (
     <div style={{ backgroundColor: "rgba(0,0,0,0.02)", margin: "0 -12px" }}>
+      <ButtonList
+        buttonList={buttonList.slice(1)}
+      />
       <ButtonList
         iconButtonList={iconList.slice(0, 1)}
         buttonList={buttonList}
@@ -50,6 +76,20 @@ const Demo = () => {
         iconButtonList={iconList.slice(0, 3)}
         buttonList={buttonList}
       />
+
+    <div style={{ height: 20 }} />
+      <ButtonList
+        type='text'
+        leftText={<div style={{ display: 'flex', alignItems: 'center' }}>
+          <Checkbox>全选</Checkbox>
+          <div style={{ color: '#A6A8A9', marginLeft: 12 }}>已选 0单位</div>
+        </div>}
+        buttonList={buttonList.slice(1)}
+      />
+
+      <ButtonList.Actions list={list.slice(0, 3)} style={{ margin: '24px 0px' }} />
+      <ButtonList.Actions list={list.slice(0,4)} style={{ margin: '24px 0px' }} />
+      <ButtonList.Actions list={list} style={{ margin: '24px 0px' }} />
     </div>
   );
 };
