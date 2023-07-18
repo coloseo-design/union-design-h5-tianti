@@ -1,16 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import classNames from 'classnames';
-import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
 export interface CurrentItemProps {
   value: string;
-  icon?: string | React.ReactNode;
   prefixCls?: string;
   current?: any;
-  isExpand?: boolean;
-  onExpand?: (value: string) => void;
   onChange?: (value: string) => void;
   itemValue?: string;
   dropItemStyle?: React.CSSProperties;
@@ -18,13 +14,6 @@ export interface CurrentItemProps {
 }
 
 class CurrentItem extends React.Component<CurrentItemProps> {
-  handleExpan = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    const { current, onExpand } = this.props;
-    onExpand && onExpand(`${current.value}`);
-  }
-
   handleSelect = () => {
     const { current, onChange } = this.props;
     onChange && onChange(current.value);
@@ -34,10 +23,7 @@ class CurrentItem extends React.Component<CurrentItemProps> {
     const {
       prefixCls,
       current,
-      // children,
-      isExpand,
       itemValue,
-      icon,
       dropItemStyle = {},
       activeColor,
     } = this.props;
@@ -56,43 +42,8 @@ class CurrentItem extends React.Component<CurrentItemProps> {
           }}
           onClick={this.handleSelect}
         >
-          <div>
-            {icon
-              && (
-              <span style={{ paddingRight: 12 }}>
-                {React.isValidElement(icon) ? icon : <img src={`${icon}` || ''} style={{ width: 16 }} alt="icon" />}
-              </span>
-              )}
-            {current && current.text}
-          </div>
-          {current && current.card
-            && (
-            <div
-              style={{
-                width: 22,
-                height: 22,
-                borderRadius: '50%',
-                border: '2px solid rgba(0,0,0,0.65)',
-                textAlign: 'center',
-              }}
-            >
-              <Icon
-                type={isExpand ? 'up' : 'down'}
-                style={{
-                  fontSize: 18,
-                  marginTop: isExpand ? -3 : 1,
-                  fontWeight: 'bold',
-                  color: 'rgba(0,0,0,0.65)',
-                  textAlign: 'center',
-                }}
-                onClick={this.handleExpan}
-              />
-            </div>
-            )}
+          {current?.text}
         </div>
-        {current.card && isExpand && (
-          <div className={`${wrapper}-inner-card`}>{current.card}</div>
-        )}
       </div>
     );
   }

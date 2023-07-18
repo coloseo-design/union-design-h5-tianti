@@ -36,22 +36,20 @@ export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLElement>, 'va
 }
 
 export interface DropdownItemState {
-  expandKeys: string[];
   selectedValue: string;
   visible: boolean;
   transitionEnd: boolean;
-  onlyid: string;
+  onlyId: string;
 }
 
 class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState> {
   constructor(props: DropdownItemProps) {
     super(props);
     this.state = {
-      expandKeys: [],
       selectedValue: props.value || '',
       visible: false,
       transitionEnd: false,
-      onlyid: uuid(),
+      onlyId: uuid(),
     };
   }
 
@@ -65,18 +63,19 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
   componentDidUpdate(preProps: DropdownItemProps) {
     const { value, toggle } = this.props;
     const { changeParentState, getNodeLocation } = this.context;
-    const { onlyid } = this.state;
+    const { onlyId } = this.state;
     if (value !== preProps.value) {
       this.setState({ selectedValue: value || '' });
     }
     if (toggle !== preProps.toggle) {
       if (toggle) {
-        changeParentState({ currentTargetId: onlyid });
+        changeParentState({ currentTargetId: onlyId });
         this.setState({ visible: true });
         getNodeLocation();
       } else {
         this.setState({ transitionEnd: true });
-        setTimeout(() => {
+        const time = setTimeout(() => {
+          clearTimeout(time);
           this.setState({ transitionEnd: false, visible: false });
         }, 300);
       }
@@ -104,17 +103,6 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     this.bodyClick();
   }
 
-  onExpand = (value: string) => {
-    const { expandKeys } = this.state;
-    let list = expandKeys;
-    if (expandKeys.indexOf(value) >= 0 || expandKeys.indexOf(`${value}`) >= 0) {
-      list = expandKeys.filter((i: string | number) => i !== value);
-    } else {
-      list.push(value);
-    }
-    this.setState({ expandKeys: list });
-  }
-
   handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { children } = this.props;
     if (children) {
@@ -130,17 +118,18 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       getNodeLocation, changeParentState, currentTargetId,
     } = this.context;
     const { toggle, onClick, disabled } = this.props;
-    const { visible, onlyid } = this.state;
+    const { visible, onlyId } = this.state;
     if (typeof toggle !== 'undefined') {
       onClick && onClick(e);
     } else if (!disabled && !toggle) {
-      if (visible && currentTargetId === onlyid) {
+      if (visible && currentTargetId === onlyId) {
         this.setState({ transitionEnd: true });
-        setTimeout(() => {
+        const time = setTimeout(() => {
+          clearTimeout(time);
           this.setState({ transitionEnd: false, visible: false });
         }, 300);
       } else {
-        changeParentState({ currentTargetId: onlyid });
+        changeParentState({ currentTargetId: onlyId });
         this.setState({ visible: true });
         getNodeLocation();
       }
@@ -166,14 +155,14 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
     const { toggle } = this.props;
     if (typeof toggle === 'undefined') {
       this.setState({ transitionEnd: true });
-      setTimeout(() => {
+      const time = setTimeout(() => {
+        clearTimeout(time);
         this.setState({ visible: false, transitionEnd: false });
       }, 300);
     }
   }
 
   renderCurrent = (data: Option[] | any) => {
-    const { expandKeys } = this.state;
     const { dropItemStyle } = this.props;
     const { activeColor } = this.context;
     const { selectedValue } = this.state;
@@ -183,9 +172,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
           <div key={index}>
             <CurrentItem
               {...item}
-              isExpand={(expandKeys || []).some((i: string) => `${i}` === `${item.value}`)}
               current={item}
-              onExpand={this.onExpand}
               onChange={this.handleChange}
               itemValue={selectedValue}
               dropItemStyle={dropItemStyle}
@@ -207,14 +194,14 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       ...rest
     } = this.props;
     const {
-      selectedValue, visible, transitionEnd, onlyid,
+      selectedValue, visible, transitionEnd, onlyId,
     } = this.state;
     const renderValue = () => {
       const current = options?.find((item: Option) => item.value === selectedValue);
       return current ? current.text : '';
     };
 
-    const omitRest = omit(rest, ['onChange']);
+    const omitRest = omit(rest, ['onChange', 'toggle']);
     return (
       <DropDownMenuContext.Consumer>
         {({
@@ -227,10 +214,10 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
             [`${wrapper}-hidden`]: transitionEnd && visible,
           });
           const menuItem = classNames(`${dropWrapper}-item`);
-          const itemPreix = getPrefixCls('dropdown-item', prefixCls);
-          const itemcontainter = classNames(itemPreix, {
-            [`${itemPreix}-show`]: visible,
-            [`${itemPreix}-hidden`]: transitionEnd && visible,
+          const itemPrefix = getPrefixCls('dropdown-item', prefixCls);
+          const itemContainer = classNames(itemPrefix, {
+            [`${itemPrefix}-show`]: visible,
+            [`${itemPrefix}-hidden`]: transitionEnd && visible,
           });
 
           return (
@@ -238,11 +225,11 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
               <div
                 className={classNames(menuItem, {
                   [`${dropWrapper}-item-disabled`]: disabled,
-                  [`${dropWrapper}-item-select`]: visible && selectedValue && currentTargetId === onlyid,
+                  [`${dropWrapper}-item-select`]: visible && selectedValue && currentTargetId === onlyId,
                 })}
                 title={title || renderValue()}
                 onClick={this.handleInput}
-                id={onlyid}
+                id={onlyId}
               >
                 <span
                   className={`${dropWrapper}-item-text`}
@@ -251,14 +238,14 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
                   {title || renderValue()}
                 </span>
                 <Icon
-                  type={visible && currentTargetId === onlyid ? 'up' : 'down'}
+                  type={visible && currentTargetId === onlyId ? 'up2-line' : 'down2-line'}
                   className={`${menuItem}-icon`}
                 />
               </div>
-              {visible && currentTargetId === onlyid
+              {visible && currentTargetId === onlyId
                 && (
                 <div
-                  className={itemcontainter}
+                  className={itemContainer}
                   style={{
                     top: direction === 'down' ? top : 0,
                     left: 0,
