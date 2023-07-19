@@ -13,7 +13,7 @@ export default () => {
     {
       key: '1',
       title: '标签1',
-      taskNum: 99,
+      taskNum: 100,
     },
     {
       key: '2',
@@ -95,7 +95,7 @@ export default () => {
           tabStyle={{ position: 'sticky', top: 0, zIndex: 10, display: visible ? 'none' : 'block' }}
         >
           {tabsData.map((item) => (
-            <Tab.Item key={item.key} taskNum={item.taskNum}>
+            <Tab.Item key={item.key} title={item.title} taskNum={item.taskNum}>
               <h2 id={item.title}>{item.title}</h2>
               <div style={{ padding: 12 }}>
                 {content}

@@ -161,7 +161,7 @@ export default [
         key: 'card',
       },
       {
-        title: 'ApproveCard 审批卡片',
+        title: 'ApproveCard 审批详情',
         key: 'approve-card',
       },
       {
