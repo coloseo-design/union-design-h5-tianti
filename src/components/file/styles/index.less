@@ -8,7 +8,7 @@
   display: flex;
   flex-flow: row nowrap;
   overflow: hidden;
-
+  background-color: #fff;
   &>.@{file}-icon,
   &>.@{file}-opt {
     flex-shrink: 0;
@@ -68,6 +68,30 @@
 
     &>*+* {
       margin-left: 16px;
+    }
+  }
+  &-text {
+    height: 60px;
+    align-items: center;
+    padding-right: 8px;
+    &>.@{file}-icon {
+      width: 24px;
+      height: 24px;
+      &>* {
+        width: 18px;
+        height: 20px;
+      }
+    }
+    &>.@{file}-content {
+      &>.@{file}-name {
+        font-size: 14px;
+        white-space: wrap;
+        line-height: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
+        -webkit-box-orient: vertical;
+      }
     }
   }
 }

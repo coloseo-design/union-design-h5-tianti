@@ -37,6 +37,7 @@ export type FileProps = {
   onClose?: () => void;
   btnList?: { name: string; onClick: () => void }[];
   iconRender?: (name: string, icon: ReactNode | undefined) => ReactNode;
+  type?: 'default' |'text';
 };
 
 const File = React.memo<FileProps>((props) => {
@@ -49,17 +50,23 @@ const File = React.memo<FileProps>((props) => {
     onClose,
     btnList = [],
     iconRender,
+    type = 'default',
   } = props ?? {};
   const getPrefixClass = useGetPrefixClass("file");
   const classnames = useClassNames();
   const icon = iconRender ? iconRender(name ?? "", handleIcon(name)) : handleIcon(name);
 
   return (
-    <div className={classnames(getPrefixClass(), className)} style={style}>
+    <div
+      className={classnames(getPrefixClass(), {
+        [`${getPrefixClass()}-${type}`]: type === 'text',
+      }, className)}
+      style={style}
+    >
       <div className={getPrefixClass("icon")}>{icon}</div>
       <div className={getPrefixClass("content")}>
         <div className={getPrefixClass("name")}>{name}</div>
-        <div className={getPrefixClass("desc")}>{desc}</div>
+        {type === 'default' && <div className={getPrefixClass("desc")}>{desc}</div>}
       </div>
       <div className={getPrefixClass("opt")}>
         {btnList.map((item) => (
