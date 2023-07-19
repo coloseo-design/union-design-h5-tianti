@@ -149,6 +149,10 @@ export default [
     themeColor: '#D6386B',
     children: [
       {
+        title: 'Title 表头',
+        key: 'title',
+      },
+      {
         title: 'File 文件',
         key: 'file',
       },

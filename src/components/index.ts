@@ -80,3 +80,5 @@ export { default as NumberKeyBoard } from './number-key-board';
 export { default as PullRefresh } from './pull-refresh';
 export { default as Calendar } from './calendar';
 export { default as ApproveCard } from './approve-card';
+
+export { default as Title } from './title';

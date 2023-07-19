@@ -1,0 +1,31 @@
+@import '../../style/themes/index';
+
+@title: ~'@{uni-prefix}-title';
+
+.@{title} {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 52px;
+  padding: 0px 16px;
+  background-color: #fff;
+  font-size: 14px;
+  &-left {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: #1C1D1D;
+    &-icon {
+      margin-right: 4px;
+    }
+  }
+  &-md {
+    height: 34px;
+    font-size: 12px;
+    font-weight: 400;
+    .@{title}-left {
+      line-height: 16px;
+      color: #A6A8A9;
+    }
+  }
+}
