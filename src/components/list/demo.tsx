@@ -1,18 +1,9 @@
-import React from 'react';
-import { List, Icon, Button } from '../index';
+import React, { useState } from 'react';
+import { List, Icon, Button, Checkbox, Radio } from '../index';
 import './styles/index';
 import '../button/styles/index';
 import '../icon/styles/index';
 
-const containerStyle = {
-  width: 377,
-  height: 548,
-  backgroundColor: '#fafafa',
-  padding: 10,
-  overflow: 'scroll',
-  borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
-};
 const listDemo = () => {
   const { Item } = List;
   const data = [
@@ -94,6 +85,8 @@ const listDemo = () => {
   </div>,
     },
   ];
+  const [checks, setCheck] = useState<string[]>([]);
+
   return (
     <div>
       <h1>基础列表</h1>
@@ -108,6 +101,37 @@ const listDemo = () => {
             <Item.Avatar size={24} shape="square" style={{ backgroundColor: 'gray' }} />
             <Item.Content>
               <Item.Title>{item.name}</Item.Title>
+            </Item.Content>
+          </Item>
+        )}
+      />
+      <h1>大列表</h1>
+      <List
+        dataSource={data}
+        size="lg"
+        itemLayout="vertical"
+        className="list-test"
+        renderItem={(item, index) => (
+          <Item
+            arrow={index === data.length - 1 ? <Button size="small">按钮</Button> : 'arrow'}
+            style={{ alignItems: 'center' }}
+            onClick={() => {
+              if (checks.includes(item.name)) {
+                setCheck(checks.filter((i) => item.name !== i));
+              } else {
+                checks.push(item.name);
+                setCheck([...checks]);
+              }
+            }}
+            className="item-test"
+          >
+            <Item.CheckType className="check-test">
+              <Checkbox checked={checks.includes(item.name)} />
+            </Item.CheckType>
+            <Item.Avatar className='avatar-test' size={24} shape="square" style={{ backgroundColor: 'gray' }} />
+            <Item.Content className="content-test">
+              <Item.SubTitle className='subtitle-test'>{item.subtitle}</Item.SubTitle>
+              <Item.Title className='title-test'>{item.name}</Item.Title>
             </Item.Content>
           </Item>
         )}
@@ -204,7 +228,7 @@ const listDemo = () => {
           dataSource={data2}
           renderItem={(item) => (
             <Item>
-              <Item.Avatar size={48} text="永民" />
+              <Item.Avatar size={32} text="永民" />
               <Item.Content>
                 <Item.SubTitle>{item.subtitle}</Item.SubTitle>
                 <Item.Title style={{ marginTop: 16 }}>{item.title}</Item.Title>

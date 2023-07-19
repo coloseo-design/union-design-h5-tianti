@@ -13,6 +13,7 @@ subtitle: 列表
 |renderItem|渲染列表项|(item, index) => ReactNode| --||
 |style|list样式| object| --||
 |className|list类名|string|--|--|
+|size|list 大小|'default'\|'lg'|'default'|--|
 
 
 
@@ -40,6 +41,8 @@ list.item的内容 (可以传style， className)
 list.item的内容标题(可以传style， className)
 ### List.Item.SubTitle
 list.item的内容小标题(可以传style， className)
+### List.Item.CheckType
+list.item的内容的radio或者checkbox位置(可以传style， className)
 
 
 

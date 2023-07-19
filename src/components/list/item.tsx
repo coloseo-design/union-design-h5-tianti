@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import classNames from 'classnames';
@@ -10,7 +11,6 @@ const ListItemContext = React.createContext<{
   icon?: React.ReactNode;
   extra?: React.ReactNode;
   arrow?: 'arrow' | React.ReactNode;
-  isLast?: boolean;
   onIconClick?:(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
     }>({});
 
@@ -21,7 +21,6 @@ export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode;
   extra?: React.ReactNode;
   arrow?: 'arrow' | React.ReactNode;
-  isLast?: boolean;
   /* 点击右侧箭头事件 */
   onIconClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
 }
@@ -44,6 +43,8 @@ class ListItem extends React.Component<ListItemProps> {
 
   static SubTitle: (props: React.HTMLAttributes<HTMLDivElement>) => JSX.Element;
 
+  static CheckType: (props: React.HTMLAttributes<HTMLDivElement>) => JSX.Element;
+
   renderListItem = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
@@ -52,15 +53,14 @@ class ListItem extends React.Component<ListItemProps> {
       icon,
       extra,
       arrow,
-      isLast,
+      className,
       onIconClick,
-      style = {},
       ...rest
     } = this.props;
-    const prex = getPrefixCls('list-item', prefixCls);
-    const itemStyle = classNames(prex);
+    const prefix = getPrefixCls('list-item', prefixCls);
+    const itemStyle = classNames(prefix, className);
     return (
-      <div {...rest} className={itemStyle} style={{ borderBottom: isLast ? 'none' : '1px solid #EEF0F0', ...style }}>
+      <div {...rest} className={itemStyle}>
         <ListItemContext.Provider
           value={{
             icon,
@@ -84,11 +84,19 @@ class ListItem extends React.Component<ListItemProps> {
     );
   }
 }
+const CheckType = (props: React.HTMLAttributes<HTMLDivElement>) => {
+  const { children, className, ...rest } = props;
+  const getPrefixClass = useGetPrefixClass('list-item-check');
+  return (
+    <div {...rest} className={classNames(getPrefixClass(), className)}>{children}</div>
+  );
+};
 
 const Avatar = (props: AvatarProps) => {
   const {
     style, size, text, src, children,
     shape = 'circle',
+    className,
     ...rest
   } = props;
   const width = size || 32;
@@ -111,7 +119,7 @@ const Avatar = (props: AvatarProps) => {
   return (
     <span
       {...rest}
-      className={getPrefixClass()}
+      className={classNames(getPrefixClass(), className)}
       style={avaStyle}
     >
       {src ? (
@@ -122,24 +130,25 @@ const Avatar = (props: AvatarProps) => {
 };
 
 const Title = (props: React.HTMLAttributes<HTMLDivElement>) => {
-  const { children, ...rest } = props;
+  const { children, className, ...rest } = props;
   const getPrefixClass = useGetPrefixClass('list-item-content-title');
   return (
-    <div {...rest} className={getPrefixClass()}>{children}</div>
+    <div {...rest} className={classNames(getPrefixClass(), className)}>{children}</div>
   );
 };
 
 const SubTitle = (props: React.HTMLAttributes<HTMLDivElement>) => {
-  const { children, ...rest } = props;
+  const { children, className, ...rest } = props;
   const getPrefixClass = useGetPrefixClass('list-item-content-subtitle');
   return (
-    <div {...rest} className={getPrefixClass()}>{children}</div>
+    <div {...rest} className={classNames(getPrefixClass(), className)}>{children}</div>
   );
 };
 
 const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const {
     children,
+    className,
     ...rest
   } = props;
   const {
@@ -163,7 +172,7 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       {...rest}
-      className={getPrefixClass()}
+      className={classNames(getPrefixClass(), className)}
     >
       <div style={contentStyle}>
         <div>{children}</div>
@@ -172,7 +181,7 @@ const Content = (props: React.HTMLAttributes<HTMLDivElement>) => {
       {arrow
       && (
       <>
-        {arrow === 'arrow' ? <Icon type="right" onClick={handleClick} style={{ fontSize: '1.125em', color: '#646566' }} /> : arrow}
+        {arrow === 'arrow' ? <Icon type="right2-line" onClick={handleClick} style={{ fontSize: '16px', color: '#646566' }} /> : arrow}
       </>
       )}
     </div>
@@ -183,5 +192,6 @@ ListItem.Avatar = Avatar;
 ListItem.Content = Content;
 ListItem.Title = Title;
 ListItem.SubTitle = SubTitle;
+ListItem.CheckType = CheckType;
 
 export default ListItem;

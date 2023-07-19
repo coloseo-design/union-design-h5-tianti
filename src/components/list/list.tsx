@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { Fragment } from 'react';
+import classNames from 'classnames';
 import ListItem from './item';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
@@ -9,7 +10,7 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   dataSource?: any[];
   itemLayout?: 'vertical' | 'horizontal';
   renderItem?: (item: any, index: number) => React.ReactNode;
-  style?: React.CSSProperties;
+  size?: 'default' | 'lg';
 }
 
 const defaultRender = () => null;
@@ -23,26 +24,30 @@ class List extends React.Component<ListProps> {
       dataSource,
       itemLayout,
       renderItem = defaultRender,
-      style,
+      size = 'default',
+      className,
       ...rest
     } = this.props;
-    const prex = getPrefixCls('list', prefixCls);
+    const prefix = getPrefixCls('list', prefixCls);
+    const mainCls = classNames(prefix, {
+      [`${prefix}-${size}`]: size === 'lg',
+    }, className);
     return (
-      <div {...rest} className={prex} style={style}>
+      <div {...rest} className={mainCls}>
         {(dataSource || []).map((item, index) => {
           const renderResult = renderItem(item, index);
           if (React.isValidElement(renderResult)) {
-            React.cloneElement(renderResult, { itemLayout });
+            React.cloneElement<any>(renderResult, { itemLayout });
           }
           return (
-            <div key={index}>
+            <Fragment key={index}>
               {React.isValidElement(renderResult)
-                ? React.cloneElement(renderResult,
+                ? React.cloneElement<any>(renderResult,
                   {
-                    itemLayout, isLast: dataSource && index === dataSource.length - 1,
+                    itemLayout,
                   })
                 : renderResult}
-            </div>
+            </Fragment>
           );
         })}
       </div>
