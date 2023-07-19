@@ -23,6 +23,7 @@ subtitle: 文件
 | onClose     | close 图标点击事件  | () => void    |        |
 | btnList     | 按钮组              | Btn[]         |        |
 | iconRender  | 自定义图标|(name:string,icon?:ReactNode)=>ReactNode|        |
+|type|file 类型，type='text'展示文本模式|'default'\|'text'|'default'|
 
 ### Btn
 

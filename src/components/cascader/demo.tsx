@@ -4,17 +4,9 @@ import { Option } from '../picker/type';
 import './styles/index';
 import '../button/styles/index';
 
-const containerStyle = {
-  width: 377,
-  height: 548,
-  backgroundColor: '#fafafa',
-  padding: 10,
-  overflow: 'scroll',
-  borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
-};
 const CascaderDemo = () => {
   const [visible, setVisible] = useState(false);
+  const [visible1, setVisible1] = useState(false);
   const options: Option[] = [
     {
       title: '四川省',
@@ -177,7 +169,75 @@ const CascaderDemo = () => {
         },
       ],
     },
+    {
+      title: '重庆市',
+      key: '重庆市',
+      value: '重庆市',
+      children: [
+        {
+          title: '九龙区',
+          key: '九龙区',
+          value: '九龙区',
+          children: [
+            {
+              title: '菜坪坝',
+              key: '菜坪坝',
+              value: '菜坪坝',
+            }
+          ],
+        },
+        {
+          title: '黔江县',
+          key: '黔江县',
+          value: '黔江县',
+          children: [
+            {
+              title: '黔江镇',
+              key: '黔江镇',
+              value: '黔江镇',
+            },
+            {
+              title: '某某镇',
+              key: '某某镇',
+              value: '某某镇',
+            },
+          ],
+        },
+        {
+          title: '秀山县',
+          key: '秀山县',
+          value: '秀山县',
+          children: [
+            {
+              title: '清溪镇',
+              key: '清溪镇',
+              value: '清溪镇',
+            }
+          ],
+        },
+      ],
+    },
+    {
+      title: '湖南省',
+      value: '湖南省',
+      key: '湖南省',
+      children: [
+        {
+          title: '长沙市',
+          value: '长沙市',
+          key: '长沙市',
+          children: [
+            {
+              title: '凤凰区',
+              value: '凤凰区',
+              key: '凤凰区',
+            }
+          ],
+        }
+      ],
+    }
   ];
+  const data = Array.from({ length: 8 }).map((_, k) => k);
   return (
     <div>
       <Button onClick={() => setVisible(true)}>打开</Button>
@@ -189,6 +249,27 @@ const CascaderDemo = () => {
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
         visibleItemCount={6}
+      />
+      <h2>带有标签的级联选择器</h2>
+      <Button onClick={() => setVisible1(true)}>打开</Button>
+      <Cascader
+        titles={['请选择']}
+        headers={['类目1', '类目2', '类目3']}
+        visible={visible1}
+        options={options}
+        value={['重庆市', '黔江县', '黔江镇']}
+        onChange={(value) => console.log('values', value)}
+        onOk={() => setVisible1(false)}
+        onCancel={() => setVisible1(false)}
+        visibleItemCount={6}
+        extra={<div style={{ padding: 16, borderBottom: '10px solid rgb(245, 246, 246)'}}>
+          <div style={{ color: '#A6A8A9', fontSize: 12 }}>热门标签</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 16, gap: 12 }}>
+            {data.map((item) => (
+              <Button key={item}>标签</Button>
+            ))}
+          </div>
+        </div>}
       />
     </div>
   );

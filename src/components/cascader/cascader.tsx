@@ -14,6 +14,8 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
     options,
     visibleItemCount = 6,
     value,
+    extra,
+    headers = [],
   } = props;
 
   const { getPrefixCls } = useContext(ConfigContext);
@@ -28,12 +30,22 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
   ), [titleCls, titles]);
   return (
     <Popup
-      header={Title}
+      header={titles ? Title : '请选择'}
       visible={visible}
       position="bottom"
       onCancel={onCancel}
       onOk={onOk}
     >
+      {extra}
+      {headers && headers?.length > 0 && (
+      <div className={`${prefix}-headers`}>
+        {(headers || []).map((item, key) => (
+          <div key={key} className={`${prefix}-headers-item`}>
+            {item}
+          </div>
+        ))}
+      </div>
+      )}
       <div className={prefix}>
         <CascaderPicker
           options={options}

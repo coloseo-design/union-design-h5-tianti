@@ -166,7 +166,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
 
     const footerButton = (
       <>
-        <Button style={{ marginRight: '2em' }} block onClick={this.cancel}>{cancelText || '取消'}</Button>
+        <Button style={{ marginRight: 12 }} block onClick={this.cancel}>{cancelText || '取消'}</Button>
         <Button type="primary" onClick={this.ok} block>{okText || '确认'}</Button>
       </>
     );
