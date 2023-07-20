@@ -12,8 +12,6 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 export interface Option {
   text: string;
   value: string;
-  icon?: React.ReactNode | string;
-  card?: string | React.ReactNode;
 }
 
 export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLElement>, 'value'|'onChange'> {

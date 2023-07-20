@@ -36,5 +36,3 @@ toc: false
 | --- | --- | --- | --- | --- |
 | value| 标识符 | string|  |  |
 |text| 文字 | string|   |   |
-|icon|左侧图标或图片链接| ReactNode 或者string |  |  |
-|card|其他信息|string ｜ reactNode|   |   |
