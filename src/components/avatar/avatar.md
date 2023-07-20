@@ -15,3 +15,4 @@ subtitle: 头像
 | type        | 头像类型             |                                                                      |            |      |
 | text        | 文本                 |  string                                                                    |            |      |
 | src        | 图片类头像的资源地址或者图片元素      |  string `|` React.ReactNode                          |            |      |
+| close        | 头像右上角是否展示关闭图标      |  boolean                          |     false       |      |

@@ -2,19 +2,10 @@ import React from 'react';
 import { Avatar } from '../index';
 import './styles/index';
 
-const containerStyle = {
-  width: 377,
-  height: 548,
-  backgroundColor: '#fafafa',
-  padding: 10,
-  overflow: 'scroll',
-  borderRadius: 12,
-  boxShadow: '#ebedf0 0 4px 12px',
-};
 const AvatarDemo = () => (
   <div>
-    <Avatar>姓名</Avatar>
-    <Avatar style={{ marginLeft: 100 }} size={48}>姓名</Avatar>
+    <Avatar close>姓名</Avatar>
+    <Avatar style={{ marginLeft: 100 }} close size={48}>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} size={64}>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} size={96}>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} size={128}>姓名</Avatar>

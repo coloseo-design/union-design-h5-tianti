@@ -22,6 +22,7 @@ export interface BaseAvatarProps extends HTMLAttributes<HTMLElement> {
   type?: "success" | "error" | "info";
   icon?: string;
   iconColor?: string;
+  close?: boolean;
 }
 
 class Avatar extends React.Component<BaseAvatarProps> {
@@ -55,6 +56,22 @@ class Avatar extends React.Component<BaseAvatarProps> {
     );
   };
 
+  getClose = (prefix: string) => {
+    const { size = 32 } = this.props;
+    const w = size < 32 ? 10 : Math.ceil(size / 2);
+    return (
+      <div
+        className={`${prefix}-close`}
+        style={{
+          width: w - 2,
+          height: w - 2,
+        }}
+      >
+        <Icon type="close1-surface" style={{ fontSize: w - 2 }} />
+      </div>
+    );
+  }
+
   renderAvatar = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
@@ -66,6 +83,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
       type,
       src,
       icon,
+      close,
     } = this.props;
 
     const prefix = getPrefixCls("avatar-mobile", prefixCls);
@@ -73,7 +91,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
     const clazzName = classNames(
       prefix,
       {
-        [`${prefix}-badge`]: type || icon,
+        [`${prefix}-badge`]: type || icon || close,
       },
       className
     );
@@ -100,6 +118,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
       >
         {srcNode || text || children}
         {(type || icon) && this.getBadge(prefix)}
+        {close && this.getClose(prefix)}
       </span>
     );
   };
