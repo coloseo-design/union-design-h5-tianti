@@ -1,10 +1,11 @@
 /* eslint-disable camelcase */
 import React, { CSSProperties, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import omit from 'omit.js';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import { CollapseProps, expandIconProps } from './collapse';
 
-export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
+export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
     header?:React.ReactNode;
     // key?:number;
     onChange?:(show:boolean) => void;
@@ -51,10 +52,10 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       header,
       className,
       children,
-      style: styles,
       expandIcon,
       extra,
       currentKey,
+      ...rest
     } = this.props;
     const { show, accordion } = this.state;
     const prefix = getPrefixCls('collapse-item-mobile', prefixCls);
@@ -69,8 +70,9 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
     const headerClass = classNames(`${prefix}-header`, {
       [`${prefix}-header-accordion`]: accordion,
     });
+    const omitRest = omit(rest, ['onChange']);
     return (
-      <div className={wrapper} style={{ ...styles }}>
+      <div {...omitRest} className={wrapper}>
         <div className={headerClass} onClick={this.headClick}>
           {
             expandIcon?.({ isActive: show, key: currentKey, header })
