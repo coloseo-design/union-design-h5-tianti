@@ -21,7 +21,8 @@ subtitle: 折叠面板
 | defaultActiveKey | 初始化选中面板的 key | number | - |
 | onChange | 切换面板的回调 | (value:number \| undefined, show:boolean) => void | - |
 | accordion | 手风琴模式 | boolean | false |
-| expandIcon | 自定义图标 | (value: { isActive: boolean }) => React.ReactNode | Icon |
+| expandIcon | 自定义图标 | (value: { isActive: boolean, key, header }) => React.ReactNode | Icon |
+| size | 折叠面板 大小类型 | 'default'\|'md' | 'default' |
 
 ## Collapse.Panel API
 
@@ -30,4 +31,4 @@ subtitle: 折叠面板
 | key | 当前面板的 key | number | - |
 | header | 当前面板的头内容 | React.ReactNode | - |
 | extra | 当前面板的头右侧额外内容 | (value: { isActive: boolean }) => React.ReactNode | - |
-| expandIcon | 自定义图标 | (value: { isActive: boolean }) => React.ReactNode | Icon |
+| expandIcon | 自定义图标 | (value: { isActive: boolean, key, header }) => React.ReactNode | Icon |

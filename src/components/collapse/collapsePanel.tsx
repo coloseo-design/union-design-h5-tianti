@@ -16,6 +16,7 @@ export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLElement>, 'o
     extra?: (data: expandIconProps) => React.ReactNode;
     show?: boolean;
     accordion?: boolean;
+    currentKey?: number | string;
 }
 
 export interface CollapsePanelState {
@@ -32,11 +33,6 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       accordion: props.accordion || false,
     };
   }
-
-  // UNSAFE_componentWillMount() {
-  //   const { show = false, accordion = false } = { ...this.props };
-  //   this.setState({ show, accordion });
-  // }
 
   headClick = () => {
     const { show } = this.state;
@@ -58,10 +54,11 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       style: styles,
       expandIcon,
       extra,
+      currentKey,
     } = this.props;
     const { show, accordion } = this.state;
     const prefix = getPrefixCls('collapse-item-mobile', prefixCls);
-    const clazzName = classNames(prefix, className);
+    const wrapper = classNames(prefix, className);
     const contentClass = classNames(`${prefix}-content`, {
       [`${prefix}-content-active`]: show,
       [`${prefix}-content-visibility`]: !show,
@@ -73,18 +70,20 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       [`${prefix}-header-accordion`]: accordion,
     });
     return (
-      <div className={clazzName} style={{ ...styles }}>
-        <div className={headerClass} onClick={this.headClick} style={{ padding: accordion ? 16 : '16px 16px 16px 31px' }}>
+      <div className={wrapper} style={{ ...styles }}>
+        <div className={headerClass} onClick={this.headClick}>
           {
-            expandIcon?.({ isActive: show })
+            expandIcon?.({ isActive: show, key: currentKey, header })
           }
-          {header}
-          <span className={`${prefix}-header-extra`}>
-            {extra?.({ isActive: show })}
-          </span>
+          <div className={`${prefix}-header-title`}>
+            {header}
+            <span className={`${prefix}-header-extra`}>
+              {extra?.({ isActive: show, key: currentKey, header })}
+            </span>
+          </div>
         </div>
         <div className={contentClass}>
-          <div className={boxClass} style={{ padding: accordion ? '10px 19px' : '10px 10px 10px 31px' }}>{ children }</div>
+          <div className={boxClass} style={{ padding: accordion ? '10px 18px' : '10px 0px 0px 20px' }}>{ children }</div>
         </div>
       </div>
     );
