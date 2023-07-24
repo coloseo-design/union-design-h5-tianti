@@ -26,7 +26,7 @@ const ToastDemo = () => {
       <Button onClick={() => Toast.info({ icon: 'success', content: '最多展示两行最多展示两行最多展示两行最多展示两行' })}>自定义提示</Button>
       <Button onClick={() => Toast.info({ icon: 'success', content: '最多展示两行最多展示两行最多展示两行最多展示两行', vertical: false })}>自定义提示</Button>
 
-      <Button onClick={() => Toast.loading({ content: 'loading' })}>加载提示</Button>
+      <Button onClick={() => Toast.loading({ content: 'loading', loadingSize: 64 })}>加载提示</Button>
       <Button onClick={() => Toast.hide()}>关闭</Button>
     </div>
   )

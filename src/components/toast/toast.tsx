@@ -24,6 +24,8 @@ export interface BaseToastProps extends React.HTMLAttributes<HTMLSpanElement> {
   icon?: string | ReactNode;
   // loading类型
   loadingType?: 'spinner' | 'circular';
+
+  loadingSize?: number;
   // 是否垂直排列图标和文字内容
   vertical?: boolean;
   // 设置mask 样式
@@ -60,6 +62,7 @@ class Toast extends Component<BaseToastProps, ToastState> {
       loadingType,
       vertical,
       maskStyle,
+      loadingSize,
       ...rest
     } = this.props;
 
@@ -71,8 +74,8 @@ class Toast extends Component<BaseToastProps, ToastState> {
 
     const OmitRest = Omit(rest, ['duration']);
     const iconMapping = {
-      info: icon ? (isValidElement(icon) ? icon : <Icon type={icon} />) : '',
-      loading: <Loading type={loadingType} color="#fff" />,
+      info: icon ? (isValidElement(icon) ? icon : <Icon type={icon as string} />) : '',
+      loading: <Loading type={loadingType} size={loadingSize} color="#fff" />,
     };
 
     return (
