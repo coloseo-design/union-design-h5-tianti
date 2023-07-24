@@ -5,24 +5,32 @@ export default [
     themeColor: '#D1373D',
     children: [
       {
-        title: 'Button 按钮',
-        key: 'button',
+        title: 'List 列表',
+        key: 'list',
       },
       {
-        title: 'ButtonList 按钮列表',
-        key: 'button-list',
+        title: 'Title 表头',
+        key: 'title',
+      },
+      {
+        title: 'Button 按钮',
+        key: 'button',
       },
       {
         title: 'Icon 图标',
         key: 'icon',
       },
-      // {
-      //   title: 'Typography 文字排版',
-      //   key: 'typography',
-      // },
       {
         title: 'Search 搜索',
         key: 'search',
+      },
+      {
+        title: 'GridLayout 宫格',
+        key: 'grid-layout',
+      },
+      {
+        title: 'Collapse 折叠面板',
+        key: 'collapse',
       },
     ],
   },
@@ -59,24 +67,20 @@ export default [
         key: 'tabbar',
       },
       {
-        title: 'IndexBar 索引栏',
-        key: 'index-bar',
-      },
-      {
-        title: 'DropdownMenu 下拉菜单',
-        key: 'dropdown-menu',
-      },
-      {
-        title: 'Steps 步骤条',
-        key: 'steps',
-      },
-      {
         title: 'NavBar 导航栏',
         key: 'nav-bar',
       },
       {
-        title: 'GridLayout 宫格',
-        key: 'grid-layout',
+        title: 'IndexBar 索引栏',
+        key: 'index-bar',
+      },
+      {
+        title: 'ButtonList 按钮列表',
+        key: 'button-list',
+      },
+      {
+        title: 'DropdownMenu 下拉菜单',
+        key: 'dropdown-menu',
       },
     ],
   },
@@ -86,32 +90,32 @@ export default [
     themeColor: '#3B5ED9',
     children: [
       {
-        title: 'Uploader 文件上传',
-        key: 'uploader',
+        title: 'Form 表单',
+        key: 'form',
       },
       {
-        title: 'Cascader 级联选择',
-        key: 'cascader',
+        title: 'Switch 开关',
+        key: 'switch',
       },
       {
-        title: 'DatePicker 日期选择',
-        key: 'date-picker',
-      },
-      {
-        title: 'TimePicker 时间选择',
-        key: 'time-picker',
-      },
-      {
-        title: 'Calendar 日历',
-        key: 'calendar',
+        title: 'Steps 步骤条',
+        key: 'steps',
       },
       {
         title: 'Field 输入框',
         key: 'field',
       },
       {
-        title: 'Switch 开关',
-        key: 'switch',
+        title: 'Calendar 日历',
+        key: 'calendar',
+      },
+      {
+        title: 'Checkbox 选择器',
+        key: 'checkbox',
+      },
+      {
+        title: 'Radio 单项选择器',
+        key: 'radio',
       },
       {
         title: 'Slider 滑动输入条',
@@ -121,9 +125,22 @@ export default [
         title: 'Picker 基础选择器',
         key: 'picker',
       },
+
       {
-        title: 'Form 表单',
-        key: 'form',
+        title: 'DatePicker 日期选择',
+        key: 'date-picker',
+      },
+      {
+        title: 'TimePicker 时间选择',
+        key: 'time-picker',
+      },
+      {
+        title: 'Uploader 文件上传',
+        key: 'uploader',
+      },
+      {
+        title: 'Cascader 级联选择',
+        key: 'cascader',
       },
       {
         title: 'NumberKeyBoard 数字键盘',
@@ -133,14 +150,6 @@ export default [
         title: 'ActionSheet 上拉菜单',
         key: 'action-sheet',
       },
-      {
-        title: 'Radio 单项选择器',
-        key: 'radio',
-      },
-      {
-        title: 'Checkbox 选择器',
-        key: 'checkbox',
-      },
     ],
   },
   {
@@ -148,10 +157,6 @@ export default [
     key: 'components',
     themeColor: '#D6386B',
     children: [
-      {
-        title: 'Title 表头',
-        key: 'title',
-      },
       {
         title: 'File 文件',
         key: 'file',
@@ -181,18 +186,6 @@ export default [
         key: 'avatar',
       },
       {
-        title: 'Collapse 折叠面板',
-        key: 'collapse',
-      },
-      {
-        title: 'List 列表',
-        key: 'list',
-      },
-      {
-        title: 'Popover 气泡卡片',
-        key: 'pop-over',
-      },
-      {
         title: 'Tag 标签',
         key: 'tag',
       },
@@ -216,32 +209,24 @@ export default [
     themeColor: '#5C57F2',
     children: [
       {
-        title: 'InfiniteScroll 无限滚动',
-        key: 'infinite-scroll',
-      },
-      {
         title: 'Capsule 胶囊',
         key: 'capsule',
       },
       {
-        title: 'SwipeCell 滑动单元格',
-        key: 'swipe-cell',
-      },
-      {
-        title: 'Dialog 对话框',
-        key: 'dialog',
+        title: 'Overlay 遮罩',
+        key: 'overlay',
       },
       {
         title: 'Popup 弹出层',
         key: 'popup',
       },
       {
-        title: 'NoticeBar 通知栏',
-        key: 'notice-bar',
+        title: 'Dialog 对话框',
+        key: 'dialog',
       },
       {
-        title: 'Overlay 遮罩',
-        key: 'overlay',
+        title: 'Toast 轻提示',
+        key: 'toast',
       },
       {
         title: 'Loading 加载中',
@@ -252,12 +237,24 @@ export default [
         key: 'skeleton',
       },
       {
+        title: 'NoticeBar 通知栏',
+        key: 'notice-bar',
+      },
+      {
+        title: 'Popover 气泡卡片',
+        key: 'pop-over',
+      },
+      {
         title: 'PullRefresh 下拉刷新',
         key: 'pull-refresh',
       },
       {
-        title: 'Toast 轻提示',
-        key: 'toast',
+        title: 'SwipeCell 滑动单元格',
+        key: 'swipe-cell',
+      },
+      {
+        title: 'InfiniteScroll 无限滚动',
+        key: 'infinite-scroll',
       },
     ],
   },
