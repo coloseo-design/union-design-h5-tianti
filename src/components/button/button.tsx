@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  useContext, useEffect, useState, ForwardRefRenderFunction,
+} from 'react';
 import omit from 'omit.js';
 import classNames from 'classnames';
 import { ConfigContext } from '../config-provider/context';
@@ -7,7 +9,10 @@ import {
   AnchorButtonProps, ButtonProps, ButtonSize, NativeButtonProps,
 } from './type';
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const Button: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
+  props: ButtonProps,
+  ref,
+) => {
   const { getPrefixCls } = useContext(ConfigContext);
   const ButtonSizeMap: {
     [key: ButtonSize[number]]: string;
@@ -26,7 +31,6 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     block = false,
     // ghost,
     prefixCls: customizedPrefixCls,
-    forwardedRef,
     onClick: onClickFromProps,
     loading: loadingFromProps = false,
     ...rest
@@ -68,7 +72,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
         className={classes}
         href={linkButtonRestProps.href}
         onClick={onClick}
-        ref={forwardedRef as React.ForwardedRef<HTMLAnchorElement>}
+        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
       >
         {iconElement}
         <span>{children}</span>
@@ -85,7 +89,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
       type={htmlType}
       className={classes}
       onClick={onClick}
-      ref={forwardedRef as React.ForwardedRef<HTMLButtonElement>}
+      ref={ref as React.ForwardedRef<HTMLButtonElement>}
     >
       {iconElement}
       <span>{children}</span>
@@ -93,4 +97,4 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   );
 };
 
-export default Button;
+export default React.forwardRef(Button);

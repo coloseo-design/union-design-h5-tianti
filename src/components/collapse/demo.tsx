@@ -56,7 +56,7 @@ const renderCollapse = (data: any[]) => data.map((item) => {
 });
 
 const CollapseDemo = () => (
-  <div>
+  <div style={{ margin: '0px -12px'}}>
     <h2>基础用法</h2>
     <Collapse activeKey={1} onChange={(a, b) => { console.log(a, b); }}>
       <Panel header="一级列表样式" key={1}>

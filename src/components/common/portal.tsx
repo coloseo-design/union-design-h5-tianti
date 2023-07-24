@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 export interface PortalProps extends HTMLAttributes<HTMLDivElement> {
   getPopupContainer?: () => HTMLElement | null;
+  isFull?: boolean;
 }
 
 class Portal extends React.Component<PortalProps> {
@@ -10,6 +11,7 @@ class Portal extends React.Component<PortalProps> {
 
   static defaultProps = {
     getPopupContainer: () => document.body,
+    isFull: true,
   }
 
   constructor(props: PortalProps) {
@@ -20,7 +22,9 @@ class Portal extends React.Component<PortalProps> {
     this.root.style.top = '0';
     this.root.style.left = '0';
     this.root.style.width = '100%';
-    this.root.style.height = '100%';
+    if (props.isFull) {
+      this.root.style.height = '100%';
+    }
   }
 
   componentDidMount() {
