@@ -48,7 +48,7 @@ const FormDemo = () => {
           name="login"
           ref={ref}
           initialValues={{
-            username: 'admin',
+            // username: 'admin',
             // password: '123456',
           }}
         >
@@ -59,6 +59,7 @@ const FormDemo = () => {
           >
             <Field
               placeholder="请输入用户名称"
+              border
               leftIcon={<Icon type="user" style={{ color: '#A6A8A9', fontSize: '1.5em' }} />}
             />
           </Form.FormItem>

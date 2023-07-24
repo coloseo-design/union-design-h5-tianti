@@ -31,7 +31,7 @@ NoticeBar.close(id?: string);
 | leftIcon         | 左边图标                            | ReactNode                                                             | -      |
 | rightIcon        | 右边图标                            | ReactNode                                                             | -      |
 | text             | 通知栏内容                          | string                                                                | -      |
-| type             | 通知栏类型                          | 'base' \| 'grey' \| 'success' \| 'error' \| 'warning' \| 'supplement' | 'base' |
+| type             | 通知栏类型                          | 'base' \| 'grey' \| 'success' \| 'error' \| 'warning' \| 'main'\| 'supplement' | 'base' |
 | multiline        | 是否显示多行文本                    | boolean                                                               | false  |
 | style            | 样式                                | CSSProperties                                                         | -      |
 | className        | 样式                                | string                                                                | -      |
@@ -40,4 +40,4 @@ NoticeBar.close(id?: string);
 | rightIconOnClick | 右边图标点击事件                    | () => void                                                            | -      |
 | zIndex | 弹窗层级                    | number                                                           | -      |
 | duration | 自动关闭的延时，单位秒。设为 0 时不自动关闭                    | number                                                           | -      |
-|container|弹窗位置容器|() =>  HTMLElement | null|() => document.body|
+|container|弹窗位置容器|() =>  HTMLElement \| null|() => document.body|

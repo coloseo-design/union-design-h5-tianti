@@ -25,9 +25,10 @@
 .@{notice-bar}-success,
 .@{notice-bar}-error,
 .@{notice-bar}-warning,
+.@{notice-bar}-main,
 .@{notice-bar}-supplement {
     font-size: 14px;
-    min-height: 40px;
+    min-height: 35px;
     line-height: 20px;
     display: flex;
     flex-flow: row nowrap;
@@ -38,10 +39,13 @@
     & > .@{notice-bar-right-icon} {
         position: relative;
         padding: 0 8px;
-        font-size: 20px;
+        font-size: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    & > .@{notice-bar-right-icon}{
+        padding: 0px 8px 0px 12px;
     }
 
     & > .@{notice-bar-left-icon} {
@@ -89,87 +93,30 @@
 
 .@{notice-bar}-warning,
 .@{notice-bar}-base {
-    background-color: rgb(253, 244, 227);
+    background-color: #FFF2EB;
     color: #ED6A0C;
 }
 
 .@{notice-bar}-grey {
-    background-color: rgb(246, 246, 246);
+    background-color: #EEF0F0;
     color: #646566;
 }
 
-.@{notice-bar}-warning {
-    & > .@{notice-bar-left-icon} {
-        &::after {
-            border: 1px solid #ED6A0C;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #ED6A0C;
-        }
-
-        & > span {
-            position: relative;
-            color: rgb(253, 244, 227);
-        }
-    }
-}
-
 .@{notice-bar}-success {
-    background-color: rgb(238, 248, 240);
-    color: #07C160;
-
-    & > .@{notice-bar-left-icon} {
-        &::after {
-            border: 1px solid #07C160;
-        }
-
-        & > span {
-            transform: scale(0.6);
-        }
-    }
+    background-color: #EBFFF3;
+    color: #02A851;
 }
 
 .@{notice-bar}-error {
-    background-color: rgb(252, 235, 236);
-    color: #EE0A24;
-
-    & > .@{notice-bar-left-icon} {
-        &::after {
-            border: 1px solid #EE0A24;
-        }
-
-        & > span {
-            transform: scale(0.6);
-        }
-    }
+    background-color: #FFEBEF;
+    color: #CA0118;
+}
+.@{notice-bar}-main {
+    background-color: #EBF4FF;
+    color: #3C81F0;
 }
 
 .@{notice-bar}-supplement {
     background-color: rgb(238, 240, 244);
     color: #576B95;
-
-    & > .@{notice-bar-left-icon} {
-        &::after {
-            border: 1px solid #576B95;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #576B95;
-        }
-
-        & > span {
-            position: relative;
-            transform: rotate(180deg);
-            color: rgb(238, 240, 244);
-        }
-    }
 }

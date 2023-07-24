@@ -185,7 +185,7 @@ const FormItem: React.FC<FormItemProps> = (props: FormItemProps) => {
       {transformedChildren}
       {hasError ? (
         <div className={errorLabelClassName}>
-          <Icon type="exclamation-circle" />
+          <Icon type="close1-surface" />
           {error}
         </div>
       ) : null}

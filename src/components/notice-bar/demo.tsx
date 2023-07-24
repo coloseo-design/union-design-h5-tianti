@@ -117,6 +117,15 @@ const Demo = () => (
     </button>
     <button
       type="button"
+      onClick={() => NoticeBar.main({
+        duration: 0,
+        text: '这是正文这是正文这是正文这是正文这是正文这是正文',
+      })}
+    >
+      主要通知
+    </button>
+    <button
+      type="button"
       onClick={() => NoticeBar.supplement({
         text: '这是正文这是正文这是正文这是正文这是正文这是正文',
       })}

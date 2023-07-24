@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { BaseComponent, BaseProps } from '../common/base-component';
 import Icon from '../icon';
 
-export type NoticeBarType = 'base' | 'grey' | 'success' | 'error' | 'warning' | 'supplement';
+export type NoticeBarType = 'base' | 'grey' | 'success' | 'error' | 'warning' | 'main' | 'supplement';
 
 export type NoticeBarConf = BaseProps<{
   /** 通知栏唯一标识 用于关闭指定的通知栏 */
@@ -111,25 +111,31 @@ export default class NoticeBar {
   static success = (conf: NoticeBarConf) => NoticeBar.open({
     ...conf,
     type: 'success',
-    leftIcon: <Icon type="checkout" />,
+    leftIcon: <Icon type="check1-line" />,
   });
 
   static error = (conf: NoticeBarConf) => NoticeBar.open({
     ...conf,
     type: 'error',
-    leftIcon: <Icon type="close" />,
+    leftIcon: <Icon type="close1-line" />,
   });
 
   static warning = (conf: NoticeBarConf) => NoticeBar.open({
     ...conf,
     type: 'warning',
-    leftIcon: <Icon type="exclamation-circle" />,
+    leftIcon: <Icon type="attention1-line" />,
   });
+
+  static main = (conf: NoticeBarConf) => NoticeBar.open({
+    ...conf,
+    type: 'main',
+    leftIcon: <Icon type="info-line" />,
+  })
 
   static supplement = (conf: NoticeBarConf) => NoticeBar.open({
     ...conf,
     type: 'supplement',
-    leftIcon: <Icon type="exclamation-circle" />,
+    leftIcon: <Icon type="info-line" />,
   });
 
   static grey = (conf: NoticeBarConf) => NoticeBar.open({ ...conf, type: 'grey' });
