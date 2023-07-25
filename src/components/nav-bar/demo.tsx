@@ -9,7 +9,7 @@ import '../divider/styles/index';
 
 const NavDemo = () => {
   return (
-    <div style={{ background: 'rgb(245, 246, 246)'}}>
+    <div style={{ background: 'rgb(245, 246, 246)', margin: '0px -12px'}}>
       <NavBar.Header
         icon={<Avatar size={32} text="姓名" />}
         title="姓名"
@@ -39,6 +39,7 @@ const NavDemo = () => {
         title="标题"
         style={{ marginBottom: 32 }}
         onRightClick={() => { console.log('111right'); }}
+        closeable
       />
         <NavBar
         leftArrow
@@ -83,37 +84,7 @@ const NavDemo = () => {
         style={{ marginBottom: 32 }}
         rightText={<Capsule />}
       />
-      <Divider style={{ margin: '32px 0px' }}>第三方应用导航</Divider>
-      {/* <NavBar
-        title="栏目标题"
-        style={{ marginBottom: 32 }}
-      />
-      <Divider style={{ margin: '32px 0px' }}>一级栏目标题</Divider>
-      <NavBar
-        title="栏目标题"
-        icon={(
-          <div style={{
-            width: 16, height: 16, backgroundColor: '#C8CCCC', borderRadius: 3,
-          }}
-          />
-        )}
-        typeSize="sm"
-        style={{ marginBottom: 32 }}
-      />
-      <Divider style={{ margin: '32px 0px' }}>二级栏目标题</Divider>
-      <NavBar
-        title="栏目标题"
-        icon={(
-          <div style={{
-            width: 16, height: 16, backgroundColor: '#C8CCCC', borderRadius: 3,
-          }}
-          />
-        )}
-        showBackTitle
-        typeSize="xs"
-        style={{ marginBottom: 32 }}
-      /> */}
-
+      <NavBar title="标题文字" style={{ marginBottom: 32 }} />
     </div>
   );
 };

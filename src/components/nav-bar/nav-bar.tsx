@@ -37,7 +37,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
     onRightClick,
     rightTextColor,
     titleStyle = {},
-    closeable = true,
+    closeable,
     ...rest
   } = props;
 

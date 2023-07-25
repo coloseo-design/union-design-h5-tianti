@@ -7,33 +7,24 @@
   width: 100%;
   font-size: 16px;
   display: flex;
-  justify-content: space-between;
   background-color: @navbar-bg;
   align-items: center;
   height: 44px;
   padding: 0px 8px;
   color: @navbar-text-color;
   font-weight: 400;
+  position: relative;
   &-left {
     display: flex;
     align-items: center;
+    position: absolute;
+    left: 8px;
     &-icon {
       font-size: 20px;
-      // vertical-align: middle;
     }
     white-space: nowrap;
   }
-  &-home {
-    justify-content: center;
-    min-height: 2.125em;
-    &-content {
-      height: 0.3125em;
-      background: @navbar-home-bg;
-      border-radius: 6.25em;
-      width: 40%;
-      margin-top: 0.625em;
-    }
-  }
+
   &-header {
     height: 60px;
     color: #1C1D1D;
@@ -57,6 +48,8 @@
     height: 100%;
     max-width: 75%;
     align-items: center;
+    text-align: center;
+    margin: 0 auto;
     &-name {
       flex: 1;
       overflow: hidden;
@@ -66,7 +59,8 @@
     }
   }
   &-right {
-    flex: 0 0 auto;
+    position: absolute;
+    right: 8px;
     display: flex;
     align-items: center;
   }
