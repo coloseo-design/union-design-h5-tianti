@@ -62,7 +62,7 @@ const StepsDemo = () => {
       <Steps>
         <Step title="发起人" dotColor="#02A851">
           <UserCard
-            icon="checkout"
+            icon="check1-surface"
             name="姚开瑞"
             date="YYYY-MM-DD 12:00"
             status="已发起"
@@ -71,7 +71,7 @@ const StepsDemo = () => {
         </Step>
         <Step title="部门预算管理员" dotColor="#CA0118">
           <UserCard
-            icon="close"
+            icon="close1-surface"
             name="姚开瑞"
             date="YYYY-MM-DD 12:00"
             status="已驳回"
@@ -89,7 +89,7 @@ const StepsDemo = () => {
         </Step>
         <Step title="完结" dotColor="#ED6A0C">
           <UserCard
-            icon="more"
+            icon="more1-surface"
             name="姚开瑞"
             date="YYYY-MM-DD 12:00"
             status="暂办"

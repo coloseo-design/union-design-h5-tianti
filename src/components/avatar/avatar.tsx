@@ -29,7 +29,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
   getBadge = (prefix: string) => {
     const { type, size = 32, icon, iconColor } = this.props;
     // const w = size <= 32 ? 10 : Math.ceil(size / 3.3) - 2;
-    const w = size < 32 ? 10 : Math.ceil(size / 2);
+    const w = size < 32 ? 10 : Math.ceil(size / 2.3);
     const iconType = icon
       ? icon
       : type === "success"
@@ -38,9 +38,33 @@ class Avatar extends React.Component<BaseAvatarProps> {
       ? "close1-surface"
       : "more1-surface";
 
+      const typeMap: any = { // 兼容以前的写法和icon
+        'check1-surface': 'success',
+        'close1-surface': 'error',
+        'more1-surface': 'info',
+      };
+    if (icon && !typeMap[icon]) {
+      return (
+        <div
+          className={`${prefix}-sub ${prefix}-sub-${type}`}
+          style={{
+            width: w - 2,
+            height: w - 2,
+            backgroundColor: iconColor,
+          }}
+        >
+          <Icon
+            type={iconType}
+            style={{ fontSize: w - 4 }}
+          />
+        </div>
+      );
+    }
     return (
       <div
-        className={`${prefix}-sub ${prefix}-sub-${type}`}
+        className={classNames(`${prefix}-sub`, {
+          [` ${prefix}-sub-${type || typeMap[icon as string]}`]: type || typeMap[icon as string]
+        })}
         style={{
           width: w - 2,
           height: w - 2,
