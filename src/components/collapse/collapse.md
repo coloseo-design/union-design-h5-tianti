@@ -12,8 +12,9 @@ subtitle: 折叠面板
 对复杂区域进行分组和隐藏，保持页面的整洁。
 
 手风琴 是一种特殊的折叠面板，只允许单个内容区域展开。
+## API
 
-## Collapse API
+### Collapse
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- | --- |
@@ -24,7 +25,7 @@ subtitle: 折叠面板
 | expandIcon | 自定义图标 | (value: { isActive: boolean, key, header }) => React.ReactNode | Icon |
 | size | 折叠面板 大小类型 | 'default'\|'md' | 'default' |
 
-## Collapse.Panel API
+### Collapse.Panel
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- | --- |

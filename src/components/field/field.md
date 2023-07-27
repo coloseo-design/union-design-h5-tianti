@@ -26,3 +26,4 @@ subtitle: 输入框
 | showWordLimit | 是否显示字数统计，需要设置maxLength属性 | boolean | - |  |
 | disabled | 是否可以输入 | boolean | - |  |
 |isResize|多行输入框textarea 是否可以拖动改变宽高|boolean|true|
+|size|输入框大小 在fieldType === 'normal'时生效|'default'\|'md'\|'sm'|'default'

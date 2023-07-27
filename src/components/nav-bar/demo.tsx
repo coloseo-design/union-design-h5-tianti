@@ -59,6 +59,7 @@ const NavDemo = () => {
       <Divider style={{ margin: '32px 0px' }}>自定义右按钮颜色标题导航</Divider>
       <NavBar
         leftArrow
+        leftText="返回"
         title="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
         rightText={<Icon style={{ fontSize: 16 }} type="more" />}
         style={{ marginBottom: 32 }}
