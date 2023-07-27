@@ -28,29 +28,27 @@ export interface BaseAvatarProps extends HTMLAttributes<HTMLElement> {
 class Avatar extends React.Component<BaseAvatarProps> {
   getBadge = (prefix: string) => {
     const { type, size = 32, icon, iconColor } = this.props;
-    const w = size <= 32 ? 10 : Math.ceil(size / 3.3) - 2;
+    // const w = size <= 32 ? 10 : Math.ceil(size / 3.3) - 2;
+    const w = size < 32 ? 10 : Math.ceil(size / 2);
     const iconType = icon
       ? icon
       : type === "success"
-      ? "checkout"
+      ? "check1-surface"
       : type === "error"
-      ? "close"
-      : "more";
+      ? "close1-surface"
+      : "more1-surface";
 
     return (
       <div
         className={`${prefix}-sub ${prefix}-sub-${type}`}
         style={{
-          backgroundColor: iconColor,
-          width: w,
-          height: w,
-          verticalAlign: "middle",
-          display: "inline-block",
+          width: w - 2,
+          height: w - 2,
         }}
       >
         <Icon
           type={iconType}
-          style={{ fontSize: w - 2, display: "block", marginTop: 1 }}
+          style={{ fontSize: w - 2, color: iconColor }}
         />
       </div>
     );
