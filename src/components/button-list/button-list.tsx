@@ -58,7 +58,7 @@ const ButtonList = React.memo<ButtonListProps>((props) => {
       {type === 'default' && iconButtonList.map((item) => (
         <div
           className={getPrefixClass("icon")}
-          key={`${uid++}`}
+          key={uid++}
           onClick={(item as any)?.onClick}
         >
           {React.isValidElement(item) ? (
@@ -73,7 +73,7 @@ const ButtonList = React.memo<ButtonListProps>((props) => {
       ))}
       {type === 'text' && leftText}
       {buttonList.map((item: any) => (
-        <div className={getPrefixClass("btn")} key={`${uid++}`}>
+        <div className={getPrefixClass("btn")} key={uid++}>
           {React.isValidElement(item) ? (
             item
           ) : (
