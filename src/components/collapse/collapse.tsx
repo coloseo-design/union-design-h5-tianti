@@ -59,6 +59,7 @@ class Collapse extends React.Component<CollapseProps> {
                 /** 自定义切换图标 */
                 expandIcon: expandIcon || expandIconT,
                 currentKey: key,
+                size,
                 ...item.props,
               };
               return <CollapsePanel {...props} />;

@@ -258,19 +258,4 @@ export default [
       },
     ],
   },
-  // {
-  //   title: '其他',
-  //   key: 'components',
-  //   themeColor: '#5C57F2',
-  //   children: [
-  //     {
-  //       title: 'Anchor 锚点',
-  //       key: 'anchor',
-  //     },
-  //     {
-  //       title: 'BackTop 回到顶部',
-  //       key: 'backTop',
-  //     },
-  //   ],
-  // },
 ];
