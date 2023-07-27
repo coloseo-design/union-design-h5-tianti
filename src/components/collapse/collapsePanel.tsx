@@ -70,7 +70,7 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
     const headerClass = classNames(`${prefix}-header`, {
       [`${prefix}-header-accordion`]: accordion,
     });
-    const omitRest = omit(rest, ['onChange']);
+    const omitRest = omit(rest, ['onChange', 'accordion', 'show']);
     return (
       <div {...omitRest} className={wrapper}>
         <div className={headerClass} onClick={this.headClick}>
@@ -84,9 +84,11 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
             </span>
           </div>
         </div>
+        {children && (
         <div className={contentClass}>
           <div className={boxClass} style={{ padding: accordion ? '10px 18px' : '10px 0px 0px 20px' }}>{ children }</div>
         </div>
+        )}
       </div>
     );
   };

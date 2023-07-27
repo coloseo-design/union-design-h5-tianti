@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactIcon, { BaseIconProps } from '@uni/icons-react';
+import ReactIcon, { BaseIconProps } from '@uni/icons-react-h5';
 
 export interface TransferLocale {
   icon: string;
@@ -14,13 +14,8 @@ export interface IconProps extends Pick<BaseIconProps, 'onClick'> {
 }
 
 const Icon = (props: Omit<IconProps, 'ref'>, ref: React.ForwardedRef<HTMLSpanElement>) => {
-  const { type, ...rest } = props;
-  if (type?.startsWith('loading')) {
-    Object.assign(rest, {
-      spin: true,
-    });
-  }
-  return <ReactIcon {...rest} ref={ref} name={type} />;
+  const { type = 'add', spin = false, ...rest } = props;
+  return <ReactIcon {...rest} spin={type?.startsWith('loading') ? true : spin} ref={ref} name={type} />;
 };
 
 export default React.forwardRef(Icon);

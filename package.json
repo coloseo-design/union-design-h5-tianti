@@ -21,7 +21,7 @@
     "demo": "npx gulp md"
   },
   "dependencies": {
-    "@uni/icons-react": "^2.0.3",
+    "@uni/icons-react-h5": "^1.0.1",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.7",

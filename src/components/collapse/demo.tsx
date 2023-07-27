@@ -13,18 +13,46 @@ const collData = [
       {
         key: '2',
         title: '二级内容',
+        children: [
+          {
+            key: '7',
+            title: '三级内容',
+            des: '我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容',
+          }
+        ],
       },
       {
         key: '3',
         title: '二级内容',
+        children: [
+          {
+            key: '7',
+            title: '三级内容',
+            des: '我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容',
+          }
+        ],
       },
       {
         key: '4',
         title: '二级内容',
+        children: [
+          {
+            key: '7',
+            title: '三级内容',
+            des: '我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容',
+          }
+        ],
       },
       {
         key: '5',
         title: '二级内容',
+        children: [
+          {
+            key: '7',
+            title: '三级内容',
+            des: '我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容',
+          }
+        ],
       },
       {
         key: '6',
@@ -48,9 +76,10 @@ const renderCollapse = (data: any[]) => data.map((item) => {
     extra={() => <Icon type="right" style={{ color: '#A6A8A9'}} />}
     key={item.key}
     header={item.title}
-    expandIcon={(isActive) => <Icon type={item.key === '7' ? 'time-line' : !isActive ? 'add3-line' : 'reduce3-line'} />}
+    expandIcon={({ isActive }) =>   {
+      return <Icon type={item.key === '7' ? 'time-line' : !isActive ? 'add3-line' : 'reduce3-line'} />
+    }}
   >
-    <span>{item.des || ''}</span>
     {item.children && item.children.length > 0 && child}
   </Panel>
 });

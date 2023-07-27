@@ -33,27 +33,27 @@ const Demo = () => {
           <h4>有边框</h4>
           <Field placeholder="内容标题" border isClear />
           <h4>有前置图标</h4>
-          <Field placeholder="内容标题" border leftIcon="edit-outline" />
+          <Field placeholder="内容标题" border leftIcon="edit2-surface" />
           <h4>错误状态无边框</h4>
-          <Field value="输入错误" leftIcon="edit-outline" status="error" />
+          <Field value="输入错误" leftIcon="edit2-surface" status="error" />
           <h4>错误状态无边框</h4>
-          <Field value="输入错误" border leftIcon="edit-outline" status="error" />
+          <Field value="输入错误" border leftIcon="edit2-surface" status="error" />
         </div>
         <h3>size=md</h3>
         <div style={{ background: '#fff' }}>
           <Field size="md" placeholder="内容标题" />
           <Field size="md" placeholder="内容标题" border />
-          <Field size="md" placeholder="内容标题" border leftIcon="edit-outline" />
-          <Field size="md" value="输入错误" leftIcon="edit-outline" status="error" />
-          <Field size="md" value="输入错误" border leftIcon="edit-outline" status="error" />
+          <Field size="md" placeholder="内容标题" border leftIcon="edit2-surface" />
+          <Field size="md" value="输入错误" leftIcon="edit2-surface" status="error" />
+          <Field size="md" value="输入错误" border leftIcon="edit2-surface" status="error" />
         </div>
         <h3>size=sm</h3>
         <div style={{ background: '#fff' }}>
           <Field size="sm" placeholder="内容标题" />
           <Field size="sm" placeholder="内容标题" border />
-          <Field size="sm" placeholder="内容标题" border leftIcon="edit-outline" />
-          <Field size="sm" value="输入错误" leftIcon="edit-outline" status="error" />
-          <Field size="sm" value="输入错误" border leftIcon="edit-outline" status="error" />
+          <Field size="sm" placeholder="内容标题" border leftIcon="edit2-surface" />
+          <Field size="sm" value="输入错误" leftIcon="edit2-surface" status="error" />
+          <Field size="sm" value="输入错误" border leftIcon="edit2-surface" status="error" />
         </div>
       </section>
   
@@ -75,7 +75,7 @@ const Demo = () => {
             fieldType="textarea"
             style={{ margin: '24px 0px' }}
             isResize={false}
-            leftIcon="edit-outline"
+            leftIcon="edit2-surface"
           />
           <Field
             style={{ margin: '24px 0px' }}

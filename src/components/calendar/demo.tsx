@@ -24,7 +24,7 @@ const CalendarDemo = () => {
     $val(`2022-${v}-15`);
   }
   return (
-    <div style={{ marginTop: 32 }}>
+    <div style={{ margin: '32px -12px' }}>
         <Button onClick={() => $mode('month')}>改变mode</Button>
         <h2>mode === 'week'</h2>
         <Calendar

@@ -99,7 +99,7 @@ class Field extends Component<FieldProps, FieldState> {
       className,
       border,
       status,
-      leftIcon = fieldType === 'password' && 'password',
+      leftIcon = fieldType === 'password' && 'lock1-surface',
       leftStyle,
       visibilityToggle = true,
       maxLength,
