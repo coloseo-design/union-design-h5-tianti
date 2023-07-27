@@ -78,7 +78,7 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
               return (
                 <Column
                   // eslint-disable-next-line react/no-array-index-key
-                  key={`${index}`}
+                  key={index}
                   data={option}
                   itemHeight={itemHeight}
                   index={selectedIndex >= 0 ? selectedIndex : 0}

@@ -47,8 +47,6 @@ export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
   bodyStyle?: React.CSSProperties;
   /* 弹出层header样式 */
   headerStyle?: React.CSSProperties;
-  /* 点击关闭按钮时触发 */
-  clickCloseIcon?: () => void;
   /* 自定义footer 或者不要footer */
   footer?: React.ReactNode | null,
   /* 是都全屏展示弹窗 */

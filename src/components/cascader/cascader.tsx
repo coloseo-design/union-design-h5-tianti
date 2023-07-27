@@ -24,7 +24,7 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
   const Title = useMemo(() => (
     <div className={titleCls}>
       {
-        (titles || []).map((item, key) => <div key={`${key}`} className={`${titleCls}-item`}>{item}</div>)
+        (titles || []).map((item, key) => <div key={key} className={`${titleCls}-item`}>{item}</div>)
       }
     </div>
   ), [titleCls, titles]);

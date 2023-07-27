@@ -28,6 +28,11 @@
     max-height: 0px;
     overflow-y: auto;
     border-radius: 0.75em;
+    &-basic {
+      .@{actionSheet}-content {
+        background-color: #fff;
+      }
+    }
     &-show {
       max-height: 80%;
       animation: maxHeightW 0.3s linear;
@@ -123,6 +128,7 @@
       border-top-right-radius: 0.75em;
       color: @main-action-color;
       font-size: 1em;
+      background-color: #fff;
     }
     &-upload, &-share {
       color: @text-color;

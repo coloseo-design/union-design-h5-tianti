@@ -91,6 +91,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
     [`${prefix()}-hidden`]: animationEnd && visible,
   });
   const wrapper = classNames(`${prefix()}-wrapper`, {
+    [`${prefix()}-wrapper-${type}`]: type,
     [`${prefix()}-wrapper-show`]: visible,
     [`${prefix()}-wrapper-hidden`]: animationEnd && visible,
   });
@@ -138,7 +139,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
     <>
       {data.map((option: any, index) => (
         <div
-          key={`${index}`}
+          key={index}
           className={`${containter}-inner-option`}
           onClick={handleSelect(option)}
           style={{
@@ -220,7 +221,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
                 <div className={content}>
                   {(options || []).map((option, index) => (
                     <div
-                      key={`${index}`}
+                      key={index}
                       className={optionStyle(option)}
                       onClick={handleSelect(option)}
                       style={{ color: option.color }}
@@ -232,7 +233,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
               )}
               {type === 'basic' && <div style={{ height: 10, backgroundColor: 'transparent' }} />}
               <div className={footer} onClick={handleCancel}>
-                <div style={{ borderTop: '1px solid #DBDDDD' }}>{cancelText || '取消'}</div>
+                <div>{cancelText || '取消'}</div>
               </div>
             </div>
           </div>

@@ -32,7 +32,7 @@ const Steps = React.memo<StepsProps>((props) => {
       {React.Children.map(children, (item: any, index: number) => (
         <Step
           {...item.props}
-          key={`${uid++}`}
+          key={uid++}
           isFirst={index === 0}
           isLast={index === len}
         />

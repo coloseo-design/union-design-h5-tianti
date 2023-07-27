@@ -71,7 +71,7 @@ const File = React.memo<FileProps>((props) => {
       <div className={getPrefixClass("opt")}>
         {btnList.map((item) => (
           <Button
-            key={`${uid++}`}
+            key={uid++}
             size="small"
             type="light"
             onClick={item.onClick}

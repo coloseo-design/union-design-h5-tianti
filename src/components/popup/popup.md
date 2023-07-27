@@ -28,7 +28,6 @@ subtitle: 弹出层
 | closeOnClickOverlay |	是否点击遮罩层关闭 |	boolean	|true|  |
 |style|	弹出层样式|	object|	--|  |
 |bodyStyle|	弹出层内容body样式|	object|	--|  |
-|clickCloseIcon |	点击关闭图标时触发	|() => void |	--|  |
 |headerStyle|	弹出层内容header样式|	object|	--|  |
 |footer|底部内容，默认两个button展示, 传值为null时不展示footer|React.Node\|null|--||
 |fullScreen|是否全屏展示弹窗，默认最大展示80%|boolean|false||
