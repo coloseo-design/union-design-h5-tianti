@@ -29,7 +29,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
   getBadge = (prefix: string) => {
     const { type, size = 32, icon, iconColor } = this.props;
     // const w = size <= 32 ? 10 : Math.ceil(size / 3.3) - 2;
-    const w = size < 32 ? 10 : Math.ceil(size * 0.375);
+    const w = size < 32 ? 12 : Math.ceil(size * 0.375);
     const iconType = icon
       ? icon
       : type === "success"
@@ -80,16 +80,16 @@ class Avatar extends React.Component<BaseAvatarProps> {
 
   getClose = (prefix: string) => {
     const { size = 32 } = this.props;
-    const w = size < 32 ? 10 : Math.ceil(size / 2);
+    const w = size < 24 ? 12 : Math.ceil(size / 2);
     return (
       <div
         className={`${prefix}-close`}
         style={{
-          width: w - 2,
-          height: w - 2,
+          width: w,
+          height: w,
         }}
       >
-        <Icon type="close1-surface" style={{ fontSize: w - 2 }} />
+        <Icon type="close1-surface" style={{ fontSize: w }} />
       </div>
     );
   }
