@@ -29,7 +29,7 @@ class Avatar extends React.Component<BaseAvatarProps> {
   getBadge = (prefix: string) => {
     const { type, size = 32, icon, iconColor } = this.props;
     // const w = size <= 32 ? 10 : Math.ceil(size / 3.3) - 2;
-    const w = size < 32 ? 10 : Math.ceil(size / 2.3);
+    const w = size < 32 ? 10 : Math.ceil(size * 0.375);
     const iconType = icon
       ? icon
       : type === "success"
@@ -48,14 +48,14 @@ class Avatar extends React.Component<BaseAvatarProps> {
         <div
           className={`${prefix}-sub ${prefix}-sub-${type}`}
           style={{
-            width: w - 2,
-            height: w - 2,
+            width: w,
+            height: w,
             backgroundColor: iconColor,
           }}
         >
           <Icon
             type={iconType}
-            style={{ fontSize: w - 4 }}
+            style={{ fontSize: w - 3 }}
           />
         </div>
       );
@@ -66,13 +66,13 @@ class Avatar extends React.Component<BaseAvatarProps> {
           [` ${prefix}-sub-${type || typeMap[icon as string]}`]: type || typeMap[icon as string]
         })}
         style={{
-          width: w - 2,
-          height: w - 2,
+          width: w,
+          height: w,
         }}
       >
         <Icon
           type={iconType}
-          style={{ fontSize: w - 2, color: iconColor }}
+          style={{ fontSize: w, color: iconColor }}
         />
       </div>
     );
