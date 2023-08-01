@@ -92,8 +92,11 @@ const Demo = () => {
             <Field
               placeholder="我来说几句"
               fieldType="textarea"
-              rows={2}
+              // rows={2}
+              autosize
               style={{ margin: '0px 12px', flex: 1 }}
+              showWordLimit maxLength={500}
+              value="输入内容三行时，输入内容三行时，输入内容三行时，输入内容三行时，输入内容三行时，输入内容三行时。"
             />
             <div style={{ color: '#F31D39', display: 'flex', alignItems: 'flex-end' }}>发布</div>
           </div>
