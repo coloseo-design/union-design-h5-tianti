@@ -49,11 +49,12 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
       <div className={prefix}>
         <CascaderPicker
           options={options}
-          itemHeight={itemHeight || 44}
+          itemHeight={itemHeight || 52}
           visibleItemCount={visibleItemCount || 6}
           renderItem={(item) => item.value}
           value={value}
           onChange={onChange}
+          getStartOffset={() => (itemHeight * (visibleItemCount - 1)) / 2 - (112 - 52)}
           // getStartOffset={() => 0}
         />
       </div>

@@ -237,7 +237,7 @@ const CascaderDemo = () => {
       ],
     }
   ];
-  const data = Array.from({ length: 8 }).map((_, k) => k);
+  const data = Array.from({ length: 4 }).map((_, k) => k);
   return (
     <div>
       <Button onClick={() => setVisible(true)}>打开</Button>
@@ -248,7 +248,7 @@ const CascaderDemo = () => {
         onChange={(value) => console.log('values', value)}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
-        visibleItemCount={6}
+        visibleItemCount={2}
       />
       <h2>带有标签的级联选择器</h2>
       <Button onClick={() => setVisible1(true)}>打开</Button>
@@ -257,7 +257,7 @@ const CascaderDemo = () => {
         headers={['类目1', '类目2', '类目3']}
         visible={visible1}
         options={options}
-        value={['重庆市', '黔江县', '黔江镇']}
+        value={['云南省', '曲靖市', '马龙区']}
         onChange={(value) => console.log('values', value)}
         onOk={() => setVisible1(false)}
         onCancel={() => setVisible1(false)}

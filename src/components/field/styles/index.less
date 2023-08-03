@@ -81,10 +81,7 @@
     background: inherit;
   }
 }
-.@{field-prefix-cls}-textarea-container {
-  display: flex;
-  flex: 1;
-}
+
 .@{field-prefix-cls}-textarea {
   height: unset;
   min-height: 32px;
@@ -93,7 +90,8 @@
   border-radius: 6px;
   font-size: 14px;
   display: flex;
-  // flex-flow: column wrap;
+  align-items: flex-start;
+  flex-flow: column wrap;
   .@{field-prefix-cls}-word-limit {
     height: 16px;
     font-size: 12px;
@@ -121,6 +119,12 @@
       color: #C8CCCC;
     }
   }
+}
+
+.@{field-prefix-cls}-textarea-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
 }
 
 .@{field-prefix-cls}-showWordLimit {

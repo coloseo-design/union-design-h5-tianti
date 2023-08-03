@@ -71,12 +71,21 @@ const Demo = () => {
         <h2>多行输入框</h2>
         <div style={{ background: '#fff' }}>
           <Field
-            placeholder="单行输入"
+            placeholder="请输入"
             fieldType="textarea"
             style={{ margin: '24px 0px' }}
             isResize={false}
             leftIcon="edit2-surface"
+            rows={1}
           />
+          <Field
+            placeholder="请输入"
+            fieldType="textarea"
+            style={{ margin: '24px 0px', height: 100 }}
+            isResize={false}
+            leftIcon="edit2-surface"
+          />
+          <p>自适应高度</p>
           <Field
             style={{ margin: '24px 0px' }}
             placeholder="自适应内容高度"
@@ -86,17 +95,16 @@ const Demo = () => {
             ref={textRef}
             value="你下午好久到位d你下午好久到位d你下午好久到位d你下午好久到位d你下午好久到位d你下午好久到位d你下午好久到位d你下午好久到位d你下午好久到位d"
           />
-          <Field style={{ margin: '24px 0px' }} value="多行输入" isResize={false} fieldType="textarea" showWordLimit maxLength={500} />
+          <Field style={{ margin: '24px 0px' }} placeholder="多行输入" isResize={false} fieldType="textarea" showWordLimit maxLength={500} />
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Avatar text="姓名" size={32} />
             <Field
               placeholder="我来说几句"
               fieldType="textarea"
-              // rows={2}
+              rows={5}
               autosize
               style={{ margin: '0px 12px', flex: 1 }}
               showWordLimit maxLength={500}
-              value="输入内容三行时，输入内容三行时，输入内容三行时，输入内容三行时，输入内容三行时，输入内容三行时。"
             />
             <div style={{ color: '#F31D39', display: 'flex', alignItems: 'flex-end' }}>发布</div>
           </div>

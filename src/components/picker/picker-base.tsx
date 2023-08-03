@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable max-len */
 import React, {
   Component,
 } from 'react';
@@ -85,13 +87,20 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
                   onChange={this.onChange(index)}
                   renderItem={renderItem}
                   sectionIndex={index}
-                  getStartOffset={getStartOffset}
+                  getStartOffset={getStartOffset as any}
                 />
               );
             })
           }
-          <div className={`${bodyCls}-mask`} style={{ backgroundSize: `100% ${offsetY}px` }} />
-          <div className={`${bodyCls}-hairline-top-bottom`} style={{ height: itemHeight }} />
+          {/* <div className={`${bodyCls}-mask`} style={{ backgroundSize: `100% ${offsetY}px` }} /> */}
+          <div
+            className={`${bodyCls}-hairline-top-bottom`}
+            style={{
+              height: itemHeight,
+              top: offsetY,
+              transform: 'unset',
+            }}
+          />
         </div>
       </div>
     );

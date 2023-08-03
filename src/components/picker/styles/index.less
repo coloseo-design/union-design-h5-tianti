@@ -9,6 +9,7 @@
     position: relative;
     display: flex;
     background-color: @white;
+    overflow: hidden;
     cursor: grab;
     &-column {
       flex: 1;
@@ -45,14 +46,13 @@
 
     &-hairline-top-bottom {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      // right: 16px;
-      // left: 16px;
+      // top: 50%;
+      // transform: translateY(-50%);
       right: 0px;
       left: 0px;
       z-index: 2;
       pointer-events: none;
+      box-shadow: 0px 0px 0px 847px hsla(0, 0%, 100%, 0.8);
       &::before {
         position: absolute;
         box-sizing: border-box;
