@@ -248,7 +248,7 @@ const CascaderDemo = () => {
         onChange={(value) => console.log('values', value)}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
-        visibleItemCount={2}
+        visibleItemCount={4}
       />
       <h2>带有标签的级联选择器</h2>
       <Button onClick={() => setVisible1(true)}>打开</Button>
