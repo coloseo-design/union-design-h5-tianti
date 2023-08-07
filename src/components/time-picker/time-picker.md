@@ -15,7 +15,7 @@ subtitle: 时间选择器
 | onChange   | 选择回调函数 | (value: string[])=>void      | -      |
 | renderItem   | 选项渲染函数 | (value: Option)=> string ｜ React.RactNode | -  |
 | visibleItemCount   | 默认渲染多少可见对象 ｜ number | 6  |
-| itemHeight   | 渲染元素高度 ｜ number | 44  |
+| itemHeight   | 渲染元素高度 ｜ number | 52  |
 | title   | 默认标题 ｜ number | 44  |
 | onOk   | 点击确认的回调 ｜ (evt) => void  | -  |
 | onCancel   | 点击关闭的回调 ｜ (evt) => void  | -  |

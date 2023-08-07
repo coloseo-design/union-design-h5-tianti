@@ -14,7 +14,7 @@ import {
 
 class PickerBase extends Component<BasePickerProps, PickerState> {
   static defaultProps: BasePickerProps = {
-    itemHeight: 44,
+    itemHeight: 52,
     visibleItemCount: 6,
     swipeDuration: 1000,
     options: [],

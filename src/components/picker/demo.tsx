@@ -198,7 +198,6 @@ const PickerDemo = () => {
       >
         <Picker
           options={options}
-          itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
           defaultValue={['宁波', '金华', 'B']}
@@ -217,7 +216,6 @@ const PickerDemo = () => {
       >
         <Picker.Cascader
           options={cascaderOptions}
-          itemHeight={44}
           visibleItemCount={6}
           renderItem={(item) => item.value}
           // defaultValue={['1', '1-1']}

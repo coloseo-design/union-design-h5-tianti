@@ -85,7 +85,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     >
       <Picker
         options={options}
-        itemHeight={itemHeight || 44}
+        itemHeight={itemHeight || 52}
         visibleItemCount={visibleItemCount || 6}
         renderItem={renderItem || ((item) => item.value)}
         value={value}

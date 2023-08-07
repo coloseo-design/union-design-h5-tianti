@@ -1,6 +1,7 @@
 @import '../../style/themes/index';
 
 @cascader: ~'@{uni-prefix}-cascader';
+@cascader-column: ~'@{uni-prefix}-picker-body-column';
 
 .@{cascader}{
   &-title {
@@ -11,7 +12,7 @@
     &-item {
       flex: 1;
       text-align: center;
-      padding: 30px 10px;
+      // padding: 30px 10px;
     }
   }
   &-headers {
@@ -27,6 +28,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+  .@{cascader-column} {
+    &-wrapper {
+      .@{cascader-column}-item {
+        font-size: 14px;
+      }
     }
   }
   // reset
