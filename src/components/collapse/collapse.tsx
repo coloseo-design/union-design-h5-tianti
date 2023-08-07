@@ -25,6 +25,8 @@ export interface CollapseProps extends Omit<HTMLAttributes<HTMLElement>, 'onChan
 class Collapse extends React.Component<CollapseProps> {
   static Panel = CollapsePanel;
 
+  static isCollapse = true;
+
   renderCollapse = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
@@ -59,7 +61,6 @@ class Collapse extends React.Component<CollapseProps> {
                 /** 自定义切换图标 */
                 expandIcon: expandIcon || expandIconT,
                 currentKey: key,
-                size,
                 ...item.props,
               };
               return <CollapsePanel {...props} />;

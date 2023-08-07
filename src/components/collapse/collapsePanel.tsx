@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable camelcase */
 import React, { CSSProperties, HTMLAttributes } from 'react';
@@ -19,7 +20,6 @@ export interface CollapsePanelProps extends Omit<HTMLAttributes<HTMLDivElement>,
     show?: boolean;
     accordion?: boolean;
     currentKey?: number | string;
-    size?: 'default' | 'md',
 }
 
 export interface CollapsePanelState {
@@ -57,7 +57,6 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       expandIcon,
       extra,
       currentKey,
-      size,
       ...rest
     } = this.props;
     const { show, accordion } = this.state;
@@ -74,7 +73,10 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
       [`${prefix}-header-accordion`]: accordion,
     });
     const omitRest = omit(rest, ['onChange', 'accordion', 'show']);
-
+    let padding = '10px 0px 0px 20px';
+    if ((children as any)?.type?.isCollapse) {
+      padding = '0px 0px 0px 20px';
+    }
     return (
       <div {...omitRest} className={wrapper}>
         <div className={headerClass} onClick={this.headClick}>
@@ -92,7 +94,7 @@ class CollapsePanel extends React.Component<CollapsePanelProps, CollapsePanelSta
         <div className={contentClass}>
           <div
             className={boxClass}
-            style={{ padding: accordion ? '10px 18px' : size === 'md' ? '0px 0px 0px 20px' : '10px 0px 0px 20px' }}
+            style={{ padding: accordion ? '10px 18px' : padding }}
           >
             { children }
           </div>
