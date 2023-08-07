@@ -109,6 +109,10 @@
     & > .@{tab-content} {
       display: flex;
       justify-content: space-around;
+      & > .@{tab-item} {
+        flex: 1;
+        text-align: center;
+      }
     }
   }
 
@@ -187,7 +191,7 @@
         flex-flow: column nowrap;
         align-items: center;
         & > .@{tab-title} {
-          font-weight: 400;
+          // font-weight: 500;
           color: #646566;
           font-size: 12px;
           line-height: 16px;
@@ -195,7 +199,7 @@
         & > .@{tab-num} {
           position: relative;
           font-size: 24px;
-          font-weight: 500;
+          font-weight: bold;
           line-height: 24px;
           & > .@{tab-overflow} {
             font-size: 10px;
