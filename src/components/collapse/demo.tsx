@@ -93,7 +93,7 @@ const CollapseDemo = () => (
           <Panel header="二级列表样式" key={5}>
             我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
             <Collapse>
-              <Panel header="二级列表样式" key={6}>
+              <Panel header="三级列表样式" key={6}>
                 我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
               </Panel>
             </Collapse>
