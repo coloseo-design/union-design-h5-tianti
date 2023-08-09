@@ -23,6 +23,7 @@ export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   arrow?: 'arrow' | React.ReactNode;
   /* 点击右侧箭头事件 */
   onIconClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  centered?: boolean;
 }
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -55,10 +56,13 @@ class ListItem extends React.Component<ListItemProps> {
       arrow,
       className,
       onIconClick,
+      centered,
       ...rest
     } = this.props;
     const prefix = getPrefixCls('list-item', prefixCls);
-    const itemStyle = classNames(prefix, className);
+    const itemStyle = classNames(prefix, {
+      [`${prefix}-centered`]: centered,
+    }, className);
     return (
       <div {...rest} className={itemStyle}>
         <ListItemContext.Provider

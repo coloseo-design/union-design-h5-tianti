@@ -25,6 +25,7 @@ subtitle: 列表
 |onIconClick|点击右侧的箭头|(e) => void|--|--|
 |style|listItem样式| object| --|--|
 |className|listItem类名| string |--|--|
+|centered|是否垂直居中|boolean|false|--|
 
 ### List.Item.Avatar
 | 属性 | 说明 | 类型 | 默认值 | 版本 |

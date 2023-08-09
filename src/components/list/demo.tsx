@@ -114,7 +114,7 @@ const listDemo = () => {
         renderItem={(item, index) => (
           <Item
             arrow={index === data.length - 1 ? <Button size="small">按钮</Button> : 'arrow'}
-            style={{ alignItems: 'center' }}
+            centered
             onClick={() => {
               if (checks.includes(item.name)) {
                 setCheck(checks.filter((i) => item.name !== i));
