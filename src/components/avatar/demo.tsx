@@ -5,6 +5,7 @@ import './styles/index';
 const AvatarDemo = () => (
   <div>
     <Avatar close>姓名</Avatar>
+    
     <Avatar style={{ marginLeft: 100 }} close size={48}>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} close size={64}>姓名</Avatar>
     <Avatar style={{ marginLeft: 100 }} close size={96}>姓名</Avatar>
