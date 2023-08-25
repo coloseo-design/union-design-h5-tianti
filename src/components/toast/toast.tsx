@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-plusplus */
 import React, {
-  Component, CSSProperties, isValidElement, ReactNode,
+  Component, CSSProperties, isValidElement, ReactNode, createRef,
 } from 'react';
 import classNames from 'classnames';
 import Omit from 'omit.js';
@@ -51,12 +52,31 @@ class Toast extends Component<BaseToastProps, ToastState> {
 
   static hide: () => void;
 
+  public maskRef = createRef<HTMLDivElement>();
+
+  componentDidMount(): void {
+    // 暂定 阻止底部页面滚动
+    if (this.maskRef?.current) {
+      this.maskRef.current.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+      }, { passive: false });
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (this.maskRef?.current) {
+      this.maskRef.current.removeEventListener('touchmove', (e) => {
+        e.preventDefault();
+      });
+    }
+  }
+
   renderToast = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls,
       className,
       content = '',
-      type,
+      type = 'info',
       mask,
       icon,
       loadingType,
@@ -73,14 +93,14 @@ class Toast extends Component<BaseToastProps, ToastState> {
     });
 
     const OmitRest = Omit(rest, ['duration']);
-    const iconMapping = {
+    const iconMapping: any = {
       info: icon ? (isValidElement(icon) ? icon : <Icon type={icon as string} />) : '',
       loading: <Loading type={loadingType} size={loadingSize} color="#fff" />,
     };
 
     return (
       <div {...OmitRest} className={mainClass}>
-        {mask && <div className={`${prefix}-mask`} style={maskStyle} />}
+        {mask && <div className={`${prefix}-mask`} style={maskStyle} ref={this.maskRef} />}
         <div
           className={`${prefix}-content`}
           style={{ height: iconMapping[type] && content && vertical ? 160 : 'unset', width: iconMapping[type] && content && vertical ? 160 : 'unset' }}

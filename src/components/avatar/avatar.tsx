@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable object-curly-newline */
 /* eslint-disable indent */
@@ -85,8 +86,8 @@ class Avatar extends React.Component<BaseAvatarProps> {
       <div
         className={`${prefix}-close`}
         style={{
-          width: w,
-          height: w,
+          width: w / 1.18,
+          height: w / 1.18,
         }}
       >
         <Icon type="close1-surface" style={{ fontSize: w }} />
