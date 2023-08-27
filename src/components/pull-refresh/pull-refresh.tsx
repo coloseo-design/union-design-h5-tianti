@@ -107,13 +107,18 @@ class PullRefresh extends React.Component<PullRefreshProps, PullRefreshState> {
     event.nativeEvent.stopImmediatePropagation();
     const { startY, status, isTop } = this.state;
     const { headHeight = 96 } = this.props;
-    if (isTop) {
-      if (event && event.touches && event.touches[0] && (status !== 'loading' && status !== 'success')) {
-        const currentY = event.touches[0].pageY;
-        this.setState({
-          distance: currentY - startY,
-          status: (currentY - startY) > headHeight ? 'loosing' : 'pulling',
-        });
+    if (event && event.touches && event.touches[0]) {
+      const currentY = event.touches[0].pageY;
+      const diff = currentY - startY;
+      if (isTop) {
+        if (status !== 'loading' && status !== 'success') {
+          this.setState({ distance: diff });
+          if (diff > 10 && diff < headHeight) {
+            this.setState({ status: 'pulling' });
+          } else if (diff >= headHeight) {
+            this.setState({ status: 'loosing' });
+          }
+        }
       }
     }
   };

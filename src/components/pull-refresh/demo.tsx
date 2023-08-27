@@ -10,18 +10,26 @@ const Demo = () => {
   const handleRefresh = async () => {
     console.log('====触发');
     setLoading(true);
-    await sleep(3000);
+    await sleep(1000);
     setLoading(false);
   };
   return (
     <div>
       <Tab>
         <Tab.Item key="1" title='基础用法'>
-          <PullRefresh onRefresh={handleRefresh} headStyle={{ background: 'red' }}>
-            <p style={{ minHeight: '100vh' }}>
+          <PullRefresh
+            onRefresh={handleRefresh}
+            headStyle={{ background: 'red' }}
+            style={{ height: 'calc(100vh - 124px)', border: '1px solid red', overflow: 'auto', overscrollBehavior: 'none' }}
+          >
+            <p>
               刷新次数1
               <div style={{ height: 400, background: 'green', color: '#fff' }}>滚动1</div>
               <div style={{ height: 400, background: 'blue', color: '#fff' }}>滚动12</div>
+              <div style={{ height: 400, background: 'blue', color: '#fff' }}>滚动12</div>
+              <div style={{ height: 400, background: 'blue', color: '#fff' }}>滚动12</div>
+              <div style={{ height: 400, background: 'blue', color: '#fff' }}>滚动12</div>
+              <div style={{ height: 700, background: 'blue', color: '#fff' }}>滚动12</div>
             </p>
           </PullRefresh>
         </Tab.Item>
