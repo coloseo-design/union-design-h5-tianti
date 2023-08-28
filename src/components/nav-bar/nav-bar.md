@@ -5,7 +5,7 @@ title: NavBar
 subtitle: 导航栏
 ---
 
-去掉以前的size属性， size=lg 改成 NavBar.Header， size = 'sm' 改成Title组件
+去掉以前的size属性， size=lg 改成 NavBar.Header， size = 'sm' 改成Title组件， size="md"就是现在的NavBar默认样式
 
 ## API
 | 属性 | 说明 | 类型 | 默认值 | 版本 |

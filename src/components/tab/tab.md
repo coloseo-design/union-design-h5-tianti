@@ -4,7 +4,7 @@ type: 导航
 title: Tab
 subtitle: 标签页
 ---
-
+去掉 Tab.Item 上的 dot 属性
 ## API
 
 ### Tab
@@ -26,7 +26,7 @@ subtitle: 标签页
 | lineClassName      | 底部条样式       | string                               | -        |
 
 
-去掉 dot 属性
+
 ### Tab.Item
 
 | 参数       | 说明                                                         | 类型    | 默认值 |
