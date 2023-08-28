@@ -51,7 +51,7 @@ export type TabItemProps = {
   /** TabProps type为task 时候的数字颜色 不重要内容：1 重要内容：2 */
   taskWeight?: 1 | 2;
   /** 右上角红点 */
-  // dot?: boolean;
+  dot?: boolean;
 
   children: ReactNode;
 
@@ -293,7 +293,7 @@ Tab.Item = memo((props) => {
     titleNum,
     taskNum = 0,
     taskWeight = 1,
-    // dot = false,
+    dot = false,
     _key,
     _index,
   } = props ?? {};
@@ -363,7 +363,7 @@ Tab.Item = memo((props) => {
   return (
     <div onClick={onClick} className={wrapClassName}>
       {text}
-      {/* {dot && <div className={getPrefixClass('dot')} />} */}
+      {dot && <div className={getPrefixClass('dot')} />}
     </div>
   );
 });
