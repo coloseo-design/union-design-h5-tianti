@@ -118,6 +118,7 @@ const PopupDemo = () => {
         position="bottom"
         onCancel={handleCancel}
         header="标题"
+        footerStyle={{ paddingBottom: 32 }}
       >
         {content(7)}
       </Popup>

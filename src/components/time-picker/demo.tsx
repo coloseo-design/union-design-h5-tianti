@@ -19,6 +19,7 @@ const TimePickerDemo = () => {
           setVisible(false);
         }}
         onChange={onChange}
+        footerStyle={{ paddingBottom: 32 }}
         // value={value}
         defaultValue={dayjs('21:02:02', 'HH:mm:ss')}
         renderItem={(val: any) => {

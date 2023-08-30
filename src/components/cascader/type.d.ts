@@ -15,4 +15,5 @@ export interface CascaderProps {
   onChange: (values: string[]) => void;
   value?: string[];
   extra?: ReactNode;
+  footerStyle?: React.CSSProperties;
 }

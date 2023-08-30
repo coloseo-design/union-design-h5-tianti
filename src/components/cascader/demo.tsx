@@ -261,6 +261,7 @@ const CascaderDemo = () => {
         onChange={(value) => console.log('values', value)}
         onOk={() => setVisible1(false)}
         onCancel={() => setVisible1(false)}
+        footerStyle={{ paddingBottom: 32 }}
         visibleItemCount={6}
         extra={<div style={{ padding: 16, borderBottom: '10px solid rgb(245, 246, 246)'}}>
           <div style={{ color: '#A6A8A9', fontSize: 12 }}>热门标签</div>

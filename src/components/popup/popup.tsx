@@ -47,6 +47,8 @@ export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
   bodyStyle?: React.CSSProperties;
   /* 弹出层header样式 */
   headerStyle?: React.CSSProperties;
+  /* 弹出层footer样式 */
+  footerStyle?: React.CSSProperties;
   /* 自定义footer 或者不要footer */
   footer?: React.ReactNode | null,
   /* 是都全屏展示弹窗 */
@@ -134,6 +136,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
       style,
       round = true,
       bodyStyle,
+      footerStyle,
       okText,
       cancelText,
       footer,
@@ -195,7 +198,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
                 {children}
               </div>
               {(footer === null || typeof footer !== 'undefined') ? footer : (
-                <div className={contentFooter}>
+                <div className={contentFooter} style={footerStyle}>
                   {footerButton}
                 </div>
               )}

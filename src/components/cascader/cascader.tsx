@@ -18,6 +18,7 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
     value,
     extra,
     headers = [],
+    footerStyle = {},
   } = props;
 
   const { getPrefixCls } = useContext(ConfigContext);
@@ -49,6 +50,7 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
       position="bottom"
       onCancel={onCancel}
       onOk={onOk}
+      footerStyle={footerStyle}
     >
       {extra && <div ref={extraRef as any}>{extra}</div>}
       {headers && headers?.length > 0 && (

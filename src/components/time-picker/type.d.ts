@@ -19,4 +19,6 @@ export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defau
   position?: 'center' | 'bottom' | 'top' | 'left' | 'right';
 
   renderItem?: (value: Option) => string | React.ReactNode;
+
+  footerStyle?: React.CSSProperties;
 }

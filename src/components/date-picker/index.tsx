@@ -43,6 +43,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     onCancel,
     onOk,
     rangeOfYear = 50,
+    footerStyle,
   } = props;
 
   const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
@@ -90,6 +91,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       position="bottom"
       onCancel={onCancel}
       onOk={onOk}
+      footerStyle={footerStyle}
     >
       <Picker
         options={options}
