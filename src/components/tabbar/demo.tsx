@@ -12,22 +12,64 @@ const containerStyle = {
   boxShadow: '#ebedf0 0 4px 12px',
 };
 const Demo = () => {
-  const [key, setKey] = useState('选项2');
-
+  const [activeKey, setKey] = useState('2');
+  const [activeKey1, setKey1] = useState('1');
+  console.log('==activeKey', activeKey);
+  const data = [
+    {
+      key: '1',
+      icon: activeKey1 === '1' ? <Icon type="user" /> : <Icon type="user-circle" />,
+      title: '选项1',
+    },
+    {
+      key: '2',
+      icon: activeKey1 === '2' ? <Icon type="delete-can" /> : <Icon type="delete-line" />,
+      title: '选项2',
+    },
+    {
+      key: '3',
+      icon: activeKey1 === '3' ? <Icon type="close1-line" /> : <Icon type="close1-surface" />,
+      title: '选项3',
+    },
+];
   return (
     <>
-    <h2>示例一</h2>
+    <h2>示例一data</h2>
     <div style={{ height: 150 }}>
       <Tabbar
-        activeKey={key}
-        // onChange={(k: string) => setKey(k)}
+        activeKey={activeKey1}
+        onChange={(k: string) => setKey1(k)}
+        position="bottom"
+      >
+        {data.map((item) => (
+          <Tabbar.Item {...item}>
+          <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'yellow',
+              }}
+              // onClick={() => setKey('选项3')}
+            >
+              {item.title} 页面
+            </div>
+          </Tabbar.Item>
+        ))}
+      </Tabbar>
+    </div>
+    <div style={{ height: 150 }}>
+      <Tabbar
+        activeKey={activeKey}
+        onChange={(k: string) => setKey(k)}
         position="bottom"
       >
         <Tabbar.Item
           dot
-          key="选项1"
+          key="1"
           title="选项1"
-          icon="approval"
+          icon={activeKey === '1' ? <Icon type="user" /> : <Icon type="user-circle" />}
           selectedStyle={{ color: 'rgb(81, 159, 240)' }}
         >
           <div
@@ -45,9 +87,9 @@ const Demo = () => {
         </Tabbar.Item>
         <Tabbar.Item
           badge={36}
-          key="选项2"
+          key="2"
           title="选项2"
-          icon={<Icon type="calendar" />}
+          icon={activeKey === '2' ? <Icon type="delete-can" /> : <Icon type="delete-line" />}
           selectedStyle={{ color: 'rgb(81, 159, 240)' }}
         >
           <div
@@ -64,9 +106,9 @@ const Demo = () => {
           </div>
         </Tabbar.Item>
         <Tabbar.Item
-          key="选项3"
+          key="3"
           title="选项3"
-          icon="service"
+          icon={activeKey === '3' ? <Icon type="close1-line" /> : <Icon type="close1-surface" />}
           selectedStyle={{ color: 'rgb(81, 159, 240)' }}
         >
           <div

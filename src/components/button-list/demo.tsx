@@ -76,7 +76,27 @@ const Demo = () => {
         iconButtonList={iconList.slice(0, 3)}
         buttonList={buttonList}
       />
-
+      <div style={{ height: 20 }} />
+      <ButtonList
+        buttonList={[
+          {
+            name: "按钮",
+            type: "primary",
+          }
+        ]}
+      />
+      <div style={{ height: 20 }} />
+      <ButtonList
+        buttonList={[
+          {
+            name: "按钮",
+          },
+          {
+            name: "按钮",
+            type: "primary",
+          },
+        ]}
+      />
     <div style={{ height: 20 }} />
       <ButtonList
         type='text'
@@ -84,7 +104,15 @@ const Demo = () => {
           <Checkbox>全选</Checkbox>
           <div style={{ color: '#A6A8A9', marginLeft: 12 }}>已选 0单位</div>
         </div>}
-        buttonList={buttonList.slice(1)}
+        buttonList={[
+          {
+            name: "确定(00/00)",
+            type: "primary",
+            onClick: () => console.log("按钮"),
+            // size: 'small',
+            style: { height: 32 }
+          }
+        ]}
       />
 
       <ButtonList.Actions list={list.slice(0, 3)} style={{ margin: '24px 0px' }} />

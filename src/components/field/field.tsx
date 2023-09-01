@@ -154,6 +154,9 @@ class Field extends Component<FieldProps, FieldState> {
       if (onChange) {
         (onChange as React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>)(e);
       }
+      if (isClear && e.target.value) {
+        this.setState({ hasClear: true });
+      }
     };
 
     if (fieldType === 'textarea') {

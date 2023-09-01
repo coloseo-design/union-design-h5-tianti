@@ -18,7 +18,7 @@ const NavBarHeader: React.FC<NavHeaderProps> = (props: NavHeaderProps) => {
         className={`${prefix}-header-title`}
         style={titleStyle}
       >
-        {icon && <span style={{ marginRight: 16 }}>{icon}</span>}
+        {icon && <span style={{ marginRight: 8 }}>{icon}</span>}
         <div>{title}</div>
       </div>
       <div onClick={onRightClick} className={`${prefix}-header-right`} style={{ color: rightTextColor }}>{rightText}</div>

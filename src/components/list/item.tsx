@@ -60,22 +60,25 @@ class ListItem extends React.Component<ListItemProps> {
       ...rest
     } = this.props;
     const prefix = getPrefixCls('list-item', prefixCls);
-    const itemStyle = classNames(prefix, {
-      [`${prefix}-centered`]: centered,
-    }, className);
+    const itemStyle = classNames(prefix, className);
     return (
       <div {...rest} className={itemStyle}>
-        <ListItemContext.Provider
-          value={{
-            icon,
-            itemLayout,
-            extra,
-            arrow,
-            onIconClick,
-          }}
+        <div className={classNames(`${prefix}-container`, {
+          [`${prefix}-centered`]: centered,
+        })}
         >
-          {children}
-        </ListItemContext.Provider>
+          <ListItemContext.Provider
+            value={{
+              icon,
+              itemLayout,
+              extra,
+              arrow,
+              onIconClick,
+            }}
+          >
+            {children}
+          </ListItemContext.Provider>
+        </div>
       </div>
     );
   };

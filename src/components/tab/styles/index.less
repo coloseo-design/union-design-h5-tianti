@@ -31,7 +31,6 @@
   // display: flex;
   // flex-flow: column nowrap;
   font-weight: 400;
-  font-family: PingFangSC-Regular;
 
   & > .@{tab-overlay-left},
   & > .@{tab-overlay-right} {
@@ -130,6 +129,16 @@
     }
   }
 
+  // & > .@{tab-normal} {
+  //   & > .@{tab-item}.@{tab-active} { font-weight: 500; }
+  // }
+  &-normal {
+    .@{tab-content} {
+      .@{tab-active} {
+        font-weight: 500;
+      }
+    }
+  }
   & > .@{tab-tab}.@{tab-normal} {  padding: 14px 0px; }
   & > .@{tab-tab}.@{tab-normal}.@{tab-line} { padding: 12px 0px; }
 

@@ -10,6 +10,7 @@ import { useClassNames, useGetPrefixClass } from "../common/base-component";
 import Icon from "../icon";
 import Button from "../button";
 import Actions from './actions';
+import type { ButtonSize } from '../button/type';
 
 export type ButtonListProps = {
   className?: string;
@@ -28,6 +29,8 @@ export type ButtonListProps = {
         type?: string;
         name: string;
         onClick?: () => void;
+        size?: ButtonSize;
+        style?: React.CSSProperties;
       }
   )[];
   type?: 'default' |'text',
@@ -77,7 +80,7 @@ const ButtonList = React.memo<ButtonListProps>((props) => {
           {React.isValidElement(item) ? (
             item
           ) : (
-            <Button block type={item.type} onClick={item?.onClick}>
+            <Button block type={item.type} onClick={item?.onClick} size={item.size} style={item.style}>
               {item.name}
             </Button>
           )}

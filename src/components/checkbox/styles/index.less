@@ -11,7 +11,8 @@
     transition: background .3s ease-in-out;
     width: 1em;
     height: 1em;
-    border: 0.09375px solid@modal-border-color;
+    // border: 0.09375px solid@modal-border-color;
+    border: 1.5px solid #C8CCCC;
     border-radius: 50%;
     display: inline-block;
     margin-right: 0.75em;
@@ -20,20 +21,21 @@
     &::after {
       content: ' ';
       width: 5px;
-      height: 9px;
+      height: 8.5px;
       position: absolute;
       top: 50%;
-      left: 22%;
+      left: 24%;
       border: 2px solid @white;
       border-top: none;
       border-left: none;
       transform: rotate(45deg) scale(0) translate(-50%, -50%);
-      transition: all .3s ease-in-out;
+      // transition: all .3s ease-in-out;
     }
   }
   &&-checked {
     .@{checkbox-prefix-cls}-icon {
-      background: @primary-bg;
+      // background: @primary-bg;
+      background: radial-gradient(141.42% 141.42% at 100% 100%,rgb(255, 130, 106),rgb(243, 39, 39) 100%);
       border: none;
       &::after {
         transform: rotate(45deg) scale(1) translate(-50%, -50%);

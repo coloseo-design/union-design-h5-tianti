@@ -115,7 +115,7 @@ const RadioDemo = () => {
           {
             loginList.map((item, key) => (
                 <Radio value={`${key}`} key={`${key}`}>
-                  <div>
+                  <div style={{ display: 'flex' }}>
                     <div>{item.deptName}</div>
                     <div>{item.siteType}</div>
                   </div>

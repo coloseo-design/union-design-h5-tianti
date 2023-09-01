@@ -87,8 +87,74 @@ const listDemo = () => {
   ];
   const [checks, setCheck] = useState<string[]>([]);
 
+  const data3 = Array.from({ length: 5 }).map((_, key) => key + 1);
   return (
-    <div>
+    <div style={{ margin: '0px -12px'}}>
+      <h1>一般列表 size="default"</h1>
+      <List
+        dataSource={data3}
+        itemLayout="vertical"
+        renderItem={(item) => (
+          <Item key={item}>
+            <Item.Content>
+              <Item.Title>列表内容</Item.Title>
+            </Item.Content>
+          </Item>
+        )}
+      />
+      <h1>一般列表1</h1>
+      <List
+        dataSource={data3}
+        itemLayout="vertical"
+        renderItem={(item) => (
+          <Item key={item} centered>
+            <Item.CheckType className="check-test">
+              <Checkbox />
+            </Item.CheckType>
+            <Item.Content>
+              <Item.Title>列表内容</Item.Title>
+            </Item.Content>
+          </Item>
+        )}
+      />
+      <h1>中列表 size="md"</h1>
+      <List
+        dataSource={data3}
+        itemLayout="vertical"
+        size="md"
+        renderItem={(item, index) => (
+          <Item key={item} centered arrow='arrow'>
+           {index === data3.length - 1 && <Item.CheckType className="check-test">
+              <Checkbox />
+            </Item.CheckType>}
+            <Item.Content>
+              <Item.Title>列表内容</Item.Title>
+            </Item.Content>
+          </Item>
+        )}
+      />
+      <h1>大列表</h1>
+      <List
+        dataSource={data.slice(0, 2)}
+        size="lg"
+        itemLayout="vertical"
+        className="list-test"
+        renderItem={(_, index) => (
+          <Item
+            arrow='arrow'
+            centered
+            className="item-test"
+          >
+            {index === 1 && <Item.CheckType className="check-test">
+              <Checkbox />
+            </Item.CheckType>}
+            <Item.Content className="content-test">
+              <Item.SubTitle className='subtitle-test'>标题内容</Item.SubTitle>
+              <Item.Title className='title-test'>信息内容</Item.Title>
+            </Item.Content>
+          </Item>
+        )}
+      />
       <h1>基础列表</h1>
       <List
         dataSource={data}
@@ -101,37 +167,6 @@ const listDemo = () => {
             <Item.Avatar size={24} shape="square" style={{ backgroundColor: 'gray' }} />
             <Item.Content>
               <Item.Title>{item.name}</Item.Title>
-            </Item.Content>
-          </Item>
-        )}
-      />
-      <h1>大列表</h1>
-      <List
-        dataSource={data}
-        size="lg"
-        itemLayout="vertical"
-        className="list-test"
-        renderItem={(item, index) => (
-          <Item
-            arrow={index === data.length - 1 ? <Button size="small">按钮</Button> : 'arrow'}
-            centered
-            onClick={() => {
-              if (checks.includes(item.name)) {
-                setCheck(checks.filter((i) => item.name !== i));
-              } else {
-                checks.push(item.name);
-                setCheck([...checks]);
-              }
-            }}
-            className="item-test"
-          >
-            <Item.CheckType className="check-test">
-              <Checkbox checked={checks.includes(item.name)} />
-            </Item.CheckType>
-            <Item.Avatar className='avatar-test' size={24} shape="square" style={{ backgroundColor: 'gray' }} />
-            <Item.Content className="content-test">
-              <Item.SubTitle className='subtitle-test'>{item.subtitle}</Item.SubTitle>
-              <Item.Title className='title-test'>{item.name}</Item.Title>
             </Item.Content>
           </Item>
         )}

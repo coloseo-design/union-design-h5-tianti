@@ -38,7 +38,7 @@ const Demo = () => {
   const [testDis1, setDis1] = React.useState(false);
 
   return (
-    <div>
+    <div style={{ background: 'rgb(250, 250, 250)', margin: '0px -12px' }}>
       <h1>基本用法</h1>
       <DropdownMenu>
         <DropdownItem value="b" options={option2} />

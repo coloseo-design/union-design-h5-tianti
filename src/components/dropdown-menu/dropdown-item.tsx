@@ -231,7 +231,9 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
               >
                 <span
                   className={`${dropWrapper}-item-text`}
-                  style={{ color: disabled ? '#C8CCCC' : (activeColor || undefined) }}
+                  style={{
+                    color: disabled ? '#C8CCCC' : (activeColor || undefined),
+                  }}
                 >
                   {title || renderValue()}
                 </span>

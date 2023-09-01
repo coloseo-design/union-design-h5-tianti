@@ -10,7 +10,7 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   dataSource?: any[];
   itemLayout?: 'vertical' | 'horizontal';
   renderItem?: (item: any, index: number) => React.ReactNode;
-  size?: 'default' | 'lg';
+  size?: 'default' | 'md' | 'lg';
 }
 
 const defaultRender = () => null;
@@ -30,7 +30,7 @@ class List extends React.Component<ListProps> {
     } = this.props;
     const prefix = getPrefixCls('list', prefixCls);
     const mainCls = classNames(prefix, {
-      [`${prefix}-${size}`]: size === 'lg',
+      [`${prefix}-${size}`]: size,
     }, className);
     return (
       <div {...rest} className={mainCls}>
