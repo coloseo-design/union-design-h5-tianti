@@ -171,23 +171,39 @@ const PickerDemo = () => {
         <Picker
           options={[
             [{
-              title: 'A',
+              title: '选项',
               key: 'A',
               value: 'A',
             },
             {
-              title: 'B',
+              title: '选项',
               key: 'B',
               value: 'B',
-            }],
+            },
+            {
+              title: '选项',
+              key: 'C',
+              value: 'C',
+            },
+            {
+              title: '选项',
+              key: 'D',
+              value: 'D',
+            },
+            {
+              title: '选项',
+              key: 'E',
+              value: 'E',
+            }
+          ],
           ]}
           itemHeight={44}
           visibleItemCount={6}
-          renderItem={(item) => item.value}
+          renderItem={(item) => item.title}
           onChange={(v, e) => {
             console.log('v', v, e);
           }}
-          value={value}
+          defaultValue={['C']}
         />
       </Popup>
       <Popup

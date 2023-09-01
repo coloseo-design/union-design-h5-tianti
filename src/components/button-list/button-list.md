@@ -33,6 +33,8 @@ subtitle: 按钮列表
 | type    | 按钮 type    | string     | -      |
 | name    | 按钮文字     | string     | -      |
 | onClick | 按钮点击事件 | () => void | -      |
+| size | button大小 | `small` `large`  `default`|   default  |
+| style | button样式 | React.CSSProperties|   -  |
 
 
 ### ButtonList.Actions 
