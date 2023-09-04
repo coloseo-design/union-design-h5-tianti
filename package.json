@@ -1,6 +1,6 @@
 {
   "name": "union-design-h5",
-  "version": "1.0.51-beta.2",
+  "version": "1.0.51-beta.3",
   "license": "MIT",
   "files": [
     "lib",
@@ -21,7 +21,7 @@
     "demo": "npx gulp md"
   },
   "dependencies": {
-    "@uni/icons-react-h5": "^1.0.2",
+    "@uni/icons-react-h5": "^1.0.3",
     "async-validator": "^3.5.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.7",
