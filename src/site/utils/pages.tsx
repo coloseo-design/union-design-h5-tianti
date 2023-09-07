@@ -39,7 +39,7 @@ export const PagesComponent: React.FC<PageProps> = (props) => {
           width: '100%',
           zIndex: 10,
           }}>{componentName}</div>
-      <div style={{ padding: '62px 12px 62px 12px' }}>
+      <div style={{ padding: '52px 12px 0px 12px' }}>
         {React.createElement(CurrentComponent)}
       </div>
     </div>

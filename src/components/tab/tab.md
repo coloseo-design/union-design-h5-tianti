@@ -24,6 +24,7 @@ subtitle: 标签页
 | onTabChange        | 标签变化的回调   | (key: string, index: number) => void | -        |
 | lineStyle          | 底部条样式       | CSSProperties                        | -        |
 | lineClassName      | 底部条样式       | string                               | -        |
+|contentType| children内容全部展示还是只展示当前这一个|-|
 
 
 

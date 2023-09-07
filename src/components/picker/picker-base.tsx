@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-len */
 import React, {
@@ -20,6 +21,7 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
     options: [],
     renderItem: (item) => item.value,
     value: [],
+    isTop: false,
     // getStartOffset: () => 0,
   };
 
@@ -56,6 +58,7 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
       visibleItemCount = 6,
       renderItem,
       className,
+      isTop = false,
     } = this.props;
     let { getStartOffset } = this.props;
     if (!getStartOffset) {
@@ -79,7 +82,6 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
               const selectedIndex = option.findIndex((item) => item.value === value[index]);
               return (
                 <Column
-                  // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   data={option}
                   itemHeight={itemHeight}
@@ -92,13 +94,18 @@ class PickerBase extends Component<BasePickerProps, PickerState> {
               );
             })
           }
-          {/* <div className={`${bodyCls}-mask`} style={{ backgroundSize: `100% ${offsetY}px` }} /> */}
+          <div
+            className={classNames(`${bodyCls}-mask`, {
+              [`${bodyCls}-mask-top`]: isTop,
+            })}
+            style={{ backgroundSize: isTop ? '100%' : `100% ${offsetY}px` }}
+          />
           <div
             className={`${bodyCls}-hairline-top-bottom`}
             style={{
               height: itemHeight,
-              top: offsetY,
-              transform: 'unset',
+              top: isTop ? 0 : undefined,
+              transform: isTop ? 'unset' : undefined,
             }}
           />
         </div>

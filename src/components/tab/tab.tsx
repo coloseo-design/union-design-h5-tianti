@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, {
@@ -37,6 +38,8 @@ export type TabProps = {
   lineClassName?: string;
 
   children: ReactNode;
+
+  contentType?: 'default' | 'all',
 };
 
 export type TabItemProps = {
@@ -104,6 +107,7 @@ const Tab = memo<TabProps>((props) => {
     selectedKey,
     defaultSelectedKey,
     onTabChange,
+    contentType = 'default',
   } = props ?? {};
 
   const tabRef = useRef<HTMLDivElement>(null);
@@ -273,7 +277,14 @@ const Tab = memo<TabProps>((props) => {
           {state.line && <div style={tabLineDivStyle} className={tabLineDivClassName} />}
         </div>
         <div className={getPrefixClass('content')}>
-          {contentDirection === 'normal' && contentView[state.selectedIndex]}
+          {contentDirection === 'normal' && contentType === 'all' && (
+          <>
+            {contentView.map((i, index) => (
+              <div key={index} style={{ display: index === state.selectedIndex ? 'block' : 'none' }}>{i}</div>
+            ))}
+          </>
+          )}
+          {contentDirection === 'normal' && contentType !== 'all' && contentView[state.selectedIndex]}
           {contentDirection === 'vertical' && contentView}
         </div>
         {state.mode === 'scroll' && (

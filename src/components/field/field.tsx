@@ -88,7 +88,7 @@ class Field extends Component<FieldProps, FieldState> {
   }
 
   handleDelete = () => {
-    this.setState({ innerValue: '' });
+    this.setState({ innerValue: '', hasClear: false });
   }
 
   renderField = ({ getPrefixCls }: ConfigConsumerProps) => {
@@ -125,11 +125,15 @@ class Field extends Component<FieldProps, FieldState> {
       [`${prefix}-border`]: border,
       [`${prefix}-error`]: status === 'error',
       [`${prefix}-focus`]: border && (focus || innerValue),
+      // [`${prefix}-focus`]: border && focus,
       [`${prefix}-showWordLimit`]: fieldType === 'textarea' && maxLength && showWordLimit,
     });
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
       this.setState({ focus: true });
+      if (isClear && innerValue) {
+        this.setState({ hasClear: true });
+      }
       if (onFocus) {
         onFocus(e);
       }
@@ -137,6 +141,9 @@ class Field extends Component<FieldProps, FieldState> {
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       this.setState({ focus: false });
+      if (hasClear && isClear) {
+        this.setState({ hasClear: false });
+      }
       if (onBlur) {
         onBlur(e);
       }
@@ -192,16 +199,11 @@ class Field extends Component<FieldProps, FieldState> {
       <div
         className={mainClass}
         style={style}
-        onMouseOver={() => {
-          if (isClear && innerValue) {
-            this.setState({ hasClear: true });
-          }
-        }}
-        onMouseLeave={() => {
-          if (hasClear && isClear) {
-            this.setState({ hasClear: false });
-          }
-        }}
+        // onMouseOver={() => {
+        //   if (isClear && innerValue) {
+        //     this.setState({ hasClear: true });
+        //   }
+        // }}
       >
         {leftIcon && (
           <span className={`${prefix}-left-icon`} style={leftStyle}>

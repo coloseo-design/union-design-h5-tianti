@@ -45,7 +45,7 @@ const Demo = () => (
     {TabType({ type: 'normal', mode: 'fixed', selectedKey: "标签3" })}
     {TabType({ type: 'card', })}
     {TabType({ type: 'label' })}
-    {TabType({ type: 'task', lineStyle: { width: 30 } })}
+    {TabType({ type: 'task', contentType: 'all', lineStyle: { width: 30 } })}
     {TabType({ type: 'task-mode' })}
     {TabType({ type: 'normal', contentDirection: "vertical", onTabChange: (key) => console.log(key) })}
   </div>
