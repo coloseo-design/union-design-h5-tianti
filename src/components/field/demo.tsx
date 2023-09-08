@@ -31,7 +31,7 @@ const Demo = () => {
           <h4>无边框</h4>
           <Field placeholder="内容标题" />
           <h4>有边框</h4>
-          <Field placeholder="内容标题" border isClear />
+          <Field placeholder="内容标题" border isClear style={{ margin: '46px 0px' }} />
           <h4>有前置图标</h4>
           <Field placeholder="内容标题" border leftIcon="edit2-surface" />
           <h4>错误状态无边框</h4>

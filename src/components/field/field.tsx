@@ -124,8 +124,8 @@ class Field extends Component<FieldProps, FieldState> {
       [`${prefix}-${size}`]: size,
       [`${prefix}-border`]: border,
       [`${prefix}-error`]: status === 'error',
-      [`${prefix}-focus`]: border && (focus || innerValue),
-      // [`${prefix}-focus`]: border && focus,
+      // [`${prefix}-focus`]: border && (focus || innerValue),
+      [`${prefix}-focus`]: border && focus,
       [`${prefix}-showWordLimit`]: fieldType === 'textarea' && maxLength && showWordLimit,
     });
 
