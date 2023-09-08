@@ -41,6 +41,10 @@ export interface FieldState {
 class Field extends Component<FieldProps, FieldState> {
   public TextareaRef = createRef<HTMLTextAreaElement>();
 
+  public fieldRef = createRef<HTMLDivElement>();
+
+  public inputRef = createRef<HTMLInputElement>();
+
   constructor(props: FieldProps) {
     super(props);
     // 劫持value
@@ -62,6 +66,9 @@ class Field extends Component<FieldProps, FieldState> {
 
   componentDidMount() {
     this.getTextareaHeight();
+    if (this.props.isClear) {
+      document.addEventListener('click', this.filedClick, true);
+    }
   }
 
   componentDidUpdate(prevProps: FieldProps) {
@@ -72,6 +79,28 @@ class Field extends Component<FieldProps, FieldState> {
       });
       if (value) {
         this.getTextareaHeight(value);
+      }
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (this.props.isClear) {
+      document.removeEventListener('click', this.filedClick, true);
+    }
+  }
+
+  filedClick = (e: any) => {
+    if (this.fieldRef) {
+      if (this.fieldRef.current?.contains(e.target)) {
+        const temRef: any = this.props.forwardedRef || this.inputRef;
+        if (temRef && temRef?.current) {
+          temRef.current?.focus();
+        }
+        if (this.state.innerValue) {
+          this.setState({ hasClear: true });
+        }
+      } else {
+        this.setState({ hasClear: false });
       }
     }
   }
@@ -89,6 +118,10 @@ class Field extends Component<FieldProps, FieldState> {
 
   handleDelete = () => {
     this.setState({ innerValue: '', hasClear: false });
+    const temRef: any = this.props.forwardedRef || this.inputRef;
+    if (temRef && temRef?.current) {
+      temRef.current?.focus();
+    }
   }
 
   renderField = ({ getPrefixCls }: ConfigConsumerProps) => {
@@ -124,16 +157,12 @@ class Field extends Component<FieldProps, FieldState> {
       [`${prefix}-${size}`]: size,
       [`${prefix}-border`]: border,
       [`${prefix}-error`]: status === 'error',
-      // [`${prefix}-focus`]: border && (focus || innerValue),
       [`${prefix}-focus`]: border && focus,
       [`${prefix}-showWordLimit`]: fieldType === 'textarea' && maxLength && showWordLimit,
     });
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
       this.setState({ focus: true });
-      if (isClear && innerValue) {
-        this.setState({ hasClear: true });
-      }
       if (onFocus) {
         onFocus(e);
       }
@@ -141,9 +170,6 @@ class Field extends Component<FieldProps, FieldState> {
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       this.setState({ focus: false });
-      if (hasClear && isClear) {
-        this.setState({ hasClear: false });
-      }
       if (onBlur) {
         onBlur(e);
       }
@@ -199,11 +225,7 @@ class Field extends Component<FieldProps, FieldState> {
       <div
         className={mainClass}
         style={style}
-        // onMouseOver={() => {
-        //   if (isClear && innerValue) {
-        //     this.setState({ hasClear: true });
-        //   }
-        // }}
+        ref={this.fieldRef}
       >
         {leftIcon && (
           <span className={`${prefix}-left-icon`} style={leftStyle}>
@@ -218,7 +240,7 @@ class Field extends Component<FieldProps, FieldState> {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
-          ref={forwardedRef as LegacyRef<HTMLInputElement>}
+          ref={forwardedRef as LegacyRef<HTMLInputElement> || this.inputRef}
         />
         {visibilityToggle && fieldType === 'password' && (
           <span className={`${prefix}-right-icon`}>
@@ -226,7 +248,10 @@ class Field extends Component<FieldProps, FieldState> {
           </span>
         )}
         {fieldType === 'normal' && hasClear && (
-          <span onClick={this.handleDelete} className={`${prefix}-right-icon`}>
+          <span
+            onClick={this.handleDelete}
+            className={`${prefix}-right-icon`}
+          >
             <Icon type="close1-surface" />
           </span>
         )}
