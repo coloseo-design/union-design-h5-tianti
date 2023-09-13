@@ -20,6 +20,8 @@ subtitle: 导航栏
 |rightTextColor|右侧按钮颜色| string|--|   |
 |closeable|是否展示右侧关闭icon|boolean|true|
 |titleStyle| title样式|CSSProperties|--|
+|leftStyle| left样式|CSSProperties|--|
+|rightStyle| right样式|CSSProperties|--|
 
 ### NavBar.Header
 | 属性 | 说明 | 类型 | 默认值 | 版本 |

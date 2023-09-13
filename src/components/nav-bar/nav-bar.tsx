@@ -24,6 +24,8 @@ export interface NavBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   rightTextColor?: string;
   titleStyle?: CSSProperties;
   closeable?: boolean;
+  leftStyle?: CSSProperties;
+  rightStyle?: CSSProperties;
 }
 
 const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
@@ -37,6 +39,8 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
     onRightClick,
     rightTextColor,
     titleStyle = {},
+    leftStyle = {},
+    rightStyle = {},
     closeable,
     ...rest
   } = props;
@@ -45,7 +49,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
 
   return (
     <div {...rest} className={prefix()}>
-      <div className={`${prefix()}-left`} onClick={onLeftClick}>
+      <div className={`${prefix()}-left`} style={leftStyle} onClick={onLeftClick}>
         {leftArrow && <Icon type="left2-line" className={`${prefix()}-left-icon`} />}
         {leftText}
       </div>
@@ -58,7 +62,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
       <div
         onClick={onRightClick}
         className={`${prefix()}-right`}
-        style={{ color: rightTextColor }}
+        style={{ color: rightTextColor, ...rightStyle }}
       >
         {rightText || (closeable && <Icon type="close2-line" style={{ fontSize: 20, color: '#646566' }} />)}
       </div>
