@@ -60,7 +60,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
         className={`${prefix()}-right`}
         style={{ color: rightTextColor }}
       >
-        {rightText || (closeable && <Icon type="close2-line" style={{ fontSize: 20 }} />)}
+        {rightText || (closeable && <Icon type="close2-line" style={{ fontSize: 20, color: '#646566' }} />)}
       </div>
     </div>
   );
