@@ -1,3 +1,7 @@
+## [1.0.56](https://github.com/coloseo-design/union-design-h5-tianti/compare/v1.0.55...v1.0.56) (2023-09-13)
+
+
+
 ## [1.0.55](https://github.com/coloseo-design/union-design-h5-tianti/compare/v1.0.54...v1.0.55) (2023-09-13)
 
 
