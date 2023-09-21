@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/display-name */
 /* eslint-disable quotes */
-import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { useGetPrefixClass } from "../common/base-component";
 
 export type StepProps = {
@@ -19,7 +19,7 @@ export const Step = React.memo<StepProps>((props) => {
   const dotRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (dotRef.current?.offsetHeight) {
       setHeight(dotRef.current?.offsetHeight);
     }

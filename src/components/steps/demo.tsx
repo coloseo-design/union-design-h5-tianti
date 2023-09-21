@@ -56,11 +56,64 @@ const UserCard = React.memo<UserCardProps>((props) => {
 const StepsDemo = () => {
   const { Step } = Steps;
 
+  const [test, setTest] = React.useState<any[]>([]);
+
+  const data = [
+    {
+      icon: 'check1-surface',
+      name:' 姚开瑞',
+      date: 'YYYY-MM-DD 12:00',
+      status: '已发起',
+      statusColor: '#02A851',
+      title: '发起人',
+    },
+    {
+      icon: 'close1-surface',
+      name:' 姚开瑞',
+      date: 'YYYY-MM-DD 12:00',
+      status: '已驳回',
+      statusColor: '#CA0118',
+      title: '部门预算管理员',
+    },
+    {
+      icon: 'right1-surface',
+      name:'刘斌',
+      date: 'YYYY-MM-DD 12:00',
+      status: '进行中',
+      statusColor: '#3C81F0',
+      title: '部门总经理',
+    },
+    {
+      icon: 'more1-surface',
+      name:' 姚开瑞',
+      date: 'YYYY-MM-DD 12:00',
+      status: '暂办',
+      statusColor: '#ED6A0C',
+      title: '完结',
+    },
+  ];
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setTest(data);
+    }, 100);
+  }, [])
   return (
     <div>
       <h2>提交卡片流程</h2>
       <Steps>
-        <Step title="发起人" dotColor="#02A851">
+          {test.map((item: any) => (
+        <Step style={{ padding: '16px 0px 0px 0px'}} title={item.title} dotColor={item.statusColor} key={item.icon}>
+        <UserCard
+          icon={item.icon}
+          name={item.name}
+          date={item.date}
+          status={item.status}
+          statusColor={item.statusColor}
+        />
+      </Step>
+          ))}
+        {/* <Step title="发起人" dotColor="#02A851">
           <UserCard
             icon="check1-surface"
             name="姚开瑞"
@@ -95,7 +148,7 @@ const StepsDemo = () => {
             status="暂办"
             statusColor="#ED6A0C"
           />
-        </Step>
+        </Step> */}
       </Steps>
     </div>
   );
