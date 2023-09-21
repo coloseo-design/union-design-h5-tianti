@@ -23,7 +23,7 @@ export const Step = React.memo<StepProps>((props) => {
     if (dotRef.current?.offsetHeight) {
       setHeight(dotRef.current?.offsetHeight);
     }
-  }, [height]);
+  }, [height, dotRef.current]);
 
   return (
     <div className={getPrefixClass()} style={style}>
@@ -36,7 +36,7 @@ export const Step = React.memo<StepProps>((props) => {
         <div className={getPrefixClass("dot")} />
         <div
           className={getPrefixClass("down-line")}
-          style={{ top: height }}
+          style={{ top: height || dotRef.current?.offsetHeight || 0 }}
           hidden={isLast}
         />
       </div>
