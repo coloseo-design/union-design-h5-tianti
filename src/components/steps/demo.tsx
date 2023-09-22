@@ -1,5 +1,5 @@
-import React from "react";
-import { Steps, Avatar } from "../index";
+import React, { useState } from "react";
+import { Steps, Avatar, Tab } from "../index";
 import "./styles/index";
 import "../divider/styles/index";
 
@@ -98,10 +98,17 @@ const StepsDemo = () => {
       setTest(data);
     }, 100);
   }, [])
+
+  const [key, setkey] = useState('1');
+
   return (
     <div>
       <h2>提交卡片流程</h2>
-      <Steps>
+      <Tab mode="fixed" contentType="all" selectedKey={key} onTabChange={(k) => setkey(k)}>
+        <Tab.Item key="1" title="还好">还好</Tab.Item>
+        <Tab.Item key="3" title="history">还好</Tab.Item>
+        <Tab.Item key="2" title="step">
+        <Steps>
           {test.map((item: any) => (
         <Step style={{ padding: '16px 0px 0px 0px'}} title={item.title} dotColor={item.statusColor} key={item.icon}>
         <UserCard
@@ -113,43 +120,9 @@ const StepsDemo = () => {
         />
       </Step>
           ))}
-        {/* <Step title="发起人" dotColor="#02A851">
-          <UserCard
-            icon="check1-surface"
-            name="姚开瑞"
-            date="YYYY-MM-DD 12:00"
-            status="已发起"
-            statusColor="#02A851"
-          />
-        </Step>
-        <Step title="部门预算管理员" dotColor="#CA0118">
-          <UserCard
-            icon="close1-surface"
-            name="姚开瑞"
-            date="YYYY-MM-DD 12:00"
-            status="已驳回"
-            statusColor="#CA0118"
-          />
-        </Step>
-        <Step title="部门总经理" dotColor="#3C81F0">
-          <UserCard
-            icon="right1-surface"
-            name="刘斌"
-            date="YYYY-MM-DD 12:00"
-            status="进行中"
-            statusColor="#3C81F0"
-          />
-        </Step>
-        <Step title="完结" dotColor="#ED6A0C">
-          <UserCard
-            icon="more1-surface"
-            name="姚开瑞"
-            date="YYYY-MM-DD 12:00"
-            status="暂办"
-            statusColor="#ED6A0C"
-          />
-        </Step> */}
       </Steps>
+        </Tab.Item>
+      </Tab>
     </div>
   );
 };
