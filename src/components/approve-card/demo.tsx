@@ -63,7 +63,7 @@ export default () => {
       <ApproveCard
         title="莫某某提交的财务申请相关内容莫某某提交的财务申请相关内容相关内容"
         status="progress"
-        description="地址信息一级-地址相关信息二级"
+        description="地址信息一级-地址相关信息二级-地址信息一级-地址信息一级-地址信息一级"
       />
       <ApproveCard
         title="莫某某提交的财务申请相关内容莫某某提交的财务申请相关内容相关内容"
