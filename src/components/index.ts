@@ -82,3 +82,5 @@ export { default as Calendar } from './calendar';
 export { default as ApproveCard } from './approve-card';
 
 export { default as Title } from './title';
+
+export { default as Tree } from './tree';

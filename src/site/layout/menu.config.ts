@@ -158,6 +158,10 @@ export default [
     themeColor: '#D6386B',
     children: [
       {
+        title: 'Tree 树形结构',
+        key: 'tree',
+      },
+      {
         title: 'File 文件',
         key: 'file',
       },
