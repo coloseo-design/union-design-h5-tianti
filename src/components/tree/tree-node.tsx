@@ -58,6 +58,8 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
   const leftShow = multiple || (!multiple && !children);
 
   const omitRest = omit(rest, ['parent']);
+  const tem = (Number(level) - 2) * 16;
+  const left = level > 2 ? !multiple && !children ? tem - 16 - 8 : tem : 0;
   return (
     <div
       {...omitRest}
@@ -75,7 +77,7 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
         )}
         <div
           className={classNames(`${prefix}-right`)}
-          style={{ paddingLeft: level > 2 ? (Number(level) - 2) * 16 : 0 }}
+          style={{ paddingLeft: left }}
           onClick={() => handleOpen(nodeKey)}
         >
           {icon && level !== 1 && children && (
