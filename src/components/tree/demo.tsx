@@ -31,7 +31,7 @@ const Demo = () => {
     }
   ));
 
-  const [select, $select] = useState<string[]>(['1']);
+  const [select, $select] = useState<string[]>(['1-2']);
   const [opens, $opens] = useState<string[]>(['1']);
 
   const onChange = (keys: string[], items: any[]) => {
@@ -68,11 +68,11 @@ const Demo = () => {
       />
       <h2>自定义内容</h2>
       <Tree
-        selectedKeys={['3']}
+        selectedKeys={['11']}
         onChange={onChange}
         onOpenChange={onOpenChange}
         onSelect={onSelect}
-        multiple={false}
+        // multiple={false}
       >
         <TreeNode key="1" title="一级列表">
         <TreeNode key="11" title="联通数字科技有限公司本部">

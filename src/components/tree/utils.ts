@@ -74,31 +74,47 @@ const getValidElement = (current: React.ReactElement, keys: DataItem[]) => {
 
 export const getItem = (data: any, key: string) => {
   let current = {};
-  const loopData = (list: any) => {
+  const loopData = (list: any, level = 1, parent: any) => {
     if (React.isValidElement(list)) {
       if (list.key === key) {
-        current = { ...(list as React.ReactElement).props, key: list.key };
+        current = {
+          ...(list as React.ReactElement).props, key: list.key, level, parent,
+        };
       } else if ((list as React.ReactElement).props?.children && Object.keys(current).length === 0) {
-        loopData((list as React.ReactElement).props?.children || []);
+        loopData(
+          (list as React.ReactElement).props?.children || [],
+          level + 1,
+          {
+            ...(list as React.ReactElement).props, key: list.key, level, parent,
+          },
+        );
       }
     } else {
       list.forEach((item: any) => {
         if (React.isValidElement(item)) {
           if (item.key === key) {
-            current = { ...(item as React.ReactElement).props, key: item.key };
+            current = {
+              ...(item as React.ReactElement).props, key: item.key, level, parent,
+            };
           } else if ((item as React.ReactElement).props?.children && Object.keys(current).length === 0) {
-            loopData((item as React.ReactElement).props?.children || []);
+            loopData(
+              (item as React.ReactElement).props?.children || [],
+              level + 1,
+              {
+                ...(item as React.ReactElement).props, key: item.key, level, parent,
+              },
+            );
           }
         } else if (item.key === key) {
-          current = item;
+          current = { ...item, level, parent };
         } else if (item.children && item.children.length && Object.keys(current).length === 0) {
-          loopData(item.children);
+          loopData(item.children, level + 1, item);
         }
       });
     }
   };
 
-  loopData(data || []);
+  loopData(data || [], 1, null);
   return current;
 };
 
