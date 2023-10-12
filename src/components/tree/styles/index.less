@@ -16,14 +16,14 @@
       display: flex;
       align-items: center;
       padding-left: 16px;
+      .@{uni-prefix}-checkbox-icon,  .@{uni-prefix}-radio-icon{
+        margin-right: 0px;
+      }
       .@{tree-node}-left {
         margin-right: 8px;
         height: 100%;
         display: flex;
         align-items: center;
-        .@{uni-prefix}-checkbox-icon,  .@{uni-prefix}-radio-icon{
-          margin-right: 0px;
-        }
       }
       .@{tree-node}-right {
         height: 100%;
@@ -62,10 +62,23 @@
       color: #646566;
       margin-left: 4px;
     }
+    &-isSingle&-level2 .@{tree-node}-title {
+      color: #1C1D1D;
+    }
     &-selected > .@{tree-node}-content {
       background-color: #FFEBEF;
       .@{tree-node}-right {
         border-color: #fff;
+      }
+    }
+    &-isSingle > .@{tree-node}-content > .@{tree-node}-right {
+      border-color: #EEF0F0;
+    }
+    &-level1 {
+      &:last-child {
+        .@{tree-node}-right {
+          border: none;
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Tree } from '..';
 import './styles/index';
 
@@ -12,7 +12,7 @@ const Demo = () => {
         {
           title: '联通数字科技有限公司本部',
           key: `${key + 1}-2`,
-          children: Array.from({ length: 3 }).map((_, i) => ({
+          children: key === 3 ? [] : Array.from({ length: 3 }).map((_, i) => ({
             title: '管理层',
             key: `${key + 1}-2-${i + 1}`,
             children: [
@@ -31,7 +31,8 @@ const Demo = () => {
     }
   ));
 
-  const [select, $select] = useState<string[]>([]);
+  const [select, $select] = useState<string[]>(['1']);
+  const [opens, $opens] = useState<string[]>(['1']);
 
   const onChange = (keys: string[], items: any[]) => {
     console.log('=>> change', keys, items);
@@ -45,22 +46,13 @@ const Demo = () => {
     console.log('==openChange', keys);
   };
 
-  const [data1, setData] = useState<any[]>([]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      clearTimeout(timer);
-      setData(data);
-      $select(['1-2']);
-    }, 2000);
-  }, []);
   return (
     <div style={{ margin: '0px -12px'}}>
       <h2>多选(默认就是多选)</h2>
-      <button onClick={() => $select(['2'])}>change</button>
+      <button onClick={() => {$select(['3']); $opens(['2'])}}>change</button>
       <Tree
-        data={data1}
-        defaultOpenKeys={['1']}
+        data={data}
+        openKeys={opens}
         selectedKeys={select}
         onChange={onChange}
         onSelect={onSelect}
@@ -80,13 +72,14 @@ const Demo = () => {
         onChange={onChange}
         onOpenChange={onOpenChange}
         onSelect={onSelect}
+        multiple={false}
       >
         <TreeNode key="1" title="一级列表">
         <TreeNode key="11" title="联通数字科技有限公司本部">
           <TreeNode key="123" title="管理层"></TreeNode>
           <TreeNode key="1234" title="基层"></TreeNode>
         </TreeNode>
-        <TreeNode key="346" title="联通数字科技有限公司本部1" />
+        <TreeNode key="346" title="联通22" />
         </TreeNode>
         <TreeNode key="2" title="一级列表"></TreeNode>
         <TreeNode key="3" title="一级列表"></TreeNode>

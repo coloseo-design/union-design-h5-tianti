@@ -55,11 +55,9 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
     checked: selectedKeys.includes(nodeKey),
   };
 
-  const leftShow = multiple || (!multiple && !children);
-
   const omitRest = omit(rest, ['parent']);
   const tem = (Number(level) - 2) * 16;
-  const left = level > 2 ? !multiple && !children ? tem - 16 - 8 : tem : 0;
+  const left = level > 2 ? tem : 0;
   return (
     <div
       {...omitRest}
@@ -67,18 +65,25 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
         [`${prefix}-level${level}`]: level,
         [`${prefix}-leaf`]: !children && level > 1,
         [`${prefix}-selected`]: selectedKeys.includes(nodeKey),
+        [`${prefix}-isSingle`]: !multiple,
       })}
     >
       <div className={classNames(`${prefix}-content`)}>
-        {leftShow && (
+        {multiple && (
         <div className={classNames(`${prefix}-left`)}>
-          {multiple ? <Checkbox {...checkProps} /> : !children ? <Radio {...checkProps} /> : ''}
+          <Checkbox {...checkProps} />
         </div>
         )}
         <div
           className={classNames(`${prefix}-right`)}
           style={{ paddingLeft: left }}
-          onClick={() => handleOpen(nodeKey)}
+          onClick={() => {
+            if (children) {
+              handleOpen(nodeKey);
+            } else if (!multiple) {
+              handleChange();
+            }
+          }}
         >
           {icon && level !== 1 && children && (
             <div className={classNames(`${prefix}-prefix-icon`)}>
@@ -86,9 +91,10 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
             </div>
           )}
           <div className={classNames(`${prefix}-title`)}>{title}</div>
-          {children && (
+          {(children || (!multiple && !children)) && (
             <div className={classNames(`${prefix}-right-icon`)}>
-              <Icon type={rightIcon || openKeys.includes(nodeKey) ? 'down2-line' : 'right2-line'} />
+              {children && <Icon type={rightIcon || openKeys.includes(nodeKey) ? 'down2-line' : 'right2-line'} />}
+              {!children && !multiple && <Radio {...checkProps} />}
             </div>
           )}
         </div>

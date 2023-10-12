@@ -180,7 +180,7 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
 
   const renderChild = useMemo(() => {
     if (data && data.length > 0) {
-      return renderData(data, 1, null);
+      return renderData(JSON.parse(JSON.stringify(data)), 1, null);
     }
     if (children) {
       return renderChildren(children, 1, null);
