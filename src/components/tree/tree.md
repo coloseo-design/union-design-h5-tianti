@@ -16,7 +16,7 @@ subtitle: 树形结构
 |multiple | 是否多选| boolean| true |
 | onSelect | 选中时的回调 | (key: string, current: DataItem) => void | - |
 | onChange | 改变时的回调 |  (keys: string[], currents: DataItem[]) => void | - |
-| onOpenChange | 展开收起时的回调 |  (keys: string[]) => void | - |
+| onOpenChange | 展开收起时的回调 |  (keys: string[], { isOpen: boolean, key: string}) => void | - |
 
 ### DataItem
 ```

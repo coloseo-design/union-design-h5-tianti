@@ -14,6 +14,8 @@ export type DataItem = {
 
 export type ChildType = {childrenList: DataItem[] } & DataItem;
 
+type Open = { isOpen: boolean, key: string };
+
 export interface TreeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' |'onChange'> {
   defaultSelectedKeys?: string[]
   selectedKeys?: string[];
@@ -24,7 +26,7 @@ export interface TreeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'o
   children?: any;
   onSelect?: (key: string, item: DataItem) => void;
   onChange?: (keys: string[], items: DataItem[]) => void,
-  onOpenChange?: (keys: string[]) => void;
+  onOpenChange?: (keys: string[], open: Open) => void;
 }
 
 export interface TreeContextProps {

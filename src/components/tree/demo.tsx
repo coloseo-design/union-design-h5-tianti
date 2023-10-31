@@ -46,17 +46,86 @@ const Demo = () => {
     console.log('==openChange', keys);
   };
 
+  const data1 = [
+    {
+      title: '一级列表',
+      key: '1',
+      children: [
+        {
+          title: '人员a',
+          key: 'a',
+        },
+        {
+          title: '人员b',
+          key: 'b',
+        },
+      ],
+    },
+    {
+      title: '一级列表1',
+      key: '2',
+      children: [
+        {
+          title: '人员a',
+          key: 'a1',
+        },
+        {
+          title: '人员b',
+          key: 'b1',
+        },
+      ],
+    },
+    {
+      title: '一级列表2',
+      key: '3',
+      children: [
+        {
+          title: '人员a',
+          key: 'a3',
+        },
+        {
+          title: '人员b',
+          key: 'b3',
+        },
+      ],
+    },
+    {
+      title: '一级列表3',
+      key: '4',
+      children: [
+        {
+          title: '人员a',
+          key: 'a4',
+        },
+        {
+          title: '人员b',
+          key: 'b4',
+        },
+      ],
+    }
+  ];
+
+const [opens1, setOpens1] = useState<string[]>([]);
   return (
     <div style={{ margin: '0px -12px'}}>
+      <Tree
+        data={data1}
+        openKeys={opens1}
+        onOpenChange={(keys, { isOpen, key }: any) => {
+          if (isOpen) {
+            setOpens1(key);
+          }
+        }}
+      />
       <h2>多选(默认就是多选)</h2>
       <button onClick={() => {$select(['3']); $opens(['2'])}}>change</button>
       <Tree
         data={data}
         openKeys={opens}
-        selectedKeys={select}
+        defaultSelectedKeys={select}
         onChange={onChange}
         onSelect={onSelect}
-        onOpenChange={onOpenChange}
+        onOpenChange={(keys) => $opens(keys)}
       />
       <h2 style={{ marginTop: 24 }}>单选(默认就是多选)</h2>
       <Tree
@@ -68,7 +137,7 @@ const Demo = () => {
       />
       <h2>自定义内容</h2>
       <Tree
-        selectedKeys={['11']}
+        defaultSelectedKeys={['11']}
         onChange={onChange}
         onOpenChange={onOpenChange}
         onSelect={onSelect}

@@ -76,13 +76,18 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
 
   const handleOpen = (key: string) => {
     let t = [...opens];
+    let isOpen = false;
     if (opens.includes(key)) {
       t = opens.filter((i) => i !== key);
+      isOpen = false;
     } else {
       t.push(key);
+      isOpen = true;
     }
-    onOpenChange?.(t);
-    setOpen([...t]);
+    onOpenChange?.(t, { isOpen, key });
+    if (typeof openKeys === 'undefined') {
+      setOpen([...t]);
+    }
   };
 
   const MultipleChoice = (key: string, current: DataItem) => {
@@ -118,13 +123,17 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
     }
 
     const lT = Reduction(temp);
-    setInfo(lT);
+    if (typeof selectedKeys === 'undefined') {
+      setInfo(lT);
+    }
     onChange?.(lT.map((i: any) => i.key), RemoveExcess(lT));
   };
 
   const SingleChoice = (key: string, current: DataItem) => {
     if (!selectInfo.find((i) => i.key === key)) {
-      setInfo([current]);
+      if (typeof selectedKeys === 'undefined') {
+        setInfo([current]);
+      }
       const t = RemoveExcess([current]);
       onChange?.([key], RemoveExcess([current]));
       onSelect?.(key, t[0]);
