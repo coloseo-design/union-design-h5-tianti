@@ -78,7 +78,7 @@ export const getItem = (data: any, key: string) => {
     if (React.isValidElement(list)) {
       if (list.key === key) {
         current = {
-          ...(list as React.ReactElement).props, key: list.key, level, parent,
+          ...(list as React.ReactElement).props, key: list.key, level, parent, nodeProps: list.props,
         };
       } else if ((list as React.ReactElement).props?.children && Object.keys(current).length === 0) {
         loopData(
@@ -94,7 +94,11 @@ export const getItem = (data: any, key: string) => {
         if (React.isValidElement(item)) {
           if (item.key === key) {
             current = {
-              ...(item as React.ReactElement).props, key: item.key, level, parent,
+              ...(item as React.ReactElement).props,
+              key: item.key,
+              level,
+              parent,
+              nodeProps: item.props,
             };
           } else if ((item as React.ReactElement).props?.children && Object.keys(current).length === 0) {
             loopData(
@@ -106,7 +110,9 @@ export const getItem = (data: any, key: string) => {
             );
           }
         } else if (item.key === key) {
-          current = { ...item, level, parent };
+          current = {
+            ...item, level, parent, nodeProps: item,
+          };
         } else if (item.children && item.children.length && Object.keys(current).length === 0) {
           loopData(item.children, level + 1, item);
         }
@@ -121,14 +127,3 @@ export const getItem = (data: any, key: string) => {
 export const isInclude = (arr1: any[], arr2: any[]) => arr2.every((val) => arr1.includes(val));
 
 export const noInclude = (arr1: any[], arr2: any[]) => arr2.some((val) => !arr1.includes(val));
-
-export const RemoveExcess = (data: any[]) => {
-  data.forEach((item: any) => {
-    delete item?.parent;
-    delete item?.level;
-    delete item?.childrenList;
-    delete item?.dataChildren;
-    delete item?.nodeKey;
-  });
-  return data;
-};

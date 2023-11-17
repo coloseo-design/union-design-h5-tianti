@@ -10,7 +10,7 @@ import {
   DataItem, TreeProps, TreeContext, ChildType,
 } from './type';
 import {
-  findChild, findParent, findAllParentChild, getItem, Reduction, isInclude, noInclude, RemoveExcess,
+  findChild, findParent, findAllParentChild, getItem, Reduction, isInclude, noInclude,
 } from './utils';
 
 const Tree: React.FC<TreeProps> = (props: TreeProps) => {
@@ -25,6 +25,8 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
     onOpenChange,
     defaultSelectedKeys,
     defaultOpenKeys,
+    onTitleClick,
+    onIconClick,
     ...rest
   } = props;
   const { getPrefixCls } = useContext(ConfigContext);
@@ -92,12 +94,12 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
 
   const MultipleChoice = (key: string, current: DataItem) => {
     let temp = [...selectInfo];
-    const c: DataItem[] = findChild(current); // 当前数据的子级
-    const pc: DataItem[] = findParent(current); // 当前数据的父级
-    const parentChild: ChildType[] = findAllParentChild(pc); // 当前数据父级的所有子级
+    const child: DataItem[] = findChild(current); // 当前数据的子级
+    const parent: DataItem[] = findParent(current); // 当前数据的父级
+    const parentChild: ChildType[] = findAllParentChild(parent); // 当前数据父级的所有子级
     if (selectInfo.find((i) => i.key === key)) {
       // 父级取消子级也要取消选中
-      temp = selectInfo.filter((i) => i.key !== key && !c.map((j) => j.key).includes(i.key));
+      temp = selectInfo.filter((i) => i.key !== key && !child.map((j) => j.key).includes(i.key));
       if (current.parent) { // 子级取消一个父级也要取消
         (parentChild || []).forEach((item) => {
           const a1 = temp.map((i) => i.key);
@@ -109,7 +111,7 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
       }
     } else {
       temp.push(current);
-      temp.push(...c);
+      temp.push(...child);
       if (current.parent) { // 如果父级的子级都被选中，父级也要被选中
         (parentChild || []).forEach((item) => {
           const a1 = Reduction(temp.map((i) => i.key));
@@ -119,14 +121,14 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
           }
         });
       }
-      onSelect?.(key, current);
+      onSelect?.(key, current.originProps ?? current);
     }
 
     const lT = Reduction(temp);
     if (typeof selectedKeys === 'undefined') {
       setInfo(lT);
     }
-    onChange?.(lT.map((i: any) => i.key), RemoveExcess(lT));
+    onChange?.(lT.map((i: any) => i.key), lT.map((i: any) => i.originProps ?? i));
   };
 
   const SingleChoice = (key: string, current: DataItem) => {
@@ -134,9 +136,8 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
       if (typeof selectedKeys === 'undefined') {
         setInfo([current]);
       }
-      const t = RemoveExcess([current]);
-      onChange?.([key], RemoveExcess([current]));
-      onSelect?.(key, t[0]);
+      onChange?.([key], [current.originProps]);
+      onSelect?.(key, current.originProps);
     }
   };
 
@@ -151,11 +152,15 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
   const renderData = (list: DataItem[] = [], level = 1, parent: DataItem | null) => (
     <>
       {list.map((item) => {
+        const t = { ...item };
         Object.assign(item, {
           level,
           parent,
           nodeKey: item.key,
           dataChildren: item.children,
+          originProps: t,
+          onTitleClick,
+          onIconClick,
         });
         return (
           <TreeNode {...item} key={item.key}>
@@ -177,6 +182,9 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
           dataChildren: child.props.children,
           parent,
           level,
+          originProps: child.props || {},
+          onTitleClick,
+          onIconClick,
         };
         return (
           <TreeNode {...nodeProps} key={child.key}>

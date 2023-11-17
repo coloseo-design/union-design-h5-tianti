@@ -18,6 +18,9 @@ DataItem & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> & {
   nodeKey?: string;
   parent?: DataItem | null;
   disabled?: boolean;
+  onTitleClick?: (obj: any, e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onIconClick?: (obj: any, e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  originProps?: any;
 }
 >
 
@@ -31,6 +34,9 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
     rightIcon,
     dataChildren,
     disabled,
+    onTitleClick,
+    onIconClick,
+    originProps,
     ...rest
   } = props;
   const { getPrefixCls } = useContext(ConfigContext);
@@ -90,10 +96,15 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
               {typeof icon === 'string' ? <Icon type={icon} /> : icon }
             </div>
           )}
-          <div className={classNames(`${prefix}-title`)}>{title}</div>
+          <div onClick={(e) => onTitleClick?.(originProps, e)} className={classNames(`${prefix}-title`)}>{title}</div>
           {(children || (!multiple && !children)) && (
             <div className={classNames(`${prefix}-right-icon`)}>
-              {children && <Icon type={rightIcon || openKeys.includes(nodeKey) ? 'down2-line' : 'right2-line'} />}
+              {children && (
+              <Icon
+                type={rightIcon || openKeys.includes(nodeKey) ? 'down2-line' : 'right2-line'}
+                onClick={(e) => onIconClick?.(originProps, e)}
+              />
+              )}
               {!children && !multiple && <Radio {...checkProps} />}
             </div>
           )}

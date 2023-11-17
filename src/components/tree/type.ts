@@ -27,6 +27,8 @@ export interface TreeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'o
   onSelect?: (key: string, item: DataItem) => void;
   onChange?: (keys: string[], items: DataItem[]) => void,
   onOpenChange?: (keys: string[], open: Open) => void;
+  onTitleClick?: (obj: any, e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onIconClick?: (obj: any, e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 export interface TreeContextProps {

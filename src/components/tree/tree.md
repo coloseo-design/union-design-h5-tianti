@@ -17,6 +17,8 @@ subtitle: 树形结构
 | onSelect | 选中时的回调 | (key: string, current: DataItem) => void | - |
 | onChange | 改变时的回调 |  (keys: string[], currents: DataItem[]) => void | - |
 | onOpenChange | 展开收起时的回调 |  (keys: string[], { isOpen: boolean, key: string}) => void | - |
+| onTitleClick|点击title的回调|(current: DataItem, e: Event) => void|-|
+| onIconClick|点击右侧icon的回调|(current: DataItem, e: Event) => void|-|
 
 ### DataItem
 ```
