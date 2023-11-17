@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/display-name */
 import React, {
   Component, CSSProperties, forwardRef, isValidElement, LegacyRef, ReactNode, createRef,
@@ -6,10 +7,10 @@ import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider/context';
 import { Icon } from '../index';
 
-export interface FieldProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement | HTMLInputElement>, 'value' | 'defaultValue'> {
+export interface FieldProps extends Omit<React.HTMLAttributes<HTMLTextAreaElement | HTMLInputElement>, 'value' | 'defaultValue' | 'onChange'> {
   border?: boolean; // 是否显示边框
   leftIcon?: string | ReactNode; // 左侧图标
-  fieldType?: 'normal' | 'password' | 'textarea'; // 普通输入框、密码输入框、多行输入框
+  fieldType?: 'normal' | 'password' | 'textarea' | 'number'; // 普通输入框、密码输入框、多行输入框, 数组输入框
   leftStyle?: CSSProperties; // 左边图标样式
   maxLength?: number; // 输入的最大字符数
   status?: 'error'; // 是否将输入内容标红
@@ -17,7 +18,7 @@ export interface FieldProps extends Omit<React.HTMLAttributes<HTMLTextAreaElemen
   defaultValue?: string | number;
   value?: string | number; // 输入框内容
   visibilityToggle?: boolean; // 是否显示切换的小眼睛，只对密码输入框有效
-  onChange?: React.ChangeEventHandler<HTMLInputElement>; // 输入框内容变化时触发
+  onChange?: (value: number | string | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>) => void; // 输入框内容变化时触发
   prefixCls?: string; // 用户自定义类前缀，默认uni-field
   showWordLimit?: boolean; // 是否显示字数统计，需要设置maxLength属性
   forwardedRef: React.LegacyRef<HTMLTextAreaElement | HTMLInputElement>;
@@ -55,7 +56,7 @@ class Field extends Component<FieldProps, FieldState> {
       defaultValue,
     } = props;
     this.state = {
-      innerValue: value || defaultValue || '',
+      innerValue: value ?? defaultValue ?? '',
       type: fieldType === 'password' ? 'password' : type,
       hasClear: false,
       eyesOpen: false,
@@ -72,10 +73,11 @@ class Field extends Component<FieldProps, FieldState> {
   }
 
   componentDidUpdate(prevProps: FieldProps) {
-    const { value } = this.props;
+    const { value, fieldType = 'normal' } = this.props;
     if (value !== prevProps.value) {
+      const val = fieldType === 'number' ? this.getNumber(value) : value;
       this.setState({
-        innerValue: typeof value === 'undefined' ? '' : value,
+        innerValue: typeof value === 'undefined' ? '' : val ?? '',
       });
       if (value) {
         this.getTextareaHeight(value);
@@ -122,6 +124,12 @@ class Field extends Component<FieldProps, FieldState> {
     if (temRef && temRef?.current) {
       temRef.current?.focus();
     }
+  }
+
+  getNumber = (val: string | number = ''): number | string => {
+    // eslint-disable-next-line no-useless-escape
+    const lastVal = `${val ?? ''}`.replace(/[^0-9\.]/g, '');
+    return lastVal;
   }
 
   renderField = ({ getPrefixCls }: ConfigConsumerProps) => {
@@ -180,14 +188,17 @@ class Field extends Component<FieldProps, FieldState> {
     };
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
-      this.setState({ innerValue: e.target.value });
+      const val = fieldType === 'number' ? this.getNumber(e.target.value) : e.target.value;
+      this.setState({ innerValue: val });
       if (autosize && fieldType === 'textarea') {
         this.setState({ textHeight: e.target.scrollHeight });
       }
-      if (onChange) {
-        (onChange as React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>)(e);
+      if (fieldType === 'number') {
+        onChange?.(val);
+      } else {
+        onChange?.(e as any);
       }
-      if (isClear && e.target.value) {
+      if (isClear && val) {
         this.setState({ hasClear: true });
       }
     };

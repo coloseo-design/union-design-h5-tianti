@@ -15,10 +15,10 @@ subtitle: 输入框
 | --- | --- | --- | --- | --- |
 | border | 是否显示边框 | boolean | - |  |
 | leftIcon | 左侧图标 | string \| ReactNode | - |  |
-| fieldType | 普通输入框、密码输入框、多行输入框 | 'normal' \| 'password' \| 'textarea' | normal |  |
+| fieldType | 普通输入框、密码输入框、多行输入框 | 'normal' \| 'password' \| 'textarea'\|'number' | normal |  |
 | leftStyle | 左边图标样式 | CSSProperties | - |  |
 | placeholder | 输入框占位提示文字 | string | - |  |
-| onChange | 输入框内容变化时的回调 | function(e) | - |  |
+| onChange | 输入框内容变化时的回调(fieldType='number'返回当前值) | function(e) | - |  |
 | autosize | 是否自适应内容高度，只对 textarea 有效 | boolean | false |  |
 | status | error | string | - |  |
 | value | 输入框内容 | string \| number | - |  |

@@ -16,6 +16,8 @@ const Demo = () => {
           无边框输入框：在白背景下使用。
           在输入框中添加图标：用于对输入框含义补充解释，提输入内容识别效率。
         </p>
+        <p>数字输入框</p>
+        <Field value={0} fieldType="number" border  />
         <p>有线框输入框</p>
         <Field placeholder="内容标题" border disabled />
         <p>无线框输入框</p>
