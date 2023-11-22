@@ -9,6 +9,7 @@ export type DataItem = {
   multiple?: boolean;
   children?: DataItem[];
   rightIcon?: string;
+  isLeaf?: boolean;
   [x: string]: any;
 }
 

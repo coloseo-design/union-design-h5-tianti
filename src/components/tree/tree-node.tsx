@@ -18,6 +18,7 @@ DataItem & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> & {
   nodeKey?: string;
   parent?: DataItem | null;
   disabled?: boolean;
+  isLeaf?: boolean;
   onTitleClick?: (obj: any, e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onIconClick?: (obj: any, e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   originProps?: any;
@@ -37,6 +38,7 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
     onTitleClick,
     onIconClick,
     originProps,
+    isLeaf,
     ...rest
   } = props;
   const { getPrefixCls } = useContext(ConfigContext);
@@ -64,12 +66,14 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
   const omitRest = omit(rest, ['parent']);
   const tem = (Number(level) - 2) * 16;
   const left = level > 2 ? tem : 0;
+  const showChildren = typeof isLeaf !== 'undefined' ? !isLeaf : children;
+
   return (
     <div
       {...omitRest}
       className={classNames(prefix, {
         [`${prefix}-level${level}`]: level,
-        [`${prefix}-leaf`]: !children && level > 1,
+        [`${prefix}-leaf`]: !showChildren && level > 1,
         [`${prefix}-selected`]: selectedKeys.includes(nodeKey),
         [`${prefix}-isSingle`]: !multiple,
       })}
@@ -84,30 +88,28 @@ const TreeNode: React.FC<TreeNodeProps> = (props: TreeNodeProps) => {
           className={classNames(`${prefix}-right`)}
           style={{ paddingLeft: left }}
           onClick={() => {
-            if (children) {
+            if (showChildren) {
               handleOpen(nodeKey);
             } else if (!multiple) {
               handleChange();
             }
           }}
         >
-          {icon && level !== 1 && children && (
+          {icon && level !== 1 && showChildren && (
             <div className={classNames(`${prefix}-prefix-icon`)}>
               {typeof icon === 'string' ? <Icon type={icon} /> : icon }
             </div>
           )}
           <div onClick={(e) => onTitleClick?.(originProps, e)} className={classNames(`${prefix}-title`)}>{title}</div>
-          {(children || (!multiple && !children)) && (
+          {showChildren && (
             <div className={classNames(`${prefix}-right-icon`)}>
-              {children && (
               <Icon
                 type={rightIcon || openKeys.includes(nodeKey) ? 'down2-line' : 'right2-line'}
                 onClick={(e) => onIconClick?.(originProps, e)}
               />
-              )}
-              {!children && !multiple && <Radio {...checkProps} />}
             </div>
           )}
+          {!showChildren && !multiple && (<Radio {...checkProps} />)}
         </div>
       </div>
       {openKeys.includes(nodeKey) && children}

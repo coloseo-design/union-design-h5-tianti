@@ -15,6 +15,7 @@ const Demo = () => {
           children: key === 3 ? [] : Array.from({ length: 3 }).map((_, i) => ({
             title: '管理层',
             key: `${key + 1}-2-${i + 1}`,
+            // isLeaf: true,
             children: [
               {
                 title: '姓名  （OA0010123312）',
@@ -113,12 +114,13 @@ const [opens2, setOpen2] = useState<string[]>([]);
       <Tree
         data={data}
         openKeys={opens2}
-        onTitleClick={(current) => {
+        multiple={false}
+        onTitleClick={(current, e) => {
+          e.stopPropagation();
           console.log('==title', current);
         }}
         onIconClick={(current, e) => {
           e.stopPropagation();
-          console.log('icon=>>', current);
           if (opens2.includes(current.key)) {
             setOpen2(opens2.filter((i) => i !== current.key));
           } else {

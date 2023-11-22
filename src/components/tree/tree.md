@@ -20,6 +20,16 @@ subtitle: 树形结构
 | onTitleClick|点击title的回调|(current: DataItem, e: Event) => void|-|
 | onIconClick|点击右侧icon的回调|(current: DataItem, e: Event) => void|-|
 
+## TreeNode
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| key | 唯一值 | string | - |
+| title | 展示的值 | string | - |
+| isLeaf | 是否是叶子结点 | boolean | - |
+|icon|前置图标|string\|ReactNode|-|
+| onTitleClick|点击title的回调|(current: DataItem, e: Event) => void|-|
+| onIconClick|点击右侧icon的回调|(current: DataItem, e: Event) => void|-|
+
 ### DataItem
 ```
 {
@@ -27,6 +37,7 @@ subtitle: 树形结构
   title: string | ReactNode; // 文案
   icon?: string | ReactNode; // title前面的icon
   children?: DataItem[]; // 子级
+  isLeaf?: boolean; // 是否是叶子结点
   rightIcon?: string; // 右侧箭头icon 
 }
 ```
