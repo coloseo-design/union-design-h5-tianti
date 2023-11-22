@@ -105,23 +105,27 @@ const RadioDemo = () => {
           <Radio value="C" style={{ marginBottom: 8 }}>C</Radio>
         </Radio.Group>
       </div>
+      <h3>test</h3>
       <div>
         <Radio.Group
-          value={value}
+          value={'1'}
           onChange={val =>{
             setValue(val)
           }}
         >
-          {
-            loginList.map((item, key) => (
-                <Radio value={`${key}`} key={`${key}`}>
-                  <div style={{ display: 'flex' }}>
-                    <div>{item.deptName}</div>
-                    <div>{item.siteType}</div>
-                  </div>
-                </Radio>
-            ))
-          }
+            <div>
+            {
+                          loginList.map((item, key) => (
+                            <Radio value={`${item.siteType}`} key={`${key}`}>
+                              <div style={{ display: 'flex' }}>
+                                <div>{item.deptName}</div>
+                                <div>{item.siteType}</div>
+                              </div>
+                            </Radio>
+                        ))
+                      }
+            </div>
+
         </Radio.Group>
       </div>
     </div>
