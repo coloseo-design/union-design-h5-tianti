@@ -303,7 +303,7 @@ Tab.Item = memo((props) => {
     title = '',
     titleNum,
     taskNum = 0,
-    taskWeight = 1,
+    taskWeight = 2,
     dot = false,
     _key,
     _index,

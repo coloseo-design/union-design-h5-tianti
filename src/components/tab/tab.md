@@ -36,7 +36,7 @@ subtitle: 标签页
 | title      | 标题                                                         | string  | -      |
 | titleNum   | 标题最大长度                                                 | number  | -      |
 | taskNum    | TabProps type为task 时候的数字                               | number  | -      |
-| taskWeight | TabProps type为task 时候的数字颜色 不重要内容：1 重要内容：2 | 1\|2    | 1      |
+| taskWeight | TabProps type为task 时候的数字颜色 不重要内容：1 重要内容：2 | 1\|2    | 2      |
 
 ### Tab.Config 全局配置
 
