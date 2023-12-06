@@ -88,9 +88,11 @@ class Popup extends React.Component<PopupProps, PopupState> {
         this.setState({ translationS: true });
         const timer = setTimeout(() => {
           clearTimeout(timer);
+          this.setOverflow(false);
           this.setState({ visible: false, translationS: false });
         }, isTransition ? 300 : 0);
       } else {
+        this.setOverflow(true);
         this.setState({
           visible,
         });
@@ -100,6 +102,22 @@ class Popup extends React.Component<PopupProps, PopupState> {
 
   componentWillUnmount() {
     this.setState({ visible: false });
+  }
+
+  setOverflow = (open: boolean) => {
+    const { getPopupContainer } = this.props;
+    const container = getPopupContainer?.();
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      if (container && container.tagName !== 'BODY') {
+        container.style.overflow = 'hidden';
+      }
+    } else {
+      document.body.style.overflow = '';
+      if (container && container.tagName !== 'BODY') {
+        container.style.overflow = '';
+      }
+    }
   }
 
   handleMask = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
