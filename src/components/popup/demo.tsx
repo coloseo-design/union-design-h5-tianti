@@ -93,7 +93,9 @@ const PopupDemo = () => {
         }
       >
         <div style={{ width: '100%', height: 12, backgroundColor: 'rgb(250, 250, 250)'}} />
-        {content(7)}
+        <button onClick={() => setVmodel2(true)}>展开</button>
+        <button onClick={() => setVmodel2(false)}>关闭</button>
+        {content(47)}
       </Popup>
       <Popup
         visible={vmodel}
@@ -119,7 +121,14 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         header="标题"
         footerStyle={{ paddingBottom: 32 }}
+        parentHidden={fullVisible ? false : true}
       >
+        <button onClick={() => {
+          setVmodel2(false);
+          if (fullVisible) {
+            document.body.style.overflow = 'hidden';
+          }
+        }}>关闭</button>
         {content(7)}
       </Popup>
       <Popup
