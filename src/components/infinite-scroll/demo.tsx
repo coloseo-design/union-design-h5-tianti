@@ -1,5 +1,5 @@
 import React from "react";
-import { InfiniteScroll } from "../index";
+import { InfiniteScroll, Popup, Dialog } from "../index";
 import "./styles/index";
 import "../icon/styles/index";
 
@@ -31,6 +31,7 @@ let errNum = 0;
 const Demo = () => {
   const [data, setData] = React.useState<string[]>([]);
   const [hasMore, setHasMore] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
 
   async function loadMore() {
     if (errNum === 2) {
@@ -43,15 +44,30 @@ const Demo = () => {
     errNum += 1;
   }
 
+  const click = () => {
+    setVisible(true);
+    setHasMore(true);;
+  };
+
   return (
-    <div style={{ height: 300, overflow: "auto" }}>
-      {data.map((i) => (
-        <div key={i} style={{ height: 30, borderTop: "1px solid black" }}>
-          {i}
+    <div>
+      <button onClick={click}>
+        全屏
+      </button>
+      {/* <Popup header="标题" fullScreen closeable visible={visible} footer={null} bodyStyle={{ padding: 24 }}> */}
+        <div style={{ height: 300, border: '1px solid red', overflow: 'auto' }}>
+          {data.map((i) => (
+            <div key={i} style={{ height: 30, borderTop: "1px solid black" }}>
+              {i}
+            </div>
+          ))}
+          <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
         </div>
-      ))}
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
+
+
+      {/* </Popup> */}
     </div>
+
   );
 };
 

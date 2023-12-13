@@ -38,7 +38,10 @@ const InfiniteScroll = React.memo<InfiniteScrollProps>((props) => {
   useLayoutEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
-        setVisible(entries[0].isIntersecting);
+        // setVisible(entries[0].isIntersecting);
+        entries.forEach(({ isIntersecting }) => {
+          setVisible(isIntersecting);
+        });
       },
       {
         root: ref.current?.parentElement,

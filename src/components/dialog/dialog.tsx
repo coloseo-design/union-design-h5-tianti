@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import { BaseComponent, BaseProps } from '../common/base-component';
 
 export type DialogAction = Partial<{
@@ -58,7 +59,7 @@ class DialogComponent extends BaseComponent<DialogConf> {
     return (
       <div
         style={maskStyle}
-        className={`${this.getPrefixClass('mask')} ${maskClassName}`}
+        className={classNames(`${this.getPrefixClass('mask')}`, maskClassName)}
         onClick={() => {
           maskClosable && Dialog.close(id);
         }}
@@ -78,7 +79,7 @@ class DialogComponent extends BaseComponent<DialogConf> {
     return (
       <div
         style={style}
-        className={`${this.getPrefixClass()} ${className}`}
+        className={classNames(`${this.getPrefixClass()}`, className)}
         onClick={(event) => event.stopPropagation()}
       >
         {title && <div className={this.gpc('title')}>{title}</div>}
