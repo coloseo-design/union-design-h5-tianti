@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable no-useless-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, createRef } from 'react';
 import classNames from 'classnames';
 import omit from 'omit.js';
 import Icon from '../icon';
@@ -31,6 +33,9 @@ export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLElement>, 'va
   title?: string;
   /* 点击item时触发 */
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onToggleChange?: (toggle: boolean) => void;
+  /* 自定义的title是否标红 */
+  customTitleActive?: boolean;
 }
 
 export interface DropdownItemState {
@@ -41,6 +46,12 @@ export interface DropdownItemState {
 }
 
 class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState> {
+  public maskRef = createRef<HTMLDivElement>();
+
+  public childRef = createRef<HTMLDivElement>();
+
+  public itemRef = createRef<HTMLDivElement>();
+
   constructor(props: DropdownItemProps) {
     super(props);
     this.state = {
@@ -54,7 +65,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
   componentDidMount() {
     const { getNodeLocation, closeOnClickOutside = true } = this.context;
     getNodeLocation();
-    closeOnClickOutside && document.addEventListener('click', this.bodyClick);
+    closeOnClickOutside && document.addEventListener('click', this.bodyClick, true);
     document.addEventListener('scroll', this.DocumentScroll);
   }
 
@@ -71,11 +82,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
         this.setState({ visible: true });
         getNodeLocation();
       } else {
-        this.setState({ transitionEnd: true });
-        const time = setTimeout(() => {
-          clearTimeout(time);
-          this.setState({ transitionEnd: false, visible: false });
-        }, 300);
+        this.close();
       }
     }
   }
@@ -83,7 +90,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
   componentWillUnmount() {
     const { closeOnClickOutside = true } = this.context;
     document.removeEventListener('scroll', this.DocumentScroll);
-    closeOnClickOutside && document.removeEventListener('click', this.bodyClick);
+    closeOnClickOutside && document.removeEventListener('click', this.bodyClick, true);
   }
 
   DocumentScroll = () => {
@@ -95,69 +102,62 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
   }
 
   handleChange = (value: string) => {
-    const { onChange } = this.props;
+    const { onChange, onToggleChange } = this.props;
     this.setState({ selectedValue: value });
-    onChange && onChange(value);
-    this.bodyClick();
+    onChange?.(value);
+    this.close();
+    onToggleChange?.(false);
   }
 
-  handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { children } = this.props;
-    if (children) {
-      e.stopPropagation();
-      e.nativeEvent.stopImmediatePropagation();
-    }
-  };
+  close = () => {
+    this.setState({ transitionEnd: true });
+    const timer = setTimeout(() => {
+      clearTimeout(timer);
+      this.setState({ visible: false, transitionEnd: false });
+    }, 300);
+  }
 
   handleInput = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
     const {
       getNodeLocation, changeParentState, currentTargetId,
     } = this.context;
-    const { toggle, onClick, disabled } = this.props;
+    const {
+      toggle, onClick, disabled, onToggleChange,
+    } = this.props;
     const { visible, onlyId } = this.state;
-    if (typeof toggle !== 'undefined') {
-      onClick && onClick(e);
-    } else if (!disabled && !toggle) {
+    !disabled && onClick?.(e);
+    if (!disabled && !toggle) {
       if (visible && currentTargetId === onlyId) {
-        this.setState({ transitionEnd: true });
-        const time = setTimeout(() => {
-          clearTimeout(time);
-          this.setState({ transitionEnd: false, visible: false });
-        }, 300);
+        this.close();
+        onToggleChange?.(false);
       } else {
         changeParentState({ currentTargetId: onlyId });
         this.setState({ visible: true });
         getNodeLocation();
+        onToggleChange?.(true);
       }
     }
   };
 
   handleMask =(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    const { toggle } = this.props;
     const { closeOnClickOverlay = true } = this.context;
-    if (typeof toggle === 'undefined') {
-      if (e.currentTarget === e.target) {
-        if (closeOnClickOverlay) {
-          this.bodyClick();
-        }
+    const { onToggleChange } = this.props;
+    if (e.currentTarget === e.target) {
+      if (closeOnClickOverlay) {
+        this.close();
+        onToggleChange?.(false);
       }
     }
   };
 
-  bodyClick = () => {
-    const { toggle } = this.props;
-    if (typeof toggle === 'undefined') {
-      this.setState({ transitionEnd: true });
-      const time = setTimeout(() => {
-        clearTimeout(time);
-        this.setState({ visible: false, transitionEnd: false });
-      }, 300);
-    }
+  bodyClick = (e: any) => {
+    const { onToggleChange } = this.props;
+    const { target } = e;
+    if (this.itemRef.current && this.itemRef.current.contains(target)) return; // 点击item
+    if (this.childRef.current && this.childRef.current.contains(target)) return; // 点击弹窗内容
+    if (this.maskRef.current && this.maskRef.current.contains(target) && !this.childRef.current?.contains(target)) return; // 点击蒙层
+    this.close();
+    onToggleChange?.(false);
   }
 
   renderCurrent = (data: Option[] | any) => {
@@ -189,6 +189,7 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       children,
       disabled,
       title,
+      customTitleActive,
       ...rest
     } = this.props;
     const {
@@ -199,7 +200,8 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       return current ? current.text : '';
     };
 
-    const omitRest = omit(rest, ['onChange', 'toggle']);
+    const omitRest = omit(rest, ['onChange', 'toggle', 'onClick', 'onToggleChange']);
+    const showActive = (customTitleActive && title) || selectedValue;
     return (
       <DropDownMenuContext.Consumer>
         {({
@@ -223,11 +225,12 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
               <div
                 className={classNames(menuItem, {
                   [`${dropWrapper}-item-disabled`]: disabled,
-                  [`${dropWrapper}-item-select`]: visible && selectedValue && currentTargetId === onlyId,
+                  [`${dropWrapper}-item-select`]: visible && showActive && currentTargetId === onlyId,
                 })}
                 title={title || renderValue()}
                 onClick={this.handleInput}
                 id={onlyId}
+                ref={this.itemRef}
               >
                 <span
                   className={`${dropWrapper}-item-text`}
@@ -260,11 +263,12 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
                       height: '100%',
                     }}
                     onClick={this.handleMask}
+                    ref={this.maskRef}
                   >
                     <div
                       className={content}
                       style={{ ...dropContentStyle }}
-                      onClick={this.handleClick}
+                      ref={this.childRef}
                     >
                       {children || this.renderCurrent(options || [])}
                     </div>

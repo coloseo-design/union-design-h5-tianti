@@ -25,14 +25,19 @@ const Demo = () => {
     { text: '销量排序7', value: '0' },
   ];
 
+  const [title, setTitle] = React.useState('筛选');;
+
   const [toggle, setToggle] = React.useState(false);
   const handleToggle = () => {
-    setToggle(!toggle);
+    setToggle(true);
   };
 
   const handleButton = () => {
     setToggle(false);
+    setTitle('哈哈哈')
   };
+  
+
 
   const [testDis, setDis] = React.useState(true);
   const [testDis1, setDis1] = React.useState(false);
@@ -48,7 +53,13 @@ const Demo = () => {
         <h1>自定义菜单内容</h1>
         <DropdownMenu>
           <DropdownItem value="b" options={option2} />
-          <DropdownItem title="筛选" toggle={toggle} onClick={handleToggle}>
+          <DropdownItem
+            title={title}
+            customTitleActive
+            toggle={toggle}
+            onClick={handleToggle}
+            onToggleChange={(v) => setToggle(v)}
+          >
             <Collapse activeKey={1} accordion style={{ marginTop: 50 }}>
               <Collapse.Panel header="类别(#N)1" key={1}>
                 <div onClick={handleButton}>
@@ -70,7 +81,7 @@ const Demo = () => {
       </div>
       <div style={{ marginTop: 32 }}>
         <h1>禁止菜单</h1>
-        <button onClick={() => { setDis(!testDis); setDis1(!testDis1)}}>change disabled</button>
+        <button onClick={() => { setDis(!testDis); setDis1(!testDis1) }}>change disabled</button>
         <DropdownMenu>
           <DropdownItem value='a' options={option2} disabled={testDis} />
           <DropdownItem value='c' options={option2} disabled={testDis} />

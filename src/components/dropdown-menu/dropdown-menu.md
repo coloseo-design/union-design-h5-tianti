@@ -27,7 +27,10 @@ toc: false
 |options| 选项数组| Option[]| --||
 |disabled|是否禁用菜单|boolean|false| |
 |dropContentStyle| 下拉列表样式| object| --|  |
+|customTitleActive|自定义title是否标红|false||
 |onChange|点击选项导致 value 变化时触发| (value) => void| --|  |
+|onClick|点击当前item时触发| (e) => void| --|  |
+|onToggleChange|弹窗改变时触发|(toggle: boolean)=>void|--|
 
 
 ### Option 数据结构
