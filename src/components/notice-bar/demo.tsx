@@ -159,7 +159,7 @@ const Demo = () => (
         text: '这是正文这是正文这是正文这是正文这是正文这是正文',
         container: () => document.getElementById("testContainer"),
         zIndex: 800,
-        duration: 2,
+        duration: 10,
       })}
     >
       普通展示样式
@@ -170,6 +170,7 @@ const Demo = () => (
         text: '这是正文这是正文222',
         container: () => document.getElementById("testContainer"),
         zIndex: 800,
+        duration: 10,
       })}
     >
       普通展示样式22

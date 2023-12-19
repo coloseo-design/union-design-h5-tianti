@@ -149,7 +149,7 @@ export default class NoticeBar {
 
     const c = conf.container?.();
     if (c) {
-      if (c && !c.contains(temp)) {
+      if (c && !c.querySelector('div.notice-bar-container')) {
         temp.setAttribute('style', `position: absolute; z-index: ${conf.zIndex || 100}`);
         c && c.appendChild(temp.cloneNode(true));
       }
