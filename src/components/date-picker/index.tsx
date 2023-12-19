@@ -92,6 +92,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       onCancel={onCancel}
       onOk={onOk}
       footerStyle={footerStyle}
+      parentScrollHidden
     >
       <Picker
         options={options}

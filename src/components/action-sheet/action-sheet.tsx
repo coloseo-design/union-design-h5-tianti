@@ -69,8 +69,10 @@ const ActionSheet: React.FC<ActionSheetProps> = (props: ActionSheetProps) => {
   useEffect(() => {
     if (propsVisible) {
       setVisible(propsVisible);
+      document.body.style.overflow = 'hidden';
     } else {
       setAnimationEnd(true);
+      document.body.style.overflow = '';
       setTimeout(() => {
         setVisible(false);
         setAnimationEnd(false);

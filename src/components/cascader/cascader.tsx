@@ -39,6 +39,7 @@ const Cascader: React.FC<CascaderProps> = (props: CascaderProps) => {
       onCancel={onCancel}
       onOk={onOk}
       footerStyle={footerStyle}
+      parentScrollHidden
     >
       {extra && <div ref={extraRef as any}>{extra}</div>}
       {headers && headers?.length > 0 && (
