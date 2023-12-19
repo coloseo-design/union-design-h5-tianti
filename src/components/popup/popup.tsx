@@ -56,7 +56,7 @@ export interface PopupProps extends React.HTMLAttributes<HTMLDivElement> {
   /* 是否展示动画 */
   isTransition?: boolean;
   /* 是否禁用父级的滚动 */
-  parentHidden?: boolean;
+  parentScrollHidden?: boolean;
 }
 
 export interface PopupState {
@@ -84,18 +84,18 @@ class Popup extends React.Component<PopupProps, PopupState> {
   }
 
   componentDidUpdate(prevProps: PopupProps) {
-    const { visible, isTransition, parentHidden = true } = this.props;
-    // parentHidden 为 false，一般用于在全屏弹窗里再设置弹窗，或者是弹窗叠加
+    const { visible, isTransition, parentScrollHidden } = this.props;
+    // parentScrollHidden 为 false，一般用于在全屏弹窗里再设置弹窗，或者是弹窗叠加
     if (visible !== prevProps.visible) {
       if (!visible) {
-        parentHidden && this.setOverflow(false);
+        parentScrollHidden && this.setOverflow(false);
         this.setState({ translationS: true });
         const timer = setTimeout(() => {
           clearTimeout(timer);
           this.setState({ visible: false, translationS: false });
         }, isTransition ? 300 : 0);
       } else {
-        parentHidden && this.setOverflow(true);
+        parentScrollHidden && this.setOverflow(true);
         this.setState({
           visible,
         });

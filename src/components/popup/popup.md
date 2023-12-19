@@ -33,4 +33,4 @@ subtitle: 弹出层
 |footer|底部内容，默认两个button展示, 传值为null时不展示footer|React.Node\|null|--||
 |fullScreen|是否全屏展示弹窗，默认最大展示80%|boolean|false||
 |isTransition|是否需要动画|boolean|true||
-|parentHidden|是否需要隐藏弹窗父级的滚动条|boolean|true|
+|parentScrollHidden|是否需要隐藏弹窗父级的滚动条|boolean|false|

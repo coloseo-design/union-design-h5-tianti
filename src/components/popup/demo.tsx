@@ -121,7 +121,7 @@ const PopupDemo = () => {
         onCancel={handleCancel}
         header="标题"
         footerStyle={{ paddingBottom: 32 }}
-        parentHidden={fullVisible ? false : true}
+        parentScrollHidden={fullVisible ? false : true}
       >
         <button onClick={() => {
           setVmodel2(false);
