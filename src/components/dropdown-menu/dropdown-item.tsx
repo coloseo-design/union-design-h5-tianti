@@ -145,22 +145,26 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
 
   handleMask = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { closeOnClickOverlay = true } = this.context;
-    const { onToggleChange } = this.props;
+    const { onToggleChange, toggle } = this.props;
     if (e.currentTarget === e.target) {
       if (closeOnClickOverlay) {
-        this.close();
+        if (typeof toggle === 'undefined') {
+          this.close();
+        }
         onToggleChange?.(false);
       }
     }
   };
 
   bodyClick = (e: any) => {
-    const { onToggleChange } = this.props;
+    const { onToggleChange, toggle } = this.props;
     const { target } = e;
     if (this.itemRef.current && this.itemRef.current.contains(target)) return; // 点击item
     if (this.childRef.current && this.childRef.current.contains(target)) return; // 点击弹窗内容
     if (this.maskRef.current && this.maskRef.current.contains(target) && !this.childRef.current?.contains(target)) return; // 点击蒙层
-    this.close();
+    if (typeof toggle === 'undefined') {
+      this.close();
+    }
     onToggleChange?.(false);
   }
 

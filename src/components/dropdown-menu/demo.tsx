@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  DropdownMenu, Collapse,
+  DropdownMenu, Collapse
 } from '../index';
 import './styles/index';
 import '../collapse/styles/index';
@@ -51,7 +51,7 @@ const Demo = () => {
       </DropdownMenu>
       <div style={{ marginTop: 32 }}>
         <h1>自定义菜单内容</h1>
-        <DropdownMenu>
+        <DropdownMenu closeOnClickOutside={false} closeOnClickOverlay={false}>
           <DropdownItem value="b" options={option2} />
           <DropdownItem
             title={title}
