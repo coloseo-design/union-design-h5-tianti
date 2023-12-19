@@ -16,7 +16,7 @@ export interface Option {
   value: string;
 }
 
-export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLElement>, 'value'|'onChange'> {
+export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLElement>, 'value' | 'onChange'> {
   value?: string;
   prefixCls?: string;
   options?: Option[];
@@ -125,21 +125,25 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
       toggle, onClick, disabled, onToggleChange,
     } = this.props;
     const { visible, onlyId } = this.state;
-    !disabled && onClick?.(e);
-    if (!disabled && !toggle) {
+    if (!disabled) {
+      onClick?.(e);
       if (visible && currentTargetId === onlyId) {
-        this.close();
+        if (typeof toggle === 'undefined') {
+          this.close();
+        }
         onToggleChange?.(false);
       } else {
         changeParentState({ currentTargetId: onlyId });
-        this.setState({ visible: true });
+        if (typeof toggle === 'undefined') {
+          this.setState({ visible: true });
+        }
         getNodeLocation();
         onToggleChange?.(true);
       }
     }
   };
 
-  handleMask =(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  handleMask = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { closeOnClickOverlay = true } = this.context;
     const { onToggleChange } = this.props;
     if (e.currentTarget === e.target) {
@@ -247,33 +251,33 @@ class DropdownItem extends React.Component<DropdownItemProps, DropdownItemState>
               </div>
               {visible && currentTargetId === onlyId
                 && (
-                <div
-                  className={itemContainer}
-                  style={{
-                    top: direction === 'down' ? top : 0,
-                    left: 0,
-                    bottom: direction === 'down' ? 0 : `calc(100% - ${top}px)`,
-                  }}
-                >
-
                   <div
+                    className={itemContainer}
                     style={{
-                      backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.2)',
-                      width: '100%',
-                      height: '100%',
+                      top: direction === 'down' ? top : 0,
+                      left: 0,
+                      bottom: direction === 'down' ? 0 : `calc(100% - ${top}px)`,
                     }}
-                    onClick={this.handleMask}
-                    ref={this.maskRef}
                   >
+
                     <div
-                      className={content}
-                      style={{ ...dropContentStyle }}
-                      ref={this.childRef}
+                      style={{
+                        backgroundColor: !overlay ? 'transparent' : 'rgba(0,0,0, 0.2)',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      onClick={this.handleMask}
+                      ref={this.maskRef}
                     >
-                      {children || this.renderCurrent(options || [])}
+                      <div
+                        className={content}
+                        style={{ ...dropContentStyle }}
+                        ref={this.childRef}
+                      >
+                        {children || this.renderCurrent(options || [])}
+                      </div>
                     </div>
                   </div>
-                </div>
                 )}
             </div>
           );

@@ -29,7 +29,7 @@ const Demo = () => {
 
   const [toggle, setToggle] = React.useState(false);
   const handleToggle = () => {
-    setToggle(true);
+    setToggle(!toggle);
   };
 
   const handleButton = () => {
@@ -57,7 +57,6 @@ const Demo = () => {
             title={title}
             customTitleActive
             toggle={toggle}
-            onClick={handleToggle}
             onToggleChange={(v) => setToggle(v)}
           >
             <Collapse activeKey={1} accordion style={{ marginTop: 50 }}>
