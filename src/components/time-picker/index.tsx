@@ -25,7 +25,7 @@ const getTimeValue = (input: Date) => {
   const hour = time.hour();
   const minute = time.minute();
   const second = time.second();
-  const result = [`${hour}`, `${minute}`.padStart(2, '0'), `${second}`.padStart(2, '0')];
+  const result = [`${hour}`.padStart(2, '0'), `${minute}`.padStart(2, '0'), `${second}`.padStart(2, '0')];
   return result;
 };
 
@@ -72,6 +72,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   useEffect(() => {
     if (valueFromProps) {
       const v = getTimeValue(valueFromProps);
+      setTitle(valueFromProps.format('HH时mm分ss秒'));
       setValue(v);
     }
   }, [valueFromProps]);
