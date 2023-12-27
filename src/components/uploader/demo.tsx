@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Uploader } from '../index';
+import { Uploader, Toast } from '../index';
 import { UploaderFile } from './uploader';
 import './styles/index';
 
@@ -20,15 +20,22 @@ const Demo = () => {
       <div>
         <Uploader.List
           style={{ margin: '20px 15px' }}
-          action="http://10.13.5.99:3000/upload"
+          action="https://api.znggjc.com/api/uploaders"
           onChange={(fileList) => {
             console.log('onChange:', fileList);
             if (!file) {
               setFile(fileList[0]);
             }
           }}
+          headers={{
+            authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ2cDZNTUw3S3hDNWc5NlBYQ1hVV3pCVnBTQzlhY1FyeSIsImV4cCI6MTY1NjY2MzQwMywibmJmIjoxNjU2NjYyODAzLCJpYXQiOjE2NTY2NjI4MDN9.tGkAJL1gTikYX_r7QLSMnma5AzOe4hk3tfQe09UUhPc'
+          }}
+          customSuccessTips
           beforeUpload={(file1) => { console.log('beforeUpload:', file1); return true; }}
-          afterUpload={(file1) => console.log('afterUpload:', file1)}
+          afterUpload={(file1) => {
+           console.log('==file1', file1);
+           
+          }}
         />
       </div>
       <div

@@ -72,6 +72,8 @@ export type UploaderProps = {
   afterUpload?: (file: UploaderFile) => void;
   /** 上传文件改变时回调 */
   onChange?: (file: UploaderFile) => void;
+  /* 自定义上传提示 */
+  customSuccessTips?: boolean;
 
   children: ReactNode;
 };
@@ -135,6 +137,7 @@ const Uploader = memo<UploaderProps>((props) => {
     beforeUpload,
     afterUpload,
     onChange,
+    customSuccessTips,
   } = props ?? {};
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -189,7 +192,9 @@ const Uploader = memo<UploaderProps>((props) => {
       } else {
         Object.assign(file, { status: 'success' });
         await afterUpload?.(file);
-        Toast.info({ content: '上传成功', mask: false });
+        if (!customSuccessTips) {
+          Toast.info({ content: '上传成功', mask: false });
+        }
       }
 
       onChange?.(file);

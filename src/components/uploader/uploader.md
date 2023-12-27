@@ -11,20 +11,21 @@ subtitle: 文件上传
 
 | 参数            | 说明                                                                                                                                                                                                      | 类型                                                                                   | 默认值 |
 | :-------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- | :----- |
-| action          | 上传的地址                                                                                                                                                                                                | string \| ((file: UploaderFile) => ReturnPT<string>)                                   | -      |
+| action          | 上传的地址                                                                                                                                                                                                | string \| ((file: UploaderFile) => ReturnPT<string\>)                                   | -      |
 | data            | 上传所需额外参数或返回上传额外参数的方法                                                                                                                                                                  | Record<string, unknown> \| ((file: UploaderFile) => ReturnPT<Record<string, unknown>>) | -      |
 | accept          | 接受上传的文件类型                                                                                                                                                                                        | string                                                                                 | -      |
 | method          | 上传请求的 http method                                                                                                                                                                                    | 'POST' \| 'PUT' \| 'PATCH'                                                             | 'POST' |
 | withCredentials | 上传请求时是否携带 cookie                                                                                                                                                                                 | boolean                                                                                | false  |
 | headers         | 设置上传的请求头部                                                                                                                                                                                        | Record<string, string> \| ((file: UploaderFile) => ReturnPT<Record<string, string>>)   | -      |
 | name            | 发到后台的文件参数名                                                                                                                                                                                      | string                                                                                 | 'file' |
-| beforeUpload    | 上传文件之前的钩子，参数为上传的文件， 若返回 false 则停止上传。支持返回一个 Promise 对象，Promise 对象 reject 时则停止上传，resolve 时开始上传（ resolve 传入 File 或 Blob 对象则上传 resolve 传入对象） | (file: UploaderFile) => boolean \| Promise<UploaderFile>                               | -      |
+| beforeUpload    | 上传文件之前的钩子，参数为上传的文件， 若返回 false 则停止上传。支持返回一个 Promise 对象，Promise 对象 reject 时则停止上传，resolve 时开始上传（ resolve 传入 File 或 Blob 对象则上传 resolve 传入对象） | (file: UploaderFile) => boolean \| Promise<UploaderFile\>                               | -      |
 | afterUpload     | 上传文件之后的钩子，参数为上传的文件                                                                                                                                                                      | (file: UploaderFile) => void                                                           | -      |
 | onChange        | 上传文件改变时回调                                                                                                                                                                                        | (file: UploaderFile) => void                                                           | -      |
+|customSuccessTips|是否自定义成功提示|boolean|false|
 
 ### ReturnPT
 
-type ReturnPT<T> = T | Promise<T>;
+type ReturnPT<T\> = T | Promise<T\>;
 
 ### UploaderFile
 
@@ -39,8 +40,8 @@ type ReturnPT<T> = T | Promise<T>;
 | type             | 类型                      | string                                         | -      |
 | status           | 状态                      | 'init' \| 'uploading' \| 'success' \| 'failed' | 'init' |
 | url              | 上传地址                  | string                                         | -      |
-| headers          | 上传head                  | Record<string, string>                         | -      |
-| formData         | 上传携带的 form 数据      | Record<string, unknown>                        | -      |
+| headers          | 上传head                  | Record<string, string\>                         | -      |
+| formData         | 上传携带的 form 数据      | Record<string, unknown\>                        | -      |
 | formDataFileName | 发到后台的文件参数名      | string                                         | -      |
 | method           | 上传请求的 http method    | 'POST' \| 'PUT' \| 'PATCH'                     | 'POST' |
 | withCredentials  | 上传请求时是否携带 cookie | boolean                                        | false  |
