@@ -81,7 +81,7 @@ const File = React.memo<FileProps>((props) => {
         ))}
         {closeEnable && (
           <div onClick={onClose}>
-            <Icon type="close1-surface" style={{ fontSize: 16 }} />
+            <Icon type="close1-surface" style={{ fontSize: 16, color: '#646566' }} />
           </div>
         )}
       </div>
