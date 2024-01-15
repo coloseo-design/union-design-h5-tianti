@@ -1,6 +1,6 @@
 {
   "name": "union-design-h5",
-  "version": "1.0.64-beta.2",
+  "version": "1.0.64",
   "license": "MIT",
   "files": [
     "lib",
