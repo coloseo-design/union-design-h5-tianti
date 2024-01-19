@@ -14,7 +14,7 @@ export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defau
   visible?: boolean;
   value?: dayjs.Dayjs | string | number;
   defaultValue?: Date | dayjs.Dayjs | string | number;
-  onChange: (time: dayjs.Dayjs) => void;
+  onChange?: (time: dayjs.Dayjs) => void;
   /** 年份的区间（默认50） */
   rangeOfYear?: number;
   footerStyle?: React.CSSProperties;

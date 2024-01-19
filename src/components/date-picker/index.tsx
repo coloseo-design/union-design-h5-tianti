@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
@@ -33,7 +35,7 @@ const getTimeValue = (input: Date) => {
 
 const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   const {
-    title: defaultTitle,
+    title: propsTitle,
     visible,
     onChange: _onChange,
     defaultValue,
@@ -46,13 +48,16 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     footerStyle,
   } = props;
 
-  const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
-  const [title, setTitle] = useState(defaultTitle);
+  const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps)); // 实际的值
+  const [showValue, setShowValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps)); // 列表展示的值
+
+  const [title, setTitle] = useState(propsTitle); // 展示的title
+
   const yearStart = dayjs().year() - rangeOfYear;
   const yearEnd = dayjs().year() + rangeOfYear;
   // 获取对应的月份有多少天
-  const currentYear = parseInt(value[0], 10);
-  const currentMonth = parseInt(value[1], 10) - 1;
+  const currentYear = parseInt(showValue[0], 10);
+  const currentMonth = parseInt(showValue[1], 10) - 1;
   const dayInMonth = dayjs().year(currentYear).month(currentMonth).daysInMonth();
   // 显示列的范围
   const options = [
@@ -60,37 +65,69 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     getRange(1, 1 + monthCount),
     getRange(1, 1 + dayInMonth),
   ];
+
   const onChange = (item: Option, index: number) => {
-    value[index] = item.value;
+    const temp = [...showValue];
+    temp[index] = item.value;
     const newValue = options.map((v, idx) => {
-      if (!value[idx]) {
+      if (!temp[idx]) {
         return v[0] ? v[0].value : '';
       }
-      return value[idx];
+      return temp[idx];
     });
     const time = dayjs()
       .year(parseInt(newValue[0], 10))
       .month(parseInt(newValue[1], 10) - 1)
       .date(parseInt(newValue[2], 10));
     _onChange && _onChange(time);
-    setValue(newValue);
+    setShowValue(newValue);
     setTitle(time.format('YYYY年MM月DD日'));
   };
 
   /**
    * 当value变化的时候，重新渲染值选择
    */
+
   useEffect(() => {
     const v = getTimeValue(valueFromProps);
     setValue(v);
+    setShowValue(v);
+    if (valueFromProps) setTitle(valueFromProps?.format('YYYY年MM月DD日'));
   }, [valueFromProps]);
+
+  useEffect(() => {
+    setTitle(propsTitle);
+  }, [propsTitle]);
+
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof valueFromProps === 'undefined') {
+      setValue(value);
+      setShowValue(value);
+      value && value.length > 0 && setTitle(`${value[0]}年${value[1]}月${value[2]}日`);
+    } else {
+      setTitle(valueFromProps?.format('YYYY年MM月DD日'));
+    }
+    onCancel?.(e);
+  };
+
+  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof valueFromProps === 'undefined') {
+      setValue(showValue);
+      setTitle(title);
+    } else {
+      setShowValue(getTimeValue(valueFromProps));
+      setTitle(valueFromProps?.format('YYYY年MM月DD日'));
+    }
+    onOk?.(e);
+  };
+
   return (
     <Popup
       header={title}
       visible={visible}
       position="bottom"
-      onCancel={onCancel}
-      onOk={onOk}
+      onCancel={handleCancel}
+      onOk={handleOk}
       footerStyle={footerStyle}
       parentScrollHidden
     >

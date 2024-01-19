@@ -9,15 +9,7 @@ const TimePickerDemo = () => {
   const onChange = (v: dayjs.Dayjs) => {
     setValue(v);
   };
-  const containerStyle = {
-    width: 377,
-    height: 548,
-    backgroundColor: '#fafafa',
-    padding: 10,
-    overflow: 'scroll',
-    borderRadius: 12,
-    boxShadow: '#ebedf0 0 4px 12px',
-  };
+
   return (
     <div>
       <Button onClick={() => setVisible(true)}>选择日期</Button>
@@ -25,6 +17,9 @@ const TimePickerDemo = () => {
         visible={visible}
         title="请选择"
         onCancel={() => setVisible(false)}
+        onOk={() => {
+          setVisible(false);
+        }}
         onChange={onChange}
         value={value}
       />

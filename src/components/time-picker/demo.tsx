@@ -7,7 +7,6 @@ const TimePickerDemo = () => {
   const [value, setValue] = useState(dayjs());
   const onChange = (v: dayjs.Dayjs) => {
     setValue(v);
-    // setValue(dayjs('22:00:32', 'HH:mm:ss'))
   };
   return (
     <div>
@@ -22,7 +21,7 @@ const TimePickerDemo = () => {
         onChange={onChange}
         footerStyle={{ paddingBottom: 32 }}
         value={value}
-        defaultValue={dayjs('21:02:02', 'HH:mm:ss')}
+        // defaultValue={dayjs('21:02:02', 'HH:mm:ss')}
         renderItem={(val: any) => {
           return <span>{val.value}</span>;
         }}

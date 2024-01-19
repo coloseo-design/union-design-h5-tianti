@@ -14,7 +14,7 @@ export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defau
   visible?: boolean;
   value?: dayjs.Dayjs | string | number;
   defaultValue?: Date | dayjs.Dayjs | string | number;
-  onChange: (time: dayjs.Dayjs) => void;
+  onChange?: (time: dayjs.Dayjs) => void;
 
   position?: 'center' | 'bottom' | 'top' | 'left' | 'right';
 

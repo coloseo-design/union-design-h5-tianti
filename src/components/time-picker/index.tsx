@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
@@ -31,7 +33,7 @@ const getTimeValue = (input: Date) => {
 
 const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   const {
-    title: defaultTitle,
+    title: propsTitle,
     visible,
     onChange: _onChange,
     defaultValue,
@@ -46,22 +48,25 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   } = props;
 
   const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
-  const [title, setTitle] = useState(defaultTitle);
+  const [showValue, setShowValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
+
+  const [title, setTitle] = useState(propsTitle);
   const options = [getRange(0, 24), getRange(0, 60), getRange(0, 60)];
   const onChange = (item: Option, index: number) => {
-    value[index] = item.value;
+    const tem = [...showValue];
+    tem[index] = item.value;
     const newValue = options.map((v, idx) => {
-      if (!value[idx]) {
+      if (!tem[idx]) {
         return v[0] ? v[0].value : '';
       }
-      return value[idx];
+      return tem[idx];
     });
     const time = dayjs()
       .hour(parseInt(newValue[0], 10))
       .minute(parseInt(newValue[1], 10))
       .second(parseInt(newValue[2], 10));
     _onChange && _onChange(time);
-    setValue(newValue);
+    setShowValue(newValue);
     setTitle(time.format('HH时mm分ss秒'));
   };
 
@@ -72,18 +77,44 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   useEffect(() => {
     if (valueFromProps) {
       const v = getTimeValue(valueFromProps);
-      setTitle(valueFromProps.format('HH时mm分ss秒'));
       setValue(v);
+      setTitle(valueFromProps.format('HH时mm分ss秒'));
     }
   }, [valueFromProps]);
+
+  useEffect(() => {
+    setTitle(propsTitle);
+  }, [propsTitle]);
+
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof valueFromProps === 'undefined') {
+      setValue(value);
+      setShowValue(value);
+      value && setTitle(dayjs(value.join(':'), 'HH:mm:ss').format('HH时mm分ss秒'));
+    } else {
+      setTitle(valueFromProps?.format('HH时mm分ss秒'));
+    }
+    onCancel?.(e);
+  };
+
+  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof valueFromProps === 'undefined') {
+      setValue(showValue);
+      setTitle(title);
+    } else {
+      setShowValue(getTimeValue(valueFromProps));
+      setTitle(valueFromProps?.format('HH时mm分ss秒'));
+    }
+    onOk?.(e);
+  };
 
   return (
     <Popup
       header={title}
       visible={visible}
       position={position || 'bottom'}
-      onCancel={onCancel}
-      onOk={onOk}
+      onCancel={handleCancel}
+      onOk={handleOk}
       footerStyle={footerStyle}
       parentScrollHidden
     >
