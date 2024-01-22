@@ -4,9 +4,10 @@ import { Button, TimePicker } from '../index';
 
 const TimePickerDemo = () => {
   const [visible, setVisible] = useState(false);
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(dayjs('21:20:32', 'HH:mm:ss'));
   const onChange = (v: dayjs.Dayjs) => {
-    setValue(v);
+    console.log('==v', v);
+    // setValue(v);
   };
   return (
     <div>
@@ -15,18 +16,17 @@ const TimePickerDemo = () => {
         visible={visible}
         title="请选择"
         onCancel={() => {
-          console.log('cancel');
           setVisible(false);
         }}
         onChange={onChange}
         footerStyle={{ paddingBottom: 32 }}
         value={value}
-        // defaultValue={dayjs('21:02:02', 'HH:mm:ss')}
         renderItem={(val: any) => {
           return <span>{val.value}</span>;
         }}
         onOk={() => {
           console.log('ok');
+          setValue(dayjs('19:20:32', 'HH:mm:ss'))
           setVisible(false);
         }}
       />

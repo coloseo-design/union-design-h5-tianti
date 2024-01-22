@@ -7,7 +7,7 @@ const TimePickerDemo = () => {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState(dayjs());
   const onChange = (v: dayjs.Dayjs) => {
-    console.log('-->>', v, dayjs(v).format('YYYY-MM-DD'))
+    // console.log('-->>', v, dayjs(v).format('YYYY-MM-DD'))
     setValue(v);
   };
 

@@ -45,15 +45,15 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     position,
     renderItem,
     footerStyle,
+    isTitleChange = true,
   } = props;
 
   const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
-  const [showValue, setShowValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps));
 
   const [title, setTitle] = useState(propsTitle);
   const options = [getRange(0, 24), getRange(0, 60), getRange(0, 60)];
   const onChange = (item: Option, index: number) => {
-    const tem = [...showValue];
+    const tem = [...value];
     tem[index] = item.value;
     const newValue = options.map((v, idx) => {
       if (!tem[idx]) {
@@ -66,8 +66,8 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       .minute(parseInt(newValue[1], 10))
       .second(parseInt(newValue[2], 10));
     _onChange && _onChange(time);
-    setShowValue(newValue);
-    setTitle(time.format('HH时mm分ss秒'));
+    setValue(newValue);
+    isTitleChange && setTitle(time.format('HH时mm分ss秒'));
   };
 
   /**
@@ -78,7 +78,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     if (valueFromProps) {
       const v = getTimeValue(valueFromProps);
       setValue(v);
-      setTitle(dayjs(valueFromProps).format('HH时mm分ss秒'));
+      isTitleChange && setTitle(dayjs(valueFromProps).format('HH时mm分ss秒'));
     }
   }, [valueFromProps]);
 
@@ -86,35 +86,13 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     setTitle(propsTitle);
   }, [propsTitle]);
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
-    if (typeof valueFromProps === 'undefined') {
-      setValue(value);
-      setShowValue(value);
-      value && setTitle(dayjs(value.join(':'), 'HH:mm:ss').format('HH时mm分ss秒'));
-    } else {
-      setTitle(dayjs(valueFromProps)?.format('HH时mm分ss秒'));
-    }
-    onCancel?.(e);
-  };
-
-  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
-    if (typeof valueFromProps === 'undefined') {
-      setValue(showValue);
-      setTitle(title);
-    } else {
-      setShowValue(getTimeValue(valueFromProps));
-      setTitle(dayjs(valueFromProps)?.format('HH时mm分ss秒'));
-    }
-    onOk?.(e);
-  };
-
   return (
     <Popup
       header={title}
       visible={visible}
       position={position || 'bottom'}
-      onCancel={handleCancel}
-      onOk={handleOk}
+      onCancel={onCancel}
+      onOk={onOk}
       footerStyle={footerStyle}
       parentScrollHidden
     >

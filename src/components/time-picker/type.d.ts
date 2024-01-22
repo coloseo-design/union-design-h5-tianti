@@ -21,4 +21,6 @@ export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defau
   renderItem?: (value: Option) => string | React.ReactNode;
 
   footerStyle?: React.CSSProperties;
+
+  isTitleChange?: boolean;
 }

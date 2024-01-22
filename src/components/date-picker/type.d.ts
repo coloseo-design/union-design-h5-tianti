@@ -18,4 +18,5 @@ export type TimePickerProps = Omit<BasePickerProps, 'options' | 'value' | 'defau
   /** 年份的区间（默认50） */
   rangeOfYear?: number;
   footerStyle?: React.CSSProperties;
+  isTitleChange?: boolean;
 }

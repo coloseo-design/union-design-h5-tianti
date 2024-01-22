@@ -46,18 +46,18 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     onOk,
     rangeOfYear = 50,
     footerStyle,
+    isTitleChange = true,
   } = props;
 
   const [value, setValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps)); // 实际的值
-  const [showValue, setShowValue] = useState<string[]>(getTimeValue(defaultValue || valueFromProps)); // 列表展示的值
 
   const [title, setTitle] = useState(propsTitle); // 展示的title
 
   const yearStart = dayjs().year() - rangeOfYear;
   const yearEnd = dayjs().year() + rangeOfYear;
   // 获取对应的月份有多少天
-  const currentYear = parseInt(showValue[0], 10);
-  const currentMonth = parseInt(showValue[1], 10) - 1;
+  const currentYear = parseInt(value[0], 10);
+  const currentMonth = parseInt(value[1], 10) - 1;
   const dayInMonth = dayjs().year(currentYear).month(currentMonth).daysInMonth();
   // 显示列的范围
   const options = [
@@ -67,7 +67,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   ];
 
   const onChange = (item: Option, index: number) => {
-    const temp = [...showValue];
+    const temp = [...value];
     temp[index] = item.value;
     const newValue = options.map((v, idx) => {
       if (!temp[idx]) {
@@ -80,8 +80,8 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       .month(parseInt(newValue[1], 10) - 1)
       .date(parseInt(newValue[2], 10));
     _onChange && _onChange(time);
-    setShowValue(newValue);
-    setTitle(time.format('YYYY年MM月DD日'));
+    setValue(newValue);
+    isTitleChange && setTitle(time.format('YYYY年MM月DD日'));
   };
 
   /**
@@ -91,43 +91,20 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
   useEffect(() => {
     const v = getTimeValue(valueFromProps);
     setValue(v);
-    setShowValue(v);
-    if (valueFromProps) setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
+    if (valueFromProps && isTitleChange) setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
   }, [valueFromProps]);
 
   useEffect(() => {
     setTitle(propsTitle);
   }, [propsTitle]);
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
-    if (typeof valueFromProps === 'undefined') {
-      setValue(value);
-      setShowValue(value);
-      value && value.length > 0 && setTitle(`${value[0]}年${value[1]}月${value[2]}日`);
-    } else {
-      setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
-    }
-    onCancel?.(e);
-  };
-
-  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
-    if (typeof valueFromProps === 'undefined') {
-      setValue(showValue);
-      setTitle(title);
-    } else {
-      setShowValue(getTimeValue(valueFromProps));
-      setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
-    }
-    onOk?.(e);
-  };
-
   return (
     <Popup
       header={title}
       visible={visible}
       position="bottom"
-      onCancel={handleCancel}
-      onOk={handleOk}
+      onCancel={onCancel}
+      onOk={onOk}
       footerStyle={footerStyle}
       parentScrollHidden
     >
