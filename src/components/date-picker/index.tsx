@@ -92,7 +92,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     const v = getTimeValue(valueFromProps);
     setValue(v);
     setShowValue(v);
-    if (valueFromProps) setTitle(valueFromProps?.format('YYYY年MM月DD日'));
+    if (valueFromProps) setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
   }, [valueFromProps]);
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       setShowValue(value);
       value && value.length > 0 && setTitle(`${value[0]}年${value[1]}月${value[2]}日`);
     } else {
-      setTitle(valueFromProps?.format('YYYY年MM月DD日'));
+      setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
     }
     onCancel?.(e);
   };
@@ -116,7 +116,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       setTitle(title);
     } else {
       setShowValue(getTimeValue(valueFromProps));
-      setTitle(valueFromProps?.format('YYYY年MM月DD日'));
+      setTitle(dayjs(valueFromProps)?.format('YYYY年MM月DD日'));
     }
     onOk?.(e);
   };

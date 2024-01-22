@@ -78,7 +78,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     if (valueFromProps) {
       const v = getTimeValue(valueFromProps);
       setValue(v);
-      setTitle(valueFromProps.format('HH时mm分ss秒'));
+      setTitle(dayjs(valueFromProps).format('HH时mm分ss秒'));
     }
   }, [valueFromProps]);
 
@@ -92,7 +92,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       setShowValue(value);
       value && setTitle(dayjs(value.join(':'), 'HH:mm:ss').format('HH时mm分ss秒'));
     } else {
-      setTitle(valueFromProps?.format('HH时mm分ss秒'));
+      setTitle(dayjs(valueFromProps)?.format('HH时mm分ss秒'));
     }
     onCancel?.(e);
   };
@@ -103,7 +103,7 @@ const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
       setTitle(title);
     } else {
       setShowValue(getTimeValue(valueFromProps));
-      setTitle(valueFromProps?.format('HH时mm分ss秒'));
+      setTitle(dayjs(valueFromProps)?.format('HH时mm分ss秒'));
     }
     onOk?.(e);
   };
