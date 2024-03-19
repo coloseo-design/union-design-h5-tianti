@@ -10,15 +10,15 @@ const Demo = () => {
       key: `${key + 1}`,
       children: key === 4 ? [] : [
         {
-          title: '联通数字科技有限公司本部',
+          title: <div style={{ whiteSpace: 'pre-wrap' }}>联通数字科技有限公司本部联通数字科技有限公司本部</div>,
           key: `${key + 1}-2`,
           children: key === 3 ? [] : Array.from({ length: 3 }).map((_, i) => ({
-            title: '管理层',
+            title: '管理层管理层管理层管理层管理层管理层管理层管理层管理层管理层',
             key: `${key + 1}-2-${i + 1}`,
             // isLeaf: true,
             children: [
               {
-                title: '姓名  （OA0010123312）',
+                title: <div style={{ whiteSpace: 'pre-wrap' }}>姓名(OA0010123312''姓名 (OA0010123312''姓名(OA0010123312)</div>,
                 key: `${key + 1}-2-${i + 1}-leaf`,
               },
               {
@@ -47,66 +47,6 @@ const Demo = () => {
     console.log('==openChange', keys);
   };
 
-  const data1 = [
-    {
-      title: '一级列表',
-      key: '1',
-      children: [
-        {
-          title: '人员a',
-          key: 'a',
-        },
-        {
-          title: '人员b',
-          key: 'b',
-        },
-      ],
-    },
-    {
-      title: '一级列表1',
-      key: '2',
-      children: [
-        {
-          title: '人员a',
-          key: 'a1',
-        },
-        {
-          title: '人员b',
-          key: 'b1',
-        },
-      ],
-    },
-    {
-      title: '一级列表2',
-      key: '3',
-      children: [
-        {
-          title: '人员a',
-          key: 'a3',
-        },
-        {
-          title: '人员b',
-          key: 'b3',
-        },
-      ],
-    },
-    {
-      title: '一级列表3',
-      key: '4',
-      children: [
-        {
-          title: '人员a',
-          key: 'a4',
-        },
-        {
-          title: '人员b',
-          key: 'b4',
-        },
-      ],
-    }
-  ];
-
-const [opens1, setOpens1] = useState<string[]>([]);
 const [opens2, setOpen2] = useState<string[]>([]);
   return (
     <div style={{ margin: '0px -12px'}}>
@@ -115,6 +55,7 @@ const [opens2, setOpen2] = useState<string[]>([]);
         data={data}
         openKeys={opens2}
         multiple={false}
+        onSelect={onSelect}
         onTitleClick={(current, e) => {
           e.stopPropagation();
           console.log('==title', current);
@@ -129,17 +70,7 @@ const [opens2, setOpen2] = useState<string[]>([]);
           }
         }}
       />
-      <h2>基本用法</h2>
-      <Tree
-        data={data1}
-        openKeys={opens1}
-        onOpenChange={(keys, { isOpen, key }: any) => {
-          if (isOpen) {
-            setOpens1(key);
-          }
-        }}
-      />
-      <h2>多选(默认就是多选)</h2>
+      <h2>基本用法多选(默认就是多选)</h2>
       <button onClick={() => {$select(['3']); $opens(['2'])}}>change</button>
       <Tree
         data={data}
@@ -165,7 +96,7 @@ const [opens2, setOpen2] = useState<string[]>([]);
         onOpenChange={onOpenChange}
         onSelect={onSelect}
       >
-        <TreeNode key="1" title="一级列表">
+        <TreeNode key="1" title={<div style={{ whiteSpace: 'pre-wrap' }}>"一级列表""一级列表""一级列表"""一级列表""一级列表""一级列表""一级列表"一级列表""一级列表""一级列表""一级列表"</div>}>
         <TreeNode key="11" title="联通数字科技有限公司本部">
           <TreeNode key="123" title="管理层"></TreeNode>
           <TreeNode key="1234" title="基层"></TreeNode>

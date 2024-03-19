@@ -127,3 +127,15 @@ export const getItem = (data: any, key: string) => {
 export const isInclude = (arr1: any[], arr2: any[]) => arr2.every((val) => arr1.includes(val));
 
 export const noInclude = (arr1: any[], arr2: any[]) => arr2.some((val) => !arr1.includes(val));
+
+export const deleteExtraPro = (obj: any = {}) => {
+  delete obj.parent;
+  delete obj.dataChildren;
+  delete obj.nodeKey;
+  delete obj.onIconClick;
+  delete obj.onTitleClick;
+  delete obj.originProps;
+  delete obj.parent;
+  delete obj.level;
+  return obj;
+};

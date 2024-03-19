@@ -10,7 +10,7 @@ import {
   DataItem, TreeProps, TreeContext, ChildType,
 } from './type';
 import {
-  findChild, findParent, findAllParentChild, getItem, Reduction, isInclude, noInclude,
+  findChild, findParent, findAllParentChild, getItem, Reduction, isInclude, noInclude, deleteExtraPro,
 } from './utils';
 
 const Tree: React.FC<TreeProps> = (props: TreeProps) => {
@@ -121,14 +121,14 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
           }
         });
       }
-      onSelect?.(key, current.originProps ?? current);
+      onSelect?.(key, deleteExtraPro(current.originProps) ?? current);
     }
 
     const lT = Reduction(temp);
     if (typeof selectedKeys === 'undefined') {
       setInfo(lT);
     }
-    onChange?.(lT.map((i: any) => i.key), lT.map((i: any) => i.originProps ?? i));
+    onChange?.(lT.map((i: any) => i.key), lT.map((i: any) => deleteExtraPro(i.originProps ?? i)));
   };
 
   const SingleChoice = (key: string, current: DataItem) => {
@@ -136,8 +136,8 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
       if (typeof selectedKeys === 'undefined') {
         setInfo([current]);
       }
-      onChange?.([key], [current.originProps]);
-      onSelect?.(key, current.originProps);
+      onChange?.([key], [deleteExtraPro(current.originProps)]);
+      onSelect?.(key, deleteExtraPro(current.originProps));
     }
   };
 
@@ -197,7 +197,7 @@ const Tree: React.FC<TreeProps> = (props: TreeProps) => {
 
   const renderChild = useMemo(() => {
     if (data && data.length > 0) {
-      return renderData(JSON.parse(JSON.stringify(data)), 1, null);
+      return renderData(data, 1, null);
     }
     if (children) {
       return renderChildren(children, 1, null);
